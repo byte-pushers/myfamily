@@ -15,7 +15,7 @@
 {
 	background-color:#990066;
 	text-align:center;
-	height:650px;
+	
 }
 .family
 {
@@ -39,7 +39,7 @@
 {
 	background-color:#00FF99;
 	text-align:center;
-	height:75px;
+	
 }
 .body2
 {
@@ -50,16 +50,4 @@
 .nestedcontent
 {
 	margin-top:300px;
-}
-#header
-{
-	
-}
-#body
-{
-	
-}
-#footer
-{
-	
 }

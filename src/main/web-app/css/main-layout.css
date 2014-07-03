@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+#header-container{
+	height:75px;
+	
+}
+#body-container{
+	height:650px;
+}
+#footer-container{
+	height:75px;
+	
+}
