@@ -7,12 +7,14 @@
 }
 .join
 {
+	margin-left:-20px;
 	background-color:#00CCFF;
 	text-align:center;
 	height:300px;
 }
 .upcoming
 {
+	
 	background-color:#00FFFF;
 	text-align:center;
 	height:300px;
