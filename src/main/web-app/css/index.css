@@ -1,54 +1,30 @@
-.color
-{
-	background-color:#0000FF;
-	text-align:center;
-	height:80px;
-	
-}
-.color2
-{
-	background-color:#00FFFF;
-	text-align:center;
-	
 
-}
-.color3
-{
-	background-color:#990066;
-	text-align:center;
-	height:600px;
-
-}
-.color4
+.family
 {
 	background-color:#0099FF;
 	text-align:center;
-	height:200px;
+	height:300px;
 }
-.color5
+.join
 {
 	background-color:#00CCFF;
 	text-align:center;
-	height:200px;
+	height:300px;
 }
-.color6
+.upcoming
 {
 	background-color:#00FFFF;
 	text-align:center;
-	height:200px;
+	height:300px;
 }
-.color7
+
+.body2
 {
-	background-color:#00FF99;
+	background-color:#33CCCC;
 	text-align:center;
-	height:90px;
+	height:650px;
 }
-.grid
+.nestedcontent
 {
-	
-}
-.rowsetting
-{
-	margin-top:400px;
-	
+	margin-top:300px;
 }
