@@ -1,33 +1,16 @@
-@CHARSET "ISO-8859-1";
 #header-container{
 	height:75px;
 	background-color: #CC9933;
-	
 }
 #body-container{
 	height:650px;
 	background-color: white;
- 
-
 }
 #footer-container{
-<<<<<<< Upstream, based on origin/master
-	height:30px;
-	background-color: #66CC99; 
-=======
 	height: 30px;
 	background-color: #66CC99;
-	
-	
->>>>>>> 11ec7f6 Added a search-form-container w/ the names.
-	
 }
 #primary-navigation-container{
 	background-color: #66CC99; 
-<<<<<<< Upstream, based on origin/master
-	height:30px;
-=======
 	height: 30px;
->>>>>>> 11ec7f6 Added a search-form-container w/ the names.
-	
 }
