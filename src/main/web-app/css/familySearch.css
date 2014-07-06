@@ -23,9 +23,23 @@ input[type=text] {
 	margin-bottom: 10px;
 	margin-top: 10px;
 
+
+
 	
 }
 .col-md-2{
 	background-color: white;
+	padding:
+}
+table, th, td{
+	border-collapse: collapse;
+	border: 1px solid black;
+	padding: 50px;
+	
+}
+
+#my_table{
+	margin-top: 50px;
+	
 	
 }
