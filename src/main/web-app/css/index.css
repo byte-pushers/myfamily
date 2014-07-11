@@ -3,20 +3,20 @@
 {
 	background-color:#CCCCCC;
 	text-align:center;
-	height:300px;
+	height:200px;
 }
 .join
 {
 	background-color:#00CCFF;
 	text-align:center;
-	height:300px;
+	height:200px;
 }
 .upcoming
 {
 	
 	background-color:#00FFFF;
 	text-align:center;
-	height:300px;
+	height:200px;
 }
 
 .body2
@@ -31,4 +31,8 @@
 }
 .texta{
 	text-align:right;
+}
+#body-container2{
+	height:350px;
+	background-color: white;
 }
