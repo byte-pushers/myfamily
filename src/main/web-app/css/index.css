@@ -32,3 +32,18 @@
 .texta{
 	text-align:right;
 }
+.textb{
+	text-align:left;
+}
+.spacing{
+		margin-left: 20px;
+}
+.spacing2{
+		margin-right: 10px;
+}
+.spacing3{
+		margin-left: 40px;
+}
+.spacing4{
+		margin-left:-20px;
+}
