@@ -32,6 +32,21 @@
 .texta{
 	text-align:right;
 }
+.textb{
+	text-align:left;
+}
+.spacing{
+		margin-left: 20px;
+}
+.spacing2{
+		margin-right: 10px;
+}
+.spacing3{
+		margin-left: 40px;
+}
+.spacing4{
+		margin-left:-20px;
+}
 #body-container2{
 	height:350px;
 	background-color: white;
