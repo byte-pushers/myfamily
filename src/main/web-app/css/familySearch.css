@@ -1,38 +1,7 @@
-.span-bkg-color1{
-	background-color: #CC9933;
-	padding: 20px;
-	font-size: 20px;
-}
-.span-bkg-color{
-	background-color: #707070;
-	text-align: center;
-}
-.span-bkg-color{
-	background-color: #66CC99; 
-}
-
-.span-bkg-color2{
-	background-color: #F8F8F8   ;
-	padding: 150px; 
-	text-align: left;
-	
-}
-input[type=text] {
-	width: 150px;
-	display: block;
-	margin-bottom: 10px;
-	margin-top: 10px;
-}
-.col-md-2{
-	background-color: white;
-	padding:
-}
 table, th, td{
 	border-collapse: collapse;
 	border: 1px solid black;
 	text-align: center;
 }
 
-#my_table{
-	margin-top: 30px;
-}
+
