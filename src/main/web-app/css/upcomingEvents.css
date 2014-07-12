@@ -1,0 +1,31 @@
+.linesep
+{
+	margin-top: 20px;
+}
+.texta{
+	text-align:right;
+}
+.textb{
+	text-align:left;
+}
+.spacing{
+		margin-left: 100px;
+}
+.spacing2{
+		margin-right: 10px;
+}
+.spacing3{
+		margin-left: 70px;
+}
+.spacing4{
+		margin-left:-20px;
+}
+.spacing5{
+		margin-left:60px;
+}
+.input-space{
+	width: 200px;
+}
+.date-size{
+	width: 25;
+}

@@ -6,7 +6,7 @@
 
 <link href="libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
-<link href="css/index.css" type="text/css" rel="stylesheet" />
+<link href="css/upcomingEvents.css" type="text/css" rel="stylesheet" />
 <link href="css/main-layout.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -44,63 +44,77 @@
 								</h1>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<h1>
+									<p>&nbsp;</p>
+								</h1>
+							</div>
+						</div>
 						<form>
 							<div class="row">
 								<div class="col-md-1 col-md-offset-2">
 									<label for="Name">Name your event:</label>
 								</div>
 								<div class="col-md-2 ">
-									<input type="text" id="name" placeholder="ex: Bill's Graduation Party">
+									<input type="text" id="name" placeholder="" class="input-space">
 								</div>
 							</div>
 							<br>
 							<div class="row">
 								<div class="col-md-1 col-md-offset-2 texta">
-									<label for="name">Name:</label>
+									<label for="name">Description:</label>
 								</div>
 								<div class="col-md-8">
-									<input type="text" id="name" placeholder="First"> <input
-										type="text" id="name" placeholder="Middle"> <input
-										type="text" id="name" placeholder="Last">
+									<textarea rows="5" cols="75"></textarea>
 								</div>
 							</div>
 							<br> <br>
 							<div class="row">
-								<div class="col-md-1 col-md-offset-2 texta">
-									<label for="birthday">Birthday:</label>
+								<div class="col-md-1 col-md-offset-2">
+									<label for="Location">Event Location: </label>
 								</div>
-								<div class="col-md-8">
-									<input type="text" id="month" placeholder="Month"> <input
-										type="text" id="day" placeholder="Day"> <input
-										type="text" id="year" placeholder="Year">
+								<div class="col-md-9">
+									<label for="Street">Street Address: </label>
 								</div>
 							</div>
-							<br> <br>
-							<div class="row">
 
-								<div class="col-md-1  col-md-offset-3 ">
-									<label for="Country">Country: </label>
+							<div class="row">
+								<div class="col-md-1 col-md-offset-3" style="width: 150px;">
+									<input type="text" id="street" placeholder="Event Address">
 								</div>
-								<div class="col-md-1 spacing" text-align="center";>
+							</div>
+
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3 linesep">
+									<label for="Street">Street Address 2: </label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1 col-md-offset-3" style="width: 150px;">
+									<input type="text" id="street" placeholder="Event Address">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1 col-md-offset-3">
+									<label for="city">City: </label>
+								</div>
+								<div class="col-md-1 spacing5" text-align="center";>
 									<label for="state">State: </label>
 								</div>
 								<div class="col-md-1 ">
-									<label for="city">City:</label>
+									<label for="zipcode">Zipcode:</label>
 								</div>
-								<div class="col-md-1 spacing3">
-									<label for="Zipcode">Zipcode:</label>
+								<div class="col-md-1 spacing5">
+									<label for="Country">Country: </label>
 								</div>
 							</div>
-
 							<div class="row">
 								<div class="col-md-1 col-md-offset-3">
-									<select>
-										<option value="choose">choose</option>
-										<option value="United States">United States</option>
-										<option value="United Kingdom">United Kingdom</option>
-									</select>
+									<input type="text" id="city" placeholder="Denton">
 								</div>
-								<div class="col-md-1 spacing">
+
+								<div class="col-md-1 spacing5">
 									<select>
 										<option value="choose">choose</option>
 										<option value="AL">AL</option>
@@ -157,28 +171,149 @@
 								</div>
 
 								<div class="col-md-1 ">
-									<input type="text" id="city" placeholder="">
-								</div>
-
-								<div class="col-md-1 spacing3">
 									<input type="text" id="zipcode" placeholder="">
 								</div>
 
+								<div class="col-md-1 spacing5">
+									<select>
+										<option value="choose">choose</option>
+										<option value="United States">United States</option>
+										<option value="United Kingdom">United Kingdom</option>
+									</select>
+								</div>
 
 							</div>
 							<br> <br>
 							<div class="row">
 								<div class="col-md-1 col-md-offset-2 texta">
-									<label for="email">Email: </label>
+									<label for="email">Event Starting Date: </label>
 								</div>
-								<div class="col-md-7">
-									<input type="text" id="email" placeholder="">
+								<div class="col-md-8 ">
+									<select>
+										<option value="choose"></option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+
+									</select> / <select>
+										<option value=""></option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select> / <select>
+										<option value="----"></option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+									</select>
 								</div>
 							</div>
 							<br> <br>
 							<div class="row">
 								<div class="col-md-1 col-md-offset-2 texta">
-									<label for="username">Username: </label>
+									<label for="email">Event Ending Date: </label>
+								</div>
+								<div class="col-md-8 ">
+									<select>
+										<option value="choose"></option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+
+									</select> / <select>
+										<option value=""></option>
+										<option value="01">01</option>
+										<option value="02">02</option>
+										<option value="03">03</option>
+										<option value="04">04</option>
+										<option value="05">05</option>
+										<option value="06">06</option>
+										<option value="07">07</option>
+										<option value="08">08</option>
+										<option value="09">09</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+										<option value="13">13</option>
+										<option value="14">14</option>
+										<option value="15">15</option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="18">18</option>
+										<option value="19">19</option>
+										<option value="20">20</option>
+										<option value="21">21</option>
+										<option value="22">22</option>
+										<option value="23">23</option>
+										<option value="24">24</option>
+										<option value="25">25</option>
+										<option value="26">26</option>
+										<option value="27">27</option>
+										<option value="28">28</option>
+										<option value="29">29</option>
+										<option value="30">30</option>
+										<option value="31">31</option>
+									</select> / <select>
+										<option value="----"></option>
+										<option value="2014">2014</option>
+										<option value="2015">2015</option>
+										<option value="2016">2016</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-1 col-md-offset-2 texta">
+									<label for="username">Connect to : </label>
 								</div>
 								<div class="col-md-7">
 									<input type="text" id="username" placeholder="Create Username">
@@ -207,7 +342,6 @@
 			</div>
 		</div>
 	</div>
-
 	<div id="footer-container" class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">Footer</div>
