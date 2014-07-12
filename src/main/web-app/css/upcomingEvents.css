@@ -8,6 +8,9 @@
 .textb{
 	text-align:left;
 }
+.textc{
+	text-align: center;
+}
 .spacing{
 		margin-left: 100px;
 }
@@ -22,6 +25,9 @@
 }
 .spacing5{
 		margin-left:60px;
+}
+.spacing6{
+	margin-left: 45px;
 }
 .input-space{
 	width: 200px;
