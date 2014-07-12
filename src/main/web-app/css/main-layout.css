@@ -3,7 +3,7 @@
 	background-color: #CC9933;
 }
 #body-container{
-	height:350px;
+	min-height:550px;
 	background-color: white;
 }
 #footer-container{
@@ -13,4 +13,7 @@
 #primary-navigation-container{
 	background-color: #66CC99; 
 	height: 30px;
+}
+#main-view-container {
+	height: 340px;
 }
