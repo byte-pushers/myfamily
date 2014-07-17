@@ -1,48 +1,139 @@
 function customValidation() {
-	 var nameError = document.getElementById("nameError");
-	 nameError.innerHTML = "";
+	 var fnameError = document.getElementById("fnameError");
+	 fnameError.innerHTML = "";
+	 
+	 var lnameError = document.getElementById("lnameError");
+	 lnameError.innerHTML = "";
 	 
 	 var descriptionError = document.getElementById("descriptionError");
 	 descriptionError.innerHTML = "";
 	 
-	 var htmlError = document.getElementById("htmlError");
-	 htmlError.innerHTML = "";
+	 var street1Error = document.getElementById("street1Error");
+	 street1Error.innerHTML = "";
 	 
-	 var nameElement = document.getElementById("name");
+	 var street2Error = document.getElementById("street2Error");
+	 street2Error.innerHTML = "";
+	 
+	 var locError = document.getElementById("locError");
+	 locError.innerHTML = "";
+	 
+	 var attendeeError = document.getElementById("attendeeError");
+	 attendeeError.innerHTML = "";
+	 
+	 var fnameElement = document.getElementById("fname");
+	 var lnameElement = document.getElementById("lname");
 	 var descriptionElement = document.getElementById("description");
-	 var htmlElement = document.getElementById("htmlLink");
+	 var street1Element = document.getElementById("street1");
+	 var street2Element = document.getElementById("street2");
+	 var cityElement = document.getElementById("city");
+	 var zipElement = document.getElementById("zipcode");
+	 var aNameElement = document.getElementById("aname");
+	 var aEmailElement = document.getElementById("aemail");
 	 
-	if(isRequired(true) == true && isEmpty(nameElement.value ) == false) {
-		if (isGreaterThanMaxLength(nameElement.value, 9)) {
-			nameError.innerHTML = "Error!";
+	 
+	 /*FIRST NAME */
+	if(isRequired(true) == true && isEmpty(fnameElement.value ) == false) {
+		if (isGreaterThanMaxLength(fnameElement.value, 10)) {
+			fnameError.innerHTML = "Cannot be longer then 10 characters";
 		}
-		if (isLessThanMinLength(nameElement.value, 2)) {
-			nameError.innerHTML = "Error!";
+		if (isLessThanMinLength(fnameElement.value, 2)) {
+			fnameError.innerHTML = "Cannot be less then 2 characters";
 		}
 	} else {
-		nameError.innerHTML = "Error!";
+		fnameError.innerHTML = "Must be filled out";
 	}
 	
+	/*LAST NAME */
+	if(isRequired(true) == true && isEmpty(lnameElement.value ) == false) {
+		if (isGreaterThanMaxLength(lnameElement.value, 15)) {
+			lnameError.innerHTML = "Cannot be longer than 15 characters";
+		}
+		if (isLessThanMinLength(lnameElement.value, 2)) {
+			lnameError.innerHTML = "Cannot be less than 2 characters";
+		}
+	} else {
+		lnameError.innerHTML = "Must be filled out";
+	}
+	
+	/* DESCRIPTION */
 	if(isRequired(true) == true && isEmpty(descriptionElement.value ) == false) {
-		if (isGreaterThanMaxLength(descriptionElement.value, 9)) {
-			descriptionError.innerHTML = "Error!";
+		if (isGreaterThanMaxLength(descriptionElement.value, 250)) {
+			descriptionError.innerHTML = "Cannot be longer then 250 characters";
 		}
-		if (isLessThanMinLength(descriptionElement.value, 2)) {
-			descriptionError.innerHTML = "Error!";
+		if (isLessThanMinLength(descriptionElement.value, 0)) {
+			descriptionError.innerHTML = "Not enough characters";
 		}
 	} else {
-		descriptionError.innerHTML = "Error!";
+		descriptionError.innerHTML = "Must be filled out";
 	}
 	
-	if(isRequired(true) == true && isEmpty(htmlElement.value ) == false) {
-		if (isGreaterThanMaxLength(htmlElement.value, 9)) {
-			htmlError.innerHTML = "Error!";
+	/*STREET ADDRESS 1 */
+	if(isRequired(true) == true && isEmpty(street1Element.value ) == false) {
+		if (isGreaterThanMaxLength(street1Element.value, 25)) {
+			street1Error.innerHTML = "Cannot have more the 25 characters";
 		}
-		if (isLessThanMinLength(htmlElement.value, 2)) {
-			htmlError.innerHTML = "Error!";
+		if (isLessThanMinLength(street1Element.value, 0)) {
+			street1Error.innerHTML = "";
 		}
 	} else {
-		htmlError.innerHTML = "Error!";
+		street1Error.innerHTML = "Must be filled out";
+	}
+	
+	/*STREET ADDRESS 2 */
+		if (isGreaterThanMaxLength(street2Element.value, 9)) {
+			street2Error.innerHTML = "Cannot have more the 25 characters";
+		}
+		if (isLessThanMinLength(street2Element.value, 2)) {
+			street2Error.innerHTML = "Cannot be less than 2 characterss";
+		}
+
+
+	/*CITY */
+	if(isRequired(true) == true && isEmpty(cityElement.value ) == false) {
+		if (isGreaterThanMaxLength(cityElement.value, 15)) {
+			locError.innerHTML = "Cannot be more than 20 characters";
+		}
+		if (isLessThanMinLength(cityElement.value, 2)) {
+			locError.innerHTML = "Cannot be less than 2 characters!";
+		}
+	} else {
+		locError.innerHTML = "Must be filled out";
+	}
+	
+	/*ZIPCODE */
+	if(isRequired(true) == true && isEmpty(zipElement.value ) == false) {
+		if (isGreaterThanMaxLength(zipElement.value, 5)) {
+			locError.innerHTML = "Must be 5 characters";
+		}
+		if (isLessThanMinLength(zipElement.value, 5)) {
+			locError.innerHTML = "Must be 5 characters";
+		}
+	} else {
+		locError.innerHTML = "Must be filled out";
+	}
+	
+	/*EMAIL NAME */
+	if(isRequired(true) == true && isEmpty(aEmailElement.value ) == false) {
+		if (isGreaterThanMaxLength(aEmailElement.value, 25)) {
+			attendeeError.innerHTML = "Cannot be more than 25 characters!";
+		}
+		if (isLessThanMinLength(aEmailElement.value, 8)) {
+			attendeeError.innerHTML = "Cannot be less than 8 characters!";
+		}
+	} else {
+		attendeeError.innerHTML = "Must be filled out";
+	}
+	
+	/*ATTENDEE NAME */
+	if(isRequired(true) == true && isEmpty(aNameElement.value ) == false) {
+		if (isGreaterThanMaxLength(aNameElement.value, 10)) {
+			attendeeError.innerHTML = "Cannot be more than 10 characters";
+		}
+		if (isLessThanMinLength(aNameElement.value, 2)) {
+			attendeeError.innerHTML = "Cannot be less than 2 characters";
+		}
+	} else {
+		attendeeError.innerHTML = "Must be filled out";
 	}
 }
 

@@ -37,8 +37,12 @@
 
 	<div id="body-container" class="container-fluid">
 		<div class="row">
-				<div class="col-md-12"><h1><u>Plan Upcoming Events!</u></h1></div>
+			<div class="col-md-12">
+				<h1>
+					<u>Plan Upcoming Events!</u>
+				</h1>
 			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<h1>
@@ -55,22 +59,32 @@
 
 		<form>
 			<div class="row">
-				<div class="col-md-1 col-md-offset-2">Name:</div>
+				<div class="col-md-1 col-md-offset-2">First Name:</div>
 				<div class="col-md-2 ">
-					<input type="text" id="name" placeholder="" class="input-space">
+					<input type="text" id="fname" placeholder="" class="input-space">
 				</div>
 				<div class="col-md-7 textb">
-					<p id="nameError"></p>
+					<p id="fnameError"></p>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-1 col-md-offset-2">Last Name:</div>
+				<div class="col-md-2 ">
+					<input type="text" id="lname" placeholder="" class="input-space">
+				</div>
+				<div class="col-md-7 textb">
+					<p id="lnameError"></p>
 				</div>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2 texta">Description:</div>
-				<div class="col-md-8">
+				<div class="col-md-5">
 					<textarea id="description" rows="5" cols="75"></textarea>
 				</div>
-				<div class="col-md-1 textb">
-					<p id="descriptionError" class="textb"></p>
+				<div class="col-md-4 textb">
+					<p id="descriptionError"></p>
 				</div>
 			</div>
 			<br> <br>
@@ -79,9 +93,7 @@
 				<div class="col-md-7" style="width: 100">
 					<input type="text" id="htmlLink" placeholder="Enter URL">
 				</div>
-				<div class="col-md-2 textb">
-					
-				</div>
+				<div class="col-md-2 textb"></div>
 			</div>
 			<br> <br>
 			<div class="row">
@@ -117,10 +129,13 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-1 col-md-offset-3" style="width: 150px;">
-					<input type="text" id="street" placeholder="Event Address" required>
+				<div class="col-md-2 col-md-offset-3">
+					<input type="text" id="street1" placeholder="Event Address"
+						style="width: 150px;">
 				</div>
-				<div class="col-md-8"></div>
+				<div class="col-md-7 textb">
+					<p id="street1Error"></p>
+				</div>
 			</div>
 
 			<div class="row">
@@ -129,11 +144,15 @@
 				<div class="col-md-7"></div>
 			</div>
 			<div class="row">
-				<div class="col-md-1 col-md-offset-3" style="width: 150px;">
-					<input type="text" id="street" placeholder="Event Address">
+				<div class="col-md-2 col-md-offset-3">
+					<input type="text" id="street2" placeholder="Event Address"
+						style="width: 150px;">
 				</div>
-				<div class="col-md-8"></div>
+				<div class="col-md-7 textb">
+					<p id="street2Error"></p>
+				</div>
 			</div>
+			<br>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-3">City:</div>
 				<div class="col-md-1 spacing5" text-align="center";>State:</div>
@@ -143,7 +162,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-3">
-					<input type="text" id="city" placeholder="Denton" required>
+					<input type="text" id="city" placeholder="Denton">
 				</div>
 
 				<div class="col-md-1 spacing5">
@@ -203,7 +222,7 @@
 				</div>
 
 				<div class="col-md-1 ">
-					<input type="text" id="zipcode" placeholder="" required>
+					<input type="text" id="zipcode" placeholder="76201">
 				</div>
 
 				<div class="col-md-1 spacing5">
@@ -212,9 +231,11 @@
 						<option value="United States">United States</option>
 						<option value="United Kingdom">United Kingdom</option>
 					</select>
-					<div class="col-md-5"></div>
 				</div>
-
+				<div class="col-md-2 textc">
+					<p id="locError"></p>
+				</div>
+				<div class="cold-md-3"></div>
 			</div>
 			<br> <br>
 			<div class="row">
@@ -542,7 +563,9 @@
 				<div class="col-md-2 ">
 					<button type="button">Add Attendee</button>
 				</div>
-				<div class="col-md-3"></div>
+				<div class="col-md-3">
+					<p id="attendeeError"></p>
+				</div>
 			</div>
 			<br> <br>
 			<div class="row">
@@ -594,7 +617,7 @@
 			</div>
 			<br> <br>
 			<div class="row">
-				
+
 				<div class="col-md-1 col-md-offset-9" style="margin-bottom: 10px;">
 					<button type="button" onclick="customValidation()">Submit</button>
 				</div>
