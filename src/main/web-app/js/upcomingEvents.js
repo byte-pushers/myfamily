@@ -1,27 +1,48 @@
 function customValidation() {
-	document.getElementById("nameError").innerHTML = "";
-
-	if (isReqired(true) == true
-			&& isEmpty(targetString) == false) {
-		if (isGreaterThanMinLength(document.getElementById("name").value, 15)) {
-			document.getElementById("nameError").innerHTML = "Error!";
+	 var nameError = document.getElementById("nameError");
+	 nameError.innerHTML = "";
+	 
+	 var descriptionError = document.getElementById("descriptionError");
+	 descriptionError.innerHTML = "";
+	 
+	 var htmlError = document.getElementById("htmlError");
+	 htmlError.innerHTML = "";
+	 
+	 var nameElement = document.getElementById("name");
+	 var descriptionElement = document.getElementById("description");
+	 var htmlElement = document.getElementById("htmlLink");
+	 
+	if(isRequired(true) == true && isEmpty(nameElement.value ) == false) {
+		if (isGreaterThanMaxLength(nameElement.value, 9)) {
+			nameError.innerHTML = "Error!";
 		}
-
-		if (isLessThanMaxLength(document.getElementById("name").value, 3)) {
-			document.getElementById("nameError").innerHTML = "Error!";
+		if (isLessThanMinLength(nameElement.value, 2)) {
+			nameError.innerHTML = "Error!";
 		}
 	} else {
-		document.getElementById("nameError").innerHTML = "Error!";
+		nameError.innerHTML = "Error!";
 	}
-
-	if (isReqired(true) == true
-			&& isEmpty(targetString) == false) {
-		if (isGreaterThanMaxLength(
-				document.getElementById("description").value, 10)) {
-			document.getElementById("nameError").innerHTML = "Error!";
+	
+	if(isRequired(true) == true && isEmpty(descriptionElement.value ) == false) {
+		if (isGreaterThanMaxLength(descriptionElement.value, 9)) {
+			descriptionError.innerHTML = "Error!";
+		}
+		if (isLessThanMinLength(descriptionElement.value, 2)) {
+			descriptionError.innerHTML = "Error!";
 		}
 	} else {
-		document.getElementById("nameError").innerHTML = "Error!";
+		descriptionError.innerHTML = "Error!";
+	}
+	
+	if(isRequired(true) == true && isEmpty(htmlElement.value ) == false) {
+		if (isGreaterThanMaxLength(htmlElement.value, 9)) {
+			htmlError.innerHTML = "Error!";
+		}
+		if (isLessThanMinLength(htmlElement.value, 2)) {
+			htmlError.innerHTML = "Error!";
+		}
+	} else {
+		htmlError.innerHTML = "Error!";
 	}
 }
 
@@ -31,31 +52,34 @@ function isGreaterThanMaxLength(targetString, maxLength) {
 	if (targetString.length > maxLength) {
 		result = true;
 	}
+
 	return result;
 }
 
 function isLessThanMinLength(targetString, minLength) {
 	var result = false;
+
 	if (targetString.length < minLength) {
 		result = true;
 	}
-	return result;
+
+	return result
 }
 
-function isRequired(requried) {
+function isRequired(required) {
+	var result = false;
 
-	if (reqired == true) {
-		return true;
+	if (required == true) {
+		result = true;
 	}
 
-	return false;
+	return result;
 }
 
 function isEmpty(targetObject) {
 	var result = true;
 
-	if (targetObject != null && targetObject != undefined
-			&& targetObject.length > 0) {
+	if (targetObject != null && targetObject != undefined && targetObject.length > 0) {
 		result = false;
 	}
 
