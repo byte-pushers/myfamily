@@ -114,6 +114,9 @@ function customValidation() {
 	
 	/*EMAIL NAME */
 	if(isRequired(true) == true && isEmpty(aEmailElement.value ) == false) {
+		if(validateEmail(aEmailElement.value) == false){
+			attendeeError.innerHTML = "Not a valid Email Address"
+		}
 		if (isGreaterThanMaxLength(aEmailElement.value, 25)) {
 			attendeeError.innerHTML = "Cannot be more than 25 characters!";
 		}
@@ -135,6 +138,7 @@ function customValidation() {
 	} else {
 		attendeeError.innerHTML = "Must be filled out";
 	}
+	
 }
 
 function isGreaterThanMaxLength(targetString, maxLength) {
@@ -156,6 +160,11 @@ function isLessThanMinLength(targetString, minLength) {
 
 	return result
 }
+
+function validateEmail(email) { 
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+} 
 
 function isRequired(required) {
 	var result = false;
