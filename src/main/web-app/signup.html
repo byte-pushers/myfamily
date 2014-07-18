@@ -6,6 +6,7 @@
 		<link href="libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 		<link href="css/index.css" type="text/css" rel="stylesheet"/>
 		<link href="css/main-layout.css" type="text/css" rel="stylesheet"/>
+		<script src="js/signup.js"></script>
 	</head>
 	<body>
 		<div id="header-container" class="container-fluid">
@@ -31,7 +32,7 @@
 	</div>
 		<div id="body-container" class="container-fluid">
 	  		<div class="row">
-				<div class="col-md-12"><h1><u>Sign up</u></h1></div>
+				<div class="col-md-12"><h1>Sign up!</h1></div>
 			</div>
 				<form>
 					<br>
@@ -40,12 +41,12 @@
 							<label for="name">Name:</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" id="name"
-							placeholder="First">
-							<input type="text" id="name"
-							placeholder="Middle">
-							<input type="text" id="name"
-							placeholder="Last">
+							<input type="text" id="firstnam"
+							placeholder="First" >
+							<input type="text" id="middlenam"
+							placeholder="Middle" >
+							<input type="text" id="lastnam"
+							placeholder="Last" >
 						</div>
 					 </div>
 					 <br>
@@ -55,11 +56,11 @@
 							<label for="birthday">Birthday:</label>
 						</div>
 						<div class="col-md-8">
-							<input type="text" id="month"
+							<input type="text" id="monthE"
 							placeholder="Month">
-							<input type="text" id="day"
+							<input type="text" id="dayE"
 							placeholder="Day">
-							<input type="text" id="year"
+							<input type="text" id="yearE"
 							placeholder="Year">
 						</div>
 					</div>
@@ -70,7 +71,7 @@
 						<div class="col-md-1  col-md-offset-3 ">
 							<label for="Country">Country: </label>
 						</div>
-						<div class="col-md-1 spacing" text-align="center";>
+						<div class="col-md-1 spacing">
 							<label for="state">State: </label>
 						</div>
 						<div class="col-md-1 ">
@@ -83,15 +84,15 @@
 							
 					<div class="row">
 						<div class="col-md-1 col-md-offset-3">
-							<select>
-							<option value="choose">choose</option>
+							<select id = "countrySelect">
+							<option value="choose" selected="selected">choose</option>
 							<option value="United States">United States</option>
 							<option value="United Kingdom">United Kingdom</option>
 							</select>
 						</div>					
 						<div class="col-md-1 spacing">
-							<select>
-							<option value="choose">choose</option>
+							<select id = "stateSelect">
+							<option value="choose" selected="selected">choose</option>
 							<option value="AL">AL</option>
 							<option value="AK">AK</option>
 							<option value="AZ">AZ</option>
@@ -188,7 +189,7 @@
 						<div class="col-md-7">
 							<input type="password" id="password"
 							placeholder="Create Password">
-							<input type="password" id="password"
+							<input type="password" id="cPassword"
 							placeholder="Confirm Password">
 						</div>
 					</div>
@@ -196,7 +197,7 @@
 							<br>
 					<div class="row">
 						<div class="col-md-1 col-md-offset-9">
-							<input type="submit" id="submit"
+							<input type="submit" onclick="validateMyForm()"  id="submit"
 							placeholder="Submit">
 						</div>
 					</div>
