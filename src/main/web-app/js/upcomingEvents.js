@@ -8,6 +8,9 @@ function customValidation() {
 	 var descriptionError = document.getElementById("descriptionError");
 	 descriptionError.innerHTML = "";
 	 
+	 var htmlError = document.getElementById("htmlError");
+	 htmlError.innerHTML = "";
+	 
 	 var street1Error = document.getElementById("street1Error");
 	 street1Error.innerHTML = "";
 	 
@@ -23,6 +26,7 @@ function customValidation() {
 	 var fnameElement = document.getElementById("fname");
 	 var lnameElement = document.getElementById("lname");
 	 var descriptionElement = document.getElementById("description");
+	 var htmlElement = document.getElementById("htmlLink");
 	 var street1Element = document.getElementById("street1");
 	 var street2Element = document.getElementById("street2");
 	 var cityElement = document.getElementById("city");
@@ -67,6 +71,16 @@ function customValidation() {
 		descriptionError.innerHTML = "Must be filled out";
 	}
 	
+	/*URL 
+	if(validateURL(htmlElement.value) == false){
+		htmlError.innerHTML = "Not a valid URL";
+	}
+	if (isGreaterThanMaxLength(street2Element.value, 100)) {
+		htmlError.innerHTML = "Cannot have more the 100 characters";
+	}
+	
+	*/
+
 	/*STREET ADDRESS 1 */
 	if(isRequired(true) == true && isEmpty(street1Element.value ) == false) {
 		if (isGreaterThanMaxLength(street1Element.value, 25)) {
@@ -165,6 +179,12 @@ function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 } 
+
+function validateURL(URL) {
+    var url = new RegExp(
+          "^(http|https|ftp)\://([a-zA-Z0-9\.\-]+(\:[a-zA-Z0-9\.&amp;%\$\-]+)*@)*((25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])|([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\?\'\\\+&amp;%\$#\=~_\-]+))*$");
+    return url.test(textval);
+  }
 
 function isRequired(required) {
 	var result = false;
