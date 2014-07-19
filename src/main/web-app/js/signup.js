@@ -3,19 +3,33 @@
 
 		 var valid = true; 
 		 var validationMsg = "Please correct the following errors: \r\n";
-		
-		if(document.getElementById('firstnam').value.length == 0){
+		 var firstName = document.getElementById('firstnam');
+		 var middleName = document.getElementById('middlenam');
+		 var lastName = document.getElementById('lastnam');
+		 
+		if(firstName.value.length == 0){
 			validationMsg = validationMsg + "Please fill out first name\r\n";
+			valid = false;
+		} else if(firstName.value.length > 30){
+			validationMsg = validationMsg + "Please enter less characters into first name\r\n";
 			valid = false;
 			
 		}
-		if(document.getElementById('middlenam').value.length == 0){
+		if(middleName.value.length == 0){
 			validationMsg = validationMsg + "Please fill out middle name\r\n";
 			valid = false;
+		} else if(middleName.value.length > 30){
+			validationMsg = validationMsg + "Please enter less characters into middle name\r\n";
+			valid = false;
+			
 		}
-		if(document.getElementById('lastnam').value.length == 0){
+		if(lastName.value.length == 0){
 			validationMsg = validationMsg + "Please fill out last name\r\n";
 			valid = false;
+		} else if(lastName.value.length > 30){
+			validationMsg = validationMsg + "Please enter less characters into last name\r\n";
+			valid = false;
+			
 		}
 		if(document.getElementById('monthE').value.length == 0){
 			validationMsg = validationMsg + "Please fill out the month of your birthday\r\n";
@@ -68,6 +82,7 @@
 		
 	
 }
+
 
 
 
