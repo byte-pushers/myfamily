@@ -6,6 +6,18 @@
 		 var firstName = document.getElementById('firstnam');
 		 var middleName = document.getElementById('middlenam');
 		 var lastName = document.getElementById('lastnam');
+		 var month = document.getElementById('monthE');
+		 var day = document.getElementById('dayE');
+		 var year = document.getElementById('yearE');
+		 var countrySelect = document.getElementById('countrySelect');
+		 var stateSelect = document.getElementById('stateSelect');
+		 var city = document.getElementById('city');
+		 var zipcode = document.getElementById('zipcode');
+		 var email = document.getElementById('email');
+		 var username = document.getElementById('username');
+		 var password = document.getElementById('password');
+		 var cPassword = document.getElementById('cPassword');
+		 
 		 
 		if(firstName.value.length == 0){
 			validationMsg = validationMsg + "Please fill out first name\r\n";
@@ -31,48 +43,77 @@
 			valid = false;
 			
 		}
-		if(document.getElementById('monthE').value.length == 0){
+		
+		if(month.value.length == 0){
 			validationMsg = validationMsg + "Please fill out the month of your birthday\r\n";
 			valid = false;
+		}else if(month.value.length > 8){
+			validationMsg = validationMsg + "Please enter less characters into month of your birthday\r\n";
+			valid = false;
 		}
-		if(document.getElementById('dayE').value.length == 0){
+		
+		if(day.value.length == 0){
 			validationMsg = validationMsg + "Please fill out the day of your birthday\r\n";
 			valid = false;
-		}
-		if(document.getElementById('yearE').value.length == 0){
-			validationMsg = validationMsg + "Please fill out the year of your birthday\r\n";
+		}else if(day.value.length > 2){
+			validationMsg = validationMsg + "Please enter less characters into the day of your birthday\r\n";
 			valid = false;
 		}
-		if(document.getElementById('countrySelect').value == 'choose'){
+		
+		if(year.value.length == 0){
+			validationMsg = validationMsg + "Please fill out the year of your birthday\r\n";
+			valid = false;
+		}else if(year.value.length > 4){
+			validationMsg = validationMsg + "Please enter less characters into the year of your birthday \r\n";
+			valid = false;
+		}
+		
+		if(countrySelect.value == 'choose'){
 			validationMsg = validationMsg + "Please pick a country\r\n";
 			valid = false;
 		}
-		if(document.getElementById('stateSelect').value == 'choose'){
+		
+		if(stateSelect.value == 'choose'){
 			validationMsg = validationMsg + "Please pick a state\r\n";
 			valid = false;
 		}
-		if(document.getElementById('city').value.length == 0){
+		if(city.value.length == 0){
 			validationMsg = validationMsg + "Please put your current city\r\n";
 			valid = false;
-		}
-		if(document.getElementById('zipcode').value.length == 0){
-			validationMsg = validationMsg + "Please put your current zipcode\r\n";
+		}else if(city.value.length > 30){
+			validationMsg = validationMsg + "Please enter less characters into your current city \r\n";
 			valid = false;
 		}
-		if(document.getElementById('email').value.length == 0){
+		if(zipcode.value.length == 0){
+			validationMsg = validationMsg + "Please put your current zipcode\r\n";
+			valid = false;
+		}else if(zipcode.value.length > 5){
+			validationMsg = validationMsg + "Please enter less characters into the your current zipcode \r\n";
+			valid = false;
+		}
+		if(email.value.length == 0){
 			validationMsg = validationMsg + "Please fill out your email\r\n";
 			valid = false;
 		}
-		if(document.getElementById('username').value.length == 0){
+		if(username.value.length == 0){
 			validationMsg = validationMsg + "Please create a username\r\n";
 			valid = false;
-		}
-		if(document.getElementById('password').value.length == 0){
-			validationMsg = validationMsg + "Please create a password\r\n";
+		}else if(username.value.length > 15){
+			validationMsg = validationMsg + "Please enter less characters for you username \r\n";
 			valid = false;
 		}
-		if(document.getElementById('cPassword').value.length == 0){
+		if(password.value.length == 0){
+			validationMsg = validationMsg + "Please create a password\r\n";
+			valid = false;
+		}else if(password.value.length > 15){
+			validationMsg = validationMsg + "Please enter less characters for your password \r\n";
+			valid = false;
+		}
+		if(cPassword.value.length == 0){
 			validationMsg = validationMsg + "Please confirm your password\r\n";
+			valid = false;
+		}else if(password.value != cPassword.value){
+			validationMsg = validationMsg + "Please confirm you password\r\n";
 			valid = false;
 		}
 		
