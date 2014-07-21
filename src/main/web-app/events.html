@@ -9,7 +9,7 @@
 <link href="css/upcomingEvents.css" type="text/css" rel="stylesheet" />
 <link href="css/main-layout.css" type="text/css" rel="stylesheet" />
 
-<script src="js/upcomingEvents.js"></script>
+<script src="js/modifiedUpcomingEvents.js"></script>
 </head>
 
 <body>
@@ -557,25 +557,52 @@
 				<div class="col-md-10"></div>
 			</div>
 			<div class=row>
-				<div class="col-md-2 col-md-offset-3">Name:</div>
-				<div class="col-md-1">Email:</div>
-				<div class="col-md-6"></div>
+				<div class="col-md-2 col-md-offset-3">First Name:</div>
+				<div class="col-md-7"></div>
 			</div>
 			<div class="row">
 				<div class="col-md-2 col-md-offset-3">
-					<input type="text" id="aname" placeholder="Enter Name" required>
+					<input type="text" id="afname" placeholder="First Name">
 				</div>
-				<div class="col-md-2 ">
-					<input type="text" id="aemail" placeholder="Enter Email" required>
-				</div>
-				<div class="col-md-2 ">
-					<button type="button">Add Attendee</button>
-				</div>
-				<div class="col-md-3">
-					<p id="attendeeError"></p>
+				<div class="col-md-7">
+					<p id="attendeeFError"></p>
 				</div>
 			</div>
-			<br> <br>
+			<br> 
+			<div class=row>
+				<div class="col-md-2 col-md-offset-3">Last Name:</div>
+				<div class="col-md-7"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-2 col-md-offset-3">
+					<input type="text" id="alname" placeholder="Last Name">
+				</div>
+				<div class="col-md-7">
+					<p id="attendeeLError"></p>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-2 col-md-offset-3">
+					Attendee Email:			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-md-offset-3">
+					<input type="text" id="aemail" placeholder="johnnyappleseed@example.com" size="35">				
+				</div>
+				<div class="col-md-6">
+					<p id="attendeeEmailError"></p>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-2 col-md-offset-3">
+					<button type="button">Add Attendee</button>
+					
+				</div>
+			</div>
+			<br>
 			<div class="row">
 				<div class="col-md-2 col-md-offset-3 textb">Event Attendee
 					List:</div>
