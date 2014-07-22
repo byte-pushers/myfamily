@@ -64,133 +64,133 @@ function customValidation() {
 	/* FIRST NAME */
 	if (isRequired(true) == true && isEmpty(fnameElement.value) == false) {
 		if (isGreaterThanMaxLength(fnameElement.value, 10)) {
-			fnameError.innerHTML = "Cannot be longer then 10 characters";
+			fnameError.innerHTML = "*Cannot be longer then 10 characters";
 		}
 		if (isLessThanMinLength(fnameElement.value, 2)) {
-			fnameError.innerHTML = "Cannot be less then 2 characters";
+			fnameError.innerHTML = "*Cannot be less then 2 characters";
 		}
 	} else {
-		fnameError.innerHTML = "Must be filled out";
+		fnameError.innerHTML = "*Must be filled out";
 	}
 
 	/* LAST NAME */
 	if (isRequired(true) == true && isEmpty(lnameElement.value) == false) {
 		if (isGreaterThanMaxLength(lnameElement.value, 15)) {
-			lnameError.innerHTML = "Cannot be longer than 15 characters";
+			lnameError.innerHTML = "*Cannot be longer than 15 characters";
 		}
 		if (isLessThanMinLength(lnameElement.value, 2)) {
-			lnameError.innerHTML = "Cannot be less than 2 characters";
+			lnameError.innerHTML = "*Cannot be less than 2 characters";
 		}
 	} else {
-		lnameError.innerHTML = "Must be filled out";
+		lnameError.innerHTML = "*Must be filled out";
 	}
 
 	/* DESCRIPTION */
 	if (isRequired(true) == true && isEmpty(descriptionElement.value) == false) {
 		if (isGreaterThanMaxLength(descriptionElement.value, 250)) {
-			descriptionError.innerHTML = "Cannot be longer then 250 characters";
+			descriptionError.innerHTML = "*Cannot be longer then 250 characters";
 		}
 		if (isLessThanMinLength(descriptionElement.value, 0)) {
-			descriptionError.innerHTML = "Not enough characters";
+			descriptionError.innerHTML = "*Not enough characters";
 		}
 	} else {
-		descriptionError.innerHTML = "Must be filled out";
+		descriptionError.innerHTML = "*Must be filled out";
 	}
 	
 	if(validateURL(htmlElement.value) == false && htmlElement.value.length > 0){
-		htmlError.innerHTML = "Not a valid URL";
+		htmlError.innerHTML = "*Not a valid URL";
 	}
 
 	/* STREET ADDRESS 1 */
 	if (isRequired(true) == true && isEmpty(street1Element.value) == false) {
 		if (isGreaterThanMaxLength(street1Element.value, 25)) {
-			street1Error.innerHTML = "Cannot have more the 25 characters";
+			street1Error.innerHTML = "*Cannot have more the 25 characters";
 		}
 		if (isLessThanMinLength(street1Element.value, 0)) {
 			street1Error.innerHTML = "";
 		}
 	} else {
-		street1Error.innerHTML = "Must be filled out";
+		street1Error.innerHTML = "*Must be filled out";
 	}
 
 	/* STREET ADDRESS 2 */
 	if (isGreaterThanMaxLength(street2Element.value, 9)) {
-		street2Error.innerHTML = "Cannot have more the 25 characters";
+		street2Error.innerHTML = "*Cannot have more the 25 characters";
 	}
 
 	/* CITY */
 	if (isRequired(true) == true && isEmpty(cityElement.value) == false) {
 		if (isGreaterThanMaxLength(cityElement.value, 15)) {
-			locError.innerHTML = "Cannot be more than 20 characters";
+			locError.innerHTML = "*Cannot be more than 20 characters";
 		}
 		if (isLessThanMinLength(cityElement.value, 2)) {
-			locError.innerHTML = "Cannot be less than 2 characters!";
+			locError.innerHTML = "*Cannot be less than 2 characters!";
 		}
 	} else {
-		locError.innerHTML = "Please fillout all fields";
+		locError.innerHTML = "*Please fillout all fields";
 	}
 	
 	/*STATE*/
 	if (isRequired(true) == true && isEmpty(stateElement.value) == false) {
 
 	} else {
-		locError.innerHTML = "Please fillout all fields";
+		locError.innerHTML = "*Please fillout all fields";
 	}
 
 	/* ZIPCODE */
 	if (isRequired(true) == true && isEmpty(zipElement.value) == false) {
 		if (isGreaterThanMaxLength(zipElement.value, 5)) {
-			locError.innerHTML = "Zipcode must be 5 characters";
+			locError.innerHTML = "*Invalid zipecode";
 		}
 		if (isLessThanMinLength(zipElement.value, 5)) {
-			locError.innerHTML = "Zipcode must be 5 characters";
+			locError.innerHTML = "*Invalid zipcode";
 		}
 	} else {
-		locError.innerHTML = "Please fillout all fields";
+		locError.innerHTML = "*Please fillout all fields";
 	}
 	
 	/*COUNTRY*/
 	if (isRequired(true) == true && isEmpty(countryElement.value) == false) {
 
 	} else {
-		locError.innerHTML = "Please fillout all fields";
+		locError.innerHTML = "*Please fillout all fields";
 	}
 
 	/* START TIME */
 	if (isRequired(true) == true && isEmpty(startMonthElement.value) == false) {
 
 	} else {
-		startTimeError.innerHTML = "Please fillout all fields";
+		startTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(startDayElement.value) == false) {
 
 	} else {
-		startTimeError.innerHTML = "Please fillout all fields";
+		startTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(startYearElement.value) == false) {
 
 	} else {
-		startTimeError.innerHTML = "Please fillout all fields";
+		startTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(startHourElement.value) == false) {
 
 	} else {
-		startTimeError.innerHTML = "Please fillout all fields";
+		startTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(startMinuteElement.value) == false) {
 
 	} else {
-		startTimeError.innerHTML = "Please fillout all fields";
+		startTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(startClockElement.value) == false) {
 
 	} else {
-		startTimeError.innerHTML = "Please fillout all fields";
+		startTimeError.innerHTML = "*Please fillout all fields";
 	}
 	
 	
@@ -199,61 +199,61 @@ function customValidation() {
 	if (isRequired(true) == true && isEmpty(endMonthElement.value) == false) {
 
 	} else {
-		endTimeError.innerHTML = "Please fillout all fields";
+		endTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(endDayElement.value) == false) {
 
 	} else {
-		endTimeError.innerHTML = "Please fillout all fields";
+		endTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(endYearElement.value) == false) {
 
 	} else {
-		endTimeError.innerHTML = "Please fillout all fields";
+		endTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(endHourElement.value) == false) {
 
 	} else {
-		endTimeError.innerHTML = "Please fillout all fields";
+		endTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(endMinuteElement.value) == false) {
 
 	} else {
-		endTimeError.innerHTML = "Please fillout all fields";
+		endTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	if (isRequired(true) == true && isEmpty(endClockElement.value) == false) {
 
 	} else {
-		endTimeError.innerHTML = "Please fillout all fields";
+		endTimeError.innerHTML = "*Please fillout all fields";
 	}
 
 	/* EMAIL NAME */
 	if (isRequired(true) == true && isEmpty(aEmailElement.value) == false) {
 		if (isGreaterThanMaxLength(aEmailElement.value, 25)) {
-			attendeeError.innerHTML = "Cannot be more than 25 characters!";
+			attendeeError.innerHTML = "*Cannot be more than 25 characters!";
 		}
 		if (isLessThanMinLength(aEmailElement.value, 8)) {
-			attendeeError.innerHTML = "Cannot be less than 8 characters!";
+			attendeeError.innerHTML = "*Cannot be less than 8 characters!";
 		}
 	} else {
-		attendeeError.innerHTML = "Must be filled out";
+		attendeeError.innerHTML = "*Must be filled out";
 	}
 
 	/* ATTENDEE NAME */
 	if (isRequired(true) == true && isEmpty(aNameElement.value) == false) {
 		if (isGreaterThanMaxLength(aNameElement.value, 10)) {
-			attendeeError.innerHTML = "Cannot be more than 10 characters";
+			attendeeError.innerHTML = "*Cannot be more than 10 characters";
 		}
 		if (isLessThanMinLength(aNameElement.value, 2)) {
-			attendeeError.innerHTML = "Cannot be less than 2 characters";
+			attendeeError.innerHTML = "*Cannot be less than 2 characters";
 		}
 	} else {
-		attendeeError.innerHTML = "Must be filled out";
+		attendeeError.innerHTML = "*Must be filled out";
 	}
 }
 
