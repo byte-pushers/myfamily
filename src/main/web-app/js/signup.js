@@ -32,124 +32,98 @@
 		 validateConPassword();
 		 
 		 function validateFirstName(){
-			 if (validateRequired(firstnam.value.length, 0)== false)
-			 {
-				 
-			 }else if (underMin(firstnam.value.length, 2)== false){
-				 
-			 }
-			 if (overMax(firstnam.value.length, 30)== false){
+			 validateRequired(firstnam.value.length, 0);
+			 
+			 underMin(firstnam.value.length, 2);
+			 
+			 overMax(firstnam.value.length, 30);
 				 
 			 }
-	       }
 		 function validateMiddleName(){
-			 if(overMax(middleName.value.length, 30)== false){
+			 overMax(middleName.value.length, 30);
 					
-			 }
 		 } 
 		 function validateLastName(){
-			 if(validateRequired(lastName.value.length, 0)== false){
+			 validateRequired(lastName.value.length, 0);
 			
-			 } else if(underMin(lastName.value.length, 2)== false){
+			 underMin(lastName.value.length, 2);
 			
-			 }
-			 if(overMax(lastName.value.length, 30)== false){
+			 overMax(lastName.value.length, 30);
 					
-			 }
+			 
 		 }
 			 
 		function validateMonth(){ 
-			if (validateRequired(month.value.length, 0)== false){
-			}
-			else if (validateIfMonth(month.value)== false){
+			validateRequired(month.value.length, 0);
 				
-			}
+			
+			validateIfMonth(month.value);
+				
+			
 				
 		}
 			 
 		function validateDay(){	 
-			 if(validateRequired(day.value.length, 0)== false){
-			
-			 }else if(overMax(day.value.length, 2)== false){
-			 	
-			 }
+			 validateRequired(day.value.length, 0);
+			validateIfDay(day.value);
+			 
 		}
 			 
 		function validateYear(){	 
-			 if(validateRequired(year.value.length, 0)== false){
+			 validateRequired(year.value.length, 0);
 			
-			 }else if(underMin(year.value.length, 4)== false){
+			 underMin(year.value.length, 4);
 		
-			 }
-			 if(overMax(year.value.length, 4)== false){
+			 overMax(year.value.length, 4);
 					
-			 }
 		}
 			 
 		function validateCountry(){	 
-			 if(validateRequired(countrySelect.value, 'choose')== false){
-			
-			 }
+			 validateRequired(countrySelect.value, 'choose');
 			 
 		}	 
 		function validateState(){
-			 if(validateRequired(stateSelect.value, 'choose')== false){
+			 validateRequired(stateSelect.value, 'choose');
 			
-			 }
-			 
 		}
 		function validateCity(){
-			 	if(validateRequired(city.value.length, 0)== false){
+			 	validateRequired(city.value.length, 0);
 			
-			 }else if(underMin(city.value.length, 3)== false){
+			 underMin(city.value.length, 3);
 
-			 }
-			 	if(overMax(city.value.length, 30)== false){
-
-				 }	
+			 overMax(city.value.length, 30);	
 		}	 	
 		function validateZipcode(){	 	
-			 if(validateRequired(zipcode.value.length, 0)== false){
+			 validateRequired(zipcode.value.length, 0);
 			
-			 }else if(underMin(zipcode.value.length, 5)== false){
+			 underMin(zipcode.value.length, 5);
 			
-			 }
-			 if(overMax(zipcode.value.length, 5)== false){
+			 overMax(zipcode.value.length, 5);
 					
-			 }
 		}	 
 		function validateEmail(){	 
-			 if(validateRequired(email.value.length, 0)== false){
-		
-			 }
+			 validateRequired(email.value.length, 0);
 			 
 		}
 		function validateUsername(){
-			 if(validateRequired(username.value.length, 0)== false){
+			 validateRequired(username.value.length, 0);
 			
+			underMin(username.value.length, 6);
 			
-			 }else if(underMin(username.value.length, 6)== false){
-			
-			 }
-			 if(overMax(username.value.length, 15)== false){
+			 overMax(username.value.length, 15);
 					
-			 }
 		}
 		function validatePassword(){	 
-			 if(validateRequired(password.value.length, 0)== false){
+			 validateRequired(password.value.length, 0);
 			
+			underMin(password.value.length, 6);
 			
-			 }else if(underMin(password.value.length, 6)== false){
-			
-			 }
-			 if(overMax(password.value.length, 15)== false){
-				 
-			 }
+			 overMax(password.value.length, 15);
 		}	 
 		function validateConPassword(){	 
-			 if(validateRequired(cPassword.value.length, 0)== false){
+			validateRequired(cPassword.value.length, 0);
+			confirmPassword(password.value.length,cPassword.value.length);
 			
-			 }
 		}	 
 			 
 		
@@ -162,7 +136,7 @@
 			if (valAndLen == actualValue){
 				result = false;
 				validationMsg = validationMsg + "Please fill out more information\r\n";
-			}
+			} 
 		}
 		function overMax(variableVal,maxVal){
 			if(variableVal > maxVal){
@@ -178,21 +152,27 @@
 			}
 		}
 		function validateIfMonth(monthVal){
-			if(monthVal != "January" && monthVal != "Feburary" && monthVal != "March" && monthVal != "April" && monthVal != "May" && monthVal != "June" && monthVal != "July" && monthVal != "August" && monthVal != "September" && monthVal != "November" && monthVal != "December"){
+			if(monthVal != 0 && monthVal != "January" && monthVal != "Feburary" && monthVal != "March" && monthVal != "April" && monthVal != "May" && monthVal != "June" && monthVal != "July" && monthVal != "August" && monthVal != "September" && monthVal != "November" && monthVal != "December"){
 				
 				result = false;
 				validationMsg = validationMsg + "Please enter in a valid month\r\n";
+			} 
+		}
+		function validateIfDay(dayVal){
+			if(dayVal != 0 && dayVal != 1 && dayVal != 2 && dayVal != 3 && dayVal != 4 && dayVal != 5 && dayVal != 6 && dayVal != 7 && dayVal != 8 && dayVal != 9 && dayVal != 10 && dayVal != 11 && dayVal != 12 && dayVal != 13 && dayVal != 14 && dayVal != 15 && dayVal != 16 && dayVal != 17 && dayVal != 18 && dayVal != 19 && dayVal != 20 && dayVal != 21 && dayVal != 22 && dayVal != 23 && dayVal != 24 && dayVal != 25 && dayVal != 26 && dayVal != 27 && dayVal != 28 && dayVal != 29 && dayVal != 30 && dayVal != 31 ){
+				result = false;
+				validationMsg = validationMsg + "Please enter in a valid day\r\n";
 			}
 		}
-			
-		/*function confirmPass(passwordVal, cPasswordVal){
-			if(passwordVal != cPasswordVal){
+		function confirmPassword(passwordVal,cPasswordVal){
+			if (passwordVal != 0 && passwordVal != cPasswordVal){
+				
 				result = false;
-				validationMsg = validationMsg + "Password does not match confirmation";
+				validationMsg = validationMsg + "Passwords don't match";
 			}
 			
-		}*/
+		}
+			
 		
-		
-	}
->>>>>>> refs/remotes/origin/master
+			
+		}
