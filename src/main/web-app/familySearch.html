@@ -7,49 +7,26 @@
 <link href="css/main-layout.css" rel="stylesheet" type="text/css" />
 <script>
 	function customValidation() {
-
-		var firstNameElement = document.getElementById("FirstName");
-		var middleNameElement = document.getElementById("MiddleName");
-
-		if (isRequired(true) == true
-				&& isEmpty(FirstNameElement.value) == false) {
-			if (isGreaterThanMaxLength(FirstNameElement.value, 15)) {
-				"Cannot be longer then 15 characters";
-			}
-			if (isLessThanMinLength(FirstNameElement.value, 3)) {
-				"Cannot be less then 3 characters";
-			}
-		} else {
-			FirstNameElement = "Must be filled out";
-		}
-
-		if (isRequired(true) == true
-				&& isEmpty(MiddleNameElement.value) == false) {
-			if (isGreaterThanMaxLength(MiddleNameElement.value, 15)) {
-				MiddleNameError.innerHTML = "Cannot be longer then 15 characters";
-			}
-			if (isLessThanMinLength(MiddleNameElement.value, 3)) {
-				MiddleNameError.innerHTML = "Cannot be less then 3 characters";
-			}
-		} else {
-			MiddleNameError.innerHTML = "Must be filled out";
-		}
-
-	}
-	function hasValue(firstNameElement, ifItsRequired) {
-		if (ifItsRequired == true){
-			if(firstNameElement !== undifined && firstNameElement !== null){//first name element can not be undifined or null
-				if(firstNameElement.value !== ""){//the value of first name can not be empty
-					return true;
-				}
-			}	
-			
-		}else if (ifItsRequired == false){
-			
-		}
 		
+		var firstNameELement = document.getElementById("firstName");
+			
+		var firstName = document.getElementById("firstName");
+		
+		if(firstName.value.length>10){
+			alert("Cannot be longer then 10 characters");
+			searchOK = "false";
+		}
+		else if(firstName.length < 2 && firstName.length > 0){
+			alert("Cannot be less than 2 characters");
+			searchOK = "false";
+		}
+		else if(firstName.length == 0){
+			alert("cannot be empty");
+		}
+	
 		
 	}
+	
 </script>
 </head>
 <body>
@@ -88,7 +65,7 @@
 					<div class="row">
 
 						<div class="col-md-2 col-md-offset-2">
-							First Name: <input type="text" id="FirstName" placeholder=""
+							First Name: <input type="text" id="firstName" placeholder=""
 								class="input-space">
 							<div class="col-md-1 textb">
 								<p id="FirstNameError"></p>
