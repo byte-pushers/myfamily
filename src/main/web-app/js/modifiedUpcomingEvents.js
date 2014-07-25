@@ -1,3 +1,7 @@
+var attendeeCount = 0;
+
+var array = [];
+
 function customValidation() {
 	var fnameError = document.getElementById("fnameError");
 	fnameError.innerHTML = "";
@@ -26,14 +30,8 @@ function customValidation() {
 	var endTimeError = document.getElementById("endTimeError");
 	endTimeError.innerHTML = "";
 
-	var attendeeFError = document.getElementById("attendeeFError");
-	attendeeFError.innerHTML = "";
-
-	var attendeeLError = document.getElementById("attendeeLError");
-	attendeeLError.innerHTML = "";
-
-	var attendeeEmailError = document.getElementById("attendeeEmailError");
-	attendeeEmailError.innerHTML = "";
+	var AttendeeMainError = document.getElementById("top-error");
+	AttendeeMainError.innerHTML = "";
 
 	var fnameElement = document.getElementById("fname");
 	var lnameElement = document.getElementById("lname");
@@ -63,10 +61,6 @@ function customValidation() {
 	var endHourElement = document.getElementById("eHour");
 	var endMinuteElement = document.getElementById("eMinute");
 	var endClockElement = document.getElementById("eClock");
-
-	var aFNameElement = document.getElementById("afname");
-	var aLNameElement = document.getElementById("alname");
-	var aEmailElement = document.getElementById("aemail");
 
 	/* GENERAL EVENT INFORMATION */
 	textBoxValidation(fnameElement, fnameError, 2, 10);
@@ -98,36 +92,106 @@ function customValidation() {
 	dropDownValidation(endMinuteElement, endTimeError);
 	dropDownValidation(endClockElement, endTimeError);
 
+	if (attendeeCount < 1) {
+		AttendeeMainError.innerHTML = "*Must add at least 1 attendee"
+	}
+}
+
+function attendeeValidation() {
+	var attendeeFError = document.getElementById("attendeeFError");
+	attendeeFError.innerHTML = "";
+
+	var attendeeLError = document.getElementById("attendeeLError");
+	attendeeLError.innerHTML = "";
+
+	var attendeeEmailError = document.getElementById("attendeeEmailError");
+	attendeeEmailError.innerHTML = "";
+
+	var aFNameElement = document.getElementById("afname");
+	var aLNameElement = document.getElementById("alname");
+	var aEmailElement = document.getElementById("aemail");
+	
 	/* ATTENDEE INFO */
 	textBoxValidation(aFNameElement, attendeeFError, 2, 10);
 	textBoxValidation(aLNameElement, attendeeLError, 2, 15);
 	emailValidation(aEmailElement, attendeeEmailError);
+
+	if (textBoxValidation(aFNameElement, attendeeFError, 2, 10) == true && textBoxValidation(aLNameElement, attendeeLError, 2, 15) == true
+			&& emailValidation(aEmailElement, attendeeEmailError) == true) {
+		attendeeCount++;
+		addAttendee(aFnameElement.value, aLNameElement.value, aEmailElement.value);
+		return true;
+	} 
+}
+
+function addAttendee(fName, lName, email){
+	if(attendeeValidation() === true){
+		
+		var attendee = {
+			    firstName: fName,
+			    lastName : lName,
+			    isDisplayedInTable: true,
+			    email    : function (){return email},
+			    fullName : function (){return fName + " " + lName}
+		}
+		
+		//TODO: get attendee values for fName, lName, email
+		//TODO: create custom js attendee object using values 
+		//TODO: add setter and getter methods to the attendee object to retreive and set fName, lName, and email
+		//TODO: add isDisplayedInTable to custom js attendee object + setters and getters for isDisplayedInTable 
+		//TODO: add new attendee object to the attendee's array
+		//TODO: call addToTable(attendee object)
+		
+	}
+	
+}
+
+function addTable(){
+	//TODO: accept attendee object as a parameter 
+	//TODO: dynamically add new row to table 
+	//TODO: use inner.html to add cell values 
+	//TODO: 
+}
+
+function getAttendeeName() {
+	return attendee.fullName();
+}
+
+function getEmail(){
+	return attendee.email();
 }
 
 function textBoxValidation(element, error, min, max) {
 	if (isRequired(true) == true && isEmpty(element.value) == false) {
 		if (isGreaterThanMaxLength(element.value, max)) {
 			tooLongError(error, max);
+			return false;
 		}
 		if (isLessThanMinLength(element.value, min)) {
 			tooShortError(error, min)
+			return false;
 		}
 	} else {
 		requiredError(error);
+		return false
 	}
+	return true;
 }
 
 function optionalTextBox(element, error, max) {
 	if (isGreaterThanMaxLength(element.value, max)) {
 		error.innerHTML = "*Cannot have more the max characters";
+		return false;
 	}
+	return true;
 }
 
 function dropDownValidation(element, error) {
 	if (isRequired(true) == true && isEmpty(element.value) == false) {
-
+		return true;
 	} else {
 		allFieldsError(error);
+		return false;
 	}
 }
 
@@ -135,16 +199,21 @@ function emailValidation(element, error) {
 	if (isRequired(true) == true && isEmpty(element.value) == false) {
 		if (validateEmail(element.value) == false) {
 			error.innerHTML = "*Not Valid Email";
+			return false;
 		}
 	} else {
 		requiredError(error);
+		return false;
 	}
+	return true;
 }
 
 function URLValidation(element, error) {
 	if (validateURL(element.value) == false && element.value.length > 0) {
 		error.innerHTML = "*Not a valid URL";
+		return false;
 	}
+	return true;
 }
 
 function requiredError(errorString) {
