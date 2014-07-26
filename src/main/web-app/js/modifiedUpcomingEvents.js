@@ -136,14 +136,14 @@ function addAttendee(){
 		}
 		
 		//attendeeArray.push(attendee);
-		attendeeArray[attendeeArray.length-1] = attendee;
+		attendeeArray.push(attendee);
 		addToTable(attendee);
 	}
 	
 }
 
-function deleteRow(rowID, attendeeindex){
-	attendeeArray.splice(attendeeindex, 1);
+function deleteRow(attendeeIndex){
+	attendeeArray.splice(attendeeIndex, 1);
 	clearTable();
 	paintTable();
 	
@@ -166,17 +166,16 @@ function deleteRow(rowID, attendeeindex){
 
 function clearTable(){
 	var table = document.getElementById("attendeeTable");
-	var tableRows = table.rows;
-	
-	for(var i = 0; i < tableRows; i++){
-		table.deleteRow(i);
+	if (table.rows && table.rows.length >= 2) {
+		table.deleteRow(table.rows.length-1);
+		clearTable();
 	}
 }
 
 function paintTable(){
 	var table = document.getElementById("attendeeTable");
 	for(var i = 0; i < attendeeArray.length; i++){
-		var row = table.insertRow(i);
+		var row = table.insertRow(i+1);
 		
 		var cell0 = row.insertCell(0)
 		var cell1 = row.insertCell(1);
@@ -186,23 +185,16 @@ function paintTable(){
 		cell0.innerHTML = i + 1;
 		cell1.innerHTML = attendeeArray[i].fullName(); 
 		cell2.innerHTML = attendeeArray[i].getEmail();
-		cell3.appendChild(removeRow);
+		cell3.appendChild(createRemoveRowButton(attendeeArray[i]));
 	}
 }
 
 function addToTable(){
 	var table = document.getElementById("attendeeTable");
-	var rowIndex = (table.rows.length);
-	var rowCount = (rowIndex);
-	var row = table.insertRow(rowIndex);
-	row.id = "row" + rowIndex;
+	var rowCount = (table.rows.length);
+	var row = table.insertRow(rowCount);
 	
-	var removeRow=document.createElement("BUTTON");
-	var text=document.createTextNode("Remove");
-	removeRow.appendChild(text);
-	removeRow.onclick = function(){
-		deleteRow(row.id, attendeeArray.length -1);
-	  };
+	
 
 	var cell0 = row.insertCell(0)
 	var cell1 = row.insertCell(1);
@@ -212,10 +204,22 @@ function addToTable(){
 	cell0.innerHTML = rowCount;
 	cell1.innerHTML = attendeeArray[attendeeArray.length - 1].fullName(); 
 	cell2.innerHTML = attendeeArray[attendeeArray.length - 1].getEmail();
-	cell3.appendChild(removeRow);
+	cell3.appendChild(createRemoveRowButton(attendeeArray.length -1));
 	
-	attendeeCounter++;
+	//attendeeCounter++;
 }
+
+function createRemoveRowButton(attendeeArrayIndex) {
+	var removeRowButton=document.createElement("BUTTON");
+	var text=document.createTextNode("Remove");
+	removeRowButton.appendChild(text);
+	removeRowButton.onclick = function(){
+		deleteRow(attendeeArrayIndex);
+	};
+	
+	return removeRowButton;	
+}
+
 
 function textBoxValidation(element, error, min, max) {
 	if (isEmpty(element.value) == false) {
