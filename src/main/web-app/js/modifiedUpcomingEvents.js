@@ -1,6 +1,7 @@
 var attendeeCount = 0;
 
 var array = [];
+var counter = 0;
 
 function customValidation() {
 	var fnameError = document.getElementById("fnameError");
@@ -119,46 +120,68 @@ function attendeeValidation() {
 	if (textBoxValidation(aFNameElement, attendeeFError, 2, 10) == true && textBoxValidation(aLNameElement, attendeeLError, 2, 15) == true
 			&& emailValidation(aEmailElement, attendeeEmailError) == true) {
 		attendeeCount++;
-		addAttendee(aFnameElement.value, aLNameElement.value, aEmailElement.value);
 		return true;
 	} 
+	
+	return false;
 }
 
-function addAttendee(fName, lName, email){
+function addAttendee(){
+	var aFNameElement = document.getElementById("afname");
+	var aLNameElement = document.getElementById("alname");
+	var aEmailElement = document.getElementById("aemail");
+	
 	if(attendeeValidation() === true){
 		
 		var attendee = {
-			    firstName: fName,
-			    lastName : lName,
-			    isDisplayedInTable: true,
-			    email    : function (){return email},
-			    fullName : function (){return fName + " " + lName}
+			    firstName: aFNameElement.value,
+			    lastName : aLNameElement.value,
+			    isDisplayedInTable: false,
+			    email    : aEmailElement.value,
+			    getEmail : function (){return this.email},
+			    fullName : function (){return this.firstName + " " + this.lastName}
 		}
 		
-		//TODO: get attendee values for fName, lName, email
-		//TODO: create custom js attendee object using values 
-		//TODO: add setter and getter methods to the attendee object to retreive and set fName, lName, and email
-		//TODO: add isDisplayedInTable to custom js attendee object + setters and getters for isDisplayedInTable 
-		//TODO: add new attendee object to the attendee's array
-		//TODO: call addToTable(attendee object)
+		array.push(attendee);
 		
+		addToTable(attendee);
 	}
 	
 }
 
-function addTable(){
-	//TODO: accept attendee object as a parameter 
-	//TODO: dynamically add new row to table 
-	//TODO: use inner.html to add cell values 
-	//TODO: 
+function deleteRow(row)
+{
+document.getElementById("myTable").deleteRow(row);
 }
 
-function getAttendeeName() {
-	return attendee.fullName();
+function addToTable(){
+	
+	var table = document.getElementById("table");
+	var row = table.insertRow(counter + 1);
+	
+	var removeRow=document.createElement("BUTTON");
+	var text=document.createTextNode("Remove");
+	removeRow.appendChild(text);
+
+	var cell0 = row.insertCell(0)
+	var cell1 = row.insertCell(1);
+	var cell2 = row.insertCell(2);
+	var cell3 = row.insertCell(3);
+	
+	cell0.innerHTML = counter + 1;
+	cell1.innerHTML = getAttendeeName(array[counter]); 
+	cell2.innerHTML = getEmail(array[counter]);
+	cell3.appendChild(removeRow);
+	
+	counter++;
 }
 
-function getEmail(){
-	return attendee.email();
+function getAttendeeName(object) {
+	return object.fullName();
+}
+
+function getEmail(object){
+	return object.getEmail();
 }
 
 function textBoxValidation(element, error, min, max) {
@@ -195,6 +218,22 @@ function dropDownValidation(element, error) {
 	}
 }
 
+function requiredError(errorString) {
+	errorString.innerHTML = "*Must be filled out"
+}
+
+function allFieldsError(errorString) {
+	errorString.innerHTML = "*Must be filled out"
+}
+
+function tooLongError(errorString, length) {
+	errorString.innerHTML = "*Cannot be longer than " + length + " characters";
+}
+
+function tooShortError(errorString, length) {
+	errorString.innerHTML = "*Cannot be shorter than " + length + " characters";
+}
+
 function emailValidation(element, error) {
 	if (isRequired(true) == true && isEmpty(element.value) == false) {
 		if (validateEmail(element.value) == false) {
@@ -214,22 +253,6 @@ function URLValidation(element, error) {
 		return false;
 	}
 	return true;
-}
-
-function requiredError(errorString) {
-	errorString.innerHTML = "*Must be filled out"
-}
-
-function allFieldsError(errorString) {
-	errorString.innerHTML = "*Must be filled out"
-}
-
-function tooLongError(errorString, length) {
-	errorString.innerHTML = "*Cannot be longer than " + length + " characters";
-}
-
-function tooShortError(errorString, length) {
-	errorString.innerHTML = "*Cannot be shorter than " + length + " characters";
 }
 
 function isGreaterThanMaxLength(targetString, maxLength) {
