@@ -1,7 +1,5 @@
-var attendeeCount = 0;
-
-var array = [];
-var counter = 0;
+var attendeeArray = [];
+var attendeeCounter = 0;
 
 function customValidation() {
 	var fnameError = document.getElementById("fnameError");
@@ -92,10 +90,6 @@ function customValidation() {
 	dropDownValidation(endHourElement, endTimeError);
 	dropDownValidation(endMinuteElement, endTimeError);
 	dropDownValidation(endClockElement, endTimeError);
-
-	if (attendeeCount < 1) {
-		AttendeeMainError.innerHTML = "*Must add at least 1 attendee"
-	}
 }
 
 function attendeeValidation() {
@@ -119,7 +113,6 @@ function attendeeValidation() {
 
 	if (textBoxValidation(attendeeFirstNameElement, attendeeFirstNameError, 2, 10) == true && textBoxValidation(attendeeLastNameElement, attendeeLastNameError, 2, 15) == true
 			&& emailValidation(attendeeEmailElement, attendeeEmailError) == true) {
-		attendeeCount++;
 		return true;
 	} 
 	
@@ -142,44 +135,73 @@ function addAttendee(){
 			    fullName : function (){return this.firstName + " " + this.lastName}
 		}
 		
-		array.push(attendee);
-		
+		//attendeeArray.push(attendee);
+		attendeeArray[attendeeArray.length-1] = attendee;
 		addToTable(attendee);
 	}
 	
 }
 
-function deleteRow(id, index){
-	array.splice(index, 1);
+function deleteRow(rowID, attendeeindex){
+	attendeeArray.splice(attendeeindex, 1);
+	clearTable();
+	paintTable();
 	
-	var row = document.getElementById(id);
-    row.parentNode.removeChild(row);
-	
-    counter--;
 	//TODO: pass in row index
 	//TODO:     add row ID and attendee index to the onClick event
-	//TODO: delete row index from array
-	//TODO: repaint method to repaint table based on array
+	//TODO: delete row index from attendeeArray
+	//TODO: repaint method to repaint table based on attendeeArray
 	//TODO:     clear out table method
 	
 	//TODO: pass in row index and row ID 
 	//TODO:     add row ID to each row created 
 	//TODO:     add row ID and attendee index to the onClick event 
-	//TODO: delete row index from array 
+	//TODO: delete row index from attendeeArray 
 	//TODO: only delete that row based on row ID
+	//var row = document.getElementById(rowID);
+    //row.parentNode.removeChild(row);
+	
+    //attendeeCounter--;
+}
+
+function clearTable(){
+	var table = document.getElementById("attendeeTable");
+	var tableRows = table.rows;
+	
+	for(var i = 0; i < tableRows; i++){
+		table.deleteRow(i);
+	}
+}
+
+function paintTable(){
+	var table = document.getElementById("attendeeTable");
+	for(var i = 0; i < attendeeArray.length; i++){
+		var row = table.insertRow(i);
+		
+		var cell0 = row.insertCell(0)
+		var cell1 = row.insertCell(1);
+		var cell2 = row.insertCell(2);
+		var cell3 = row.insertCell(3);
+		
+		cell0.innerHTML = i + 1;
+		cell1.innerHTML = attendeeArray[i].fullName(); 
+		cell2.innerHTML = attendeeArray[i].getEmail();
+		cell3.appendChild(removeRow);
+	}
 }
 
 function addToTable(){
-	
-	var table = document.getElementById("table");
-	var row = table.insertRow(counter + 1);
-	row.id = "row" + counter;
+	var table = document.getElementById("attendeeTable");
+	var rowIndex = (table.rows.length);
+	var rowCount = (rowIndex);
+	var row = table.insertRow(rowIndex);
+	row.id = "row" + rowIndex;
 	
 	var removeRow=document.createElement("BUTTON");
 	var text=document.createTextNode("Remove");
 	removeRow.appendChild(text);
 	removeRow.onclick = function(){
-		deleteRow(row.id, counter);
+		deleteRow(row.id, attendeeArray.length -1);
 	  };
 
 	var cell0 = row.insertCell(0)
@@ -187,16 +209,16 @@ function addToTable(){
 	var cell2 = row.insertCell(2);
 	var cell3 = row.insertCell(3);
 	
-	cell0.innerHTML = counter + 1;
-	cell1.innerHTML = array[counter].fullName(); 
-	cell2.innerHTML = array[counter].getEmail();
+	cell0.innerHTML = rowCount;
+	cell1.innerHTML = attendeeArray[attendeeArray.length - 1].fullName(); 
+	cell2.innerHTML = attendeeArray[attendeeArray.length - 1].getEmail();
 	cell3.appendChild(removeRow);
 	
-	counter++;
+	attendeeCounter++;
 }
 
 function textBoxValidation(element, error, min, max) {
-	if (isRequired(true) == true && isEmpty(element.value) == false) {
+	if (isEmpty(element.value) == false) {
 		if (isGreaterThanMaxLength(element.value, max)) {
 			tooLongError(error, max);
 			return false;
@@ -221,7 +243,7 @@ function optionalTextBox(element, error, max) {
 }
 
 function dropDownValidation(element, error) {
-	if (isRequired(true) == true && isEmpty(element.value) == false) {
+	if (isEmpty(element.value) == false) {
 		return true;
 	} else {
 		allFieldsError(error);
@@ -246,7 +268,7 @@ function tooShortError(errorString, length) {
 }
 
 function emailValidation(element, error) {
-	if (isRequired(true) == true && isEmpty(element.value) == false) {
+	if (isEmpty(element.value) == false) {
 		if (validateEmail(element.value) == false) {
 			error.innerHTML = "*Not Valid Email";
 			return false;
@@ -292,18 +314,8 @@ function validateURL(link) {
 }
 
 function validateEmail(email) {
-	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	var re= new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$","i");
 	return re.test(email);
-}
-
-function isRequired(required) {
-	var result = false;
-
-	if (required == true) {
-		result = true;
-	}
-
-	return result;
 }
 
 function isEmpty(targetObject) {
