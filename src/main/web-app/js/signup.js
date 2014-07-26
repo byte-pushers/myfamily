@@ -37,10 +37,16 @@
 			 underMin(firstnam.value.length, 2);
 			 
 			 overMax(firstnam.value.length, 30);
-				 
-			 }
+			 
+			 ifValidFirstName(firstnam.value);
+			
+		 }
 		 function validateMiddleName(){
 			 overMax(middleName.value.length, 30);
+			 
+			 underMin(firstnam.value.length, 2);
+			 
+			 ifValidMiddleName(middleName.value);
 					
 		 } 
 		 function validateLastName(){
@@ -49,7 +55,8 @@
 			 underMin(lastName.value.length, 2);
 			
 			 overMax(lastName.value.length, 30);
-					
+			
+			 ifValidLastName(lastName.value);
 			 
 		 }
 			 
@@ -91,7 +98,9 @@
 			
 			 underMin(city.value.length, 3);
 
-			 overMax(city.value.length, 30);	
+			 overMax(city.value.length, 30);
+			 
+			 ifValidCity(city.value);
 		}	 	
 		function validateZipcode(){	 	
 			 validateRequired(zipcode.value.length, 0);
@@ -99,10 +108,15 @@
 			 underMin(zipcode.value.length, 5);
 			
 			 overMax(zipcode.value.length, 5);
+			 
+			 ifValidZipcode(zipcode.value);
+		
 					
 		}	 
 		function validateEmail(){	 
 			 validateRequired(email.value.length, 0);
+			 
+			 validateIfValidEmail(email.value);
 			 
 		}
 		function validateUsername(){
@@ -111,6 +125,8 @@
 			underMin(username.value.length, 6);
 			
 			 overMax(username.value.length, 15);
+			 
+			 ifValidUserName(username.value);
 					
 		}
 		function validatePassword(){	 
@@ -119,9 +135,12 @@
 			underMin(password.value.length, 6);
 			
 			 overMax(password.value.length, 15);
+			 
+			 ifValidPassword(password.value);
 		}	 
 		function validateConPassword(){	 
 			validateRequired(cPassword.value.length, 0);
+			
 			confirmPassword(password.value.length,cPassword.value.length);
 			
 		}	 
@@ -151,6 +170,35 @@
 				
 			}
 		}
+		function ifValidFirstName(fNameVal){
+			var nVal= new RegExp("^[A-Z]+$","i");
+			if (nVal.test(fNameVal)){
+			}
+			else if(fNameVal != 0){
+				
+				result = false;
+				validationMsg = validationMsg + "Please enter a valid first name\r\n";
+			}
+		}
+		function ifValidMiddleName(mNameVal){
+			var nVal= new RegExp("^[A-Z]+$","i");
+			if (nVal.test(mNameVal)){
+			}
+			else if (mNameVal != 0){
+					result = false;
+					validationMsg = validationMsg + "Please enter a valid middle name\r\n";
+				}
+		}
+		function ifValidLastName(lNameVal){
+			var nVal= new RegExp("^[A-Z]+$","i");
+			if (nVal.test(lNameVal)){
+			}
+			else if (lNameVal != 0){			
+					result = false;
+					validationMsg = validationMsg + "Please enter a valid last name\r\n";
+				}
+			
+		}
 		function validateIfMonth(monthVal){
 			if(monthVal != 0 && monthVal != "January" && monthVal != "Feburary" && monthVal != "March" && monthVal != "April" && monthVal != "May" && monthVal != "June" && monthVal != "July" && monthVal != "August" && monthVal != "September" && monthVal != "November" && monthVal != "December"){
 				
@@ -164,15 +212,69 @@
 				validationMsg = validationMsg + "Please enter in a valid day\r\n";
 			}
 		}
+		function ifValidCity(citVal){
+			var cVal= new RegExp("^[A-Z.']+$","i");
+			if (cVal.test(citVal)){
+			}
+			else if (citVal != 0){			
+					result = false;
+					validationMsg = validationMsg + "Please enter a valid city\r\n";
+				}
+			
+		}
+		function ifValidZipcode(zipVal){
+			var zVal= new RegExp("^[0-9]{5}$");
+			if (zVal.test(zipVal)){
+			}
+			else if (zipVal != 0){			
+					result = false;
+					validationMsg = validationMsg + "Please enter a valid zipcode\r\n";
+				}
+			
+		}
+		
+		function ifValidUserName(userVal){
+			var uVal= new RegExp("^[A-Z@!#._-]+$","i");
+			if (uVal.test(userVal)){
+			}
+			else if (userVal != 0){			
+					result = false;
+					validationMsg = validationMsg + "Please enter a valid username\r\n";
+				}
+			
+		}
+		function ifValidPassword(passVal){
+			var pVal= new RegExp("^[A-Z@!._-]+$","i");
+			if (pVal.test(passVal)){
+			}
+			else if (passVal != 0){			
+					result = false;
+					validationMsg = validationMsg + "Please enter a valid password\r\n";
+				}
+			
+		}
+		
 		function confirmPassword(passwordVal,cPasswordVal){
 			if (passwordVal != 0 && passwordVal != cPasswordVal){
 				
 				result = false;
-				validationMsg = validationMsg + "Passwords don't match";
+				validationMsg = validationMsg + "Passwords don't match\r\n";
 			}
 			
 		}
+		function validateIfValidEmail(emailVal){
+			var eval= new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$","i");
+			if (eval.test(emailVal)){
+			}
+			else if (emailVal != 0){
+				
+				result = false;
+				validationMsg = validationMsg + "Please enter a valid email\r\n";
+			}
+			
+		}
+		
 			
 		
 			
-		}
+	}
