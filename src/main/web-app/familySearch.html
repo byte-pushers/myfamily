@@ -7,23 +7,44 @@
 <link href="css/main-layout.css" rel="stylesheet" type="text/css" />
 <script>
 	function customValidation() {
+		var familySearchForm = document.forms["familySearchForm"];
+		var firstNameElement = familySearchForm.elements["firstName"];
+		var middleNameElement = familySearchForm.elements["middleName"];
+		var lastNameElement = familySearchForm.elements["lastName"];
+		var error = "First Name ";
+		var error1 = "can not be longer than 20 characters.";
+		var error2 = "does not have enough characters.";
+		var error3 = "can not be empty.";
+		if (firstNameElement.value.length > 20) {
+			alert(error + error1);
+			searchOK = "false";
+		} else if (firstNameElement.value.length < 2 && firstNameElement.value.length > 0) {
+			alert(error + error2);
+			searchOK = "false";
+		} else if( firstNameElement.value.length == 0){ 
+			alert(error + error3);
+		}
 		
-		var firstNameELement = document.getElementById("firstName");
+		validateTextField(middleNameElement, 20, 2, "middleName");
+		validateTextField(lastNameElement, 20, 2, "lastName");
+		function validateTextField(element, max, min, errorName){
+			var familySearchForm = document.forms["familySearchForm"];
+			var error = errorName ;
+			var error1 = " can not be longer than "  +  max + " characters.";
+			var error2 = " can not be less than " + min + " characters.";
+			var error3 = " can not be empty.";
 			
-		var firstName = document.getElementById("firstName");
-		
-		if(firstName.value.length>10){
-			alert("Cannot be longer then 10 characters");
-			searchOK = "false";
+			if(element.value.length > max) {
+				alert(error + error1);
+				searchOK = "false";
+			}else if(element.value == 0){
+				alert(error + error3);
+			}else if(element.value.length < min){
+				alert(error + error2);
+				searchOK = "false";
+			}
+			
 		}
-		else if(firstName.length < 2 && firstName.length > 0){
-			alert("Cannot be less than 2 characters");
-			searchOK = "false";
-		}
-		else if(firstName.length == 0){
-			alert("cannot be empty");
-		}
-	
 		
 	}
 	
@@ -61,28 +82,22 @@
 						</div>
 					</div>
 				</div>
-				<form>
+				<form name="familySearchForm">
 					<div class="row">
 
 						<div class="col-md-2 col-md-offset-2">
-							First Name: <input type="text" id="firstName" placeholder=""
-								class="input-space">
-							<div class="col-md-1 textb">
-								<p id="FirstNameError"></p>
-							</div>
+							First Name: <input type="text" name="firstName"/>
+						
 						</div>
 						<div class="col-md-2">
-							Middle Name: <input type="text" id="MiddleName" name="Middlename"
-								placeholder="" class="input-space">
-							<div class="col-md-1 textb">
-								<p id="MiddleNameError"></p>
-							</div>
+							Middle Name: <input type="text" name="middleName"/>
+							
 						</div>
 						<div class="col-md-2">
-							Last Name: <input type="text" name="middlename">
+							Last Name: <input type="text" name="lastName"/>
 						</div>
 						<div class="col-md-2">
-							Age: <input type="text" name="text">
+							Age: <input type="text" name="text"/>
 						</div>
 						<div class="col-md-2"></div>
 
@@ -106,8 +121,8 @@
 					<div class="row">
 
 						<div class="col-md-2 col-md-offset-2">
-							<name="state">States <select>
-
+							States
+							<select name="state">
 								<option value="choose">choose</option>
 								<option value="AL">AL</option>
 								<option value="AK">AK</option>
@@ -162,13 +177,13 @@
 							</select>
 						</div>
 						<div class="col-md-2">
-							City: <input type="text" name="city">
+							City: <input type="text" name="city"/>
 						</div>
 						<div class="col-md-2">
-							Zip Code: <input type="text" name="zip code">
+							Zip Code: <input type="text" name="zip code"/>
 						</div>
 						<div class="col-md-2">
-							Region: <input type="text" name="region">
+							Region: <input type="text" name="region"/>
 							<button type="button" onclick="customValidation()">Search</button>
 						</div>
 						<div class="col-md-2"></div>
