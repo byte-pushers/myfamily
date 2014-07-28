@@ -11,41 +11,29 @@
 		var firstNameElement = familySearchForm.elements["firstName"];
 		var middleNameElement = familySearchForm.elements["middleName"];
 		var lastNameElement = familySearchForm.elements["lastName"];
-		var error = "First Name ";
-		var error1 = "can not be longer than 20 characters.";
-		var error2 = "does not have enough characters.";
-		var error3 = "can not be empty.";
-		if (firstNameElement.value.length > 20) {
-			alert(error + error1);
-			searchOK = "false";
-		} else if (firstNameElement.value.length < 2 && firstNameElement.value.length > 0) {
-			alert(error + error2);
-			searchOK = "false";
-		} else if( firstNameElement.value.length == 0){ 
-			alert(error + error3);
-		}
 		
+		validateTextField(firstNameElement, 20, 2, "firstName");
 		validateTextField(middleNameElement, 20, 2, "middleName");
 		validateTextField(lastNameElement, 20, 2, "lastName");
-		function validateTextField(element, max, min, errorName){
-			var familySearchForm = document.forms["familySearchForm"];
-			var error = errorName ;
-			var error1 = " can not be longer than "  +  max + " characters.";
-			var error2 = " can not be less than " + min + " characters.";
-			var error3 = " can not be empty.";
-			
-			if(element.value.length > max) {
-				alert(error + error1);
-				searchOK = "false";
-			}else if(element.value == 0){
-				alert(error + error3);
-			}else if(element.value.length < min){
-				alert(error + error2);
-				searchOK = "false";
-			}
-			
-		}
 		
+		
+	}
+	function validateTextField(element, max, min, errorName){
+		var name= new RegExp("^[A-Z]+$","i");
+		var error = errorName ;
+		var error1 = " can not be longer than "  +  max + " characters.";
+		var error2 = " can not be less than " + min + " characters.";
+		var error3 = " can not be empty.";
+		
+		if(element.value.length > max) {
+			alert(error + error1);
+			searchOK = "false";
+		}else if(element.value == 0){
+			alert(error + error3);
+		}else if(element.value.length < min){
+			alert(error + error2);
+			searchOK = "false";
+		}
 	}
 	
 </script>
