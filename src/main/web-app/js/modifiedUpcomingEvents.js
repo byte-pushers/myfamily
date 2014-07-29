@@ -1,7 +1,9 @@
-var attendeeArray = [];
+var eventArray = [];
 var attendeeCounter = 0;
 
 function customValidation() {
+	var valid = true;
+	
 	var fnameError = document.getElementById("fnameError");
 	fnameError.innerHTML = "";
 
@@ -38,7 +40,9 @@ function customValidation() {
 	var htmlElement = document.getElementById("htmlLink");
 
 	var check1Element = document.getElementById("checkBox1");
+	var check1Value = false;
 	var check2Element = document.getElementById("checkBox2");
+	var check2Value = false;
 
 	var street1Element = document.getElementById("street1");
 	var street2Element = document.getElementById("street2");
@@ -52,44 +56,54 @@ function customValidation() {
 	var startYearElement = document.getElementById("year");
 	var startHourElement = document.getElementById("hour");
 	var startMinuteElement = document.getElementById("minute");
-	var startClockElement = document.getElementById("clock");
+	var startMeridiemElement = document.getElementById("clock");
 
 	var endMonthElement = document.getElementById("eMonth");
 	var endDayElement = document.getElementById("eDay");
 	var endYearElement = document.getElementById("eYear");
 	var endHourElement = document.getElementById("eHour");
 	var endMinuteElement = document.getElementById("eMinute");
-	var endClockElement = document.getElementById("eClock");
+	var endMeridiemElement = document.getElementById("eClock");
 
 	/* GENERAL EVENT INFORMATION */
-	textBoxValidation(fnameElement, fnameError, 2, 10);
-	textBoxValidation(lnameElement, lnameError, 2, 15);
-	textBoxValidation(descriptionElement, descriptionError, 0, 250);
+	if(!textBoxValidation(fnameElement, fnameError, 2, 10)) {valid = false;}
+	if(!textBoxValidation(lnameElement, lnameError, 2, 15)) {valid = false;}
+	if(!textBoxValidation(descriptionElement, descriptionError, 0, 250)) {valid = false;}
 	URLValidation(htmlElement, htmlError)
+	if(isChecked(check1Element)) {check1Value = true;}
+	if(isChecked(check2Element)) {check2Value = true;}
 
 	/* EVENT LOCATION INFO */
-	textBoxValidation(street1Element, street1Error, 0, 25);
-	optionalTextBox(street2Element, street2Error, 9);
-	textBoxValidation(cityElement, locError, 2, 15);
-	dropDownValidation(stateElement, locError);
-	textBoxValidation(zipElement, locError, 5, 5);
-	dropDownValidation(countryElement, locError);
+	if(!textBoxValidation(street1Element, street1Error, 0, 25)) {valid = false;}
+	optionalTextBox(street2Element, street2Error, 9)
+	if(!textBoxValidation(cityElement, locError, 2, 15)) {valid = false;}
+	if(!dropDownValidation(stateElement, locError)) {valid = false;}
+	if(!textBoxValidation(zipElement, locError, 5, 5)) {valid = false;}
+	if(!dropDownValidation(countryElement, locError)) {valid = false;}
 
 	/* START TIME */
-	dropDownValidation(startMonthElement, startTimeError);
-	dropDownValidation(startDayElement, startTimeError);
-	dropDownValidation(startYearElement, startTimeError);
-	dropDownValidation(startHourElement, startTimeError);
-	dropDownValidation(startMinuteElement, startTimeError);
-	dropDownValidation(startClockElement, startTimeError);
+	if(!dropDownValidation(startMonthElement, startTimeError)) {valid = false;}
+	if(!dropDownValidation(startDayElement, startTimeError)) {valid = false;}
+	if(!dropDownValidation(startYearElement, startTimeError)) {valid = false;}
+	if(!dropDownValidation(startHourElement, startTimeError)) {valid = false;}
+	if(!dropDownValidation(startMinuteElement, startTimeError)) {valid = false;}
+	if(!dropDownValidation(startMeridiemElement, startTimeError)) {valid = false;}
 
 	/* END TIME */
-	dropDownValidation(endMonthElement, endTimeError);
-	dropDownValidation(endDayElement, endTimeError);
-	dropDownValidation(endYearElement, endTimeError);
-	dropDownValidation(endHourElement, endTimeError);
-	dropDownValidation(endMinuteElement, endTimeError);
-	dropDownValidation(endClockElement, endTimeError);
+	if(!dropDownValidation(endMonthElement, endTimeError)) {valid = false;}
+	if(!dropDownValidation(endDayElement, endTimeError)) {valid = false;}
+	if(!dropDownValidation(endYearElement, endTimeError)) {valid = false;}
+	if(!dropDownValidation(endHourElement, endTimeError)) {valid = false;}
+	if(!dropDownValidation(endMinuteElement, endTimeError)) {valid = false;}
+	if(!dropDownValidation(endMeridiemElement, endTimeError)) {valid = false;}
+	
+	if(valid == true){
+		var event = new Event(fnameElement, lnameElement, descriptionElement, htmlElement, check1Value, check2Value, 
+			street1Element, street2Element, cityElement, stateElement, zipElement, countryElement, startMonthElement,
+			startDayElement, startYearElement, startHourElement, startMinuteElement, startMeridiemElement, 
+			endMonthElement, endDayElement, endYearElement, endHourElement, endMinuteElement, endMeridiemElement);
+		eventArray.push(event);
+	}
 }
 
 function attendeeValidation() {
@@ -127,16 +141,16 @@ function addAttendee() {
 
 	if (attendeeValidation() === true) {
 
-		var attendee = new Attendee(attendeeFirstNameElement.value, attendeeLastNameElement.value, attendeeEmailElement.value);
+		var attendee = new Attendee(attendeeFirstNameElement, attendeeLastNameElement, attendeeEmailElement);
 		
-		attendeeArray.push(attendee);
+		Event.addToAttendeeArray(attendee);
 		addToTable(attendee);
 	}
 
 }
 
 function deleteRow(attendeeIndex) {
-	attendeeArray.splice(attendeeIndex, 1);
+	Event.removeFromAttendeeArray(attendeeIndex);
 	clearTable();
 	paintTable();
 }
@@ -160,8 +174,8 @@ function paintTable() {
 		var cell3 = row.insertCell(3);
 
 		cell0.innerHTML = i + 1;
-		cell1.innerHTML = attendeeArray[i].getFullName();
-		cell2.innerHTML = attendeeArray[i].getEmail();
+		cell1.innerHTML = Event.getAttendee(i).getFullName();
+		cell2.innerHTML = Event.getAttendee(i).getEmail();
 		cell3.appendChild(createRemoveRowButton(attendeeArray[i]));
 	}
 }
@@ -177,8 +191,8 @@ function addToTable() {
 	var cell3 = row.insertCell(3);
 
 	cell0.innerHTML = rowCount;
-	cell1.innerHTML = attendeeArray[attendeeArray.length - 1].getFullName();
-	cell2.innerHTML = attendeeArray[attendeeArray.length - 1].getEmail();
+	cell1.innerHTML = Event.getAttendee(attendeeArray.length - 1).getFullName();
+	cell2.innerHTML = Event.getAttendee(attendeeArray.length - 1).getEmail();
 	cell3.appendChild(createRemoveRowButton(attendeeArray.length - 1));
 }
 
@@ -297,6 +311,18 @@ function validateURL(link) {
 function validateEmail(email) {
 	var re = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
 	return re.test(email);
+}
+
+function isChecked(checkbox){
+	var checkbox_val = checkbox.value;
+    if (checkbox.checked == true)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 function attendeeKeyPress(e) {

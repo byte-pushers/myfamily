@@ -1,8 +1,8 @@
 function Attendee(fName, lName, emailAddress) {
 
-	var firstName = fName, 
-		lastName = lName,
-		email = emailAddress,
+	var firstName = fName.value, 
+		lastName = lName.value,
+		email = emailAddress.value,
 		that = this;
 
 	function setFirstName(firstname) {
