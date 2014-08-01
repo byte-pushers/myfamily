@@ -5,7 +5,7 @@ var eventTest = new Event();
 
 function customValidation() {
 	var valid = true;
-	
+
 	var firstNameError = document.getElementById("firstNameError");
 	firstNameError.innerHTML = "";
 
@@ -65,49 +65,107 @@ function customValidation() {
 	var endMeridiemElement = document.getElementById("eClock");
 
 	/* GENERAL EVENT INFORMATION */
-	if(!textBoxValidation(firstNameElement, firstNameError, 2, 10)) {valid = false;}
-	if(!textBoxValidation(LastNameElement, lastNameError, 2, 15)) {valid = false;}
-	if(!textBoxValidation(descriptionElement, descriptionError, 0, 250)) {valid = false;}
+	if (!textBoxValidation(firstNameElement, firstNameError, 2, 10)) {valid = false;}
+	if (!textBoxValidation(LastNameElement, lastNameError, 2, 15)) {valid = false;}
+	if (!textBoxValidation(descriptionElement, descriptionError, 0, 250)) {valid = false;}
 	URLValidation(htmlElement, htmlError)
-	if(isChecked(check1Element)) {check1Value = true;}
-	if(isChecked(check2Element)) {check2Value = true;}
+	if (isChecked(check1Element)) {check1Value = true;}
+	if (isChecked(check2Element)) {check2Value = true;}
 
 	/* EVENT LOCATION INFO */
-	if(!textBoxValidation(street1Element, street1Error, 0, 25)) {valid = false;}
+	if (!textBoxValidation(street1Element, street1Error, 0, 25)) {valid = false;}
 	optionalTextBox(street2Element, street2Error, 9)
-	if(!textBoxValidation(cityElement, locError, 2, 15)) {valid = false;}
-	if(!dropDownValidation(stateElement, locError)) {valid = false;}
-	if(!textBoxValidation(zipElement, locError, 5, 5)) {valid = false;}
-	if(!dropDownValidation(countryElement, locError)) {valid = false;}
+	if (!textBoxValidation(cityElement, locError, 2, 15)) {valid = false;}
+	if (!dropDownValidation(stateElement, locError)) {valid = false;}
+	if (!textBoxValidation(zipElement, locError, 5, 5)) {valid = false;}
+	if (!dropDownValidation(countryElement, locError)) {valid = false;}
 
 	/* START TIME */
-	if(!dropDownValidation(startMonthElement, startTimeError)) {valid = false;}
-	if(!dropDownValidation(startDayElement, startTimeError)) {valid = false;}
-	if(!dropDownValidation(startYearElement, startTimeError)) {valid = false;}
-	if(!dropDownValidation(startHourElement, startTimeError)) {valid = false;}
-	if(!dropDownValidation(startMinuteElement, startTimeError)) {valid = false;}
-	if(!dropDownValidation(startMeridiemElement, startTimeError)) {valid = false;}
+	if (!dropDownValidation(startMonthElement, startTimeError)) {valid = false;}
+	if (!dropDownValidation(startDayElement, startTimeError)) {valid = false;}
+	if (!dropDownValidation(startYearElement, startTimeError)) {valid = false;}
+	if (!dropDownValidation(startHourElement, startTimeError)) {valid = false;}
+	if (!dropDownValidation(startMinuteElement, startTimeError)) {valid = false;}
+	if (!dropDownValidation(startMeridiemElement, startTimeError)) {valid = false;}
 
 	/* END TIME */
-	if(!dropDownValidation(endMonthElement, endTimeError)) {valid = false;}
-	if(!dropDownValidation(endDayElement, endTimeError)) {valid = false;}
-	if(!dropDownValidation(endYearElement, endTimeError)) {valid = false;}
-	if(!dropDownValidation(endHourElement, endTimeError)) {valid = false;}
-	if(!dropDownValidation(endMinuteElement, endTimeError)) {valid = false;}
-	if(!dropDownValidation(endMeridiemElement, endTimeError)) {valid = false;}
-	
-	if(valid == true){
-		var event = new Event(firstNameElement, LastNameElement, descriptionElement, htmlElement, check1Value, check2Value, 
-			street1Element, street2Element, cityElement, stateElement, zipElement, countryElement, startMonthElement,
-			startDayElement, startYearElement, startHourElement, startMinuteElement, startMeridiemElement, 
-			endMonthElement, endDayElement, endYearElement, endHourElement, endMinuteElement, endMeridiemElement);
+	if (!dropDownValidation(endMonthElement, endTimeError)) {valid = false;}
+	if (!dropDownValidation(endDayElement, endTimeError)) {valid = false;}
+	if (!dropDownValidation(endYearElement, endTimeError)) {valid = false;}
+	if (!dropDownValidation(endHourElement, endTimeError)) {valid = false;}
+	if (!dropDownValidation(endMinuteElement, endTimeError)) {valid = false;}
+	if (!dropDownValidation(endMeridiemElement, endTimeError)) {valid = false;}
+
+	if (valid == true) {
+		var event = new Event(firstNameElement, LastNameElement,
+				descriptionElement, htmlElement, check1Value, check2Value, street1Element, street2Element, cityElement, 
+				stateElement, zipElement, countryElement, startMonthElement, startDayElement, startYearElement, 
+				startHourElement, startMinuteElement,startMeridiemElement, endMonthElement, endDayElement, endYearElement,
+				endHourElement, endMinuteElement, endMeridiemElement);
 		eventArray.push(event);
-		
-		alert(event.getFirstName());
 	}
 }
 
-function attendeeValidation() {
+function textBoxValidation(element, error, min, max) {
+	if (isEmpty(element.value) == false) {
+		if (isGreaterThanMaxLength(element.value, max)) {
+			tooLongError(error, max);
+			return false;
+		}
+		if (isLessThanMinLength(element.value, min)) {
+			tooShortError(error, min)
+			return false;
+		}
+	} else {
+		requiredError(error);
+		return false
+	}
+	return true;
+}
+
+function optionalTextBox(element, error, max) {
+	if (isGreaterThanMaxLength(element.value, max)) {
+		error.innerHTML = "*Cannot have more the max characters";
+		return false;
+	}
+	return true;
+}
+
+function dropDownValidation(element, error) {
+	if (isEmpty(element.value) == false) {
+		return true;
+	} else {
+		allFieldsError(error);
+		return false;
+	}
+}
+
+function attendeeValidation(firstName, lastName, email, firstNameError, lastNameError, emailError) {
+	var firstNameBoolean = false,
+		lastNameBoolean = false, 
+		emailBoolean = false;
+	
+	if(textBoxValidation(firstName, firstNameError, 2, 10) == true) {
+		firstNameBoolean = true;
+	}
+	if(textBoxValidation(lastName, lastNameError, 2, 15) == true){
+		lastNameBoolean = true;
+	}
+	if(emailValidation(email, emailError) == true){
+		emailBoolean = true;
+	}
+
+	if (firstNameBoolean == true && lastNameBoolean == true &&  emailBoolean == true) {
+		return true;
+	}
+		return false;
+}
+
+function addAttendee() {
+	var attendeeFirstNameElement = document.getElementById("attendeeFirstName");
+	var attendeeLastNameElement = document.getElementById("attendeeLastName");
+	var attendeeEmailElement = document.getElementById("attendeeEmail");
+
 	var attendeeFirstNameError = document.getElementById("attendeeFError");
 	attendeeFirstNameError.innerHTML = "";
 
@@ -117,34 +175,40 @@ function attendeeValidation() {
 	var attendeeEmailError = document.getElementById("attendeeEmailError");
 	attendeeEmailError.innerHTML = "";
 
-	var attendeeFirstNameElement = document.getElementById("afname");
-	var attendeeLastNameElement = document.getElementById("alname");
-	var attendeeEmailElement = document.getElementById("aemail");
-
-	/* ATTENDEE INFO */
-	textBoxValidation(attendeeFirstNameElement, attendeeFirstNameError, 2, 10);
-	textBoxValidation(attendeeLastNameElement, attendeeLastNameError, 2, 15);
-	emailValidation(attendeeEmailElement, attendeeEmailError);
-
-	if (textBoxValidation(attendeeFirstNameElement, attendeeFirstNameError, 2,10) == true
-			&& textBoxValidation(attendeeLastNameElement,attendeeLastNameError, 2, 15) == true
-			&& emailValidation(attendeeEmailElement, attendeeEmailError) == true) {
-		return true;
-	}
-	return false;
-}
-
-function addAttendee() {
-	var attendeeFirstNameElement = document.getElementById("afname");
-	var attendeeLastNameElement = document.getElementById("alname");
-	var attendeeEmailElement = document.getElementById("aemail");
-
-	if (attendeeValidation() === true) {
-		var attendee = new Attendee(attendeeFirstNameElement, attendeeLastNameElement, attendeeEmailElement);
+	if (attendeeValidation(attendeeFirstNameElement, attendeeLastNameElement, attendeeEmailElement, attendeeFirstNameError,
+			attendeeLastNameError, attendeeEmailError) === true) {
 		
+		var attendee = new Attendee(attendeeFirstNameElement, attendeeLastNameElement, attendeeEmailElement);
 		eventTest.addToAttendeeArray(attendee);
 		addToTable();
 	}
+}
+
+function addToTable() {
+	var table = document.getElementById("attendeeTable");
+	var rowCount = (table.rows.length);
+	var row = table.insertRow(rowCount);
+
+	var cell0 = row.insertCell(0)
+	var cell1 = row.insertCell(1);
+	var cell2 = row.insertCell(2);
+	var cell3 = row.insertCell(3);
+
+	cell0.innerHTML = rowCount;
+	cell1.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getFullName();
+	cell2.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getEmail();
+	cell3.appendChild(createRemoveRowButton(eventTest.getAttendeeArray().length - 1));
+}
+
+function createRemoveRowButton(attendeeArrayIndex) {
+	var removeRowButton = document.createElement("BUTTON");
+	var text = document.createTextNode("Remove");
+	removeRowButton.appendChild(text);
+	removeRowButton.onclick = function() {
+		deleteRow(attendeeArrayIndex);
+	};
+
+	return removeRowButton;
 }
 
 function deleteRow(attendeeIndex) {
@@ -178,78 +242,20 @@ function paintTable() {
 	}
 }
 
-function addToTable() {
-	var table = document.getElementById("attendeeTable");
-	var rowCount = (table.rows.length);
-	var row = table.insertRow(rowCount);
-
-	var cell0 = row.insertCell(0)
-	var cell1 = row.insertCell(1);
-	var cell2 = row.insertCell(2);
-	var cell3 = row.insertCell(3);
-
-	cell0.innerHTML = rowCount;
-	cell1.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getFullName();
-	cell2.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getEmail();
-	cell3.appendChild(createRemoveRowButton(eventTest.getAttendeeArray().length - 1));
-}
-
-function createRemoveRowButton(attendeeArrayIndex) {
-	var removeRowButton = document.createElement("BUTTON");
-	var text = document.createTextNode("Remove");
-	removeRowButton.appendChild(text);
-	removeRowButton.onclick = function() {
-		deleteRow(attendeeArrayIndex);
-	};
-
-	return removeRowButton;
-}
-
-function textBoxValidation(element, error, min, max) {
-		if (isEmpty(element.value) == false) {
-			if (isGreaterThanMaxLength(element.value, max)) {
-				tooLongError(error, max);
-				return false;
-			}
-			if (isLessThanMinLength(element.value, min)) {
-				tooShortError(error, min)
-				return false;
-			}
-		} else {
-			requiredError(error);
-			return false
-		}
-		return true;
-	
-}
-
-function optionalTextBox(element, error, max) {
-	if (isGreaterThanMaxLength(element.value, max)) {
-		error.innerHTML = "*Cannot have more the max characters";
-		return false;
-	}
-	return true;
-}
-
-function dropDownValidation(element, error) {
-	if (isEmpty(element.value) == false) {
-		return true;
-	} else {
-		allFieldsError(error);
-		return false;
-	}
-}
-
 function requiredError(errorString) {
-	errorString.innerHTML = "*Must be filled out"
+	errorString.innerHTML = "*Must be filled out";
 }
 
-function noNumError(errorString) {
-	errorString.innerHTML = "*Cannot contain numbers"
+function notValidEmailError(errorString) {
+	errorString.innerHTML = "*Not a valid email";
+}
+
+function notValidURLError(errorString) {
+	errorString.innerHTML = "*Not a valid URL";
 }
 
 function allFieldsError(errorString) {
-	errorString.innerHTML = "*Must be filled out"
+	errorString.innerHTML = "*Must be filled out";
 }
 
 function tooLongError(errorString, length) {
@@ -263,9 +269,10 @@ function tooShortError(errorString, length) {
 function emailValidation(element, error) {
 	if (isEmpty(element.value) == false) {
 		if (validateEmail(element.value) == false) {
-			error.innerHTML = "*Not Valid Email";
+			notValidEmailError(error);
 			return false;
 		}
+		return true;
 	} else {
 		requiredError(error);
 		return false;
@@ -275,7 +282,7 @@ function emailValidation(element, error) {
 
 function URLValidation(element, error) {
 	if (validateURL(element.value) == false && element.value.length > 0) {
-		error.innerHTML = "*Not a valid URL";
+		notValidURLError(error);
 		return false;
 	}
 	return true;
@@ -311,25 +318,13 @@ function validateEmail(email) {
 	return re.test(email);
 }
 
-function isChecked(checkbox){
+function isChecked(checkbox) {
 	var checkbox_val = checkbox.value;
-    if (checkbox.checked == true)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-function attendeeKeyPress(e) {
-	if (typeof e == "undefined" && window.event) {
-		e = window.event;
+	if (checkbox.checked == true) {
+		return true;
+	} else {
+		return false;
 	}
-	if (e.keyCode == 13) {
-		addAttendee();
-	} 
 }
 
 function isEmpty(targetObject) {
