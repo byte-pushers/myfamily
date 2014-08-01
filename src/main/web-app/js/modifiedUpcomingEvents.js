@@ -125,7 +125,7 @@ function textBoxValidation(element, error, min, max) {
 
 function optionalTextBox(element, error, max) {
 	if (isGreaterThanMaxLength(element.value, max)) {
-		error.innerHTML = "*Cannot have more the max characters";
+		tooLongError(error, max);
 		return false;
 	}
 	return true;
@@ -187,28 +187,8 @@ function addAttendee() {
 function addToTable() {
 	var table = document.getElementById("attendeeTable");
 	var rowCount = (table.rows.length);
-	var row = table.insertRow(rowCount);
-
-	var cell0 = row.insertCell(0)
-	var cell1 = row.insertCell(1);
-	var cell2 = row.insertCell(2);
-	var cell3 = row.insertCell(3);
-
-	cell0.innerHTML = rowCount;
-	cell1.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getFullName();
-	cell2.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getEmail();
-	cell3.appendChild(createRemoveRowButton(eventTest.getAttendeeArray().length - 1));
-}
-
-function createRemoveRowButton(attendeeArrayIndex) {
-	var removeRowButton = document.createElement("BUTTON");
-	var text = document.createTextNode("Remove");
-	removeRowButton.appendChild(text);
-	removeRowButton.onclick = function() {
-		deleteRow(attendeeArrayIndex);
-	};
-
-	return removeRowButton;
+	
+	createRow(table, rowCount, eventTest.getAttendeeArray().length - 1);
 }
 
 function deleteRow(attendeeIndex) {
@@ -228,18 +208,34 @@ function clearTable() {
 function paintTable() {
 	var table = document.getElementById("attendeeTable");
 	for (var i = 0; i < eventTest.getAttendeeArray().length; i++) {
-		var row = table.insertRow(i + 1);
-
-		var cell0 = row.insertCell(0)
-		var cell1 = row.insertCell(1);
-		var cell2 = row.insertCell(2);
-		var cell3 = row.insertCell(3);
-
-		cell0.innerHTML = i + 1;
-		cell1.innerHTML = eventTest.getAttendee(i).getFullName();
-		cell2.innerHTML = eventTest.getAttendee(i).getEmail();
-		cell3.appendChild(createRemoveRowButton(eventTest.getAttendee(i)));
+		var rowCount = i + 1;
+		createRow(table, rowCount, i);
 	}
+}
+
+function createRow(table, rowNum, index){
+	var row = table.insertRow(rowNum);
+
+	var cell0 = row.insertCell(0)
+	var cell1 = row.insertCell(1);
+	var cell2 = row.insertCell(2);
+	var cell3 = row.insertCell(3);
+
+	cell0.innerHTML = rowNum;
+	cell1.innerHTML = eventTest.getAttendee(index).getFullName();
+	cell2.innerHTML = eventTest.getAttendee(index).getEmail();
+	cell3.appendChild(createRemoveRowButton(index));
+}
+
+function createRemoveRowButton(attendeeArrayIndex) {
+	var removeRowButton = document.createElement("BUTTON");
+	var text = document.createTextNode("Remove");
+	removeRowButton.appendChild(text);
+	removeRowButton.onclick = function() {
+		deleteRow(attendeeArrayIndex);
+	};
+
+	return removeRowButton;
 }
 
 function requiredError(errorString) {
@@ -267,21 +263,21 @@ function tooShortError(errorString, length) {
 }
 
 function emailValidation(element, error) {
-	if (isEmpty(element.value) == false) {
+	if (isEmpty(element.value) == true) {
+		requiredError(error);
+		return false;
+	} else {
 		if (validateEmail(element.value) == false) {
 			notValidEmailError(error);
 			return false;
 		}
 		return true;
-	} else {
-		requiredError(error);
-		return false;
 	}
 	return true;
 }
 
 function URLValidation(element, error) {
-	if (validateURL(element.value) == false && element.value.length > 0) {
+	if (element.value.length && validateURL(element.value) == false) {
 		notValidURLError(error);
 		return false;
 	}
@@ -289,23 +285,17 @@ function URLValidation(element, error) {
 }
 
 function isGreaterThanMaxLength(targetString, maxLength) {
-	var result = false;
-
 	if (targetString.length > maxLength) {
-		result = true;
+		return true;
 	}
-
-	return result;
+	return false;
 }
 
 function isLessThanMinLength(targetString, minLength) {
-	var result = false;
-
 	if (targetString.length < minLength) {
-		result = true;
+		return true;
 	}
-
-	return result
+	return false;
 }
 
 function validateURL(link) {
@@ -320,6 +310,7 @@ function validateEmail(email) {
 
 function isChecked(checkbox) {
 	var checkbox_val = checkbox.value;
+	
 	if (checkbox.checked == true) {
 		return true;
 	} else {
@@ -328,12 +319,9 @@ function isChecked(checkbox) {
 }
 
 function isEmpty(targetObject) {
-	var result = true;
-
 	if (targetObject != null && targetObject != undefined
 			&& targetObject.length > 0) {
-		result = false;
+		return false;
 	}
-
-	return result;
+	return true;
 }
