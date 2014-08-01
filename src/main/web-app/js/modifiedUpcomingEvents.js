@@ -1,14 +1,16 @@
 var eventArray = [];
 var attendeeCounter = 0;
 
+var eventTest = new Event();
+
 function customValidation() {
 	var valid = true;
 	
-	var fnameError = document.getElementById("fnameError");
-	fnameError.innerHTML = "";
+	var firstNameError = document.getElementById("firstNameError");
+	firstNameError.innerHTML = "";
 
-	var lnameError = document.getElementById("lnameError");
-	lnameError.innerHTML = "";
+	var lastNameError = document.getElementById("lastNameError");
+	lastNameError.innerHTML = "";
 
 	var descriptionError = document.getElementById("descriptionError");
 	descriptionError.innerHTML = "";
@@ -31,11 +33,8 @@ function customValidation() {
 	var endTimeError = document.getElementById("endTimeError");
 	endTimeError.innerHTML = "";
 
-	var AttendeeMainError = document.getElementById("top-error");
-	AttendeeMainError.innerHTML = "";
-
-	var fnameElement = document.getElementById("fname");
-	var lnameElement = document.getElementById("lname");
+	var firstNameElement = document.getElementById("fname");
+	var LastNameElement = document.getElementById("lname");
 	var descriptionElement = document.getElementById("description");
 	var htmlElement = document.getElementById("htmlLink");
 
@@ -66,8 +65,8 @@ function customValidation() {
 	var endMeridiemElement = document.getElementById("eClock");
 
 	/* GENERAL EVENT INFORMATION */
-	if(!textBoxValidation(fnameElement, fnameError, 2, 10)) {valid = false;}
-	if(!textBoxValidation(lnameElement, lnameError, 2, 15)) {valid = false;}
+	if(!textBoxValidation(firstNameElement, firstNameError, 2, 10)) {valid = false;}
+	if(!textBoxValidation(LastNameElement, lastNameError, 2, 15)) {valid = false;}
 	if(!textBoxValidation(descriptionElement, descriptionError, 0, 250)) {valid = false;}
 	URLValidation(htmlElement, htmlError)
 	if(isChecked(check1Element)) {check1Value = true;}
@@ -98,11 +97,13 @@ function customValidation() {
 	if(!dropDownValidation(endMeridiemElement, endTimeError)) {valid = false;}
 	
 	if(valid == true){
-		var event = new Event(fnameElement, lnameElement, descriptionElement, htmlElement, check1Value, check2Value, 
+		var event = new Event(firstNameElement, LastNameElement, descriptionElement, htmlElement, check1Value, check2Value, 
 			street1Element, street2Element, cityElement, stateElement, zipElement, countryElement, startMonthElement,
 			startDayElement, startYearElement, startHourElement, startMinuteElement, startMeridiemElement, 
 			endMonthElement, endDayElement, endYearElement, endHourElement, endMinuteElement, endMeridiemElement);
 		eventArray.push(event);
+		
+		alert(event.getFirstName());
 	}
 }
 
@@ -130,7 +131,6 @@ function attendeeValidation() {
 			&& emailValidation(attendeeEmailElement, attendeeEmailError) == true) {
 		return true;
 	}
-
 	return false;
 }
 
@@ -140,17 +140,15 @@ function addAttendee() {
 	var attendeeEmailElement = document.getElementById("aemail");
 
 	if (attendeeValidation() === true) {
-
 		var attendee = new Attendee(attendeeFirstNameElement, attendeeLastNameElement, attendeeEmailElement);
 		
-		Event.addToAttendeeArray(attendee);
-		addToTable(attendee);
+		eventTest.addToAttendeeArray(attendee);
+		addToTable();
 	}
-
 }
 
 function deleteRow(attendeeIndex) {
-	Event.removeFromAttendeeArray(attendeeIndex);
+	eventTest.removeFromAttendeeArray(attendeeIndex);
 	clearTable();
 	paintTable();
 }
@@ -165,7 +163,7 @@ function clearTable() {
 
 function paintTable() {
 	var table = document.getElementById("attendeeTable");
-	for (var i = 0; i < attendeeArray.length; i++) {
+	for (var i = 0; i < eventTest.getAttendeeArray().length; i++) {
 		var row = table.insertRow(i + 1);
 
 		var cell0 = row.insertCell(0)
@@ -174,9 +172,9 @@ function paintTable() {
 		var cell3 = row.insertCell(3);
 
 		cell0.innerHTML = i + 1;
-		cell1.innerHTML = Event.getAttendee(i).getFullName();
-		cell2.innerHTML = Event.getAttendee(i).getEmail();
-		cell3.appendChild(createRemoveRowButton(attendeeArray[i]));
+		cell1.innerHTML = eventTest.getAttendee(i).getFullName();
+		cell2.innerHTML = eventTest.getAttendee(i).getEmail();
+		cell3.appendChild(createRemoveRowButton(eventTest.getAttendee(i)));
 	}
 }
 
@@ -191,9 +189,9 @@ function addToTable() {
 	var cell3 = row.insertCell(3);
 
 	cell0.innerHTML = rowCount;
-	cell1.innerHTML = Event.getAttendee(attendeeArray.length - 1).getFullName();
-	cell2.innerHTML = Event.getAttendee(attendeeArray.length - 1).getEmail();
-	cell3.appendChild(createRemoveRowButton(attendeeArray.length - 1));
+	cell1.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getFullName();
+	cell2.innerHTML = eventTest.getAttendee(eventTest.getAttendeeArray().length - 1).getEmail();
+	cell3.appendChild(createRemoveRowButton(eventTest.getAttendeeArray().length - 1));
 }
 
 function createRemoveRowButton(attendeeArrayIndex) {
