@@ -5,6 +5,7 @@ var eventTest = new Event();
 
 function customValidation() {
 	var valid = true;
+	createRemoveIcon();
 
 	var firstNameError = document.getElementById("firstNameError");
 	firstNameError.innerHTML = "";
@@ -229,13 +230,20 @@ function createRow(table, rowNum, index){
 
 function createRemoveRowButton(attendeeArrayIndex) {
 	var removeRowButton = document.createElement("BUTTON");
-	var text = document.createTextNode("Remove");
-	removeRowButton.appendChild(text);
+	removeRowButton.className = "btn btn-link";
+	removeRowButton.appendChild(createRemoveIcon());
 	removeRowButton.onclick = function() {
 		deleteRow(attendeeArrayIndex);
 	};
-
 	return removeRowButton;
+}
+
+function createRemoveIcon(){
+	var iconSpanElement = document.createElement("SPAN");
+    
+	iconSpanElement.className ="glyphicon glyphicon-remove-circle changeColorToRed";
+
+	return iconSpanElement;
 }
 
 function requiredError(errorString) {
