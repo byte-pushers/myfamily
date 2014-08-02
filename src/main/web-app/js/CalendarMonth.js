@@ -10,7 +10,7 @@ function CalendarMonth(name,abbrivatedName){
 		return shortName;
 	};
 }
-CalendarMonth.prototype.arrayOfMonths = [
+CalendarMonth.arrayOfMonths = [
     new CalendarMonth("January","Jan"),
     new CalendarMonth("Feburary","Feb"),
     new CalendarMonth("March","Mar"),
@@ -24,7 +24,7 @@ CalendarMonth.prototype.arrayOfMonths = [
     new CalendarMonth("November", "Nov"),
     new CalendarMonth("December", "Dec")
  ];
-CalendarMonth.prototype.isValidMonth = function(monthVal){
+CalendarMonth.isValidMonth = function(monthVal){
 	var result = false;
 	
 	//TODO: loop through the array of months
@@ -34,11 +34,8 @@ CalendarMonth.prototype.isValidMonth = function(monthVal){
 		//TODO: when month string equals the monthVal parameter, set results variable to true  
 		result = (CalendarMonth.arrayOfMonths[i].getLongName() == monthVal || CalendarMonth.arrayOfMonths[i].getShortName() == monthVal)? true: false; 
 		//if the result is true then we will break out of the loop
-		elementLabelName = (elementLabelName == undefined || elementLabelName == null || elementLabelName.length == 0 )? "" : " into " + elementLabelName + ".";
 		if(result == true){
 			break;
-		}else{
-			alert( 'Please enter a valid birth month');
 		}
 	} 
 	
