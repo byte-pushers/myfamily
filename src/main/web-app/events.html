@@ -9,6 +9,7 @@
 <link href="css/upcomingEvents.css" type="text/css" rel="stylesheet" />
 <link href="css/main-layout.css" type="text/css" rel="stylesheet" />
 
+<script src="libs/AngularJS/1.2/angular.min.js"></script>
 <script src="js/attendee.js"></script>
 <script src="js/event.js"></script>
 <script src="js/modifiedUpcomingEvents.js"></script>
@@ -61,18 +62,18 @@
 		<form>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2">First Name:</div>
-				<div class="col-md-2 ">
-					<input type="text" id="fname" placeholder="" class="input-space">
+				<div data-ng-app="" class="col-md-2 ">
+					<input type="text" ng-model="firstNameInput" id="fname" placeholder="" class="input-space">
 				</div>
 				<div class="col-md-7 textb">
-					<p id="firstNameError"></p>
+					<p ng-bind="firstNameInput" id="firstNameError"></p>
 				</div>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2">Last Name:</div>
-				<div class="col-md-2 ">
-					<input type="text" id="lname" placeholder="" class="input-space">
+				<div data-ng-app="" class="col-md-2 ">
+					<input type="text" ng-model="lastNameInput" id="lname" placeholder="" class="input-space">
 				</div>
 				<div class="col-md-7 textb">
 					<p id="lastNameError"></p>
@@ -81,8 +82,8 @@
 			<br>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2 texta">Description:</div>
-				<div class="col-md-5">
-					<textarea id="description" rows="5" cols="75"></textarea>
+				<div data-ng-app="" class="col-md-5">
+					<textarea ng-model="descriptionInput" id="description" rows="5" cols="75"></textarea>
 				</div>
 				<div class="col-md-4 textb">
 					<p id="descriptionError"></p>
@@ -91,8 +92,8 @@
 			<br> <br>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2 texta">Enter URL:</div>
-				<div class="col-md-3" style="width: 100">
-					<input type="text" id="htmlLink" placeholder="Enter URL" size="35">
+				<div data-ng-app="" class="col-md-3" style="width: 100">
+					<input type="text" ng-model="htmlInput" id="htmlLink" placeholder="Enter URL" size="35">
 				</div>
 				<div class="col-md-6 textb">
 					<p id="htmlError"></p>
@@ -106,16 +107,16 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-md-3 col-md-offset-3 ">
-					<input type="checkbox" id="checkBox1" name="1" id="checkBox1"> &nbsp;
+				<div data-ng-app="" class="col-md-3 col-md-offset-3 ">
+					<input type="checkbox" ng-model="checkBox1Input" id="checkBox1" name="1" id="checkBox1"> &nbsp;
 					Guests can invite other guests
 				</div>
 				<div class="col-md-6"></div>
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-md-3 col-md-offset-3">
-					<input type="checkbox" id="checkBox2" name="2" id="checkBox2"> &nbsp;
+				<div data-ng-app="" class="col-md-3 col-md-offset-3">
+					<input type="checkbox" ng-model="checkBox2Input" id="checkBox2" name="2" id="checkBox2"> &nbsp;
 					Guests can see other guests
 				</div>
 				<div class="col-md-6"></div>
@@ -132,8 +133,8 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-2 col-md-offset-3">
-					<input type="text" id="street1" placeholder="Event Address"
+				<div data-ng-app="" class="col-md-2 col-md-offset-3">
+					<input type="text" ng-model="street1Input" id="street1" placeholder="Event Address"
 						style="width: 150px;">
 				</div>
 				<div class="col-md-7 textb">
@@ -147,8 +148,8 @@
 				<div class="col-md-7"></div>
 			</div>
 			<div class="row">
-				<div class="col-md-2 col-md-offset-3">
-					<input type="text" id="street2" placeholder="Event Address"
+				<div data-ng-app="" class="col-md-2 col-md-offset-3">
+					<input type="text" ng-model="street2Input" id="street2" placeholder="Event Address"
 						style="width: 150px;">
 				</div>
 				<div class="col-md-7 textb">
@@ -158,18 +159,18 @@
 			<br>
 			<div class="row">
 				<div class="col-md-1 col-md-offset-3">City:</div>
-				<div class="col-md-1 spacing5" text-align="center";>State:</div>
+				<div class="col-md-1 spacing5" >State:</div>
 				<div class="col-md-1 ">Zipcode:</div>
 				<div class="col-md-1 spacing5">Country</div>
 				<div class="col-md-5"></div>
 			</div>
 			<div class="row">
-				<div class="col-md-1 col-md-offset-3">
-					<input type="text" id="city" placeholder="Denton">
+				<div data-ng-app="" class="col-md-1 col-md-offset-3">
+					<input type="text" ng-model="cityInput" id="city" placeholder="Denton">
 				</div>
 
-				<div class="col-md-1 spacing5">
-					<select id="states">
+				<div data-ng-app="" class="col-md-1 spacing5">
+					<select mg-model="stateInput" id="states">
 						<option value="">State</option>
 						<option value="AL">AL</option>
 						<option value="AK">AK</option>
@@ -224,8 +225,8 @@
 					</select>
 				</div>
 
-				<div class="col-md-1 ">
-					<input type="text" id="zipcode" placeholder="76201">
+				<div data-ng-app="" class="col-md-1 ">
+					<input type="text" ng-model="zipcodeInput" id="zipcode" placeholder="76201">
 				</div>
 
 				<div class="col-md-1 spacing5">
