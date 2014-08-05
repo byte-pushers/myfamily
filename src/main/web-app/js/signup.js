@@ -135,20 +135,26 @@ function validatePassword() {
 	
 }
 function validateConPassword() {
+	var passwordInputPasswordElement = document.getElementById('password').value;
+	var cPasswordInputPasswordElement = document.getElementById('confirmPassword').value;
+	if (isEmpty(cPasswordInputPasswordElement)){
+		validationMsg.msg = validationMsg.msg + "Confirming your password is required, please enter a value.\r\n";
+	}else if (validateIsEqualPasswords(passwordInputPasswordElement, cPasswordInputPasswordElement) == false){
+		validationMsg.msg = validationMsg.msg + "Passwords dont match, please confirm your password\r\n";
+	}
 	
-	var cPasswordInputPasswordElement = document.getElementById('confirmPassword');
-
-	validateRequired(cPasswordInputPasswordElement, true, 6, 15, validationMsg, "confirm password", isValidPassword);
 
 }
 function isEmpty(targetString, defaultValue) {
-	var result = true;
+	var result = false;
 	if(targetString != null && targetString != undefined && targetString.length > 0){
 		if(defaultValue != null && defaultValue != undefined && defaultValue.length > 0){
-			if(targetString != defaultValue){
+			if(targetString == defaultValue){
 				result = false;
-			} 
+			}
 		} 
+	}else {
+		result = true;
 	}
 	return result;
 }
@@ -185,15 +191,6 @@ function isValidLastName(lNameVal) {
 		return false;
 	}
 
-}
-
-function validateIsDay(dayVal) {
-	if (dayVal != 0 && dayVal != 1 && dayVal != 2 && dayVal != 3 && dayVal != 4 && dayVal != 5 && dayVal != 6 && dayVal != 7 && dayVal != 8 && dayVal != 9
-			&& dayVal != 10 && dayVal != 11 && dayVal != 12 && dayVal != 13 && dayVal != 14 && dayVal != 15 && dayVal != 16 && dayVal != 17 && dayVal != 18
-			&& dayVal != 19 && dayVal != 20 && dayVal != 21 && dayVal != 22 && dayVal != 23 && dayVal != 24 && dayVal != 25 && dayVal != 26 && dayVal != 27
-			&& dayVal != 28 && dayVal != 29 && dayVal != 30 && dayVal != 31) {
-		return false;
-	}
 }
 function isValidYear(yearVal){
 	var yRegExp = new RegExp("^[0-9]{4}$");
@@ -241,12 +238,12 @@ function isValidPassword(passVal) {
 
 }
 
-function confirmPassword(passwordVal, cPasswordVal, validationMsg) {
+function validateIsEqualPasswords(passwordVal, cPasswordVal) {
+	var result = true;
 	if (passwordVal != cPasswordVal) {
-
-		result = false;
+	result = false;
 	}
-
+	return result; 
 }
 function validateIsValidEmail(emailVal, validationMsg) {
 	var eval = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
