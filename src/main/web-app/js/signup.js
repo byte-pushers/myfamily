@@ -1,270 +1,259 @@
-	 var validationMsg = {
-				 "msg": "Please correct the following errors: \r\n"
-		 };
-	function validateMyForm(){
-		 validateFirstName();
-		 validateMiddleName();
-		 validateLastName();
-		 validateMonth();
-		 validateDay();
-		 validateYear();
-		 validateCountry();
-		 validateState();
-		 validateCity();
-		 validateZipcode();
-		 validateEmail();
-		 validateUsername();
-		 validatePassword();
-		 validateConPassword();
-		 
-		if(result == false){
-			alert(validationMsg.msg);
-		}	
+var validationMsg = {
+	"msg" : ""
+};
+function validateMyForm() {
+	validateFirstName();
+	validateMiddleName();
+	validateLastName();
+	validateMonth();
+	validateDay();
+	validateYear();
+	validateCountry();
+	validateState();
+	validateCity();
+	validateZipcode();
+	validateEmail();
+	validateUsername();
+	validatePassword();
+	validateConPassword();
+
+	if (validationMsg.msg != null && validationMsg.msg != undefined) {
+		alert(validationMsg.msg);
 	}
-	function isEmpty(value,defaultV){
-		if(value == defaultV){
-			return true;
-		}	
+}
+
+function validateRequired(formElement,required, minLength, maxLength, validationMsg, elementLabelName, validationFunction, defaultValue) {
+	if(required){
+		if(isEmpty(formElement.value, defaultValue)){
+			// if required, ensure the element is not empty.
+			validationMsg.msg = validationMsg.msg + "Your " + elementLabelName + " is required, please enter a value.\r\n";
+		} else if(underMin(formElement.value.length, minLength)){
+			// if required, ensure the element has greater than or equal to the minimum values required
+			validationMsg.msg = validationMsg.msg + "Please enter more characters for your " + elementLabelName + ". \r\n"; 
+		} else if(overMax(formElement.value.length, maxLength)){
+			// if required, ensure the element has less than or equal to the maximum required 
+			validationMsg.msg = validationMsg.msg + "Please enter less characters for your " + elementLabelName + ". \r\n"; 
+		}else if(validationFunction(formElement.value)== false){
+			// if required, ensure that the value is the correct type (i.e. only numbers or only alpha numeric, or valid month names, or etc.)
+			validationMsg.msg = validationMsg.msg + "Please enter a valid " + elementLabelName + ". \r\n";
+		}
+		
+	} else if(!required && !isEmpty(formElement.value, defaultValue)){
+		//if not required and the element has a value, ensure the element is not empty.
+		if(underMin(formElement.value.length, minLength)){
+			// if not required and the element has a value, ensure the element has greater than or equal to the minimum values required
+			validationMsg.msg = validationMsg.msg + "Please enter more characters for your " + elementLabelName + ". \r\n";
+		}else if(overMax(formElement.value.length, maxLength)){
+			// if not required and the element has a value, ensure the element has less than or equal to the maximum required 
+			validationMsg.msg = validationMsg.msg  + "Please enter less characters for your " + elementLabelName + ". \r\n"; 
+		}else if(validationFunction(formElement.value)== false){
+			// if not required and the element has a value, ensure that the value is the correct type (i.e. only numbers or only alpha numeric, or valid month names, or etc.)
+			validationMsg.msg = validationMsg.msg + "Please enter a valid " + elementLabelName + ". \r\n";
+		}
+		
+		
 	}
-	 function validateFirstName(){
-		 var firstNameInputTextElement = document.getElementById('firstName');
-		 
-		 validateRequired(firstNameInputTextElement.value.length, 2, 0, validationMsg, "your first name");
-		 
-		 overMax(firstNameInputTextElement.value.length, 30, validationMsg, "your first name");
-		 
-		 ifValidFirstName(firstNameInputTextElement.value, validationMsg);
-		
-	 }
-	 function validateMiddleName(){
-		 var middleNameInputTextElement = document.getElementById('middleName');
-		 
-		 validateRequired(middleNameInputTextElement.value.length, 1, 0, validationMsg, "your middle name");
-		 
-		 overMax(middleNameInputTextElement.value.length, 30, validationMsg, "your middle name");
-		 
-		 ifValidMiddleName(middleNameInputTextElement.value, validationMsg);
-				
-	 } 
-	 function validateLastName(){
-		 var lastNameInputTextElement = document.getElementById('lastName');
-		 
-		 validateRequired(lastNameInputTextElement.value.length, 2, 0, validationMsg, "your last name");
-		
-		 overMax(lastNameInputTextElement.value.length, 30, validationMsg, "your last name");
-		
-		 ifValidLastName(lastNameInputTextElement.value, validationMsg);
-		 
-	 }
-	function validateMonth(){
-			 var monthInputTextElement = document.getElementById('month');
-			 
-			validateRequired(monthInputTextElement.value.length, 1, 0, validationMsg, "your birth month");
+}
+
+function validateFirstName() {
+	var firstNameInputTextElement = document.getElementById('firstName');
+	validateRequired(firstNameInputTextElement, true, 3, 30, validationMsg, "first name", isValidFirstName);
 	
-			CalendarMonth.isValidMonth(monthInputTextElement.value);		
-		}
-		function validateDay(){	 
-			 var dayInputTextElement = document.getElementById('day');
-			 
-			 validateRequired(dayInputTextElement.value.length, 1, 0, validationMsg, "your birthday");
-			 
-			validateIfDay(dayInputTextElement.value, validationMsg);
-			 
-		}	
-		function validateYear(){
-			 var yearInputTextElement = document.getElementById('year');
-			 
-			 validateRequired(yearInputTextElement.value.length, 4, 0, validationMsg, "your birth year");
-		
-			 overMax(yearInputTextElement.value.length, 4, validationMsg, "birth year");
-					
-		}
-		function validateCountry(){	 
-			 var countrySelectDropDownMenu = document.getElementById('countrySelect');
-			
-			 validateRequired(countrySelectDropDownMenu.value, 1, 'choose', validationMsg, "your country");
-			 
-		}	
-		function validateState(){
-			var stateSelectDropDownMenu = document.getElementById('stateSelect');
-			
-			 validateRequired(stateSelectDropDownMenu.value, 1, 'choose', validationMsg, "your state");
-			
-		}
-		function validateCity(){
-			 var cityInputTextElement = document.getElementById('city');
-			
-			 validateRequired(cityInputTextElement.value.length, 3, 0, validationMsg, "your city");
-			
-			 overMax(cityInputTextElement.value.length, 30, validationMsg, "your city");
-			 
-			 ifValidCity(cityInputTextElement.value, validationMsg);
-		}
-		function validateZipcode(){	 
-			 var zipcodeInputTextElement = document.getElementById('zipcode');
-			
-			 validateRequired(zipcodeInputTextElement.value.length, 5, 0, validationMsg, "your zipcode");
-			 
-			 overMax(zipcodeInputTextElement.value.length, 5, validationMsg, "your zipcode");
-			 
-			 ifValidZipcode(zipcodeInputTextElement.value, validationMsg);
-		
-					
-		}
-		function validateEmail(){
-			 var emailInputTextElement = document.getElementById('email');
-			
-			 validateRequired(emailInputTextElement.value.length, 1, 0, validationMsg, "your email");
-			 
-			 validateIfValidEmail(emailInputTextElement.value, validationMsg);
-			 
-		}
-		function validateUsername(){
-			 var usernameInputTextElement = document.getElementById('username');
-			
-			 validateRequired(usernameInputTextElement.value.length, 6, 0, validationMsg, "your username");
-			
-			 overMax(usernameInputTextElement.value.length, 15, validationMsg, "your username");
-			 
-			 ifValidUserName(usernameInputTextElement.value, validationMsg);
-					
-		}
-		function validatePassword(){
-			 var passwordInputPasswordElement = document.getElementById('password');
-			
-			 validateRequired(passwordInputPasswordElement.value.length, 6, 0, validationMsg, "your password");
-			
-			 overMax(passwordInputPasswordElement.value.length, 15, validationMsg, "your password");
-			 
-			 ifValidPassword(passwordInputPasswordElement.value, validationMsg);
-		}	 
-		function validateConPassword(){	
-			 var passwordInputPasswordElement = document.getElementById('password');
-			 var cPasswordInputPasswordElement = document.getElementById('confirmPassword');
-			
-			validateRequired(cPasswordInputPasswordElement.value.length,1, 0, validationMsg, "the confirm password textbox");
-			
-			confirmPassword(passwordInputPasswordElement.value.length,cPasswordInputPasswordElement.value.length, validationMsg);
-			
-		}
-	function validateRequired(valAndLen, maxValue, defaultValue, validationMsg, elementLabelName){
-		if(isEmpty(valAndLen,defaultValue)==true){
-			elementLabelName = (elementLabelName == undefined || elementLabelName == null || elementLabelName.length == 0 )? "" : " " + elementLabelName + ".";
-			result = false;
-			validationMsg.msg += "Please fill out" + elementLabelName + "\r\n";
-		}else{
-			underMin(valAndLen,maxValue, validationMsg, elementLabelName);
-		}
-		
+}
+function validateMiddleName() {
+	var middleNameInputTextElement = document.getElementById('middleName');
+	validateRequired(middleNameInputTextElement, false, 3, 30, validationMsg, "middle name", isValidMiddleName);
+}
+function validateLastName() {
+	var lastNameInputTextElement = document.getElementById('lastName');
+	validateRequired(lastNameInputTextElement, true, 3, 30, validationMsg, "last name", isValidLastName);
+}
+function validateMonth() {
+	var monthInputTextElement = document.getElementById('month');
+
+	validateRequired(monthInputTextElement,true, 3, 8, validationMsg, "birth month", CalendarMonth.isValidMonth);
+
+}
+
+function validateDay() {
+	var dayInputTextElement = document.getElementById('day');
+
+	validateRequired(dayInputTextElement, true, 1, 2, validationMsg, "day of birth", CalendarDay.isValidDay);
+
+}
+function validateYear() {
+	var yearInputTextElement = document.getElementById('year');
+
+	validateRequired(yearInputTextElement, true, 4, 4, validationMsg, "birth year", isValidYear);
+
+
+}
+function validateCountry() {
+	var countrySelectDropDownMenu = document.getElementById('countrySelect');
+
+	if (isEmpty(countrySelectDropDownMenu.value, "choose")== true){
+		validationMsg.msg = validationMsg.msg + "Your country is required, please enter a value.\r\n";
 	}
-	function overMax(variableVal,maxVal, validationMsg, elementLabelName){
-		elementLabelName = (elementLabelName == undefined || elementLabelName == null || elementLabelName.length == 0 )? "" : " into " + elementLabelName + ".";
-		if(variableVal > maxVal){
+
+}
+function validateState() {
+	var stateSelectDropDownMenu = document.getElementById('stateSelect');
+
+	if (isEmpty(stateSelectDropDownMenu.value, "choose")== true){
+		validationMsg.msg = validationMsg.msg + "Your state is required, please enter a value.\r\n";
+	}
+
+}
+function validateCity() {
+	var cityInputTextElement = document.getElementById('city');
+
+	validateRequired(cityInputTextElement, true, 3, 30, validationMsg, "current city", isValidCity);
+
+}
+function validateZipcode() {
+	var zipcodeInputTextElement = document.getElementById('zipcode');
+
+	validateRequired(zipcodeInputTextElement, true, 5, 5, validationMsg, "zipcode", isValidZipcode);
+
+}
+function validateEmail() {
+	var emailInputTextElement = document.getElementById('email');
+
+	validateRequired(emailInputTextElement, true, 6, 30, validationMsg, "email", validateIsValidEmail);
+
+}
+function validateUsername() {
+	var usernameInputTextElement = document.getElementById('username');
+
+	validateRequired(usernameInputTextElement, true, 6, 15, validationMsg, "username", isValidUserName);
+
+}
+function validatePassword() {
+	var passwordInputPasswordElement = document.getElementById('password');
+
+	validateRequired(passwordInputPasswordElement, true, 6, 15, validationMsg, "password", isValidPassword);
+	
+}
+function validateConPassword() {
+	
+	var cPasswordInputPasswordElement = document.getElementById('confirmPassword');
+
+	validateRequired(cPasswordInputPasswordElement, true, 6, 15, validationMsg, "confirm password", isValidPassword);
+
+}
+function isEmpty(targetString, defaultValue) {
+	var result = true;
+	if(targetString != null && targetString != undefined && targetString.length > 0){
+		if(defaultValue != null && defaultValue != undefined && defaultValue.length > 0){
+			if(targetString != defaultValue){
+				result = false;
+			} 
+		} 
+	}
+	return result;
+}
+
+function overMax(variableLength, maxLength) {
+	if (variableLength > maxLength) {
+		return true;
+	}
+}
+function underMin(variableLength, minLength) {
+	if (variableLength < minLength) {
+		return true;
+	}
+}
+
+function isValidFirstName(fNameVal) {
+	var nVal = new RegExp("^[A-Z]+$", "i");
+	if (nVal.test(fNameVal)) {
+	} else if (fNameVal != 0) {
+		return false;
+	}
+}
+function isValidMiddleName(mNameVal) {
+	var nVal = new RegExp("^[A-Z]+$", "i");
+	if (nVal.test(mNameVal)) {
+	} else if (mNameVal != 0) {
+		return false;
+	}
+}
+function isValidLastName(lNameVal) {
+	var nVal = new RegExp("^[A-Z]+$", "i");
+	if (nVal.test(lNameVal)) {
+	} else if (lNameVal != 0) {
+		return false;
+	}
+
+}
+
+function validateIsDay(dayVal) {
+	if (dayVal != 0 && dayVal != 1 && dayVal != 2 && dayVal != 3 && dayVal != 4 && dayVal != 5 && dayVal != 6 && dayVal != 7 && dayVal != 8 && dayVal != 9
+			&& dayVal != 10 && dayVal != 11 && dayVal != 12 && dayVal != 13 && dayVal != 14 && dayVal != 15 && dayVal != 16 && dayVal != 17 && dayVal != 18
+			&& dayVal != 19 && dayVal != 20 && dayVal != 21 && dayVal != 22 && dayVal != 23 && dayVal != 24 && dayVal != 25 && dayVal != 26 && dayVal != 27
+			&& dayVal != 28 && dayVal != 29 && dayVal != 30 && dayVal != 31) {
+		return false;
+	}
+}
+function isValidYear(yearVal){
+	var yRegExp = new RegExp("^[0-9]{4}$");
+	if (yRegExp.test(zipVal)) {
+		return true;
+	} else if (yRegExp != 0) {
+		return false;
+	}
+}
+function isValidCity(citVal) {
+	var cVal = new RegExp("^[A-Z.']+$", "i");
+	if (cVal.test(citVal)) {
+		return true;
+	} else if (citVal != 0) {
+		return false;
+	}
+
+}
+function isValidZipcode(zipVal) {
+	var zVal = new RegExp("^[0-9]{5}$");
+	if (zVal.test(zipVal)) {
+		return true;
+	} else if (zipVal != 0) {
+		return false;
+	}
+
+}
+
+function isValidUserName(userVal) {
+	var uVal = new RegExp("^[A-Z@!#._-]+$", "i");
+	if (uVal.test(userVal)) {
+		return true;
+	} else if (userVal != 0) {
+		return false;
+	}
+
+}
+function isValidPassword(passVal) {
+	var pVal = new RegExp("^[A-Z0-9@!._-]+$", "i");
+	if (pVal.test(passVal)) {
+		return true;
+	} else if (passVal != 0) {
+		return false;
+	}
+
+}
+
+function confirmPassword(passwordVal, cPasswordVal, validationMsg) {
+	if (passwordVal != cPasswordVal) {
+
 		result = false;
-		validationMsg.msg = validationMsg.msg + "Please enter less characters" + elementLabelName + "\r\n" ;
-		}
 	}
-	function underMin(variableV, minVal, validationMsg, elementLabelName){
-		elementLabelName = (elementLabelName == undefined || elementLabelName == null || elementLabelName.length == 0 )? "" : " into " + elementLabelName + ".";
-		if(variableV < minVal){
-			result = false;
-			validationMsg.msg = validationMsg.msg + "Please enter more characters" + elementLabelName + "\r\n";
-			
-		}
+
+}
+function validateIsValidEmail(emailVal, validationMsg) {
+	var eval = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
+	if (eval.test(emailVal)) {
+		return true;
+	} else if (emailVal != 0) {
+		return false;
 	}
-	function ifValidFirstName(fNameVal, validationMsg){
-		var nVal= new RegExp("^[A-Z]+$","i");
-		if (nVal.test(fNameVal)){
-		}
-		else if(fNameVal != 0){
-			
-			result = false;
-			validationMsg.msg = validationMsg.msg + "Please enter a valid first name\r\n";
-		}
-	}
-	function ifValidMiddleName(mNameVal, validationMsg){
-		var nVal= new RegExp("^[A-Z]+$","i");
-		if (nVal.test(mNameVal)){
-		}
-		else if (mNameVal != 0){
-				result = false;
-				validationMsg.msg = validationMsg.msg + "Please enter a valid middle name\r\n";
-			}
-	}
-	function ifValidLastName(lNameVal, validationMsg){
-		var nVal= new RegExp("^[A-Z]+$","i");
-		if (nVal.test(lNameVal)){
-		}
-		else if (lNameVal != 0){			
-				result = false;
-				validationMsg.msg = validationMsg.msg + "Please enter a valid last name\r\n";
-			}
-		
-	}
-	function validateIfDay(dayVal, validationMsg){
-		if(dayVal != 0 && dayVal != 1 && dayVal != 2 && dayVal != 3 && dayVal != 4 && dayVal != 5 && dayVal != 6 && dayVal != 7 && dayVal != 8 && dayVal != 9 && dayVal != 10 && dayVal != 11 && dayVal != 12 && dayVal != 13 && dayVal != 14 && dayVal != 15 && dayVal != 16 && dayVal != 17 && dayVal != 18 && dayVal != 19 && dayVal != 20 && dayVal != 21 && dayVal != 22 && dayVal != 23 && dayVal != 24 && dayVal != 25 && dayVal != 26 && dayVal != 27 && dayVal != 28 && dayVal != 29 && dayVal != 30 && dayVal != 31 ){
-			result = false;
-			validationMsg.msg = validationMsg.msg + "Please enter  a valid day\r\n";
-		}
-	}
-	function ifValidCity(citVal, validationMsg){
-		var cVal= new RegExp("^[A-Z.']+$","i");
-		if (cVal.test(citVal)){
-		}
-		else if (citVal != 0){			
-				result = false;
-				validationMsg.msg = validationMsg.msg + "Please enter a valid city\r\n";
-			}
-		
-	}
-	function ifValidZipcode(zipVal, validationMsg){
-		var zVal= new RegExp("^[0-9]{5}$");
-		if (zVal.test(zipVal)){
-		}
-		else if (zipVal != 0){			
-				result = false;
-				validationMsg.msg = validationMsg.msg + "Please enter a valid zipcode\r\n";
-			}
-		
-	}
-	
-	function ifValidUserName(userVal, validationMsg){
-		var uVal= new RegExp("^[A-Z@!#._-]+$","i");
-		if (uVal.test(userVal)){
-		}
-		else if (userVal != 0){			
-				result = false;
-				validationMsg.msg = validationMsg.msg + "Please enter a valid username\r\n";
-			}
-		
-	}
-	function ifValidPassword(passVal, validationMsg){
-		var pVal= new RegExp("^[A-Z0-9@!._-]+$","i");
-		if (pVal.test(passVal)){
-		}
-		else if (passVal != 0){			
-				result = false;
-				validationMsg.msg = validationMsg.msg + "Please enter a valid password\r\n";
-			}
-		
-	}
-	
-	function confirmPassword(passwordVal,cPasswordVal, validationMsg){
-		if (passwordVal != 0 && passwordVal != cPasswordVal){
-			
-			result = false;
-			validationMsg.msg = validationMsg.msg + "Passwords don't match\r\n";
-		}
-		
-	}
-	function validateIfValidEmail(emailVal, validationMsg){
-		var eval= new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$","i");
-		if (eval.test(emailVal)){
-		}
-		else if (emailVal != 0){
-			
-			result = false;
-			validationMsg.msg = validationMsg.msg + "Please enter a valid email\r\n";
-		}
-		
-	}
+
+}

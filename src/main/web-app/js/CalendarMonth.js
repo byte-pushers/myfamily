@@ -38,6 +38,5 @@ CalendarMonth.isValidMonth = function(monthVal){
 			break;
 		}
 	} 
-	
 	return result;
 };
