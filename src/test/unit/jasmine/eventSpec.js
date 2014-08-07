@@ -1,5 +1,5 @@
 // spec.js
-describe('text validation', function() {
+describe('angularjs homepage', function() {
 	var firstNumber = element(by.model('first'));
 	var secondNumber = element(by.model('second'));
 	var goButton = element(by.id('gobutton'));
