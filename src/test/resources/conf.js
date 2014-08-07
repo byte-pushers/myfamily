@@ -15,7 +15,8 @@ exports.config = {
 	framework : 'jasmine',
 
 	specs : [
-	     basePath + 'main/web-app/js/modifiedUpcomingEvents.js',    
+	     basePath + 'main/web-app/js/modifiedUpcomingEvents.js',  
+	     basePath + 'main/web-app/js/attendee.js',
          basePath + 'test/unit/jasmine/eventSpec.js'
     ],
 
