@@ -67,19 +67,20 @@ function customValidation() {
 	
 	var alpha = new RegExp("^[A-Z]+$", "i");
 	var numeric = new RegExp("^[0-9]+$");
-	var alphaNumeric = new RegExp("^[A-Z0-9.!?]+$", "i");
+	var alphaNumeric = new RegExp("^[A-Z0-9.! ?]+$", "i");
+	var URLRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
 	/* GENERAL EVENT INFORMATION */
 	if (!textBoxValidation(firstNameElement, firstNameError, 2, 10, alpha)) {valid = false;}
 	if (!textBoxValidation(LastNameElement, lastNameError, 2, 15, alpha)) {valid = false;}
 	if (!textBoxValidation(descriptionElement, descriptionError, 0, 250, alphaNumeric)) {valid = false;}
-	URLValidation(htmlElement, htmlError)
+	URLValidation(htmlElement, htmlError, URLRegex);
 	if (isChecked(check1Element)) {check1Value = true;}
 	if (isChecked(check2Element)) {check2Value = true;}
 
 	/* EVENT LOCATION INFO */
 	if (!textBoxValidation(street1Element, street1Error, 0, 25, alphaNumeric)) {valid = false;}
-	optionalTextBox(street2Element, street2Error, 9)
+	optionalTextBox(street2Element, street2Error, 0, 9, alphaNumeric)
 	if (!textBoxValidation(cityElement, locError, 2, 15, alpha)) {valid = false;}
 	if (!dropDownValidation(stateElement, locError)) {valid = false;}
 	if (!textBoxValidation(zipElement, locError, 5, 5, numeric)) {valid = false;}
@@ -111,51 +112,12 @@ function customValidation() {
 	}
 }
 
-function textBoxValidation(element, error, min, max, regex) {
-	if (isEmpty(element.value) == false) {
-		if(regex.test(element.value)){
-			if (isGreaterThanMaxLength(element.value, max)) {
-				tooLongError(error, max);
-				return false;
-			}
-			if (isLessThanMinLength(element.value, min)) {
-				tooShortError(error, min)
-				return false;
-			}
-			return true;
-		}
-		else{
-			invalidCharactersError(error);
-			return false;
-		}
-	} else {
-		requiredError(error);
-		return false
-	}
-}
-
-function optionalTextBox(element, error, max) {
-	if (isGreaterThanMaxLength(element.value, max)) {
-		tooLongError(error, max);
-		return false;
-	}
-	return true;
-}
-
-function dropDownValidation(element, error) {
-	if (isEmpty(element.value) == false) {
-		return true;
-	} else {
-		allFieldsError(error);
-		return false;
-	}
-}
-
 function attendeeValidation(firstName, lastName, email, firstNameError, lastNameError, emailError) {
 	var firstNameBoolean = false,
 		lastNameBoolean = false, 
 		emailBoolean = false,
-		alpha = new RegExp("^[A-Z]+$", "i");
+		alpha = new RegExp("^[A-Z]+$", "i"),
+	    emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
 	
 	if(textBoxValidation(firstName, firstNameError, 2, 10, alpha) == true) {
 		firstNameBoolean = true;
@@ -163,7 +125,7 @@ function attendeeValidation(firstName, lastName, email, firstNameError, lastName
 	if(textBoxValidation(lastName, lastNameError, 2, 15, alpha) == true){
 		lastNameBoolean = true;
 	}
-	if(emailValidation(email, emailError) == true){
+	if(emailValidation(email, emailError, emailRegex) == true){
 		emailBoolean = true;
 	}
 
@@ -255,96 +217,4 @@ function createRemoveIcon(){
 	iconSpanElement.className ="glyphicon glyphicon-remove-circle changeColorToRed";
 
 	return iconSpanElement;
-}
-
-function requiredError(errorString) {
-	errorString.innerHTML = "*Must be filled out";
-}
-
-function invalidCharactersError(errorString) {
-	errorString.innerHTML = "*Invalid Characters";
-}
-
-function notValidEmailError(errorString) {
-	errorString.innerHTML = "*Not a valid email";
-}
-
-function notValidURLError(errorString) {
-	errorString.innerHTML = "*Not a valid URL";
-}
-
-function allFieldsError(errorString) {
-	errorString.innerHTML = "*Must be filled out";
-}
-
-function tooLongError(errorString, length) {
-	errorString.innerHTML = "*Cannot be longer than " + length + " characters";
-}
-
-function tooShortError(errorString, length) {
-	errorString.innerHTML = "*Cannot be shorter than " + length + " characters";
-}
-
-function emailValidation(element, error) {
-	if (isEmpty(element.value) == true) {
-		requiredError(error);
-		return false;
-	} else {
-		if (validateEmail(element.value) == false) {
-			notValidEmailError(error);
-			return false;
-		}
-		return true;
-	}
-	return true;
-}
-
-function URLValidation(element, error) {
-	if (element.value.length && validateURL(element.value) == false) {
-		notValidURLError(error);
-		return false;
-	}
-	return true;
-}
-
-function isGreaterThanMaxLength(targetString, maxLength) {
-	if (targetString.length > maxLength) {
-		return true;
-	}
-	return false;
-}
-
-function isLessThanMinLength(targetString, minLength) {
-	if (targetString.length < minLength) {
-		return true;
-	}
-	return false;
-}
-
-function validateURL(link) {
-	var URL = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-	return URL.test(link);
-}
-
-function validateEmail(email) {
-	var re = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
-	return re.test(email);
-}
-
-function isChecked(checkbox) {
-	var checkbox_val = checkbox.value;
-	
-	if (checkbox.checked == true) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-function isEmpty(targetObject) {
-	if (targetObject != null && targetObject != undefined
-			&& targetObject.length > 0) {
-		return false;
-	}
-	return true;
 }

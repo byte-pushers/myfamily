@@ -15,6 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [    
+        'main/web-app/js/formValidation.js',
 	    'main/web-app/js/attendee.js',
 	    'main/web-app/js/event.js',
 	    'main/web-app/js/modifiedUpcomingEvents.js',  
