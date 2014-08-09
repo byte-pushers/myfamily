@@ -135,10 +135,9 @@ describe('basic validation', function() {
 		expect(isLessThanMinLength(string, min)).toBe(true);
 	});
 	
-	it('can see if checkbox is checked', function() {
-		var test = document.createElement("CHECKBOX");
-		test.value = true;
+	it('can test to see if empty', function(){
+		var test = "";
 		
-		expect(isChecked(test)).toBe(true);
+		expect(isEmpty(test)).toBe(true);
 	});
 });
