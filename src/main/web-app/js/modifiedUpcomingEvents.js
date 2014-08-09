@@ -64,21 +64,25 @@ function customValidation() {
 	var endHourElement = document.getElementById("eHour");
 	var endMinuteElement = document.getElementById("eMinute");
 	var endMeridiemElement = document.getElementById("eClock");
+	
+	var alpha = new RegExp("^[A-Z]+$", "i");
+	var numeric = new RegExp("^[0-9]+$");
+	var alphaNumeric = new RegExp("^[A-Z0-9.!?]+$", "i");
 
 	/* GENERAL EVENT INFORMATION */
-	if (!textBoxValidation(firstNameElement, firstNameError, 2, 10)) {valid = false;}
-	if (!textBoxValidation(LastNameElement, lastNameError, 2, 15)) {valid = false;}
-	if (!textBoxValidation(descriptionElement, descriptionError, 0, 250)) {valid = false;}
+	if (!textBoxValidation(firstNameElement, firstNameError, 2, 10, alpha)) {valid = false;}
+	if (!textBoxValidation(LastNameElement, lastNameError, 2, 15, alpha)) {valid = false;}
+	if (!textBoxValidation(descriptionElement, descriptionError, 0, 250, alphaNumeric)) {valid = false;}
 	URLValidation(htmlElement, htmlError)
 	if (isChecked(check1Element)) {check1Value = true;}
 	if (isChecked(check2Element)) {check2Value = true;}
 
 	/* EVENT LOCATION INFO */
-	if (!textBoxValidation(street1Element, street1Error, 0, 25)) {valid = false;}
+	if (!textBoxValidation(street1Element, street1Error, 0, 25, alphaNumeric)) {valid = false;}
 	optionalTextBox(street2Element, street2Error, 9)
-	if (!textBoxValidation(cityElement, locError, 2, 15)) {valid = false;}
+	if (!textBoxValidation(cityElement, locError, 2, 15, alpha)) {valid = false;}
 	if (!dropDownValidation(stateElement, locError)) {valid = false;}
-	if (!textBoxValidation(zipElement, locError, 5, 5)) {valid = false;}
+	if (!textBoxValidation(zipElement, locError, 5, 5, numeric)) {valid = false;}
 	if (!dropDownValidation(countryElement, locError)) {valid = false;}
 
 	/* START TIME */
@@ -107,21 +111,27 @@ function customValidation() {
 	}
 }
 
-function textBoxValidation(element, error, min, max) {
+function textBoxValidation(element, error, min, max, regex) {
 	if (isEmpty(element.value) == false) {
-		if (isGreaterThanMaxLength(element.value, max)) {
-			tooLongError(error, max);
-			return false;
+		if(regex.test(element.value)){
+			if (isGreaterThanMaxLength(element.value, max)) {
+				tooLongError(error, max);
+				return false;
+			}
+			if (isLessThanMinLength(element.value, min)) {
+				tooShortError(error, min)
+				return false;
+			}
+			return true;
 		}
-		if (isLessThanMinLength(element.value, min)) {
-			tooShortError(error, min)
+		else{
+			invalidCharactersError(error);
 			return false;
 		}
 	} else {
 		requiredError(error);
 		return false
 	}
-	return true;
 }
 
 function optionalTextBox(element, error, max) {
@@ -144,12 +154,13 @@ function dropDownValidation(element, error) {
 function attendeeValidation(firstName, lastName, email, firstNameError, lastNameError, emailError) {
 	var firstNameBoolean = false,
 		lastNameBoolean = false, 
-		emailBoolean = false;
+		emailBoolean = false,
+		alpha = new RegExp("^[A-Z]+$", "i");
 	
-	if(textBoxValidation(firstName, firstNameError, 2, 10) == true) {
+	if(textBoxValidation(firstName, firstNameError, 2, 10, alpha) == true) {
 		firstNameBoolean = true;
 	}
-	if(textBoxValidation(lastName, lastNameError, 2, 15) == true){
+	if(textBoxValidation(lastName, lastNameError, 2, 15, alpha) == true){
 		lastNameBoolean = true;
 	}
 	if(emailValidation(email, emailError) == true){
@@ -248,6 +259,10 @@ function createRemoveIcon(){
 
 function requiredError(errorString) {
 	errorString.innerHTML = "*Must be filled out";
+}
+
+function invalidCharactersError(errorString) {
+	errorString.innerHTML = "*Invalid Characters";
 }
 
 function notValidEmailError(errorString) {

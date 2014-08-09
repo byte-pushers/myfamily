@@ -83,7 +83,7 @@
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2 texta">Description:</div>
 				<div data-ng-app="" class="col-md-5">
-					<textarea ng-model="descriptionInput" id="description" rows="5" cols="75"></textarea>
+					<textarea ng-model="descriptionInput" id="description" rows="5" cols="70"></textarea>
 				</div>
 				<div class="col-md-4 textb">
 					<p id="descriptionError"></p>
@@ -161,16 +161,16 @@
 				<div class="col-md-1 col-md-offset-3">City:</div>
 				<div class="col-md-1 spacing5" >State:</div>
 				<div class="col-md-1 ">Zipcode:</div>
-				<div class="col-md-1 spacing5">Country</div>
+				<div class="col-md-1">Country:</div>
 				<div class="col-md-5"></div>
 			</div>
 			<div class="row">
-				<div data-ng-app="" class="col-md-1 col-md-offset-3">
-					<input type="text" ng-model="cityInput" id="city" placeholder="Denton">
+				<div class="col-md-1 col-md-offset-3">
+					<input type="text" id="city" placeholder="Denton" size="15">
 				</div>
 
-				<div data-ng-app="" class="col-md-1 spacing5">
-					<select mg-model="stateInput" id="states">
+				<div class="col-md-1 spacing5">
+					<select id="states">
 						<option value="">State</option>
 						<option value="AL">AL</option>
 						<option value="AK">AK</option>
@@ -225,11 +225,11 @@
 					</select>
 				</div>
 
-				<div data-ng-app="" class="col-md-1 ">
-					<input type="text" ng-model="zipcodeInput" id="zipcode" placeholder="76201">
+				<div class="col-md-1 ">
+					<input type="text"  id="zipcode" placeholder="76201" size="5">
 				</div>
 
-				<div class="col-md-1 spacing5">
+				<div class="col-md-1">
 					<select id="country">
 						<option value="">Country</option>
 						<option value="United States">United States</option>
