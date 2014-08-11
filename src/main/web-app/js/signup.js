@@ -91,7 +91,7 @@ function validateYear() {
 function validateCountry() {
 	var countrySelectDropDownMenu = document.getElementById('countrySelect');
 
-	if (isEmpty(countrySelectDropDownMenu.value, "choose")== true){
+	if (isEmpty(countrySelectDropDownMenu.value, "choose")){
 		validationMsg.msg = validationMsg.msg + "Your country is required, please enter a value.\r\n";
 	}
 
@@ -99,15 +99,15 @@ function validateCountry() {
 function validateState() {
 	var stateSelectDropDownMenu = document.getElementById('stateSelect');
 
-	if (isEmpty(stateSelectDropDownMenu.value, "choose")== true){
+	if (isEmpty(stateSelectDropDownMenu.value, "choose")){
 		validationMsg.msg = validationMsg.msg + "Your state is required, please enter a value.\r\n";
 	}
 
 }
 function validateCity() {
-	var cityInputTextElement = document.getElementById('city');
+	var cityInputTextElement = document.getElementById('city'); 
 
-	validateRequired(cityInputTextElement, true, 3, 30, validationMsg, "current city", isValidCity);
+	validateRequired(cityInputTextElement, true, 3, 30, validationMsg, "city", isValidCity);
 
 }
 function validateZipcode() {
@@ -146,15 +146,17 @@ function validateConPassword() {
 
 }
 function isEmpty(targetString, defaultValue) {
-	var result = false;
+	var result = true;
 	if(targetString != null && targetString != undefined && targetString.length > 0){
 		if(defaultValue != null && defaultValue != undefined && defaultValue.length > 0){
 			if(targetString == defaultValue){
+				
+			}else{
 				result = false;
 			}
-		} 
-	}else {
-		result = true;
+		} else{
+			result = false;
+		}
 	}
 	return result;
 }
