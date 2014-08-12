@@ -1,4 +1,4 @@
-function Event(firstNameElement, lastNameElement, descriptionElement, htmlElement,
+function Event(eventNameElement, descriptionElement, htmlElement,
 		check1Value, check2Value, street1Element, street2Element,  cityElement,
 		stateElement, zipElement, countryElement, startMonthElement,
 		startDayElement, startYearElement, startHourElement,
@@ -24,12 +24,12 @@ function Event(firstNameElement, lastNameElement, descriptionElement, htmlElemen
 		return attendeeArray[index];
 	};
 	
-	this.setFirstName = function(name) {
-		firstNameElement = name;
+	this.setEventName = function(name) {
+		eventNameElement = name;
 	};
 	
-	this.getFirstName = function() {
-		return firstNameElement;
+	this.getEventName = function() {
+		return eventNameElement;
 	};
 	
 	this.setLastName = function(name) {

@@ -2,42 +2,24 @@
 {
 	color: red;
 }
-.linesep
+.line-seperation
 {
 	margin-top: 20px;
 }
-.texta{
+.align-right{
 	text-align:right;
 }
-.textb{
+.align-left{
 	text-align:left;
 }
-.textc{
+.text-center{
 	text-align: center;
 }
 .spacing{
-		margin-left: 100px;
-}
-.spacing2{
-		margin-right: 10px;
-}
-.spacing3{
-		margin-left: 70px;
-}
-.spacing4{
-		margin-left:-20px;
-}
-.spacing5{
 		margin-left:60px;
-}
-.spacing6{
-	margin-left: 45px;
 }
 .input-space{
 	width: 200px;
-}
-.date-size{
-	width: 25;
 }
 p{
 	size: 15;

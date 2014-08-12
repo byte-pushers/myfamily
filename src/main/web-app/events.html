@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html data-ng-app="angularEventApp">
+<html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Create Upcoming Events</title>
+<title>Main Page: My Family</title>
 
 <link href="libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <link href="css/upcomingEvents.css" type="text/css" rel="stylesheet" />
 <link href="css/main-layout.css" type="text/css" rel="stylesheet" />
 
-<script src="libs/angularJS/1.2/angular.min.js"></script>
-<script src="js/angular/eventApps/EventApp.js"></script>
-<script src="js/angular/controller/eventController.js"></script>
 <script src="js/formValidation.js"></script>
 <script src="js/domains/attendee.js"></script>
 <script src="js/domains/event.js"></script>
@@ -25,8 +22,9 @@
 		</div>
 	</div>
 	<div id="primary-navigation-container" class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
+		<div class="row">			<div class="col-md-1">Primary navigation</div>
+			<div class="col-md-11">
+
 				<span style="margin-right: 10px; text-align: left;"> <a
 					href="index.html"> Home </a>
 				</span> <span style="margin-right: 10px; text-align: left;"> <a
@@ -40,7 +38,7 @@
 		</div>
 	</div>
 
-	<div ng-controller="eventControl" id="body-container" class="container-fluid">
+	<div id="body-container" class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
 				<h1>
@@ -66,37 +64,37 @@
 			<div class="row">
 				<div class="col-md-1 col-md-offset-2">First Name:</div>
 				<div class="col-md-2 ">
-					<input type="text" ng-model="firstNameInput" id="fname" placeholder="" class="input-space">
+					<input type="text" id="fname" placeholder="" class="input-space">
 				</div>
 				<div class="col-md-7 textb">
-					<p ng-bind="firstNameInput" id="firstNameError"></p>
+					<p id="firstNameError"></p>
 				</div>
 			</div>
 			<br>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-1 col-md-offset-2">Last Name:</div>
-				<div data-ng-app="" class="col-md-2 ">
-					<input type="text" ng-model="lastNameInput" id="lname" class="input-space">
+				<div class="col-md-2 ">
+					<input type="text" id="lname" placeholder="" class="input-space">
 				</div>
 				<div class="col-md-7 textb">
 					<p id="lastNameError"></p>
 				</div>
 			</div>
 			<br>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-1 col-md-offset-2 texta">Description:</div>
-				<div data-ng-app="" class="col-md-5">
-					<textarea ng-model="descriptionInput" id="description" rows="5" cols="70"></textarea>
+				<div class="col-md-5">
+					<textarea id="description" rows="5" cols="70"></textarea>
 				</div>
 				<div class="col-md-4 textb">
 					<p id="descriptionError"></p>
 				</div>
 			</div>
 			<br> <br>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-1 col-md-offset-2 texta">Enter URL:</div>
-				<div data-ng-app="" class="col-md-3" style="width: 100">
-					<input type="text" ng-model="htmlInput" id="htmlLink" placeholder="Enter URL" size="35">
+				<div class="col-md-3" style="width: 100">
+					<input type="text" id="htmlLink" placeholder="Enter URL" size="35">
 				</div>
 				<div class="col-md-6 textb">
 					<p id="htmlError"></p>
@@ -109,17 +107,17 @@
 				<div class="col-md-8"></div>
 			</div>
 			<br>
-			<div  class="row">
-				<div data-ng-app="" class="col-md-3 col-md-offset-3 ">
-					<input type="checkbox" ng-model="checkBox1Input" id="checkBox1" name="1" id="checkBox1"> &nbsp;
+			<div class="row">
+				<div  class="col-md-3 col-md-offset-3 ">
+					<input type="checkbox" id="checkBox1" name="1" id="checkBox1"> &nbsp;
 					Guests can invite other guests
 				</div>
 				<div class="col-md-6"></div>
 			</div>
 			<br>
-			<div  class="row">
-				<div data-ng-app="" class="col-md-3 col-md-offset-3">
-					<input type="checkbox" ng-model="checkBox2Input" id="checkBox2" name="2" id="checkBox2"> &nbsp;
+			<div class="row">
+				<div class="col-md-3 col-md-offset-3">
+					<input type="checkbox"  id="checkBox2" name="2" id="checkBox2"> &nbsp;
 					Guests can see other guests
 				</div>
 				<div class="col-md-6"></div>
@@ -135,9 +133,9 @@
 				<div class="col-md-9 col-md-offset-3">Street Address 1:</div>
 			</div>
 
-			<div  class="row">
-				<div data-ng-app="" class="col-md-2 col-md-offset-3">
-					<input type="text" ng-model="street1Input" id="street1" placeholder="Event Address"
+			<div class="row">
+				<div class="col-md-2 col-md-offset-3">
+					<input type="text" id="street1" placeholder="Event Address"
 						style="width: 150px;">
 				</div>
 				<div class="col-md-7 textb">
@@ -150,9 +148,9 @@
 					2:</div>
 				<div class="col-md-7"></div>
 			</div>
-			<div  class="row">
-				<div data-ng-app="" class="col-md-2 col-md-offset-3">
-					<input type="text" ng-model="street2Input" id="street2" placeholder="Event Address"
+			<div class="row">
+				<div class="col-md-2 col-md-offset-3">
+					<input type="text" id="street2" placeholder="Event Address"
 						style="width: 150px;">
 				</div>
 				<div class="col-md-7 textb">
@@ -167,13 +165,13 @@
 				<div class="col-md-1">Country:</div>
 				<div class="col-md-5"></div>
 			</div>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-1 col-md-offset-3">
-					<input type="text" ng-model="cityInput" id="city" placeholder="Denton" size="15">
+					<input type="text" id="city" placeholder="Denton" size="15">
 				</div>
 
 				<div class="col-md-1 spacing5">
-					<select ng-model="statesInput" id="states">
+					<select id="states">
 						<option value="">State</option>
 						<option value="AL">AL</option>
 						<option value="AK">AK</option>
@@ -229,11 +227,11 @@
 				</div>
 
 				<div class="col-md-1 ">
-					<input type="text" ng-model="zipInput" id="zipcode" placeholder="76201" size="5">
+					<input type="text"  id="zipcode" placeholder="76201" size="5">
 				</div>
 
 				<div class="col-md-1">
-					<select ng-model="countryInput" id="country">
+					<select id="country">
 						<option value="">Country</option>
 						<option value="United States">United States</option>
 						<option value="United Kingdom">United Kingdom</option>
@@ -257,9 +255,9 @@
 				<div class="col-md-2 textb">Event Start Time:</div>
 				<div class="col-md-5"></div>
 			</div>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-2 col-md-offset-3">
-					<select ng-model="startMonthInput" id="month">
+					<select id="month">
 						<option value=""></option>
 						<option value="01">01</option>
 						<option value="02">02</option>
@@ -273,7 +271,7 @@
 						<option value="10">10</option>
 						<option value="11">11</option>
 						<option value="12">12</option>
-					</select> / <select ng-model="startDayInput" id="day">
+					</select> / <select id="day">
 						<option value=""></option>
 						<option value="01">01</option>
 						<option value="02">02</option>
@@ -306,7 +304,7 @@
 						<option value="29">29</option>
 						<option value="30">30</option>
 						<option value="31">31</option>
-					</select> / <select ng-model="startYearInput" id="year">
+					</select> / <select id="year">
 						<option value=""></option>
 						<option value="2014">2014</option>
 						<option value="2015">2015</option>
@@ -316,7 +314,7 @@
 					</select>
 				</div>
 				<div class="col-md-3">
-					<select ng-model="startHourInput" id="hour">
+					<select id="hour">
 						<option value=""></option>
 						<option value="1">01</option>
 						<option value="2">02</option>
@@ -330,7 +328,7 @@
 						<option value="10">10</option>
 						<option value="11">11</option>
 						<option value="12">12</option>
-					</select>  <select ng-model="startMinuteInput" id="minute">
+					</select> : <select id="minute">
 						<option value=""></option>
 						<option value="0">00</option>
 						<option value="1">01</option>
@@ -393,7 +391,7 @@
 						<option value="58">58</option>
 						<option value="59">59</option>
 						<option value="60">60</option>
-					</select> &nbsp; <select ng-model="startMeridiem" id="clock">
+					</select> &nbsp; <select id="clock">
 						<option value=""></option>
 						<option value="am">A.M.</option>
 						<option value="pm">P.M.</option>
@@ -410,9 +408,9 @@
 				<div class="col-md-2 textb">Event End Time:</div>
 				<div class="col-md-5"></div>
 			</div>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-2 col-md-offset-3">
-					<select ng-model="endMonthDay" id="eMonth">
+					<select id="eMonth">
 						<option value=""></option>
 						<option value="01">01</option>
 						<option value="02">02</option>
@@ -426,7 +424,7 @@
 						<option value="10">10</option>
 						<option value="11">11</option>
 						<option value="12">12</option>
-					</select> / <select ng-model="endDayInput" id="eDay">
+					</select> / <select id="eDay">
 						<option value=""></option>
 						<option value="01">01</option>
 						<option value="02">02</option>
@@ -459,7 +457,7 @@
 						<option value="29">29</option>
 						<option value="30">30</option>
 						<option value="31">31</option>
-					</select> / <select ng-model="endYearInput" id="eYear">
+					</select> / <select id="eYear">
 						<option value=""></option>
 						<option value="2014">2014</option>
 						<option value="2015">2015</option>
@@ -469,7 +467,7 @@
 					</select>
 				</div>
 				<div class="col-md-3">
-					<select ng-model="endHourInput" id="eHour">
+					<select id="eHour">
 						<option value=""></option>
 						<option value="1">01</option>
 						<option value="2">02</option>
@@ -483,7 +481,7 @@
 						<option value="10">10</option>
 						<option value="11">11</option>
 						<option value="12">12</option>
-					</select> : <select ng-model="endMinuteInput" id="eMinute">
+					</select> : <select id="eMinute">
 						<option value=""></option>
 						<option value="0">00</option>
 						<option value="1">01</option>
@@ -546,7 +544,7 @@
 						<option value="58">58</option>
 						<option value="59">59</option>
 						<option value="60">60</option>
-					</select> &nbsp; <select ng-model="endMeridiemInput" id="eClock">
+					</select> &nbsp; <select id="eClock">
 						<option value=""></option>
 						<option value="am">A.M.</option>
 						<option value="pm">P.M.</option>
@@ -572,12 +570,12 @@
 				<div class="col-md-2 col-md-offset-3">First Name:</div>
 				<div class="col-md-7"></div>
 			</div>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-2 col-md-offset-3">
-					<input type="text" ng-model="attendeeFirstNameInput" id="attendeeFirstName" placeholder="First Name"/>
+					<input type="text" id="attendeeFirstName" placeholder="First Name"/>
 				</div>
 				<div class="col-md-7">
-					<p id="attendeeFError"></span></p>
+					<p id="attendeeFError"></p>
 				</div>
 			</div>
 			<br>
@@ -585,9 +583,9 @@
 				<div class="col-md-2 col-md-offset-3">Last Name:</div>
 				<div class="col-md-7"></div>
 			</div>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-2 col-md-offset-3">
-					<input type="text" ng-model="attendeeLastNameInput" id="attendeeLastName" placeholder="Last Name" />
+					<input type="text" id="attendeeLastName" placeholder="Last Name" />
 				</div>
 				<div class="col-md-7">
 					<p id="attendeeLError"></p>
@@ -597,9 +595,9 @@
 			<div class="row">
 				<div class="col-md-2 col-md-offset-3">Attendee Email:</div>
 			</div>
-			<div  class="row">
+			<div class="row">
 				<div class="col-md-3 col-md-offset-3">
-					<input type="text" id="attendeeEmail" ng-model="attendeeEmailInput"
+					<input type="text" id="attendeeEmail"
 						placeholder="johnnyappleseed@example.com" size="35" />
 				</div>
 				<div class="col-md-6">

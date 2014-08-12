@@ -1,10 +1,657 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="angularEventApp">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<title>Create Upcoming Events</title>
 
+<link href="libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link href="css/upcomingEvents.css" type="text/css" rel="stylesheet" />
+<link href="css/main-layout.css" type="text/css" rel="stylesheet" />
+
+<script src="libs/angularJS/1.2/angular.min.js"></script>
+<script src="js/angular/eventApps/EventApp.js"></script>
+<script src="js/angular/controller/eventController.js"></script>
+<script src="js/angular/controller/attendeeController.js"></script>
+<script src="js/formValidation.js"></script>
+<script src="js/domains/attendee.js"></script>
+<script src="js/domains/event.js"></script>
+<script src="js/modifiedUpcomingEvents.js"></script>
+</head>
+
+<body>
+	<div id="header-container" class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">Header</div>
+		</div>
+	</div>
+	<div id="primary-navigation-container" class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<span style="margin-right: 10px; text-align: left;"> <a
+					href="index.html"> Home </a>
+				</span> <span style="margin-right: 10px; text-align: left;"> <a
+					href="familySearch.html"> My Family Search! </a>
+				</span> <span style="margin-right: 10px; text-align: left;"> <a
+					href="signup.html"> Sign Up! </a>
+				</span> <span style="margin-right: 10px; text-align: left;"> <a
+					href="events.html"> Upcoming Events! </a>
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<div id="body-container" class="container-fluid">
+		<div ng-controller="eventController">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>
+						<u>Plan Upcoming Events!</u>
+					</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h1>
+						<p>&nbsp;</p>
+					</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 align-right">
+					<b>General Event Information</b>
+				</div>
+				<div class="col-md-9"></div>
+			</div>
+
+			<form>
+				<div class="row">
+					<div class="col-md-3 align-right">Event Name:</div>
+					<div class="col-md-2 ">
+						<input type="text" ng-model="eventNameInput" id="eventName"
+							placeholder="" class="input-space">
+					</div>
+					<div class="col-md-7 align-left">
+						<p id="eventNameError"></p>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-1 col-md-offset-2 align-right">Description:</div>
+					<div data-ng-app="" class="col-md-5">
+						<textarea ng-model="descriptionInput" id="description" rows="5"
+							cols="70"></textarea>
+					</div>
+					<div class="col-md-4 align-left">
+						<p id="descriptionError"></p>
+					</div>
+				</div>
+				<br> <br>
+				<div class="row">
+					<div class="col-md-1 col-md-offset-2 align-right">Enter URL:</div>
+					<div data-ng-app="" class="col-md-3" style="width: 100">
+						<input type="text" ng-model="htmlInput" id="htmlLink"
+							placeholder="Enter URL" size="35">
+					</div>
+					<div class="col-md-6 align-left">
+						<p id="htmlError"></p>
+					</div>
+				</div>
+				<br> <br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">Please check all that
+						apply:</div>
+					<div class="col-md-8"></div>
+				</div>
+				<br>
+				<div class="row">
+					<div data-ng-app="" class="col-md-3 col-md-offset-3 ">
+						<input type="checkbox" ng-model="checkBox1Input" id="checkBox1"
+							name="1" id="checkBox1"> &nbsp; Guests can invite other
+						guests
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+				<br>
+				<div class="row">
+					<div data-ng-app="" class="col-md-3 col-md-offset-3">
+						<input type="checkbox" ng-model="checkBox2Input" id="checkBox2"
+							name="2" id="checkBox2"> &nbsp; Guests can see other
+						guests
+					</div>
+					<div class="col-md-6"></div>
+				</div>
+				<br> <br>
+				<div class="row">
+					<div class="col-md-3 align-right">
+						<label for="Location">Event Location </label>
+					</div>
+					<div class="col-md-9"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-9 col-md-offset-3">Street Address 1:</div>
+				</div>
+
+				<div class="row">
+					<div data-ng-app="" class="col-md-2 col-md-offset-3">
+						<input type="text" ng-model="street1Input" id="street1"
+							placeholder="Event Address" style="width: 150px;">
+					</div>
+					<div class="col-md-7 align-left">
+						<p id="street1Error"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3 line-seperation">Street Address
+						2:</div>
+					<div class="col-md-7"></div>
+				</div>
+				<div class="row">
+					<div data-ng-app="" class="col-md-2 col-md-offset-3">
+						<input type="text" ng-model="street2Input" id="street2"
+							placeholder="Event Address" style="width: 150px;">
+					</div>
+					<div class="col-md-7 align-left">
+						<p id="street2Error"></p>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-1 col-md-offset-3">City:</div>
+					<div class="col-md-1 spacing">State:</div>
+					<div class="col-md-1 ">Zipcode:</div>
+					<div class="col-md-1">Country:</div>
+					<div class="col-md-5"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 col-md-offset-3">
+						<input type="text" ng-model="cityInput" id="city"
+							placeholder="Denton" size="15">
+					</div>
+
+					<div class="col-md-1 spacing">
+						<select ng-model="statesInput" id="states">
+							<option value="">State</option>
+							<option value="AL">AL</option>
+							<option value="AK">AK</option>
+							<option value="AZ">AZ</option>
+							<option value="AR">AR</option>
+							<option value="CA">CA</option>
+							<option value="CO">CO</option>
+							<option value="CT">CT</option>
+							<option value="DE">DE</option>
+							<option value="FL">FL</option>
+							<option value="GA">GA</option>
+							<option value="HI">HI</option>
+							<option value="ID">ID</option>
+							<option value="IL">IL</option>
+							<option value="IN">IN</option>
+							<option value="IA">IA</option>
+							<option value="KS">KS</option>
+							<option value="KY">KY</option>
+							<option value="LA">LA</option>
+							<option value="ME">ME</option>
+							<option value="MD">MD</option>
+							<option value="MA">MA</option>
+							<option value="MI">MI</option>
+							<option value="MN">MN</option>
+							<option value="MS">MS</option>
+							<option value="MO">MO</option>
+							<option value="MT">MT</option>
+							<option value="NE">NE</option>
+							<option value="NV">NV</option>
+							<option value="NH">NH</option>
+							<option value="NJ">NJ</option>
+							<option value="NM">NM</option>
+							<option value="NY">NY</option>
+							<option value="NC">NC</option>
+							<option value="ND">ND</option>
+							<option value="OH">OH</option>
+							<option value="OK">OK</option>
+							<option value="OR">OR</option>
+							<option value="PA">PA</option>
+							<option value="RI">RI</option>
+							<option value="SC">SC</option>
+							<option value="SD">SD</option>
+							<option value="TN">TN</option>
+							<option value="TX">TX</option>
+							<option value="UT">UT</option>
+							<option value="VT">VT</option>
+							<option value="VA">VA</option>
+							<option value="WA">WA</option>
+							<option value="WV">WV</option>
+							<option value="WI">WI</option>
+							<option value="WY">WY</option>
+						</select>
+					</div>
+
+					<div class="col-md-1 ">
+						<input type="text" ng-model="zipInput" id="zipcode"
+							placeholder="76201" size="5">
+					</div>
+
+					<div class="col-md-1">
+						<select ng-model="countryInput" id="country">
+							<option value="">Country</option>
+							<option value="United States">United States</option>
+							<option value="United Kingdom">United Kingdom</option>
+						</select>
+					</div>
+					<div class="col-md-2 align-center">
+						<p id="locError"></p>
+					</div>
+					<div class="cold-md-3"></div>
+				</div>
+				<br> <br>
+				<div class="row">
+					<div class="col-md-3 align-right">
+						<label for="water-bottle">Event Date and Time</label>
+					</div>
+					<div class="col-md-5"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3 align-left">Event Starting
+						Date:</div>
+					<div class="col-md-2 align-left">Event Start Time:</div>
+					<div class="col-md-5"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<select ng-model="startMonthInput" id="month">
+							<option value=""></option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select> / <select ng-model="startDayInput" id="day">
+							<option value=""></option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select> / <select ng-model="startYearInput" id="year">
+							<option value=""></option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select ng-model="startHourInput" id="hour">
+							<option value=""></option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select> <select ng-model="startMinuteInput" id="minute">
+							<option value=""></option>
+							<option value="0">00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+							<option value="36">36</option>
+							<option value="37">37</option>
+							<option value="38">38</option>
+							<option value="39">39</option>
+							<option value="40">40</option>
+							<option value="41">41</option>
+							<option value="42">42</option>
+							<option value="40">43</option>
+							<option value="44">44</option>
+							<option value="45">45</option>
+							<option value="46">46</option>
+							<option value="47">47</option>
+							<option value="48">48</option>
+							<option value="49">49</option>
+							<option value="50">50</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="57">57</option>
+							<option value="58">58</option>
+							<option value="59">59</option>
+							<option value="60">60</option>
+						</select> &nbsp; <select ng-model="startMeridiemInput" id="clock">
+							<option value=""></option>
+							<option value="am">A.M.</option>
+							<option value="pm">P.M.</option>
+						</select>
+					</div>
+					<div class="col-md-4 align-left">
+						<p id="startTimeError"></p>
+					</div>
+				</div>
+
+				<br> <br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3 align-left">Event Ending
+						Date:</div>
+					<div class="col-md-2 align-left">Event End Time:</div>
+					<div class="col-md-5"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<select ng-model="endMonthDay" id="eMonth">
+							<option value=""></option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select> / <select ng-model="endDayInput" id="eDay">
+							<option value=""></option>
+							<option value="01">01</option>
+							<option value="02">02</option>
+							<option value="03">03</option>
+							<option value="04">04</option>
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+						</select> / <select ng-model="endYearInput" id="eYear">
+							<option value=""></option>
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select ng-model="endHourInput" id="eHour">
+							<option value=""></option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select> : <select ng-model="endMinuteInput" id="eMinute">
+							<option value=""></option>
+							<option value="0">00</option>
+							<option value="1">01</option>
+							<option value="2">02</option>
+							<option value="3">03</option>
+							<option value="4">04</option>
+							<option value="5">05</option>
+							<option value="6">06</option>
+							<option value="7">07</option>
+							<option value="8">08</option>
+							<option value="9">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+							<option value="36">36</option>
+							<option value="37">37</option>
+							<option value="38">38</option>
+							<option value="39">39</option>
+							<option value="40">40</option>
+							<option value="41">41</option>
+							<option value="42">42</option>
+							<option value="43">43</option>
+							<option value="44">44</option>
+							<option value="45">45</option>
+							<option value="46">46</option>
+							<option value="47">47</option>
+							<option value="48">48</option>
+							<option value="49">49</option>
+							<option value="50">50</option>
+							<option value="51">51</option>
+							<option value="52">52</option>
+							<option value="53">53</option>
+							<option value="54">54</option>
+							<option value="55">55</option>
+							<option value="56">56</option>
+							<option value="57">57</option>
+							<option value="58">58</option>
+							<option value="59">59</option>
+							<option value="60">60</option>
+						</select> &nbsp; <select ng-model="endMeridiemInput" id="eClock">
+							<option value=""></option>
+							<option value="am">A.M.</option>
+							<option value="pm">P.M.</option>
+						</select>
+					</div>
+					<div class="col-md-4 align-left">
+						<p id="endTimeError"></p>
+					</div>
+				</div>
+			</form>
+		</div>
+		<form onsubmit="return false">
+			<br> <br>
+			<div ng-controller="attendeeController">
+				<div class="row">
+					<div class="col-md-3 align-right">
+						<label for="attendee">Add Event Attendees: </label>
+					</div>
+					<div class="col-md-9">
+						<p id="top-error"></p>
+					</div>
+				</div>
+				<div class=row>
+					<div class="col-md-2 col-md-offset-3">First Name:</div>
+					<div class="col-md-7"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<input type="text" ng-model="attendeeFirstNameInput"
+							id="attendeeFirstName" placeholder="First Name" />
+					</div>
+					<div class="col-md-7">
+						<p id="attendeeFError"></p>
+					</div>
+				</div>
+				<br>
+				<div class=row>
+					<div class="col-md-2 col-md-offset-3">Last Name:</div>
+					<div class="col-md-7"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<input type="text" ng-model="attendeeLastNameInput"
+							id="attendeeLastName" placeholder="Last Name" />
+					</div>
+					<div class="col-md-7">
+						<p id="attendeeLError"></p>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">Attendee Email:</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-md-offset-3">
+						<input type="text" id="attendeeEmail"
+							ng-model="attendeeEmailInput"
+							placeholder="johnnyappleseed@example.com" size="35" />
+					</div>
+					<div class="col-md-6">
+						<p id="attendeeEmailError"></p>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<button type="submit" id="attendeeButton" onclick="addAttendee()">Add
+							Attendee</button>
+					</div>
+					<div class="col-md-7"></div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3 align-left">Event Attendee
+						List:</div>
+					<div class="col-md-7"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-md-offset-3">
+						<table border=1 id="attendeeTable" style="width: 500px">
+
+							<tr>
+								<td><b>#</b></td>
+								<td><b>Name</b></td>
+								<td><b>Email</b></td>
+								<td><b>Action</b></td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-5"></div>
+				</div>
+			</div>
+		</form>
+		<br> <br>
+		<div class="row">
+			<div class="col-md-1 col-md-offset-9" style="margin-bottom: 10px;">
+				<button type="button" onclick="customValidation()">Submit</button>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<div id="footer-container" class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">Footer</div>
+		</div>
+	</div>
 </body>
 </html>
