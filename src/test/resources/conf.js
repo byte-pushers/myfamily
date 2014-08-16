@@ -14,17 +14,22 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [    
+    files: [
+        'main/web-app/js/signup.js',
+        'main/web-app/js/CalendarMonth.js',
+        'main/web-app/js/CalendarDay.js',
         'main/web-app/js/formValidation.js',
 	    'main/web-app/js/attendee.js',
 	    'main/web-app/js/event.js',
 	    'main/web-app/js/modifiedUpcomingEvents.js',  
-	    'test/unit/jasmine/eventSpec.js'
+	    'test/unit/jasmine/eventSpec.js',
+	    'test/unit/jasmine/signUp.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
+          
     ],
 
 
@@ -59,7 +64,9 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['ChromeCanary'],
+    browsers: //['ChromeCanary']
+    			['Chrome'],
+
 
 
     // Continuous Integration mode
