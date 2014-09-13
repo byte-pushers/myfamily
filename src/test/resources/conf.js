@@ -1,4 +1,3 @@
-
 // Karma configuration
 // Generated on Fri Aug 08 2014 17:58:13 GMT-0500 (Central Daylight Time)
 
@@ -11,24 +10,28 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine'], 
 
 
     // list of files / patterns to load in the browser
-    files: [    
+    files: [
+        'main/web-app/js/signup.js',
+        'main/web-app/js/CalendarMonth.js',
+        'main/web-app/js/CalendarDay.js',
         'main/web-app/js/familySearch.js',
         'main/web-app/js/formValidation.js',
 	    'main/web-app/js/attendee.js',
 	    'main/web-app/js/event.js',
 	    'main/web-app/js/modifiedUpcomingEvents.js',  
 	    'test/unit/jasmine/eventSpec.js',
+	    'test/unit/jasmine/signUp.spec.js',
 	    'test/unit/jasmine/familySearchSpec.js'
-	    
     ],
 
 
     // list of files to exclude
     exclude: [
+          
     ],
 
 

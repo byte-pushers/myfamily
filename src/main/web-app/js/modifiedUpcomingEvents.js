@@ -5,13 +5,9 @@ var eventTest = new Event();
 
 function customValidation() {
 	var valid = true;
-	createRemoveIcon();
 
-	var firstNameError = document.getElementById("firstNameError");
-	firstNameError.innerHTML = "";
-
-	var lastNameError = document.getElementById("lastNameError");
-	lastNameError.innerHTML = "";
+	var eventNameError = document.getElementById("eventNameError");
+	eventNameError.innerHTML = "";
 
 	var descriptionError = document.getElementById("descriptionError");
 	descriptionError.innerHTML = "";
@@ -34,8 +30,7 @@ function customValidation() {
 	var endTimeError = document.getElementById("endTimeError");
 	endTimeError.innerHTML = "";
 
-	var firstNameElement = document.getElementById("fname");
-	var LastNameElement = document.getElementById("lname");
+	var eventNameElement = document.getElementById("eventName");
 	var descriptionElement = document.getElementById("description");
 	var htmlElement = document.getElementById("htmlLink");
 
@@ -71,8 +66,7 @@ function customValidation() {
 	var URLRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
 	/* GENERAL EVENT INFORMATION */
-	if (!textBoxValidation(firstNameElement, firstNameError, 2, 10, alpha)) {valid = false;}
-	if (!textBoxValidation(LastNameElement, lastNameError, 2, 15, alpha)) {valid = false;}
+	if (!textBoxValidation(eventNameElement, eventNameError, 2, 10, alphaNumeric)) {valid = false;}
 	if (!textBoxValidation(descriptionElement, descriptionError, 0, 250, alphaNumeric)) {valid = false;}
 	URLValidation(htmlElement, htmlError, URLRegex);
 	if (isChecked(check1Element)) {check1Value = true;}
@@ -103,12 +97,14 @@ function customValidation() {
 	if (!dropDownValidation(endMeridiemElement, endTimeError)) {valid = false;}
 
 	if (valid == true) {
-		var event = new Event(firstNameElement, LastNameElement,
+		var event = new Event(eventNameElement,
 				descriptionElement, htmlElement, check1Value, check2Value, street1Element, street2Element, cityElement, 
 				stateElement, zipElement, countryElement, startMonthElement, startDayElement, startYearElement, 
 				startHourElement, startMinuteElement,startMeridiemElement, endMonthElement, endDayElement, endYearElement,
 				endHourElement, endMinuteElement, endMeridiemElement);
 		eventArray.push(event);
+		//alert("Event Created!");
+		window.location = "eventResults.html";
 	}
 }
 
