@@ -134,11 +134,11 @@ describe('basic validation', function() {
 		
 		expect(isLessThanMinLength(string, min)).toBe(true);
 	});
-	
-	it('can see if checkbox is checked', function() {
+	//This is an e2e Protractor because it is testing the DOM.
+	/*it('can see if checkbox is checked', function() {
 		var test = document.createElement("CHECKBOX");
 		test.value = true;
 		
 		expect(isChecked(test)).toBe(true);
-	});
+	});*/
 });

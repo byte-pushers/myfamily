@@ -1,3 +1,4 @@
+
 // Karma configuration
 // Generated on Fri Aug 08 2014 17:58:13 GMT-0500 (Central Daylight Time)
 
@@ -15,11 +16,14 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [    
+        'main/web-app/js/familySearch.js',
         'main/web-app/js/formValidation.js',
 	    'main/web-app/js/attendee.js',
 	    'main/web-app/js/event.js',
 	    'main/web-app/js/modifiedUpcomingEvents.js',  
-	    'test/unit/jasmine/eventSpec.js'
+	    'test/unit/jasmine/eventSpec.js',
+	    'test/unit/jasmine/familySearchSpec.js'
+	    
     ],
 
 
@@ -59,7 +63,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['ChromeCanary'],
+    browsers: [/*'ChromeCanary'*/'Chrome'],
 
 
     // Continuous Integration mode
