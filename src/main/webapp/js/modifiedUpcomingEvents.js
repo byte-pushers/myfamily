@@ -104,7 +104,7 @@ function customValidation() {
 				endHourElement, endMinuteElement, endMeridiemElement);
 		eventArray.push(event);
 		//alert("Event Created!");
-		window.location = "eventResults.html";
+		window.location = "eventResults.ng.html";
 	}
 }
 
