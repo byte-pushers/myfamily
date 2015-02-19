@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+    <head>
+        <title>Title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                 <a href="#/home">Home</a>
+                <a href="#/nextPage">Next Page</a>
+            </div>
+            <!--<div>
+                <p>Name: <input type="text" ng-model="name"/></p>
+            </div>-->
+            <div ui-view>
+                
+            </div>
+        </div>
+        
+        <script src="libs/angularJS/1.2/angular-ui-router.min.js"></script>
+        <script src="libs/angularJS/1.2/angular.min.js"></script>
+        <script src="testApp.js"></script>
+    </body>
+</html>
