@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Title</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="libs/angularJS/1.2/angular.min.js"></script>
+        <script src="libs/angularJS/1.2/angular-ui-router.min.js"></script>
+        <script src="js/testController.js"></script>
+        <script src="js/angular/testApp.js"></script>
+    </head>
+    <body>
+        <div ng-app="testApp" ng-controller="testController">
+            <p>Name: <input type="text" ng-model="name"></p>
+            <button ng-onClick="redirect()">Next Page</button>
+        </div>
+    </body>
+</html>
