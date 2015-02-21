@@ -29,16 +29,11 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
             });
 });
 
-myapp.controller('ctrl', function ($scope, $state) {
-    $scope.changeState = function () {
-        $state.go('route2');
-    };
-});
-
 myapp.controller('testController', ['$scope', function ($scope) {
-        $scope.name = 'jared';
+		$scope.nameField = '';
+        $scope.name = '';
 
-        $scope.redirect = function () {
-            $location.path('/angularTest2.html');
-        };
+        $scope.setText = function(){
+            $scope.nameField = $scope.name;
+        }
     }]);

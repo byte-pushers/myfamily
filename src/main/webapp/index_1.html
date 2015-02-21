@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myapp">
+<html ng-app="myapp" ng-controller="testController">
 
     <head>
         <title>UI-Router</title>
@@ -10,7 +10,7 @@
         <div class="navbar">
             <div class="navbar-inner">
                 <a class="brand" href="#">Start</a>
-                <ul ng-controller="ctrl" class="nav">
+                <ul  class="nav">
                     <li><a ui-sref="route1">Route 1</a></li>
                     <li><a ui-sref="route2">Route 2</a></li>
                 </ul>
@@ -27,43 +27,5 @@
         <script src="libs/angularjs/1.2/angular-ui-router.min.js"></script>
         <script src="testApp.js"></script>
         
-        <!--<script>
-            var myapp = angular.module('myapp', ["ui.router"]);
-            myapp.config(function ($stateProvider, $urlRouterProvider) {
-
-                $urlRouterProvider.otherwise("/route1");
-
-                $stateProvider
-                        .state('route1', {
-                            url: "/route1",
-                            templateUrl: "route1.html"
-                        })
-                        .state('route1.list', {
-                            url: "/list",
-                            templateUrl: "route1.list.html",
-                            controller: function ($scope) {
-                                $scope.items = ["A", "List", "Of", "Items"];
-                            }
-                        })
-
-                        .state('route2', {
-                            url: "/route2",
-                            templateUrl: "route2.html"
-                        })
-                        .state('route2.list', {
-                            url: "/list",
-                            templateUrl: "route2.list.html",
-                            controller: function ($scope) {
-                                $scope.things = ["A", "Set", "Of", "Things"];
-                            }
-                        });
-            });
-            
-            app.controller('ctrl', function ($scope, $state) {
-            $scope.changeState = function () {
-              $state.go('contact.detail');
-            };
-          });
-        </script>-->
     </body>
 </html>
