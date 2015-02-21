@@ -1,7 +1,7 @@
 var myapp = angular.module('myapp', ["ui.router"]);
 myapp.config(function ($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise("/route1");
+    $urlRouterProvider.otherwise("route1");
 
     $stateProvider
             .state('route1', {
@@ -18,7 +18,10 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
 
             .state('route2', {
                 url: "/route2",
-                templateUrl: "route2.html"
+                templateUrl: "route2.html",
+                controller: function ($scope) {
+                    $scope.greetingName = $scope.getName();
+                }
             })
             .state('route2.list', {
                 url: "/list",
@@ -29,11 +32,21 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
             });
 });
 
-myapp.controller('testController', ['$scope', function ($scope) {
-		$scope.nameField = '';
-        $scope.name = '';
+myapp.controller('testController', ['$scope', '$state', function ($scope, $state) {
+    $scope.user = {
+        name: ''
+    };
 
-        $scope.setText = function(){
-            $scope.nameField = $scope.name;
-        }
-    }]);
+    $scope.getName = function () {
+        return $scope.user.name;
+    };
+
+    $scope.setName = function(name) {
+        $scope.user.name = name;
+    };
+
+    $scope.submit = function () {
+        $state.go('route2');
+    };
+
+}]);
