@@ -38,10 +38,6 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
 		        return $scope.user.name;
 		    };
 		
-		    $scope.setName = function(name) {
-		        $scope.user.name = name;
-		    };
-		
 		    $scope.submit = function () {
 		        $state.go('route2');
 		    };
