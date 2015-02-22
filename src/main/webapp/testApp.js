@@ -20,33 +20,29 @@ myapp.config(function ($stateProvider, $urlRouterProvider) {
                 url: "/route2",
                 templateUrl: "route2.html",
                 controller: function ($scope) {
-                    $scope.greetingName = $scope.getName();
+                	$scope.greetingName = $scope.getName();
                 }
             })
             .state('route2.list', {
                 url: "/list",
-                templateUrl: "route2.list.html",
-                controller: function ($scope) {
-                    $scope.things = ["A", "Set", "Of", "Things"];
-                }
+                templateUrl: "route2.list.html"
             });
 });
 
-myapp.controller('testController', ['$scope', '$state', function ($scope, $state) {
-    $scope.user = {
-        name: ''
-    };
-
-    $scope.getName = function () {
-        return $scope.user.name;
-    };
-
-    $scope.setName = function(name) {
-        $scope.user.name = name;
-    };
-
-    $scope.submit = function () {
-        $state.go('route2');
-    };
-
-}]);
+	myapp.controller('testController', ['$scope', '$state', function ($scope, $state) {
+		    $scope.user = {
+		        name: ''
+		    };
+		
+		    $scope.getName = function () {
+		        return $scope.user.name;
+		    };
+		
+		    $scope.setName = function(name) {
+		        $scope.user.name = name;
+		    };
+		
+		    $scope.submit = function () {
+		        $state.go('route2');
+		    };
+    }]);
