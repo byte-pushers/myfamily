@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myFamilyApp" ng-controller="eventController">
 <head>
 <meta charset="ISO-8859-1">
 <title>Main Page: My Family</title>
@@ -26,20 +26,15 @@
 				</span> <span style="margin-right: 10px; text-align: left;"> <a
 					href="signup.html"> Sign Up! </a>
 				</span> <span style="margin-right: 10px; text-align: left;"> <a
-					href="events.ng.html"> Upcoming Events! </a>
+					ui-sref="createEvent">Create Event</a>
 				</span>
 			</div>
 		</div>
 	</div>
 
-	<div id="body-container" class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row">
-					<div id="main-view-container">&nbsp;</div>
-				</div>
-			</div>
-		</div>
+	<div class="well" ui-view></div>
+
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-4 family">
 				<a href="familySearch.html">My Family Search</a>
@@ -59,6 +54,9 @@
 		</div>
 	</div>
 
+	<script src="libs/angularjs/1.2/angular.min.js"></script>
+	<script src="libs/angularjs/1.2/angular-ui-router.min.js"></script>
+	<script src="eventApp.js"></script>
 
 </body>
 </html>

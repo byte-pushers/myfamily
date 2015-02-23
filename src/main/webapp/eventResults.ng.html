@@ -1,59 +1,8 @@
-<!DOCTYPE html>
-<html data-ng-app="angularEventApp">
-<head>
-<title>Main Page: My Family</title>
-
-<link href="libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" type="text/css" />
-<link href="css/index.css" type="text/css" rel="stylesheet" />
-<link href="css/main-layout.css" type="text/css" rel="stylesheet" />
-<script src="libs/angularJS/1.2/angular.min.js"></script>
-
-
-</head>
-<body>
-	<div id="header-container" class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">Header</div>
-		</div>
-	</div>
-
-	<div id="primary-navigation-container" class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<span style="margin-right: 10px; text-align: left;"> <a
-					href="index.html"> Home </a>
-				</span> <span style="margin-right: 10px; text-align: left;"> <a
-					href="familySearch.html"> My Family Search! </a>
-				</span> <span style="margin-right: 10px; text-align: left;"> <a
-					href="signup.html"> Sign Up! </a>
-				</span> <span style="margin-right: 10px; text-align: left;"> <a
-					href="events.html"> Upcoming Events! </a>
-				</span>
-			</div>
-		</div>
-	</div>
-
-	<div ng-controller="eventController" id="body-container" class="container-fluid">
-		<div class="row">
-			<div ng-app="" class="col-md-2 col-md-offset-2 align-left">
-				<div ng-app="">
- 
-<p>Input something in the input box:</p>
-<p>Name: <input type="text" ng-model="name" value="John"></p>
-<p ng-bind="name"></p>
-
-</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="footer-container" class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">Footer</div>
-		</div>
-	</div>
-
-
-</body>
-</html>
+<h1><u>Results:</u></h1>
+<hr/>
+<p>Event name: {{eventName}}.</p>
+<p>Event desc: {{eventDescription}}.</p>
+<p>Event address1: {{eventAddress1}}</p>
+<p>Event address2: {{eventAddress2}}</p>
+<p>Event city: {{eventCity}}</p>
+<p>Event state: {{eventState}}</p>
