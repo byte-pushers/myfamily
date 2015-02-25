@@ -40,6 +40,8 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
 myFamilyApp.controller('eventController', [ '$scope', '$state',
 		function($scope, $state) {
+			var valid;
+
 			$scope.event = {
 				name : '',
 				description : '',
@@ -63,14 +65,39 @@ myFamilyApp.controller('eventController', [ '$scope', '$state',
 				endYear : '',
 				endHour : '',
 				endMinute : '',
-				endMeridiem : '',
-				attendeeList : []
+				endMeridiem : ''
 			};
 
 			$scope.attendee = {
 				firstName : '',
 				lastName : '',
 				email : ''
+			};
+			
+			$scope.error = {
+				name: '',
+				description: '',
+				url: '',
+				checkbox1 : '',
+				checkbox2 : '',
+				address1 : '',
+				address2 : '',
+				city : '',
+				state : '',
+				zip : '',
+				country : '',
+				startMonth : '',
+				startDay : '',
+				startYear : '',
+				startHour : '',
+				startMinute : '',
+				startMeridiem : '',
+				endMonth : '',
+				endDay : '',
+				endYear : '',
+				endHour : '',
+				endMinute : '',
+				endMeridiem : ''
 			};
 
 			$scope.getName = function() {
@@ -167,5 +194,9 @@ myFamilyApp.controller('eventController', [ '$scope', '$state',
 
 			$scope.submit = function() {
 				$state.go('eventResults');
-			};
+			}
+
+			$scope.customValidation = function() {
+
+			}
 		} ]);

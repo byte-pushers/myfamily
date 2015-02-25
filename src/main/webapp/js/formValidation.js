@@ -1,11 +1,11 @@
-function textBoxValidation(element, error, min, max, regex) {
-	if (isEmpty(element.value) == false) {
-		if(regex.test(element.value)){
-			if (isGreaterThanMaxLength(element.value, max)) {
+function textBoxValidation(value, error, min, max, regex) {
+	if (isEmpty(value) == false) {
+		if(regex.test(value)){
+			if (isGreaterThanMaxLength(value, max)) {
 				tooLongError(error, max);
 				return false;
 			}
-			if (isLessThanMinLength(element.value, min)) {
+			if (isLessThanMinLength(value, min)) {
 				tooShortError(error, min)
 				return false;
 			}
@@ -21,14 +21,14 @@ function textBoxValidation(element, error, min, max, regex) {
 	}
 }
 
-function optionalTextBox(element, error, min, max, regex) {
-	if (isEmpty(element.value) == false) {
-		if(regex.test(element.value)){
-			if (isGreaterThanMaxLength(element.value, max)) {
+function optionalTextBox(value, error, min, max, regex) {
+	if (isEmpty(value) == false) {
+		if(regex.test(value)){
+			if (isGreaterThanMaxLength(value, max)) {
 				tooLongError(error, max);
 				return false;
 			}
-			if (isLessThanMinLength(element.value, min)) {
+			if (isLessThanMinLength(value, min)) {
 				tooShortError(error, min)
 				return false;
 			}
@@ -41,8 +41,8 @@ function optionalTextBox(element, error, min, max, regex) {
 	}
 }
 
-function dropDownValidation(element, error) {
-	if (isEmpty(element.value) == false) {
+function dropDownValidation(value, error) {
+	if (isEmpty(value) == false) {
 		return true;
 	} else {
 		allFieldsError(error);
@@ -50,9 +50,9 @@ function dropDownValidation(element, error) {
 	}
 }
 
-function emailValidation(element, error, regex) {
-	if (isEmpty(element.value) == false) {
-		if (regex.test(element.value) == false) {
+function emailValidation(value, error, regex) {
+	if (isEmpty(value) == false) {
+		if (regex.test(value) == false) {
 			notValidEmailError(error);
 			return false;
 		}
@@ -64,8 +64,8 @@ function emailValidation(element, error, regex) {
 	return true;
 }
 
-function URLValidation(element, error, regex) {
-	if (element.value.length && regex.test(element.value) == false) {
+function URLValidation(value, error, regex) {
+	if (value.length && regex.test(value) == false) {
 		notValidURLError(error);
 		return false;
 	}
