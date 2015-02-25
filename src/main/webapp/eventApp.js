@@ -38,10 +38,9 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 	})
 });
 
-myFamilyApp.controller('eventController', [ '$scope', '$state',
+myFamilyApp.controller('newEventController', [ '$scope', '$state',
 		function($scope, $state) {
-			var valid;
-
+			
 			$scope.event = {
 				name : '',
 				description : '',
@@ -196,7 +195,4 @@ myFamilyApp.controller('eventController', [ '$scope', '$state',
 				$state.go('eventResults');
 			}
 
-			$scope.customValidation = function() {
-
-			}
 		} ]);
