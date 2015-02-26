@@ -1,5 +1,4 @@
 var eventArray = [];
-var attendeeCounter = 0;
 
 var eventTest = new Event();
 
