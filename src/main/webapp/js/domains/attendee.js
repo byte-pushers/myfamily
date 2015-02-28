@@ -1,8 +1,8 @@
 function Attendee(firstName, lastName, email) {
 
-	var attendeeFirstName = firstName.value, 
-		attendeeLastName = lastName.value,
-		attendeeEmail = email.value;
+	var attendeeFirstName = firstName, 
+		attendeeLastName = lastName,
+		attendeeEmail = email;
 
 	function setFirstName(firstName) {
 		attendeeFirstName = firstName;
@@ -40,7 +40,7 @@ function Attendee(firstName, lastName, email) {
             json =  "{" +
                 "\"attendeeFirstName\": " + jsonAttendeeFirstName + "," +
                 "\"attendeeLastName\": " + jsonAttendeeLastName + "," +
-                "\"attendeeEmail\": " +  jsonAttendeeEmail + ","
+                "\"attendeeEmail\": " +  jsonAttendeeEmail +
                 "}";
 
         return json;

@@ -31,16 +31,16 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 				return $scope.eventUIObject.checkbox2;
 			};
 
-			$scope.getCity = function() {
-				return $scope.eventUIObject.city;
-			};
-
 			$scope.getAddress1 = function() {
 				return $scope.eventUIObject.address1;
 			};
 
 			$scope.getAddress2 = function() {
 				return $scope.eventUIObject.address2;
+			};
+			
+			$scope.getCity = function() {
+				return $scope.eventUIObject.city;
 			};
 
 			$scope.getState = function() {

@@ -1,28 +1,28 @@
 function Event(eventJsonConfig) {
 
-    var eventNameElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.eventNameElement))? eventJsonConfig.eventNameElement: null;
-    var descriptionElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.descriptionElement))? eventJsonConfig.descriptionElement: null;
-    var htmlElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.htmlElement))? eventJsonConfig.htmlElement: null;
-    var check1Value = (Object.isDefined(eventJsonConfig) && Object.isBoolean(eventJsonConfig.check1Value))? eventJsonConfig.check1Value: false;
-    var check2Value = (Object.isDefined(eventJsonConfig) && Object.isBoolean(eventJsonConfig.check2Value))? eventJsonConfig.check2Value: false;
-    var street1Element = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.street1Element))? eventJsonConfig.street1Element: null;
-    var street2Element = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.street2Element))? eventJsonConfig.street2Element: null;
-    var cityElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.cityElement))? eventJsonConfig.cityElement: null;
-    var stateElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.stateElement))? eventJsonConfig.stateElement: null;
-    var zipElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.zipElement))? eventJsonConfig.zipElement: null;
-    var countryElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.countryElement))? eventJsonConfig.countryElement: null;
-    var startMonthElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMonthElement))? eventJsonConfig.startMonthElement: null;
-    var startDayElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startDayElement))? eventJsonConfig.startDayElement: null;
-    var startYearElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startYearElement))? eventJsonConfig.startYearElement: null;
-    var startHourElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startHourElement))? eventJsonConfig.startHourElement: null;
-    var startMinuteElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMinuteElement))? eventJsonConfig.startMinuteElement: null;
-    var startMeridiemElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMeridiemElement))? eventJsonConfig.startMeridiemElement: null;
-    var endMonthElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMonthElement))? eventJsonConfig.endMonthElement: null;
-    var endDayElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endDayElement))? eventJsonConfig.endDayElement: null;
-    var endYearElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endYearElement))? eventJsonConfig.endYearElement: null;
-    var endHourElement = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endHourElement))? eventJsonConfig.endHourElement: null;
-    var endMinuteElement  = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMinuteElement))? eventJsonConfig.endMinuteElement: null;
-    var endMeridiemElement  = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMeridiemElement))? eventJsonConfig.endMeridiemElement: null;
+    var name = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.name))? eventJsonConfig.name: null;
+    var description = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.description))? eventJsonConfig.description: null;
+    var url = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.url))? eventJsonConfig.url: null;
+    var checkbox1 = (Object.isDefined(eventJsonConfig) && Object.isBoolean(eventJsonConfig.checkbox1))? eventJsonConfig.checkbox1: false;
+    var checkbox2 = (Object.isDefined(eventJsonConfig) && Object.isBoolean(eventJsonConfig.checkbox2))? eventJsonConfig.checkbox2: false;
+    var address1 = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.address1))? eventJsonConfig.address1: null;
+    var address2 = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.address2))? eventJsonConfig.address2: null;
+    var city = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.city))? eventJsonConfig.city: null;
+    var state = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.state))? eventJsonConfig.state: null;
+    var zip = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.zip))? eventJsonConfig.zip: null;
+    var country = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.country))? eventJsonConfig.country: null;
+    var startMonth = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMonth))? eventJsonConfig.startMonth: null;
+    var startDay = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startDay))? eventJsonConfig.startDay: null;
+    var startYear = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startYear))? eventJsonConfig.startYear: null;
+    var startHour = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startHour))? eventJsonConfig.startHour: null;
+    var startMinute = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMinute))? eventJsonConfig.startMinute: null;
+    var startMeridiem = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMeridiem))? eventJsonConfig.startMeridiem: null;
+    var endMonth = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMonth))? eventJsonConfig.endMonth: null;
+    var endDay = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endDay))? eventJsonConfig.endDay: null;
+    var endYear = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endYear))? eventJsonConfig.endYear: null;
+    var endHour = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endHour))? eventJsonConfig.endHour: null;
+    var endMinute  = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMinute))? eventJsonConfig.endMinute: null;
+    var endMeridiem  = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMeridiem))? eventJsonConfig.endMeridiem: null;
 	var attendeeArray = (Object.isDefined(eventJsonConfig) && Object.isArray(eventJsonConfig.attendeeArray))? eventJsonConfig.attendeeArray: [];
 	
 	this.getAttendeeArray  = function() {
@@ -42,249 +42,241 @@ function Event(eventJsonConfig) {
 	};
 	
 	this.setEventName = function(name) {
-		eventNameElement = name;
+		name = name;
 	};
 	
 	this.getEventName = function() {
-		return eventNameElement;
+		return name;
 	};
 	
-	this.setLastName = function(name) {
-		lastNameElement = name;
-	};
-
-	this.getLastName = function() {
-		return lastNameElement;
-	};
-
-	this.getFullName = function() {
-		return firstName + " " + lastName;
-	};
+	this.setDescrption = function(desc){
+		description = desc;
+	}
 
 	this.getDescription = function() {
-		return descriptionElement;
+		return description;
 	};
 
 	this.getCheckbox1 = function() {
-		return check1Value;
+		return checkbox1;
 	};
 
 	this.getCheckbox2 = function() {
-		return check2Value;
+		return checkbox2;
 	};
 	
 	this.getHTML = function() {
-		return htmlElement;
+		return url;
 	};
 	
 	this.setStreet1 = function(input) {
-		street1Element = input;
+		address1 = input;
 	};
 	
 	this.getStreet1 = function() {
-		return street1Element;
+		return address1;
 	};
 	
 	this.setStreet2 = function(input) {
-		street2Element = input;
+		address2 = input;
 	};
 
 	this.getStreet2 = function() {
-		return street2Element;
+		return address2;
 	};
 	
 	this.setCity = function(input) {
-		cityElement = input;
+		city = input;
 	};
 
 	this.getCity = function() {
-		return cityElement;
+		return city;
 	};
 
 	this.setState = function(input) {
-		stateElement = input;
+		state = input;
 	};
 	
 	this.getState = function() {
-		return stateElement;
+		return state;
 	};
 	
 	this.setZip = function(input) {
-		zipElement = input;
+		zip = input;
 	};
 
 	this.getZip = function() {
-		return zipElement.value;
+		return zip.value;
 	};
 	
 	this.setCountry = function(input) {
-		countryElement = input;
+		country = input;
 	};
 
 	this.getCountry = function() {
-		return countryElement;
+		return country;
 	};
 	
 	this.setStartMonth = function(input) {
-		startMonthElement = input;
+		startMonth = input;
 	};
 
 	this.getStartMonth = function() {
-		return startMonthElement;
+		return startMonth;
 	};
 	
 	this.setStartDay = function(input) {
-		startDayElement = input;
+		startDay = input;
 	};
 
 	this.getStartDay = function() {
-		return startDayElement;
+		return startDay;
 	};
 	
 	this.setStartYear = function(input) {
-		startYearElement = input;
+		startYear = input;
 	};
 
 	this.getStartYear = function() {
-		return startYearElement;
+		return startYear;
 	};
 	
 	this.setStartHour = function(input) {
-		startHourElement = input;
+		startHour = input;
 	};
 
 	this.getStartHour = function() {
-		return startHourElement;
+		return startHour;
 	};
 	
 	this.setStartMinute = function(input) {
-		startMinuteElement = input;
+		startMinute = input;
 	};
 
 	this.getStartMinute = function() {
-		return startMinuteElement;
+		return startMinute;
 	};
 	
 	this.setStartMeridiem = function(input) {
-		startMeridiemElement = input;
+		startMeridiem = input;
 	};
 
 	this.getStartMeridiem = function() {
-		return startMeridiemElement;
+		return startMeridiem;
 	};
 	
 	this.setEndMonth = function(input) {
-		endMonthElement = input;
+		endMonth = input;
 	};
 
 	this.getEndMonth = function() {
-		return endMonthElement;
+		return endMonth;
 	};
 	
 	this.setEndDay = function(input) {
-		endDayElement = input;
+		endDay = input;
 	};
 
 	this.getEndDay = function() {
-		return endDayElement;
+		return endDay;
 	};
 	
 	this.setEndYear = function(input) {
-		endYearElement = input;
+		endYear = input;
 	};
 
 	this.getEndYear = function() {
-		return endYearElement;
+		return endYear;
 	};
 	
 	this.setEndHour = function(input) {
-		endHourElement = input;
+		endHour = input;
 	};
 
 	this.getEndHour = function() {
-		return endHourElement;
+		return endHour;
 	};
 	
 	this.setEndMinute = function(input) {
-		endMinuteElement = input;
+		endMinute = input;
 	};
 
 	this.getEndMinute = function() {
-		return endMinuteElement;
+		return endMinute;
 	};
 	
 	this.setEndMeridiem = function(input) {
-		endMeridiemElement = input;
+		endMeridiem = input;
 	};
 
 	this.getEndMeridiem = function() {
-		return endMeridiemElement;
+		return endMeridiem;
 	};
 
     this.getAttendeesAsJSON = function (serializeUIProperties) {
-    	var json = "";
-    	attendeeArray.forEach(function (element, index, arr) {
-            json = json + element.toJSON(serializeUIProperties);
+    	var json = "[";
+    	attendeeArray.forEach(function (attendee, index, arr) {
+            json = json + attendee.toJSON(serializeUIProperties);
+            (index = arr.length()) ? null : json = json + ",";
+            
         });
-        // loop through array and call attendeeArray.toJSON(serializeUIProperties) for each attendee in array and
-        // concatenate json string that is return from attendeeArray.toJSON(serializeUIProperties) method call for each pass in the loop
-        // Finally, return concatenated json string.
+    	json = json + "]";
     	return json;
     };
 
     this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonEventNameElement = (Object.isDefined(eventNameElement))? eventNameElement : null,
-            jsonDescriptionElement = (Object.isDefined(descriptionElement))? "\"" + descriptionElement + "\"":  null,
-            jsonHtmlElement = (Object.isDefined(htmlElement))? "\"" + htmlElement + "\"": null,
-            jsonCheck1Value = (serializeUIProperties)? Object.isDefined(check1Value)? "\"check1Value\": " + check1Value + ",": false: "",
-            jsonCheck2Value = (serializeUIProperties)? Object.isDefined(check2Value)? "\"check2Value\": " + check2Value + ",": false: "",
-            jsonStreet1Element = (Object.isDefined(street1Element))? "\"" + street1Element + "\"": null,
-            jsonStreet2Element = (Object.isDefined(street2Element))? "\"" + street2Element + "\"": null,
-            jsonCityElement = (Object.isDefined(cityElement))? "\"" + cityElement + "\"": null,
-            jsonStateElement = (Object.isDefined(stateElement))? "\"" + stateElement + "\"": null,
-            jsonZipElement = (Object.isDefined(zipElement))? zipElement: null,
-            jsonCountryElement = (Object.isDefined(countryElement))? "\"" + countryElement + "\"": null,
-            jsonStartMonthElement = (Object.isDefined(startMonthElement))? startMonthElement: null,
-            jsonStartDayElement = (Object.isDefined(startDayElement))? startDayElement: null,
-            jsonStartYearElement = (Object.isDefined(startYearElement))? startYearElement: null,
-            jsonStartHourElement = (Object.isDefined(startHourElement))? startHourElement: null,
-            jsonStartMinuteElement = (Object.isDefined(startMinuteElement))? startMinuteElement: null,
-            jsonStartMeridiemElement = (Object.isDefined(startMeridiemElement))? "\"" + startMeridiemElement + "\"": null,
-            jsonEndMonthElement = (Object.isDefined(endMonthElement))? endMonthElement: null,
-            jsonEndDayElement = (Object.isDefined(endDayElement))? endDayElement: null,
-            jsonEndYearElement = (Object.isDefined(endYearElement))? endYearElement: null,
-            jsonEndHourElement = (Object.isDefined(endHourElement))? endHourElement: null,
-            jsonEndMinuteElement = (Object.isDefined(endMinuteElement))? endMinuteElement: null,
-            jsonEndMeridiemElement = (Object.isDefined(endMeridiemElement))? "\"" + endMeridiemElement + "\"": null,
-            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + this.getAttendeesAsJSON(serializeUIProperties) : "[]",
+        var jsonName = (Object.isDefined(name))? name : null,
+            jsonDescription  = (Object.isDefined(description))? "\"" + description + "\"":  null,
+            jsonURL = (Object.isDefined(url))? "\"" + url + "\"": null,
+            jsonCheckbox1 = (serializeUIProperties)? Object.isDefined(checkbox1)? "\"checkbox1\": " + checkbox1 + ",": false: "",
+            jsonCheckbox2 = (serializeUIProperties)? Object.isDefined(checkbox2)? "\"checkbox2\": " + checkbox2 + ",": false: "",
+            jsonAddress1 = (Object.isDefined(address1))? "\"" + address1 + "\"": null,
+            jsonAddress2 = (Object.isDefined(address2))? "\"" + address2 + "\"": null,
+            jsonCity = (Object.isDefined(city))? "\"" + city + "\"": null,
+            jsonState = (Object.isDefined(state))? "\"" + state + "\"": null,
+            jsonZip = (Object.isDefined(zip))? zip: null,
+            jsonCountry = (Object.isDefined(country))? "\"" + country + "\"": null,
+            jsonStartMonth = (Object.isDefined(startMonth))? startMonth: null,
+            jsonStartDay = (Object.isDefined(startDay))? startDay: null,
+            jsonStartYear = (Object.isDefined(startYear))? startYear: null,
+            jsonStartHour = (Object.isDefined(startHour))? startHour: null,
+            jsonStartMinute = (Object.isDefined(startMinute))? startMinute: null,
+            jsonStartMeridiem = (Object.isDefined(startMeridiem))? "\"" + startMeridiem + "\"": null,
+            jsonEndMonth = (Object.isDefined(endMonth))? endMonth: null,
+            jsonEndDay = (Object.isDefined(endDay))? endDay: null,
+            jsonEndYear = (Object.isDefined(endYear))? endYear: null,
+            jsonEndHour = (Object.isDefined(endHour))? endHour: null,
+            jsonEndMinute = (Object.isDefined(endMinute))? endMinute: null,
+            jsonEndMeridiem = (Object.isDefined(endMeridiem))? "\"" + endMeridiem + "\"": null,
+            jsonAttendeeArray = (Object.isArray(attendeeArray))? "\"attendeeArray\":" + this.getAttendeesAsJSON(serializeUIProperties) : "[]",
             json =  "{" +
-                "\"eventNameElement\": " + jsonEventNameElement + "," +
-                "\"descriptionElement\": " + jsonDescriptionElement + "," +
-                "\"htmlElement\": " +  jsonHtmlElement + "," +
-                jsonCheck1Value +
-                jsonCheck2Value +
-                "\"street1Element\": "+ jsonStreet1Element + "," +
-                "\"street2Element\": "+ jsonStreet2Element + "," +
-                "\"cityElement\": "+ jsonCityElement + "," +
-                "\"stateElement\": "+ jsonStateElement + "," +
-                "\"zipElement\": "+ jsonZipElement + "," +
-                "\"countryElement\": "+ jsonCountryElement + "," +
-                "\"startMonthElement\": "+ jsonStartMonthElement + "," +
-                "\"startDayElement\": "+ jsonStartDayElement + "," +
-                "\"startYearElement\": "+ jsonStartYearElement + "," +
-                "\"startHourElement\": "+ jsonStartHourElement + "," +
-                "\"startMinuteElement\": "+ jsonStartMinuteElement + "," +
-                "\"startMeridiemElement\": "+ jsonStartMeridiemElement + "," +
-                "\"endMonthElement\": "+ jsonEndMonthElement + "," +
-                "\"endDayElement\": "+ jsonEndDayElement + "," +
-                "\"endYearElement\": "+ jsonEndYearElement + "," +
-                "\"endHourElement\": "+ jsonEndHourElement + "," +
-                "\"endMinuteElement\": "+ jsonEndMinuteElement + "," +
-                "\"endMeridiemElement\": "+ jsonEndMeridiemElement + "," +
+                "\"name\": " + jsonName + "," +
+                "\"description\": " + jsonDescription  + "," +
+                "\"url\": " +  jsonURL  + "," +
+                jsonCheckbox1 +
+                jsonCheckbox2 +
+                "\"address1\": "+ jsonAddress1  + "," +
+                "\"address2\": "+ jsonAddress2  + "," +
+                "\"city\": "+ jsonCity  + "," +
+                "\"state\": "+ jsonState  + "," +
+                "\"zip\": "+ jsonZip  + "," +
+                "\"country\": "+ jsonCountry  + "," +
+                "\"startMonth\": "+ jsonStartMonth  + "," +
+                "\"startDay\": "+ jsonStartDay  + "," +
+                "\"startYear\": "+ jsonStartYear  + "," +
+                "\"startHour\": "+ jsonStartHour  + "," +
+                "\"startMinute\": "+ jsonStartMinute  + "," +
+                "\"startMeridiem\": "+ jsonStartMeridiem  + "," +
+                "\"endMonth\": "+ jsonEndMonth  + "," +
+                "\"endDay\": "+ jsonEndDay  + "," +
+                "\"endYear\": "+ jsonEndYear  + "," +
+                "\"endHour\": "+ jsonEndHour  + "," +
+                "\"endMinute\": "+ jsonEndMinute  + "," +
+                "\"endMeridiem\": "+ jsonEndMeridiem  + "," +
                 jsonAttendeeArray +
                 "}";
-
+            console.log("json: " + json); 
         return json;
     };
 
