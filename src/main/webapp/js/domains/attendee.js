@@ -1,39 +1,48 @@
-function Attendee(fName, lName, emailAddress) {
+function Attendee(firstName, lastName, email) {
 
-	var firstName = fName.value, 
-		lastName = lName.value,
-		email = emailAddress.value;
+	var attendeeFirstName = firstName.value, 
+		attendeeLastName = lastName.value,
+		attendeeEmail = email.value;
 
 	function setFirstName(firstName) {
-		this.firstName = firstName;
+		attendeeFirstName = firstName;
 	}
 
 	function setLastName(lastName) {
-		this.lastName = lastName;
+		attendeeLastName = lastName;
 	}
 
 	this.getEmail = function() {
-		return email;
+		return attendeeEmail;
 	};
 	
 	this.setEmail = function(emailAddress) {
-		email = emailAddress;
+		attendeeEmail = emailAddress;
 	};
 	
 	this.getFirstName = function() {
-		return firstName;
+		return attendeeFirstName;
 	};
 	
 	this.getLastName = function() {
-		return lastName;
+		return attendeeLastName;
 	};
 	
 	this.getFullName = function() {
-		return firstName + " " + lastName;
+		return attendeeFirstName + " " + attendeeLastName;
 	};
 	
-	this.setFullName = function(firstName, lastName) {
-		setFirstName(firstName);
-		setLastName(lastName);
-	};
+	this.toJSON = function(serializeUIProperties) {
+        serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
+        var jsonAttendeeFirstName = (Object.isDefined(attendeeFirstName))? attendeeFirstName : null,
+            jsonAttendeeLastName = (Object.isDefined(attendeeLastName))? "\"" + attendeeLastName + "\"":  null,
+            jsonAttendeeEmail = (Object.isDefined(attendeeEmail))? "\"" + attendeeEmail + "\"": null;
+            json =  "{" +
+                "\"attendeeFirstName\": " + jsonAttendeeFirstName + "," +
+                "\"attendeeLastName\": " + jsonAttendeeLastName + "," +
+                "\"attendeeEmail\": " +  jsonAttendeeEmail + ","
+                "}";
+
+        return json;
+    };
 }

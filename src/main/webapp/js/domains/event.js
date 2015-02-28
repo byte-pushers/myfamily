@@ -228,7 +228,7 @@ function Event(eventJsonConfig) {
             ", visible: " + visible + ", createdDate: " + createdDate + "}";
     };
 
-    this.toJSON = function (serializeUIProperties) {
+    this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonEventNameElement = (Object.isDefined(eventNameElement))? eventNameElement : null,
             jsonDescriptionElement = (Object.isDefined(descriptionElement))? "\"" + descriptionElement + "\"":  null,
@@ -253,7 +253,7 @@ function Event(eventJsonConfig) {
             jsonEndHourElement = (Object.isDefined(endHourElement))? endHourElement: null,
             jsonEndMinuteElement = (Object.isDefined(endMinuteElement))? endMinuteElement: null,
             jsonEndMeridiemElement = (Object.isDefined(endMeridiemElement))? "\"" + endMeridiemElement + "\"": null,
-            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + attendeeArray.toJSON(serializeUIProperties): "",
+            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + attendeeArray.toJSON(serializeUIProperties): null,
             json =  "{" +
                 "\"eventNameElement\": " + jsonEventNameElement + "," +
                 "\"descriptionElement\": " + jsonDescriptionElement + "," +
@@ -285,8 +285,8 @@ function Event(eventJsonConfig) {
     };
 
     this.toUIObject = function(){
-        var surveyUIObject = JSON.parse(this.toJSON(true));
+        var UIObject = JSON.parse(this.toJSON(true));
 
-        return surveyUIObject;
+        return UIObject;
     };
 }

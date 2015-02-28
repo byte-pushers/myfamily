@@ -10,32 +10,6 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 				lastName : '',
 				email : ''
 			};
-			
-			$scope.error = {
-				name: '',
-				description: '',
-				url: '',
-				checkbox1 : '',
-				checkbox2 : '',
-				address1 : '',
-				address2 : '',
-				city : '',
-				state : '',
-				zip : '',
-				country : '',
-				startMonth : '',
-				startDay : '',
-				startYear : '',
-				startHour : '',
-				startMinute : '',
-				startMeridiem : '',
-				endMonth : '',
-				endDay : '',
-				endYear : '',
-				endHour : '',
-				endMinute : '',
-				endMeridiem : ''
-			};
 
 			$scope.getName = function() {
 				return $scope.eventUIObject.name;
