@@ -276,7 +276,6 @@ function Event(eventJsonConfig) {
                 "\"endMeridiem\": "+ jsonEndMeridiem  + "," +
                 jsonAttendeeArray +
                 "}";
-            console.log("json: " + json); 
         return json;
     };
 

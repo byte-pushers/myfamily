@@ -35,12 +35,12 @@
 		<br>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-2 align-right">Description:</div>
-			<div data-ng-app="" class="col-md-5">
-				<textarea ng-model="eventUIObject.description" id="description" rows="5"
-					cols="70"></textarea>
+			<div class="col-md-5" >
+				<textarea name="desc" ng-model="eventUIObject.description" class="input-no-width rounded shaded left clearboth" rows="5"
+					cols="70" required></textarea>
 			</div>
 			<div class="col-md-4 align-left">
-				<p id="descriptionError"></p>
+				<p style="color:#9F000F" ng-show="eventForm.desc.$invalid && !eventForm.desc.$pristine" class="help-block">Must be filled out</p>
 			</div>
 		</div>
 		<br> <br>
