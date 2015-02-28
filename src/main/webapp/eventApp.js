@@ -11,7 +11,7 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 		url : "/eventResults",
 		templateUrl : "eventResults.ng.html",
 		controller : function($scope) {
-			ip = $scope.eventName = $scope.getName();
+            $scope.eventName = $scope.getName();
 			$scope.eventDescription = $scope.getDescription();
 			$scope.eventUrl = $scope.getUrl();
 			$scope.eventCheckbox1 = $scope.getCheckbox1();

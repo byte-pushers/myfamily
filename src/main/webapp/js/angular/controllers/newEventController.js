@@ -1,33 +1,9 @@
 myFamilyApp.controller('newEventController', [ '$scope', '$state',
 		function($scope, $state) {
-			var event = new Event();
-			$scope.attendeeList = [];
+            var event = new Event();
+            $scope.eventUIObject = event.toUIObject();
+            $scope.attendeeList = [];
 			
-			$scope.event = {
-				name : '',
-				description : '',
-				url : '',
-				checkbox1 : false,
-				checkbox2 : false,
-				address1 : '',
-				address2 : '',
-				city : '',
-				state : '',
-				zip : '',
-				country : '',
-				startMonth : '',
-				startDay : '',
-				startYear : '',
-				startHour : '',
-				startMinute : '',
-				startMeridiem : '',
-				endMonth : '',
-				endDay : '',
-				endYear : '',
-				endHour : '',
-				endMinute : '',
-				endMeridiem : ''
-			};
 
 			$scope.attendee = {
 				firstName : '',
@@ -62,96 +38,96 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 			};
 
 			$scope.getName = function() {
-				return $scope.event.name;
+				return $scope.eventUIObject.name;
 			};
 
 			$scope.getDescription = function() {
-				return $scope.event.description;
-			}
+				return $scope.eventUIObject.description;
+			};
 
 			$scope.getUrl = function() {
-				return $scope.event.url;
-			}
+				return $scope.eventUIObject.url;
+			};
 
 			$scope.getCheckbox1 = function() {
-				return $scope.event.checkbox1;
-			}
+				return $scope.eventUIObject.checkbox1;
+			};
 
 			$scope.getCheckbox2 = function() {
-				return $scope.event.checkbox2;
-			}
+				return $scope.eventUIObject.checkbox2;
+			};
 
 			$scope.getCity = function() {
-				return $scope.event.city;
-			}
+				return $scope.eventUIObject.city;
+			};
 
 			$scope.getAddress1 = function() {
-				return $scope.event.address1;
-			}
+				return $scope.eventUIObject.address1;
+			};
 
 			$scope.getAddress2 = function() {
-				return $scope.event.address2;
-			}
+				return $scope.eventUIObject.address2;
+			};
 
 			$scope.getState = function() {
-				return $scope.event.state;
-			}
+				return $scope.eventUIObject.state;
+			};
 
 			$scope.getZip = function() {
-				return $scope.event.zip;
-			}
+				return $scope.eventUIObject.zip;
+			};
 
 			$scope.getCountry = function() {
-				return $scope.event.country;
-			}
+				return $scope.eventUIObject.country;
+			};
 
 			$scope.getStartMonth = function() {
-				return $scope.event.startMonth;
-			}
+				return $scope.eventUIObject.startMonth;
+			};
 
 			$scope.getStartDay = function() {
-				return $scope.event.startDay;
-			}
+				return $scope.eventUIObject.startDay;
+			};
 
 			$scope.getStartYear = function() {
-				return $scope.event.startYear;
-			}
+				return $scope.eventUIObject.startYear;
+			};
 
 			$scope.getStartHour = function() {
-				return $scope.event.startHour;
-			}
+				return $scope.eventUIObject.startHour;
+			};
 
 			$scope.getStartMinute = function() {
-				return $scope.event.startMinute;
-			}
+				return $scope.eventUIObject.startMinute;
+			};
 
 			$scope.getStartMeridiem = function() {
-				return $scope.event.startMeridiem;
-			}
+				return $scope.eventUIObject.startMeridiem;
+			};
 
 			$scope.getEndMonth = function() {
-				return $scope.event.endMonth;
-			}
+				return $scope.eventUIObject.endMonth;
+			};
 
 			$scope.getEndDay = function() {
-				return $scope.event.endDay;
-			}
+				return $scope.eventUIObject.endDay;
+			};
 
 			$scope.getEndYear = function() {
-				return $scope.event.endYear;
-			}
+				return $scope.eventUIObject.endYear;
+			};
 
 			$scope.getEndHour = function() {
-				return $scope.event.endHour;
-			}
+				return $scope.eventUIObject.endHour;
+			};
 
 			$scope.getEndMinute = function() {
-				return $scope.event.endMinute;
-			}
+				return $scope.eventUIObject.endMinute;
+			};
 
 			$scope.getEndMeridiem = function() {
-				return $scope.event.endMeridiem;
-			}
+				return $scope.eventUIObject.endMeridiem;
+			};
 
 			$scope.submit = function(isValid) {
 				if(isValid){

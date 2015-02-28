@@ -24,7 +24,7 @@
 		<div class="row" ng-class="{ 'has-error' : eventForm.name.$invalid && !eventForm.name.$pristine}">
 			<div class="col-md-1 col-md-offset-2 align-right">Event Name:</div>
 			<div class="col-md-2 ">
-				<input type="text" ng-model="event.name" name="name"
+				<input type="text" ng-model="eventUIObject.name" name="name"
 					placeholder="" class="form-control" required>
 			</div>
 			<div class="col-md-7 align-left">
@@ -36,7 +36,7 @@
 		<div class="row">
 			<div class="col-md-1 col-md-offset-2 align-right">Description:</div>
 			<div data-ng-app="" class="col-md-5">
-				<textarea ng-model="event.description" id="description" rows="5"
+				<textarea ng-model="eventUIObject.description" id="description" rows="5"
 					cols="70"></textarea>
 			</div>
 			<div class="col-md-4 align-left">
@@ -46,8 +46,8 @@
 		<br> <br>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-2 align-right">Enter URL:</div>
-			<div data-ng-app="" class="col-md-3" style="width: 100">
-				<input type="text" ng-model="event.url" id="htmlLink"
+			<div class="col-md-3" style="width: 100px">
+				<input type="text" ng-model="eventUIObject.url" id="htmlLink"
 					placeholder="Enter URL" size="35">
 			</div>
 			<div class="col-md-6 align-left">
@@ -63,7 +63,7 @@
 		<br>
 		<div class="row">
 			<div data-ng-app="" class="col-md-3 col-md-offset-3 ">
-				<input type="checkbox" ng-model="event.checkbox1" id="checkBox1"
+				<input type="checkbox" ng-model="eventUIObject.checkbox1" id="checkBox1"
 					name="1" id="checkBox1"> &nbsp; Guests can invite other
 				guests
 			</div>
@@ -72,7 +72,7 @@
 		<br>
 		<div class="row">
 			<div data-ng-app="" class="col-md-3 col-md-offset-3">
-				<input type="checkbox" ng-model="event.checkbox2" id="checkBox2"
+				<input type="checkbox" ng-model="eventUIObject.checkbox2" id="checkBox2"
 					name="2" id="checkBox2"> &nbsp; Guests can see other guests
 			</div>
 			<div class="col-md-6"></div>
@@ -80,7 +80,7 @@
 		<br> <br>
 		<div class="row">
 			<div class="col-md-3 align-right">
-				<label for="Location">Event Location </label>
+				<label>Event Location </label>
 			</div>
 			<div class="col-md-9"></div>
 		</div>
@@ -90,7 +90,7 @@
 
 		<div class="row">
 			<div data-ng-app="" class="col-md-2 col-md-offset-3">
-				<input type="text" ng-model="event.address1" id="street1"
+				<input type="text" ng-model="eventUIObject.address1" id="street1"
 					placeholder="Event Address" style="width: 150px;">
 			</div>
 			<div class="col-md-7 align-left">
@@ -104,7 +104,7 @@
 		</div>
 		<div class="row">
 			<div data-ng-app="" class="col-md-2 col-md-offset-3">
-				<input type="text" ng-model="event.address2" id="street2"
+				<input type="text" ng-model="eventUIObject.address2" id="street2"
 					placeholder="Event Address" style="width: 150px;">
 			</div>
 			<div class="col-md-7 align-left">
@@ -121,12 +121,12 @@
 		</div>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-3">
-				<input type="text" ng-model="event.city" id="city"
+				<input type="text" ng-model="eventUIObject.city" id="city"
 					placeholder="Denton" size="15">
 			</div>
 
 			<div class="col-md-1 spacing">
-				<select ng-model="event.state" id="states">
+				<select ng-model="eventUIObject.state" id="states">
 					<option value="">State</option>
 					<option value="AL">AL</option>
 					<option value="AK">AK</option>
@@ -182,12 +182,12 @@
 			</div>
 
 			<div class="col-md-1 ">
-				<input type="text" ng-model="event.zip" id="zipcode"
+				<input type="text" ng-model="eventUIObject.zip" id="zipcode"
 					placeholder="76201" size="5">
 			</div>
 
 			<div class="col-md-1">
-				<select ng-model="event.country" id="country">
+				<select ng-model="eventUIObject.country" id="country">
 					<option value="">Country</option>
 					<option value="United States">United States</option>
 					<option value="United Kingdom">United Kingdom</option>
@@ -201,7 +201,7 @@
 		<br> <br>
 		<div class="row">
 			<div class="col-md-3 align-right">
-				<label for="water-bottle">Event Date and Time</label>
+				<label>Event Date and Time</label>
 			</div>
 			<div class="col-md-5"></div>
 		</div>
@@ -213,7 +213,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2 col-md-offset-3">
-				<select ng-model="event.startMonth" id="month">
+				<select ng-model="eventUIObject.startMonth" id="month">
 					<option value=""></option>
 					<option value="01">01</option>
 					<option value="02">02</option>
@@ -227,7 +227,7 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select> / <select ng-model="event.startDay" id="day">
+				</select> / <select ng-model="eventUIObject.startDay" id="day">
 					<option value=""></option>
 					<option value="01">01</option>
 					<option value="02">02</option>
@@ -260,7 +260,7 @@
 					<option value="29">29</option>
 					<option value="30">30</option>
 					<option value="31">31</option>
-				</select> / <select ng-model="event.startYear" id="year">
+				</select> / <select ng-model="eventUIObject.startYear" id="year">
 					<option value=""></option>
 					<option value="2014">2014</option>
 					<option value="2015">2015</option>
@@ -270,7 +270,7 @@
 				</select>
 			</div>
 			<div class="col-md-3">
-				<select ng-model="event.startHour" id="hour">
+				<select ng-model="eventUIObject.startHour" id="hour">
 					<option value=""></option>
 					<option value="1">01</option>
 					<option value="2">02</option>
@@ -284,7 +284,7 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select> : <select ng-model="event.startMinute" id="minute">
+				</select> : <select ng-model="eventUIObject.startMinute" id="minute">
 					<option value=""></option>
 					<option value="0">00</option>
 					<option value="1">01</option>
@@ -347,7 +347,7 @@
 					<option value="58">58</option>
 					<option value="59">59</option>
 					<option value="60">60</option>
-				</select> &nbsp; <select ng-model="event.startMeridiem" id="clock">
+				</select> &nbsp; <select ng-model="eventUIObject.startMeridiem" id="clock">
 					<option value=""></option>
 					<option value="am">A.M.</option>
 					<option value="pm">P.M.</option>
@@ -367,7 +367,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-2 col-md-offset-3">
-				<select ng-model="event.endMonth" id="eMonth">
+				<select ng-model="eventUIObject.endMonth" id="eMonth">
 					<option value=""></option>
 					<option value="01">01</option>
 					<option value="02">02</option>
@@ -381,7 +381,7 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select> / <select ng-model="event.endDay" id="eDay">
+				</select> / <select ng-model="eventUIObject.endDay" id="eDay">
 					<option value=""></option>
 					<option value="01">01</option>
 					<option value="02">02</option>
@@ -414,7 +414,7 @@
 					<option value="29">29</option>
 					<option value="30">30</option>
 					<option value="31">31</option>
-				</select> / <select ng-model="event.endYear" id="eYear">
+				</select> / <select ng-model="eventUIObject.endYear" id="eYear">
 					<option value=""></option>
 					<option value="2014">2014</option>
 					<option value="2015">2015</option>
@@ -424,7 +424,7 @@
 				</select>
 			</div>
 			<div class="col-md-3">
-				<select ng-model="event.endHour" id="eHour">
+				<select ng-model="eventUIObject.endHour" id="eHour">
 					<option value=""></option>
 					<option value="1">01</option>
 					<option value="2">02</option>
@@ -438,7 +438,7 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 					<option value="12">12</option>
-				</select> : <select ng-model="event.endMinute" id="eMinute">
+				</select> : <select ng-model="eventUIObject.endMinute" id="eMinute">
 					<option value=""></option>
 					<option value="0">00</option>
 					<option value="1">01</option>
@@ -501,7 +501,7 @@
 					<option value="58">58</option>
 					<option value="59">59</option>
 					<option value="60">60</option>
-				</select> &nbsp; <select ng-model="event.endMeridiem" id="eClock">
+				</select> &nbsp; <select ng-model="eventUIObject.endMeridiem" id="eClock">
 					<option value=""></option>
 					<option value="am">A.M.</option>
 					<option value="pm">P.M.</option>
@@ -516,7 +516,7 @@
 			<form>
 				<div class="row">
 					<div class="col-md-3 align-right">
-						<label for="attendee">Add Event Attendees: </label>
+						<label>Add Event Attendees: </label>
 					</div>
 					<div class="col-md-9">
 						<p id="top-error"></p>
@@ -599,4 +599,5 @@
 			</div>
 			<div class="col-md-2"></div>
 		</div>
+    </div>
 </form>
