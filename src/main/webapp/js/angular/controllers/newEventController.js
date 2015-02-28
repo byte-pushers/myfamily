@@ -152,16 +152,11 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 			$scope.getEndMeridiem = function() {
 				return $scope.event.endMeridiem;
 			}
-			
-			$scope.addRow = function () {
-				//$scope.attendeeList.push({ $Scope.attendee.fistName, $Scope.attendee.lastName, $Scope.attendee.email});
-				$Scope.attendee.fistName = '';
-				$Scope.attendee.lastName = '';
-				$Scope.attendee.email = '';
-			}
 
-			$scope.submit = function() {
-				$state.go('eventResults');
+			$scope.submit = function(isValid) {
+				if(isValid){
+					$state.go('eventResults');
+				}
 			}
 
 		} ]);

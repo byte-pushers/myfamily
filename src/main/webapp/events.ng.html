@@ -1,4 +1,4 @@
-<form ng-submit="submit()">
+<form name="eventForm" ng-submit="submit(eventForm.$valid)" novalidate>
 	<div>
 		<div class="row">
 			<div class="col-md-12">
@@ -21,14 +21,14 @@
 			<div class="col-md-9"></div>
 		</div>
 
-		<div class="row">
+		<div class="row" ng-class="{ 'has-error' : eventForm.name.$invalid && !eventForm.name.$pristine}">
 			<div class="col-md-1 col-md-offset-2 align-right">Event Name:</div>
 			<div class="col-md-2 ">
-				<input type="text" ng-model="event.name" id="eventName"
-					placeholder="" class="input-space">
+				<input type="text" ng-model="event.name" name="name"
+					placeholder="" class="form-control" required>
 			</div>
 			<div class="col-md-7 align-left">
-				<p3>
+				<p ng-show="eventForm.name.$invalid && !eventForm.name.$pristine" class="help-block">Your name is required
 				</p>
 			</div>
 		</div>
@@ -565,7 +565,7 @@
 				<br>
 				<div class="row">
 					<div class="col-md-2 col-md-offset-3">
-						<button id="attendeeButton" onclick="addAttendee()">Add
+						<button id="attendeeButton" class="btn btn-primary"onclick="addAttendee()">Add
 							Attendee</button>
 					</div>
 					<div class="col-md-7"></div>
@@ -595,7 +595,7 @@
 		<br> <br>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-9" style="margin-bottom: 10px;">
-				<input type="submit" id="submit" value="Submit" />
+				<input type="submit" class="btn btn-primary" ng-disabled="eventForm.$invalid" value="Submit" />
 			</div>
 			<div class="col-md-2"></div>
 		</div>
