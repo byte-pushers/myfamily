@@ -34,7 +34,7 @@ function Event(eventJsonConfig) {
 	};
 	
 	this.removeFromAttendeeArray = function(index) {
-		attendeeArray.splice(index, 1);
+		attendeeArray.splice(index);
 	};
 	
 	this.getAttendee = function(index){
@@ -221,17 +221,15 @@ function Event(eventJsonConfig) {
 		return endMeridiemElement;
 	};
 
-    this.getAttendeesAsJSON = function () {
+    this.getAttendeesAsJSON = function (serializeUIProperties) {
+    	var json = "";
+    	attendeeArray.forEach(function (element, index, arr) {
+            json = json + element.toJSON(serializeUIProperties);
+        });
         // loop through array and call attendeeArray.toJSON(serializeUIProperties) for each attendee in array and
         // concatenate json string that is return from attendeeArray.toJSON(serializeUIProperties) method call for each pass in the loop
         // Finally, return concatenated json string.
-    };
-
-    this.toString = function () {
-        return "Survey {id: " + id + ", name: " + name + ", vistaTitle: " + vistaTitle + ", description: " + description + ", version: " + version +
-            ", displayOrder: " + displayOrder + ", mha: " + mha + ", mhaTestName: " + mhaTestName + ", mhaResultGroupIen: " + mhaResultGroupIen +
-            ", clinicalReminder" + clinicalReminder + ", markedForDeletion: " + markedForDeletion +
-            ", visible: " + visible + ", createdDate: " + createdDate + "}";
+    	return json;
     };
 
     this.toJSON = function(serializeUIProperties) {
@@ -259,7 +257,7 @@ function Event(eventJsonConfig) {
             jsonEndHourElement = (Object.isDefined(endHourElement))? endHourElement: null,
             jsonEndMinuteElement = (Object.isDefined(endMinuteElement))? endMinuteElement: null,
             jsonEndMeridiemElement = (Object.isDefined(endMeridiemElement))? "\"" + endMeridiemElement + "\"": null,
-            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + this.getAttendeesAsJSON() : [],
+            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + this.getAttendeesAsJSON(serializeUIProperties) : "[]",
             json =  "{" +
                 "\"eventNameElement\": " + jsonEventNameElement + "," +
                 "\"descriptionElement\": " + jsonDescriptionElement + "," +
@@ -294,5 +292,12 @@ function Event(eventJsonConfig) {
         var UIObject = JSON.parse(this.toJSON(true));
 
         return UIObject;
+    };
+    
+    this.toString = function () {
+        return "Survey {id: " + id + ", name: " + name + ", vistaTitle: " + vistaTitle + ", description: " + description + ", version: " + version +
+            ", displayOrder: " + displayOrder + ", mha: " + mha + ", mhaTestName: " + mhaTestName + ", mhaResultGroupIen: " + mhaResultGroupIen +
+            ", clinicalReminder" + clinicalReminder + ", markedForDeletion: " + markedForDeletion +
+            ", visible: " + visible + ", createdDate: " + createdDate + "}";
     };
 }
