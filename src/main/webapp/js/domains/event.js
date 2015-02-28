@@ -221,6 +221,12 @@ function Event(eventJsonConfig) {
 		return endMeridiemElement;
 	};
 
+    this.getAttendeesAsJSON = function () {
+        // loop through array and call attendeeArray.toJSON(serializeUIProperties) for each attendee in array and
+        // concatenate json string that is return from attendeeArray.toJSON(serializeUIProperties) method call for each pass in the loop
+        // Finally, return concatenated json string.
+    };
+
     this.toString = function () {
         return "Survey {id: " + id + ", name: " + name + ", vistaTitle: " + vistaTitle + ", description: " + description + ", version: " + version +
             ", displayOrder: " + displayOrder + ", mha: " + mha + ", mhaTestName: " + mhaTestName + ", mhaResultGroupIen: " + mhaResultGroupIen +
@@ -253,7 +259,7 @@ function Event(eventJsonConfig) {
             jsonEndHourElement = (Object.isDefined(endHourElement))? endHourElement: null,
             jsonEndMinuteElement = (Object.isDefined(endMinuteElement))? endMinuteElement: null,
             jsonEndMeridiemElement = (Object.isDefined(endMeridiemElement))? "\"" + endMeridiemElement + "\"": null,
-            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + attendeeArray.toJSON(serializeUIProperties): null,
+            jsonAttendeeArray = (Object.isArray(attendeeArray))? ",\"attendeeArray\":" + this.getAttendeesAsJSON() : [],
             json =  "{" +
                 "\"eventNameElement\": " + jsonEventNameElement + "," +
                 "\"descriptionElement\": " + jsonDescriptionElement + "," +
