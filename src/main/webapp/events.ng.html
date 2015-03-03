@@ -21,37 +21,43 @@
 			<div class="col-md-9"></div>
 		</div>
 
-		<div class="row" ng-class="{ 'has-error' : eventForm.name.$invalid && !eventForm.name.$pristine}">
+		<div class="row"
+			ng-class="{ 'has-error' : eventForm.name.$invalid && !eventForm.name.$pristine}">
 			<div class="col-md-1 col-md-offset-2 align-right">Event Name:</div>
 			<div class="col-md-2 ">
 				<input type="text" ng-model="eventUIObject.name" name="name"
-					placeholder="" class="form-control" required>
+					class="form-control" required>
 			</div>
 			<div class="col-md-7 align-left">
-				<p ng-show="eventForm.name.$invalid && !eventForm.name.$pristine" class="help-block">Your name is required
-				</p>
+				<p ng-show="eventForm.name.$invalid && !eventForm.name.$pristine"
+					class="help-block">Your name is required</p>
 			</div>
 		</div>
 		<br>
-		<div class="row">
+		<div class="row"
+			ng-class="{ 'has-error : eventForm.desc.$invalid && !eventForm.desc.&pristine}">
 			<div class="col-md-1 col-md-offset-2 align-right">Description:</div>
-			<div class="col-md-5" >
-				<textarea name="desc" ng-model="eventUIObject.description" class="input-no-width rounded shaded left clearboth" rows="5"
-					cols="70" required></textarea>
+			<div class="col-md-5">
+				<textarea name="desc" ng-model="eventUIObject.description"
+					class="form-control" rows="5" cols="70" required></textarea>
 			</div>
 			<div class="col-md-4 align-left">
-				<p style="color:#9F000F" ng-show="eventForm.desc.$invalid && !eventForm.desc.$pristine" class="help-block">Must be filled out</p>
+				<p style="color: #9F000F"
+					ng-show="eventForm.desc.$invalid && !eventForm.desc.$pristine"
+					class="help-block">Must be filled out</p>
 			</div>
 		</div>
-		<br> <br>
-		<div class="row">
+		<br>
+		<div class="row"
+			ng-class="{ 'has-error' : eventForm.url.$invalid && !eventForm.url.$pristine}">
 			<div class="col-md-1 col-md-offset-2 align-right">Enter URL:</div>
-			<div class="col-md-3" style="width: 100px">
-				<input type="text" ng-model="eventUIObject.url" id="htmlLink"
-					placeholder="Enter URL" size="35">
+			<div class="col-md-2 ">
+				<input type="url" ng-model="eventUIObject.url" name="url"
+					class="form-control">
 			</div>
-			<div class="col-md-6 align-left">
-				<p id="htmlError"></p>
+			<div class="col-md-7 align-left">
+				<p ng-show="eventForm.url.$invalid && !eventForm.url.$pristine"
+					class="help-block">The URL is invalid</p>
 			</div>
 		</div>
 		<br> <br>
@@ -63,17 +69,18 @@
 		<br>
 		<div class="row">
 			<div data-ng-app="" class="col-md-3 col-md-offset-3 ">
-				<input type="checkbox" ng-model="eventUIObject.checkbox1" id="checkBox1"
-					name="1" id="checkBox1"> &nbsp; Guests can invite other
-				guests
+				<input type="checkbox" ng-model="eventUIObject.checkbox1"
+					id="checkBox1" name="1" id="checkBox1"> &nbsp; Guests can
+				invite other guests
 			</div>
 			<div class="col-md-6"></div>
 		</div>
 		<br>
 		<div class="row">
 			<div data-ng-app="" class="col-md-3 col-md-offset-3">
-				<input type="checkbox" ng-model="eventUIObject.checkbox2" id="checkBox2"
-					name="2" id="checkBox2"> &nbsp; Guests can see other guests
+				<input type="checkbox" ng-model="eventUIObject.checkbox2"
+					id="checkBox2" name="2" id="checkBox2"> &nbsp; Guests can
+				see other guests
 			</div>
 			<div class="col-md-6"></div>
 		</div>
@@ -84,28 +91,28 @@
 			</div>
 			<div class="col-md-9"></div>
 		</div>
-		<div class="row">
-			<div class="col-md-9 col-md-offset-3">Street Address 1:</div>
-		</div>
-
-		<div class="row">
-			<div data-ng-app="" class="col-md-2 col-md-offset-3">
-				<input type="text" ng-model="eventUIObject.address1" id="street1"
-					placeholder="Event Address" style="width: 150px;">
+		<br>
+		<div class="row"
+			ng-class="{ 'has-error' : eventForm.address1.$invalid && !eventForm.address1.$pristine}">
+			<div class="col-md-1 col-md-offset-2 align-right">Street
+				Address 1:</div>
+			<div class="col-md-2">
+				<input type="text" ng-model="eventUIObject.address1" name="address1"
+					class="form-control" style="width: 150px" required>
 			</div>
 			<div class="col-md-7 align-left">
-				<p id="street1Error"></p>
+				<p
+					ng-show="eventForm.address1.$invalid && !eventForm.address1.$pristine"
+					class="help-block">The event address is required</p>
 			</div>
 		</div>
+		<br>
 		<div class="row">
-			<div class="col-md-2 col-md-offset-3 line-seperation">Street
+			<div class="col-md-1 col-md-offset-2 align-right">Street
 				Address 2:</div>
-			<div class="col-md-7"></div>
-		</div>
-		<div class="row">
-			<div data-ng-app="" class="col-md-2 col-md-offset-3">
-				<input type="text" ng-model="eventUIObject.address2" id="street2"
-					placeholder="Event Address" style="width: 150px;">
+			<div class="col-md-2">
+				<input type="text" ng-model="eventUIObject.address2" name="address2"
+					class="form-control" style="width: 150px;">
 			</div>
 			<div class="col-md-7 align-left">
 				<p id="street2Error"></p>
@@ -113,404 +120,160 @@
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-md-1 col-md-offset-3">City:</div>
-			<div class="col-md-1 spacing">State:</div>
-			<div class="col-md-1 ">Zipcode:</div>
-			<div class="col-md-1">Country:</div>
-			<div class="col-md-5"></div>
+			<div class="col-md-1 col-md-offset-2 align-right">City:</div>
+			<div
+				ng-class="{ 'has-error' : eventForm.city.$invalid && !eventForm.city.$pristine }">
+				<div class="col-md-1">
+					<input type="text" ng-model="eventUIObject.city" name="city"
+						class="form-control" size="15" required>
+				</div>
+				<div class="col-md-1">
+					<p ng-show="eventForm.city.$invalid && !eventForm.city.$pristine"
+						class="help-block">The event city is required</p>
+				</div>
+
+			</div>
+			<div
+				ng-class="{ 'has-error' : eventForm.state.$invalid && !eventForm.state.$pristine }">
+				<div class="col-md-1 align-right">State:</div>
+				<div class="col-md-1 align-left">
+					<select name="state" ng-model="eventUIObject.state"
+						class="form-control" required>
+						<option value="AL">AL</option>
+						<option value="AK">AK</option>
+						<option value="AZ">AZ</option>
+						<option value="AR">AR</option>
+						<option value="CA">CA</option>
+						<option value="CO">CO</option>
+						<option value="CT">CT</option>
+						<option value="DE">DE</option>
+						<option value="FL">FL</option>
+						<option value="GA">GA</option>
+						<option value="HI">HI</option>
+						<option value="ID">ID</option>
+						<option value="IL">IL</option>
+						<option value="IN">IN</option>
+						<option value="IA">IA</option>
+						<option value="KS">KS</option>
+						<option value="KY">KY</option>
+						<option value="LA">LA</option>
+						<option value="ME">ME</option>
+						<option value="MD">MD</option>
+						<option value="MA">MA</option>
+						<option value="MI">MI</option>
+						<option value="MN">MN</option>
+						<option value="MS">MS</option>
+						<option value="MO">MO</option>
+						<option value="MT">MT</option>
+						<option value="NE">NE</option>
+						<option value="NV">NV</option>
+						<option value="NH">NH</option>
+						<option value="NJ">NJ</option>
+						<option value="NM">NM</option>
+						<option value="NY">NY</option>
+						<option value="NC">NC</option>
+						<option value="ND">ND</option>
+						<option value="OH">OH</option>
+						<option value="OK">OK</option>
+						<option value="OR">OR</option>
+						<option value="PA">PA</option>
+						<option value="RI">RI</option>
+						<option value="SC">SC</option>
+						<option value="SD">SD</option>
+						<option value="TN">TN</option>
+						<option value="TX">TX</option>
+						<option value="UT">UT</option>
+						<option value="VT">VT</option>
+						<option value="VA">VA</option>
+						<option value="WA">WA</option>
+						<option value="WV">WV</option>
+						<option value="WI">WI</option>
+						<option value="WY">WY</option>
+					</select>
+				</div>
+				<div class="col-md-1">
+					<p ng-show="eventForm.state.$invalid && !eventForm.state.$pristine"
+						class="help-block">The event state is required</p>
+				</div>
+
+			</div>
 		</div>
+		<br>
 		<div class="row">
-			<div class="col-md-1 col-md-offset-3">
-				<input type="text" ng-model="eventUIObject.city" id="city"
-					placeholder="Denton" size="15">
-			</div>
+			<div class="col-md-1 col-md-offset-2 align-right">Zipcode:</div>
+			<div
+				ng-class="{ 'has-error' : eventForm.zip.$invalid && !eventForm.zip.$pristine }">
+				<div class="col-md-1">
+					<input type="number" ng-model="eventUIObject.zip" name="zip"
+						class="form-control" size="15" ng-minlength="5" ng-maxlength="5"
+						required>
+				</div>
+				<div class="col-md-1">
+					<p ng-show="eventForm.zip.$invalid && !eventForm.zip.$pristine"
+						class="help-block">The event zipcode is required</p>
+				</div>
 
-			<div class="col-md-1 spacing">
-				<select ng-model="eventUIObject.state" id="states">
-					<option value="">State</option>
-					<option value="AL">AL</option>
-					<option value="AK">AK</option>
-					<option value="AZ">AZ</option>
-					<option value="AR">AR</option>
-					<option value="CA">CA</option>
-					<option value="CO">CO</option>
-					<option value="CT">CT</option>
-					<option value="DE">DE</option>
-					<option value="FL">FL</option>
-					<option value="GA">GA</option>
-					<option value="HI">HI</option>
-					<option value="ID">ID</option>
-					<option value="IL">IL</option>
-					<option value="IN">IN</option>
-					<option value="IA">IA</option>
-					<option value="KS">KS</option>
-					<option value="KY">KY</option>
-					<option value="LA">LA</option>
-					<option value="ME">ME</option>
-					<option value="MD">MD</option>
-					<option value="MA">MA</option>
-					<option value="MI">MI</option>
-					<option value="MN">MN</option>
-					<option value="MS">MS</option>
-					<option value="MO">MO</option>
-					<option value="MT">MT</option>
-					<option value="NE">NE</option>
-					<option value="NV">NV</option>
-					<option value="NH">NH</option>
-					<option value="NJ">NJ</option>
-					<option value="NM">NM</option>
-					<option value="NY">NY</option>
-					<option value="NC">NC</option>
-					<option value="ND">ND</option>
-					<option value="OH">OH</option>
-					<option value="OK">OK</option>
-					<option value="OR">OR</option>
-					<option value="PA">PA</option>
-					<option value="RI">RI</option>
-					<option value="SC">SC</option>
-					<option value="SD">SD</option>
-					<option value="TN">TN</option>
-					<option value="TX">TX</option>
-					<option value="UT">UT</option>
-					<option value="VT">VT</option>
-					<option value="VA">VA</option>
-					<option value="WA">WA</option>
-					<option value="WV">WV</option>
-					<option value="WI">WI</option>
-					<option value="WY">WY</option>
-				</select>
 			</div>
+			<div
+				ng-class="{ 'has-error' : eventForm.country.$invalid && !eventForm.country.$pristine }">
+				<div class="col-md-1 align-right">Country:</div>
+				<div class="col-md-1 align-left">
+					<select name="country" ng-model="eventUIObject.country"
+						class="form-control" required>
+						<option value="United States">United States</option>
+						<option value="United Kingdom">United Kingdom</option>
+					</select>
+				</div>
+				<div class="col-md-1">
+					<p
+						ng-show="eventForm.country.$invalid && !eventForm.country.$pristine"
+						class="help-block">The event country is required</p>
+				</div>
 
-			<div class="col-md-1 ">
-				<input type="text" ng-model="eventUIObject.zip" id="zipcode"
-					placeholder="76201" size="5">
 			</div>
-
-			<div class="col-md-1">
-				<select ng-model="eventUIObject.country" id="country">
-					<option value="">Country</option>
-					<option value="United States">United States</option>
-					<option value="United Kingdom">United Kingdom</option>
-				</select>
-			</div>
-			<div class="col-md-2 align-center">
-				<p id="locError"></p>
-			</div>
-			<div class="cold-md-3"></div>
 		</div>
 		<br> <br>
 		<div class="row">
-			<div class="col-md-3 align-right">
+			<div class="col-md-2 align-right">
 				<label>Event Date and Time</label>
 			</div>
-			<div class="col-md-5"></div>
+			<div class="col-md-10"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-2 col-md-offset-3 align-left">Event Starting
-				Date:</div>
-			<div class="col-md-2 align-left">Event Start Time:</div>
-			<div class="col-md-5"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-2 col-md-offset-3">
-				<select ng-model="eventUIObject.startMonth" id="month">
-					<option value=""></option>
-					<option value="01">01</option>
-					<option value="02">02</option>
-					<option value="03">03</option>
-					<option value="04">04</option>
-					<option value="05">05</option>
-					<option value="06">06</option>
-					<option value="07">07</option>
-					<option value="08">08</option>
-					<option value="09">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-				</select> / <select ng-model="eventUIObject.startDay" id="day">
-					<option value=""></option>
-					<option value="01">01</option>
-					<option value="02">02</option>
-					<option value="03">03</option>
-					<option value="04">04</option>
-					<option value="05">05</option>
-					<option value="06">06</option>
-					<option value="07">07</option>
-					<option value="08">08</option>
-					<option value="09">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-					<option value="24">24</option>
-					<option value="25">25</option>
-					<option value="26">26</option>
-					<option value="27">27</option>
-					<option value="28">28</option>
-					<option value="29">29</option>
-					<option value="30">30</option>
-					<option value="31">31</option>
-				</select> / <select ng-model="eventUIObject.startYear" id="year">
-					<option value=""></option>
-					<option value="2014">2014</option>
-					<option value="2015">2015</option>
-					<option value="2016">2016</option>
-					<option value="2017">2017</option>
-					<option value="2018">2018</option>
-				</select>
-			</div>
-			<div class="col-md-3">
-				<select ng-model="eventUIObject.startHour" id="hour">
-					<option value=""></option>
-					<option value="1">01</option>
-					<option value="2">02</option>
-					<option value="3">03</option>
-					<option value="4">04</option>
-					<option value="5">05</option>
-					<option value="6">06</option>
-					<option value="7">07</option>
-					<option value="8">08</option>
-					<option value="9">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-				</select> : <select ng-model="eventUIObject.startMinute" id="minute">
-					<option value=""></option>
-					<option value="0">00</option>
-					<option value="1">01</option>
-					<option value="2">02</option>
-					<option value="3">03</option>
-					<option value="4">04</option>
-					<option value="5">05</option>
-					<option value="6">06</option>
-					<option value="7">07</option>
-					<option value="8">08</option>
-					<option value="9">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-					<option value="24">24</option>
-					<option value="25">25</option>
-					<option value="26">26</option>
-					<option value="27">27</option>
-					<option value="28">28</option>
-					<option value="29">29</option>
-					<option value="30">30</option>
-					<option value="31">31</option>
-					<option value="32">32</option>
-					<option value="33">33</option>
-					<option value="34">34</option>
-					<option value="35">35</option>
-					<option value="36">36</option>
-					<option value="37">37</option>
-					<option value="38">38</option>
-					<option value="39">39</option>
-					<option value="40">40</option>
-					<option value="41">41</option>
-					<option value="42">42</option>
-					<option value="40">43</option>
-					<option value="44">44</option>
-					<option value="45">45</option>
-					<option value="46">46</option>
-					<option value="47">47</option>
-					<option value="48">48</option>
-					<option value="49">49</option>
-					<option value="50">50</option>
-					<option value="51">51</option>
-					<option value="52">52</option>
-					<option value="53">53</option>
-					<option value="54">54</option>
-					<option value="55">55</option>
-					<option value="56">56</option>
-					<option value="57">57</option>
-					<option value="58">58</option>
-					<option value="59">59</option>
-					<option value="60">60</option>
-				</select> &nbsp; <select ng-model="eventUIObject.startMeridiem" id="clock">
-					<option value=""></option>
-					<option value="am">A.M.</option>
-					<option value="pm">P.M.</option>
-				</select>
-			</div>
-			<div class="col-md-4 align-left">
-				<p id="startTimeError"></p>
+			<div
+				ng-class="{ 'has-error' : eventForm.startDate.$invalid && !eventForm.startDate.$pristine }">
+				<div class="col-md-1 col-md-offset-2 align-right">Event
+					Starting Date:</div>
+				<div class="col-md-2 ">
+					<input type="datetime-local" ng-model="startDate" name="startDate"
+						class="form-control" required></input>
+				</div>
+				<div class="col-md-1">
+					<p
+						ng-show="eventForm.startDate.$invalid && !eventForm.startDate.$pristine"
+						class="help-block">The event start date is required</p>
+				</div>
 			</div>
 		</div>
 
 		<br> <br>
 		<div class="row">
-			<div class="col-md-2 col-md-offset-3 align-left">Event Ending
-				Date:</div>
-			<div class="col-md-2 align-left">Event End Time:</div>
-			<div class="col-md-5"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-2 col-md-offset-3">
-				<select ng-model="eventUIObject.endMonth" id="eMonth">
-					<option value=""></option>
-					<option value="01">01</option>
-					<option value="02">02</option>
-					<option value="03">03</option>
-					<option value="04">04</option>
-					<option value="05">05</option>
-					<option value="06">06</option>
-					<option value="07">07</option>
-					<option value="08">08</option>
-					<option value="09">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-				</select> / <select ng-model="eventUIObject.endDay" id="eDay">
-					<option value=""></option>
-					<option value="01">01</option>
-					<option value="02">02</option>
-					<option value="03">03</option>
-					<option value="04">04</option>
-					<option value="05">05</option>
-					<option value="06">06</option>
-					<option value="07">07</option>
-					<option value="08">08</option>
-					<option value="09">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-					<option value="24">24</option>
-					<option value="25">25</option>
-					<option value="26">26</option>
-					<option value="27">27</option>
-					<option value="28">28</option>
-					<option value="29">29</option>
-					<option value="30">30</option>
-					<option value="31">31</option>
-				</select> / <select ng-model="eventUIObject.endYear" id="eYear">
-					<option value=""></option>
-					<option value="2014">2014</option>
-					<option value="2015">2015</option>
-					<option value="2016">2016</option>
-					<option value="2017">2017</option>
-					<option value="2018">2018</option>
-				</select>
-			</div>
-			<div class="col-md-3">
-				<select ng-model="eventUIObject.endHour" id="eHour">
-					<option value=""></option>
-					<option value="1">01</option>
-					<option value="2">02</option>
-					<option value="3">03</option>
-					<option value="4">04</option>
-					<option value="5">05</option>
-					<option value="6">06</option>
-					<option value="7">07</option>
-					<option value="8">08</option>
-					<option value="9">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-				</select> : <select ng-model="eventUIObject.endMinute" id="eMinute">
-					<option value=""></option>
-					<option value="0">00</option>
-					<option value="1">01</option>
-					<option value="2">02</option>
-					<option value="3">03</option>
-					<option value="4">04</option>
-					<option value="5">05</option>
-					<option value="6">06</option>
-					<option value="7">07</option>
-					<option value="8">08</option>
-					<option value="9">09</option>
-					<option value="10">10</option>
-					<option value="11">11</option>
-					<option value="12">12</option>
-					<option value="13">13</option>
-					<option value="14">14</option>
-					<option value="15">15</option>
-					<option value="16">16</option>
-					<option value="17">17</option>
-					<option value="18">18</option>
-					<option value="19">19</option>
-					<option value="20">20</option>
-					<option value="21">21</option>
-					<option value="22">22</option>
-					<option value="23">23</option>
-					<option value="24">24</option>
-					<option value="25">25</option>
-					<option value="26">26</option>
-					<option value="27">27</option>
-					<option value="28">28</option>
-					<option value="29">29</option>
-					<option value="30">30</option>
-					<option value="31">31</option>
-					<option value="32">32</option>
-					<option value="33">33</option>
-					<option value="34">34</option>
-					<option value="35">35</option>
-					<option value="36">36</option>
-					<option value="37">37</option>
-					<option value="38">38</option>
-					<option value="39">39</option>
-					<option value="40">40</option>
-					<option value="41">41</option>
-					<option value="42">42</option>
-					<option value="43">43</option>
-					<option value="44">44</option>
-					<option value="45">45</option>
-					<option value="46">46</option>
-					<option value="47">47</option>
-					<option value="48">48</option>
-					<option value="49">49</option>
-					<option value="50">50</option>
-					<option value="51">51</option>
-					<option value="52">52</option>
-					<option value="53">53</option>
-					<option value="54">54</option>
-					<option value="55">55</option>
-					<option value="56">56</option>
-					<option value="57">57</option>
-					<option value="58">58</option>
-					<option value="59">59</option>
-					<option value="60">60</option>
-				</select> &nbsp; <select ng-model="eventUIObject.endMeridiem" id="eClock">
-					<option value=""></option>
-					<option value="am">A.M.</option>
-					<option value="pm">P.M.</option>
-				</select>
-			</div>
-			<div class="col-md-4 align-left">
-				<p id="endTimeError"></p>
+			<div
+				ng-class="{ 'has-error' : eventForm.endDate.$invalid && !eventForm.endDate.$pristine }">
+				<div class="col-md-1 col-md-offset-2 align-right">Event
+					Starting Date:</div>
+				<div class="col-md-2 ">
+					<input type="datetime-local" ng-model="endDate" name="endDate"
+						class="form-control" required></input>
+				</div>
+				<div class="col-md-1">
+					<p
+						ng-show="eventForm.endDate.$invalid && !eventForm.endDate.$pristine"
+						class="help-block">The event start date is required</p>
+				</div>
 			</div>
 		</div>
+
 		<br> <br>
 		<div>
 			<form>
@@ -519,20 +282,21 @@
 						<label>Add Event Attendees: </label>
 					</div>
 					<div class="col-md-9">
-						<p id="top-error"></p>
+						<p id="attendeeError"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-2 col-md-offset-3">First Name:</div>
 					<div class="col-md-7"></div>
 				</div>
-				<div class="row">
+				<div class="row" ng-class="{ 'has-error' : eventForm.firstName.$invalid && !eventForm.firstName.$pristine }">
 					<div class="col-md-2 col-md-offset-3">
-						<input type="text" ng-model="attendee.firstName"
-							id="attendeeFirstName" placeholder="First Name" />
+						<input type="text" class="form-control" ng-model="attendee.firstName" name="firstName" required />
 					</div>
 					<div class="col-md-7">
-						<p id="attendeeFError"></p>
+						<p
+						ng-show="eventForm.firstName.$invalid && !eventForm.firstName.$pristine"
+						class="help-block">Attendee first name Required</p>
 					</div>
 				</div>
 				<br>
@@ -540,33 +304,37 @@
 					<div class="col-md-2 col-md-offset-3">Last Name:</div>
 					<div class="col-md-7"></div>
 				</div>
-				<div class="row">
+				<div class="row" ng-class="{ 'has-error' : eventForm.lastName.$invalid && !eventForm.lastName.$pristine }">
 					<div class="col-md-2 col-md-offset-3">
-						<input type="text" ng-model="attendee.lastName"
-							id="attendeeLastName" placeholder="Last Name" />
+						<input type="text" class="form-control" ng-model="attendee.lastName"
+							name="lastName" />
 					</div>
 					<div class="col-md-7">
-						<p id="attendeeLError"></p>
+						<p
+						ng-show="eventForm.lastName.$invalid && !eventForm.lastName.$pristine"
+						class="help-block">Attendee last name Required</p>
 					</div>
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-md-2 col-md-offset-3">Attendee Email:</div>
 				</div>
-				<div class="row">
+				<div class="row" ng-class="{ 'has-error' : eventForm.email.$invalid && !eventForm.email.$pristine }">
 					<div class="col-md-3 col-md-offset-3">
-						<input type="text" id="attendeeEmail" ng-model="attendee.email"
-							placeholder="johnnyappleseed@example.com" size="35" />
+						<input type="email" class="form-control" name="email" ng-model="attendee.email"
+							 size="35" />
 					</div>
 					<div class="col-md-6">
-						<p id="attendeeEmailError"></p>
+						<p
+						ng-show="eventForm.email.$invalid && !eventForm.email.$pristine"
+						class="help-block">Attendee email Required</p>
 					</div>
 				</div>
 				<br>
 				<div class="row">
 					<div class="col-md-2 col-md-offset-3">
-						<button id="attendeeButton" class="btn btn-primary"onclick="addAttendee()">Add
-							Attendee</button>
+						<button id="attendeeButton" class="btn btn-primary"
+							onclick="addAttendee()">Add Attendee</button>
 					</div>
 					<div class="col-md-7"></div>
 				</div>
@@ -595,9 +363,9 @@
 		<br> <br>
 		<div class="row">
 			<div class="col-md-1 col-md-offset-9" style="margin-bottom: 10px;">
-				<input type="submit" class="btn btn-primary" ng-disabled="eventForm.$invalid" value="Submit" />
+				<input type="submit" class="btn btn-primary"
+					ng-disabled="eventForm.$invalid" value="Submit" />
 			</div>
 			<div class="col-md-2"></div>
 		</div>
-    </div>
 </form>

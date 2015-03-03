@@ -104,6 +104,7 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 			};
 
 			$scope.submit = function(isValid) {
+				$scope.submitted = true;
 				if(isValid){
 					$state.go('eventResults');
 				}
