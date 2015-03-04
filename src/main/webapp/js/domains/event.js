@@ -11,30 +11,12 @@ function Event(eventJsonConfig) {
     var state = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.state))? eventJsonConfig.state: null;
     var zip = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.zip))? eventJsonConfig.zip: null;
     var country = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.country))? eventJsonConfig.country: null;
-    var startMonth = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMonth))? eventJsonConfig.startMonth: null;
-    var startDay = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startDay))? eventJsonConfig.startDay: null;
-    var startYear = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startYear))? eventJsonConfig.startYear: null;
-    var startHour = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startHour))? eventJsonConfig.startHour: null;
-    var startMinute = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMinute))? eventJsonConfig.startMinute: null;
-    var startMeridiem = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startMeridiem))? eventJsonConfig.startMeridiem: null;
-    var endMonth = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMonth))? eventJsonConfig.endMonth: null;
-    var endDay = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endDay))? eventJsonConfig.endDay: null;
-    var endYear = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endYear))? eventJsonConfig.endYear: null;
-    var endHour = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endHour))? eventJsonConfig.endHour: null;
-    var endMinute  = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMinute))? eventJsonConfig.endMinute: null;
-    var endMeridiem  = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.endMeridiem))? eventJsonConfig.endMeridiem: null;
+    var startDate = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startDate))? eventJsonConfig.startDate : null;
+    var endDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.endDate))? eventJsonConfig.endDate : null;
 	var attendeeArray = (Object.isDefined(eventJsonConfig) && Object.isArray(eventJsonConfig.attendeeArray))? eventJsonConfig.attendeeArray: [];
 	
 	this.getAttendeeArray  = function() {
 		return attendeeArray;
-	};
-	
-	this.addToAttendeeArray  = function(attendee) {
-		attendeeArray.push(attendee);
-	};
-	
-	this.removeFromAttendeeArray = function(index) {
-		attendeeArray.splice(index);
 	};
 	
 	this.getAttendee = function(index){
@@ -69,19 +51,19 @@ function Event(eventJsonConfig) {
 		return url;
 	};
 	
-	this.setStreet1 = function(input) {
+	this.setAddress1 = function(input) {
 		address1 = input;
 	};
 	
-	this.getStreet1 = function() {
+	this.getAddress1= function() {
 		return address1;
 	};
 	
-	this.setStreet2 = function(input) {
+	this.setAddress2 = function(input) {
 		address2 = input;
 	};
 
-	this.getStreet2 = function() {
+	this.getAddress2 = function() {
 		return address2;
 	};
 	
@@ -117,101 +99,22 @@ function Event(eventJsonConfig) {
 		return country;
 	};
 	
-	this.setStartMonth = function(input) {
-		startMonth = input;
-	};
-
-	this.getStartMonth = function() {
-		return startMonth;
-	};
+	this.getStartDate = function(){
+		return startDate;
+	}
 	
-	this.setStartDay = function(input) {
-		startDay = input;
-	};
-
-	this.getStartDay = function() {
-		return startDay;
-	};
+	this.setStartDate = function(date) {
+		startDate = date;
+	}
 	
-	this.setStartYear = function(input) {
-		startYear = input;
-	};
-
-	this.getStartYear = function() {
-		return startYear;
-	};
+	this.getEndDate = function(){
+		return endDate;
+	}
 	
-	this.setStartHour = function(input) {
-		startHour = input;
-	};
-
-	this.getStartHour = function() {
-		return startHour;
-	};
+	this.setEndDate = function(date) {
+		endDate = date;
+	}
 	
-	this.setStartMinute = function(input) {
-		startMinute = input;
-	};
-
-	this.getStartMinute = function() {
-		return startMinute;
-	};
-	
-	this.setStartMeridiem = function(input) {
-		startMeridiem = input;
-	};
-
-	this.getStartMeridiem = function() {
-		return startMeridiem;
-	};
-	
-	this.setEndMonth = function(input) {
-		endMonth = input;
-	};
-
-	this.getEndMonth = function() {
-		return endMonth;
-	};
-	
-	this.setEndDay = function(input) {
-		endDay = input;
-	};
-
-	this.getEndDay = function() {
-		return endDay;
-	};
-	
-	this.setEndYear = function(input) {
-		endYear = input;
-	};
-
-	this.getEndYear = function() {
-		return endYear;
-	};
-	
-	this.setEndHour = function(input) {
-		endHour = input;
-	};
-
-	this.getEndHour = function() {
-		return endHour;
-	};
-	
-	this.setEndMinute = function(input) {
-		endMinute = input;
-	};
-
-	this.getEndMinute = function() {
-		return endMinute;
-	};
-	
-	this.setEndMeridiem = function(input) {
-		endMeridiem = input;
-	};
-
-	this.getEndMeridiem = function() {
-		return endMeridiem;
-	};
 
     this.getAttendeesAsJSON = function (serializeUIProperties) {
     	var json = "[";
@@ -237,18 +140,8 @@ function Event(eventJsonConfig) {
             jsonState = (Object.isDefined(state))? "\"" + state + "\"": null,
             jsonZip = (Object.isDefined(zip))? zip: null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"": null,
-            jsonStartMonth = (Object.isDefined(startMonth))? startMonth: null,
-            jsonStartDay = (Object.isDefined(startDay))? startDay: null,
-            jsonStartYear = (Object.isDefined(startYear))? startYear: null,
-            jsonStartHour = (Object.isDefined(startHour))? startHour: null,
-            jsonStartMinute = (Object.isDefined(startMinute))? startMinute: null,
-            jsonStartMeridiem = (Object.isDefined(startMeridiem))? "\"" + startMeridiem + "\"": null,
-            jsonEndMonth = (Object.isDefined(endMonth))? endMonth: null,
-            jsonEndDay = (Object.isDefined(endDay))? endDay: null,
-            jsonEndYear = (Object.isDefined(endYear))? endYear: null,
-            jsonEndHour = (Object.isDefined(endHour))? endHour: null,
-            jsonEndMinute = (Object.isDefined(endMinute))? endMinute: null,
-            jsonEndMeridiem = (Object.isDefined(endMeridiem))? "\"" + endMeridiem + "\"": null,
+            jsonStartDate = (Object.isDate(startDate)) ? "\"" + startDate + "\"": null,		
+            jsonEndDate = (Object.isDate(endDate))? "\"" + endDate + "\"": null,
             jsonAttendeeArray = (Object.isArray(attendeeArray))? "\"attendeeArray\":" + this.getAttendeesAsJSON(serializeUIProperties) : "[]",
             json =  "{" +
                 "\"name\": " + jsonName + "," +
@@ -262,18 +155,8 @@ function Event(eventJsonConfig) {
                 "\"state\": "+ jsonState  + "," +
                 "\"zip\": "+ jsonZip  + "," +
                 "\"country\": "+ jsonCountry  + "," +
-                "\"startMonth\": "+ jsonStartMonth  + "," +
-                "\"startDay\": "+ jsonStartDay  + "," +
-                "\"startYear\": "+ jsonStartYear  + "," +
-                "\"startHour\": "+ jsonStartHour  + "," +
-                "\"startMinute\": "+ jsonStartMinute  + "," +
-                "\"startMeridiem\": "+ jsonStartMeridiem  + "," +
-                "\"endMonth\": "+ jsonEndMonth  + "," +
-                "\"endDay\": "+ jsonEndDay  + "," +
-                "\"endYear\": "+ jsonEndYear  + "," +
-                "\"endHour\": "+ jsonEndHour  + "," +
-                "\"endMinute\": "+ jsonEndMinute  + "," +
-                "\"endMeridiem\": "+ jsonEndMeridiem  + "," +
+                "\"startDate\": "+ jsonStartDate  + "," +
+                "\"endDate\": "+ jsonEndDate  + "," +
                 jsonAttendeeArray +
                 "}";
         return json;
@@ -286,9 +169,22 @@ function Event(eventJsonConfig) {
     };
     
     this.toString = function () {
-        return "Survey {id: " + id + ", name: " + name + ", vistaTitle: " + vistaTitle + ", description: " + description + ", version: " + version +
-            ", displayOrder: " + displayOrder + ", mha: " + mha + ", mhaTestName: " + mhaTestName + ", mhaResultGroupIen: " + mhaResultGroupIen +
-            ", clinicalReminder" + clinicalReminder + ", markedForDeletion: " + markedForDeletion +
-            ", visible: " + visible + ", createdDate: " + createdDate + "}";
+    	
+    	return "Event {" +
+        "name: " + name + "," +
+        "description: " + description  + "," +
+        "url: " +  url  + "," +
+        "checkbox1: " +  checkbox1  + "," +
+        "checkbox2: " +  checkbox2  + "," +
+        "address1: "+ address1  + "," +
+        "ddress2: "+ address2  + "," +
+        "city: "+ city  + "," +
+        "state: "+ state  + "," +
+        "zip: "+ zip  + "," +
+        "country: "+ country  + "," +
+        "startDate: "+ startDate  + "," +
+        "endDate: "+ endDate  + "," +
+        "attendees: " + attendeeArray +
+        "}";
     };
 }

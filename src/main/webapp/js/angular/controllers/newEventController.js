@@ -1,6 +1,7 @@
 myFamilyApp.controller('newEventController', [ '$scope', '$state',
 		function($scope, $state) {
             var event = new Event();
+            
             $scope.eventUIObject = event.toUIObject();
             $scope.attendeeList = [];
 			
@@ -54,60 +55,23 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 			$scope.getCountry = function() {
 				return $scope.eventUIObject.country;
 			};
-
-			$scope.getStartMonth = function() {
-				return $scope.eventUIObject.startMonth;
+			
+			$scope.getStartDate = function() {
+				var date = new Date($scope.eventUIObject.startDate);
+				date.setHours(date.getHours() - 6);
+				return date;
 			};
-
-			$scope.getStartDay = function() {
-				return $scope.eventUIObject.startDay;
-			};
-
-			$scope.getStartYear = function() {
-				return $scope.eventUIObject.startYear;
-			};
-
-			$scope.getStartHour = function() {
-				return $scope.eventUIObject.startHour;
-			};
-
-			$scope.getStartMinute = function() {
-				return $scope.eventUIObject.startMinute;
-			};
-
-			$scope.getStartMeridiem = function() {
-				return $scope.eventUIObject.startMeridiem;
-			};
-
-			$scope.getEndMonth = function() {
-				return $scope.eventUIObject.endMonth;
-			};
-
-			$scope.getEndDay = function() {
-				return $scope.eventUIObject.endDay;
-			};
-
-			$scope.getEndYear = function() {
-				return $scope.eventUIObject.endYear;
-			};
-
-			$scope.getEndHour = function() {
-				return $scope.eventUIObject.endHour;
-			};
-
-			$scope.getEndMinute = function() {
-				return $scope.eventUIObject.endMinute;
-			};
-
-			$scope.getEndMeridiem = function() {
-				return $scope.eventUIObject.endMeridiem;
+			
+			$scope.getEndDate = function() {
+				var date = new Date($scope.eventUIObject.endDate);
+				date.setHours(date.getHours() - 6);
+				return date;
 			};
 
 			$scope.submit = function(isValid) {
-				$scope.submitted = true;
 				if(isValid){
-					$state.go('eventResults');
+					$state.go('eventResults', {});
 				}
-			}
+			};
 
 		} ]);

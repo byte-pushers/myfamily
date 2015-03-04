@@ -22,18 +22,8 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 			$scope.eventAddress2 = $scope.getAddress2();
 			$scope.eventZip = $scope.getZip();
 			$scope.eventCountry = $scope.getCountry();
-			$scope.eventStartMonth = $scope.getStartMonth();
-			$scope.eventStartYear = $scope.getStartYear();
-			$scope.eventStartDay = $scope.getStartDay();
-			$scope.eventStartHour = $scope.getStartHour();
-			$scope.eventStartMinute = $scope.getStartMinute();
-			$scope.eventStartMeridiem = $scope.getStartMeridiem();
-			$scope.eventEndMonth = $scope.getEndMonth();
-			$scope.eventEndYear = $scope.getEndYear();
-			$scope.eventEndDay = $scope.getEndDay();
-			$scope.eventEndHour = $scope.getEndHour();
-			$scope.eventEndMinute = $scope.getEndMinute();
-			$scope.eventEndMeridiem = $scope.getEndMeridiem();
+			$scope.eventStartDate = $scope.getStartDate();
+			$scope.eventEndDate = $scope.getEndDate();
 		}
 	})
 });
