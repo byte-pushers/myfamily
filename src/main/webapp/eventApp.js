@@ -6,10 +6,11 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider.state('createEvent', {
 		url : "/createEvent",
-		templateUrl : "events.ng.html"
-	}).state('eventResults', {
+		templateUrl : "stages/events.ng.html"
+	})
+	.state('eventResults', {
 		url : "/eventResults",
-		templateUrl : "eventResults.ng.html",
+		templateUrl : "stages/eventResults.ng.html",
 		controller : function($scope) {
             $scope.eventName = $scope.getName();
 			$scope.eventDescription = $scope.getDescription();

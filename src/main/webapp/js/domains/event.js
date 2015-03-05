@@ -11,7 +11,7 @@ function Event(eventJsonConfig) {
     var state = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.state))? eventJsonConfig.state: null;
     var zip = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.zip))? eventJsonConfig.zip: null;
     var country = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.country))? eventJsonConfig.country: null;
-    var startDate = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.startDate))? eventJsonConfig.startDate : null;
+    var startDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.startDate))? eventJsonConfig.startDate : null;
     var endDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.endDate))? eventJsonConfig.endDate : null;
 	var attendeeArray = (Object.isDefined(eventJsonConfig) && Object.isArray(eventJsonConfig.attendeeArray))? eventJsonConfig.attendeeArray: [];
 	

@@ -1,4 +1,4 @@
-<form name="eventForm" ng-submit="submit(eventForm.$valid)" novalidate>
+<form name="eventForm">
 	<div>
 		<div class="row">
 			<div class="col-md-12">
@@ -14,7 +14,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3 align-right">
-				<b>General Event Information</b>
+				<b>General Event Information:</b>
 			</div>
 			<div class="col-md-9"></div>
 		</div>
@@ -84,7 +84,7 @@
 		<br> <br>
 		<div class="row">
 			<div class="col-md-3 align-right">
-				<label>Event Location </label>
+				<label>Event Location: </label>
 			</div>
 			<div class="col-md-9"></div>
 		</div>
@@ -214,14 +214,14 @@
 			<div
 				ng-class="{ 'has-error' : eventForm.country.$invalid && !eventForm.country.$pristine }">
 				<div class="col-md-1 align-right">Country:</div>
-				<div class="col-md-1 align-left">
+				<div class="col-md-2 align-left">
 					<select name="country" ng-model="eventUIObject.country"
 						class="form-control" required>
 						<option value="United States">United States</option>
 						<option value="United Kingdom">United Kingdom</option>
 					</select>
 				</div>
-				<div class="col-md-1">
+				<div class="col-md-4">
 					<p
 						ng-show="eventForm.country.$invalid && !eventForm.country.$pristine"
 						class="help-block">The event country is required</p>
@@ -230,9 +230,10 @@
 			</div>
 		</div>
 		<br> <br>
+		
 		<div class="row">
 			<div class="col-md-2 align-right">
-				<label>Event Date and Time</label>
+				<label>Event Date and Time:</label>
 			</div>
 			<div class="col-md-10"></div>
 		</div>
@@ -242,48 +243,107 @@
 				<div class="col-md-1 col-md-offset-2 align-right">Event
 					Starting Date:</div>
 				<div class="col-md-2">
-					<input type="datetime-local" ng-model="eventUIObject.startDate" name="startDate"
-						class="form-control" required></input>
+					<input type="datetime-local" ng-model="eventUIObject.startDate"
+						name="startDate" class="form-control" required></input>
 				</div>
 				<div class="col-md-9 align-left"></div>
-					<p
-						 ng-show="eventForm.startDate.$invalid && !eventForm.startDate.$pristine"
-						class="help-block">The event start date is required</p>
-				</div>
+				<p
+					ng-show="eventForm.startDate.$invalid && !eventForm.startDate.$pristine"
+					class="help-block">The event start date is required</p>
 			</div>
 		</div>
+	
 
-		<br> <br>
-		<div class="row">
-			<div
-				ng-class="{ 'has-error' : eventForm.endDate.$invalid && !eventForm.endDate.$pristine }">
-				<div class="col-md-1 col-md-offset-2 align-right">Event
-					Starting Date:</div>
-				<div class="col-md-2">
-					<input type="datetime-local" ng-model="eventUIObject.endDate" name="endDate"
-						class="form-control" required></input>
-				</div>
-				<div class="col-md-9 align-left">
-					<p
-						ng-show="eventForm.endDate.$invalid && !eventForm.endDate.$pristine"
-						class="help-block">The event start date is required</p>
-				</div>
-			</div>
-		</div>
-
-		<br> <br>
-		<div>
-			
-		</div>
-
-		<br> <br>
-		<div class="row">
-			<div class="col-md-1 col-md-offset-9" style="margin-bottom: 10px;">
-				<input type="submit" class="btn btn-primary"
-					ng-disabled="eventForm.$invalid" value="Submit" />
-			</div>
+	<br> <br>
+	<div class="row">
+		<div
+			ng-class="{ 'has-error' : eventForm.endDate.$invalid && !eventForm.endDate.$pristine }">
+			<div class="col-md-1 col-md-offset-2 align-right">Event
+				Ending Date:</div>
 			<div class="col-md-2">
-				<a ui-sref="eventResults">Event Results</a>
+				<input type="datetime-local" ng-model="eventUIObject.endDate"
+					name="endDate" class="form-control" required></input>
+			</div>
+			<div class="col-md-9 align-left">
+				<p
+					ng-show="eventForm.endDate.$invalid && !eventForm.endDate.$pristine"
+					class="help-block">The event end date is required</p>
 			</div>
 		</div>
-</form>
+	</div>
+	</form>
+	<br> <br>
+	<form name="attendeeForm">
+	<div class="row">
+					<div class="col-md-3 align-right">
+						<label>Add Attendees: </label>
+					</div>
+					<div class="col-md-9">
+						<p id="attendeeError"></p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">First Name:</div>
+					<div class="col-md-7"></div>
+				</div>
+				<div class="row" ng-class="{ 'has-error' : attendeeForm.name.$invalid && !attendeeForm.name.$pristine }">
+					<div class="col-md-2 col-md-offset-3">
+						<input type="text" class="form-control" ng-model="attendee.name" name="name" required />
+					</div>
+					<div class="col-md-7">
+						<p
+						ng-show="attendeeForm.name.$invalid && !attendeeForm.name.$pristine"
+						class="help-block">Attendee name Required</p>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">Attendee Email:</div>
+				</div>
+				<div class="row" ng-class="{ 'has-error' : attendeeForm.email.$invalid && !attendeeForm.email.$pristine }">
+					<div class="col-md-2 col-md-offset-3">
+						<input type="email" class="form-control" name="email" ng-model="attendee.email"
+							 size="35" />
+					</div>
+					<div class="col-md-7">
+						<p
+						ng-show="attendeeForm.email.$invalid && !attendeeForm.email.$pristine"
+						class="help-block">Attendee email Required</p>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-2 col-md-offset-3">
+						<input type="button" class="btn btn-danger"
+							ng-click="displayTest()" value="Add Attendee"/>
+					</div>
+					<div class="col-md-7"></div>
+				</div>
+			<br>
+			<div class="row">
+				<div class="col-md-2 col-md-offset-3 align-left">Event
+					Attendee List:</div>
+				<div class="col-md-7"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-3">
+					<table border=1 id="attendeeTable" style="width: 500px">
+						<tr>
+							<td><b>#</b></td>
+							<td><b>Name</b></td>
+							<td><b>Email</b></td>
+							<td><b>Action</b></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-5"></div>
+			</div>
+	<br> <br>
+	</form>
+	<div class="row">
+		<div class="col-md-1 col-md-offset-9" style="margin-bottom: 10px;">
+			<input type="button" name="submitButton" class="btn btn-primary"
+				ng-disabled="eventForm.$invalid" ng-click="submit(eventForm.$valid)" value="Submit" />
+		</div>
+		<div class="col-md-2"></div>
+	</div>

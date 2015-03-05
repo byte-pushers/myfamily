@@ -1,16 +1,21 @@
 myFamilyApp.controller('newEventController', [ '$scope', '$state',
 		function($scope, $state) {
             var event = new Event();
+            var attendee = new Attendee();
             
             $scope.eventUIObject = event.toUIObject();
+            $scope.attendeeUIObject = attendee.toUIObject();
             $scope.attendeeList = [];
-			
 
 			$scope.attendee = {
 				firstName : '',
 				lastName : '',
 				email : ''
 			};
+			
+			$scope.displayTest = function() {
+				console.log("test");
+			}
 
 			$scope.getName = function() {
 				return $scope.eventUIObject.name;
@@ -67,6 +72,10 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 				date.setHours(date.getHours() - 6);
 				return date;
 			};
+			
+			this.getForm = function(){
+				return document.getElementById("eventForm");
+			}
 
 			$scope.submit = function(isValid) {
 				if(isValid){

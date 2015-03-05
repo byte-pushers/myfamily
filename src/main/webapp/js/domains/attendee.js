@@ -1,48 +1,46 @@
-function Attendee(firstName, lastName, email) {
+function Attendee(attendeeJsonConfig) {
+	
+	var name = (Object.isDefined(attendeeJsonConfig) && Object.isDefined(attendeeJsonConfig.name))? eventJsonConfig.name: null;
+    var email = (Object.isDefined(attendeeJsonConfig) && Object.isDefined(attendeeJsonConfig.email))? eventJsonConfig.email: null;
 
-	var attendeeFirstName = firstName, 
-		attendeeLastName = lastName,
-		attendeeEmail = email;
-
-	function setFirstName(firstName) {
-		attendeeFirstName = firstName;
+	this.setName = function(n) {
+		name = n;
 	}
-
-	function setLastName(lastName) {
-		attendeeLastName = lastName;
+	
+	this.getName = function() {
+		return name;
 	}
 
 	this.getEmail = function() {
-		return attendeeEmail;
+		return email;
 	};
 	
-	this.setEmail = function(emailAddress) {
-		attendeeEmail = emailAddress;
-	};
-	
-	this.getFirstName = function() {
-		return attendeeFirstName;
-	};
-	
-	this.getLastName = function() {
-		return attendeeLastName;
-	};
-	
-	this.getFullName = function() {
-		return attendeeFirstName + " " + attendeeLastName;
+	this.setEmail = function(e) {
+		email = e;
 	};
 	
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonAttendeeFirstName = (Object.isDefined(attendeeFirstName))? attendeeFirstName : null,
-            jsonAttendeeLastName = (Object.isDefined(attendeeLastName))? "\"" + attendeeLastName + "\"":  null,
-            jsonAttendeeEmail = (Object.isDefined(attendeeEmail))? "\"" + attendeeEmail + "\"": null;
+        var jsonAttendeeName = (Object.isDefined(name))? name : null,
+            jsonAttendeeEmail = (Object.isDefined(email))? "\"" + email + "\"":  null,
             json =  "{" +
-                "\"attendeeFirstName\": " + jsonAttendeeFirstName + "," +
-                "\"attendeeLastName\": " + jsonAttendeeLastName + "," +
+                "\"attendeeFirstName\": " + jsonAttendeeName + "," +
                 "\"attendeeEmail\": " +  jsonAttendeeEmail +
                 "}";
-
         return json;
+    };
+    
+    this.toUIObject = function(){
+        var UIObject = JSON.parse(this.toJSON(true));
+
+        return UIObject;
+    };
+    
+this.toString = function () {
+    	
+    	return "Event {" +
+        "name: " + name + "," +
+        "email: " + email  + "," +
+        "}";
     };
 }
