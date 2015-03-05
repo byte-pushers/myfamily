@@ -5,17 +5,6 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
             
             $scope.eventUIObject = event.toUIObject();
             $scope.attendeeUIObject = attendee.toUIObject();
-            $scope.attendeeList = [];
-
-			$scope.attendee = {
-				firstName : '',
-				lastName : '',
-				email : ''
-			};
-			
-			$scope.displayTest = function() {
-				console.log("test");
-			}
 
 			$scope.getName = function() {
 				return $scope.eventUIObject.name;
@@ -73,14 +62,18 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 				return date;
 			};
 			
-			this.getForm = function(){
-				return document.getElementById("eventForm");
-			}
-
 			$scope.submit = function(isValid) {
 				if(isValid){
 					$state.go('eventResults', {});
 				}
 			};
+			
+			$scope.addAttendee = function(isValid){
+				if(isValid){
+					setEvent(event);
+					addAttendee($scope.attendeeUIObject.name, $scope.attendeeUIObject.email);
+					console.log(event.getAttendee(0).toString());
+				}
+			}
 
 		} ]);

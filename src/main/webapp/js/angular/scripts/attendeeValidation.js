@@ -1,43 +1,14 @@
-function attendeeValidation(firstName, lastName, email, firstNameError, lastNameError, emailError) {
-	var firstNameBoolean = false,
-		lastNameBoolean = false, 
-		emailBoolean = false,
-		alpha = new RegExp("^[A-Z]+$", "i"),
-	    emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
-	
-	if(textBoxValidation(firstName, firstNameError, 2, 10, alpha) == true) {
-		firstNameBoolean = true;
-	}
-	if(textBoxValidation(lastName, lastNameError, 2, 15, alpha) == true){
-		lastNameBoolean = true;
-	}
-	if(emailValidation(email, emailError, emailRegex) == true){
-		emailBoolean = true;
-	}
+var eventTest = new Event();
 
-	if (firstNameBoolean == true && lastNameBoolean == true &&  emailBoolean == true) {
-		return true;
-	}
-		return false;
+function setEvent(event){
+	eventTest = event;
 }
 
-function addAttendee(firstName, lastName, email) {
-	var attendeeFirstNameError = document.getElementById("attendeeFError");
-	attendeeFirstNameError.innerHTML = "";
 
-	var attendeeLastNameError = document.getElementById("attendeeLError");
-	attendeeLastNameError.innerHTML = "";
-
-	var attendeeEmailError = document.getElementById("attendeeEmailError");
-	attendeeEmailError.innerHTML = "";
-
-	if (attendeeValidation(firstName, lastName, email, attendeeFirstNameError,
-			attendeeLastNameError, attendeeEmailError) === true) {
-		
-		var attendee = new Attendee(attendeeFirstNameElement, attendeeLastNameElement, attendeeEmailElement);
+function addAttendee(name, email) {
+		var attendee = new Attendee(name, email);
 		eventTest.addToAttendeeArray(attendee);
 		addToTable();
-	}
 }
 
 function addToTable() {
@@ -56,7 +27,7 @@ function createRow(table, rowNum, index){
 	var cell3 = row.insertCell(3);
 
 	cell0.innerHTML = rowNum;
-	cell1.innerHTML = eventTest.getAttendee(index).getFullName();
+	cell1.innerHTML = eventTest.getAttendee(index).getName();
 	cell2.innerHTML = eventTest.getAttendee(index).getEmail();
 	cell3.appendChild(createRemoveRowButton(index));
 }

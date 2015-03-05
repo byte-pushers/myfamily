@@ -19,6 +19,14 @@ function Event(eventJsonConfig) {
 		return attendeeArray;
 	};
 	
+	this.addToAttendeeArray  = function(attendee) {
+		attendeeArray.push(attendee);
+	};
+	
+	this.removeFromAttendeeArray  = function(index) {
+		attendeeArray.splice(index, 1);
+	};
+	
 	this.getAttendee = function(index){
 		return attendeeArray[index];
 	};
