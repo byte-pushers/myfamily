@@ -1,4 +1,5 @@
 var myFamilyApp = angular.module("myFamilyApp", [ "ui.router" ]);
+var eventArray = [];
 
 myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -6,26 +7,12 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
 	$stateProvider.state('createEvent', {
 		url : "/createEvent",
-		templateUrl : "stages/events.ng.html"
+		templateUrl : "stages/events.ng.html",
+		controller: 'newEventController'
 	})
 	.state('eventResults', {
 		url : "/eventResults",
-		templateUrl : "stages/eventResults.ng.html",
-		controller : function($scope) {
-            $scope.eventName = $scope.getName();
-			$scope.eventDescription = $scope.getDescription();
-			$scope.eventUrl = $scope.getUrl();
-			$scope.eventCheckbox1 = $scope.getCheckbox1();
-			$scope.eventCheckbox2 = $scope.getCheckbox2();
-			$scope.eventCity = $scope.getCity();
-			$scope.eventState = $scope.getState();
-			$scope.eventAddress1 = $scope.getAddress1();
-			$scope.eventAddress2 = $scope.getAddress2();
-			$scope.eventZip = $scope.getZip();
-			$scope.eventCountry = $scope.getCountry();
-			$scope.eventStartDate = $scope.getStartDate();
-			$scope.eventEndDate = $scope.getEndDate();
-		}
+		templateUrl : "stages/eventResults.ng.html"
 	})
 });
 

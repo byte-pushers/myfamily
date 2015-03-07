@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myFamilyApp" ng-controller="newEventController">
+<html ng-app="myFamilyApp">
 <head>
 <meta charset="ISO-8859-1">
 <title>Main Page: My Family</title>
@@ -34,17 +34,15 @@
 
 	<div class="well" ui-view></div>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-4 family">
-				<a href="familySearch.html">My Family Search</a>
-			</div>
-			<div class="col-md-4 join ">
-				<a href="Signup.html"> Sign Up! </a>
-			</div>
-			<div class="col-md-4 upcoming ">
-				<a href="events.html"> Upcoming events </a>
-			</div>
+	<div class="row">
+		<div class="col-md-4 family">
+			<a href="familySearch.html">My Family Search</a>
+		</div>
+		<div class="col-md-4 join ">
+			<a href="Signup.html"> Sign Up! </a>
+		</div>
+		<div class="col-md-4 upcoming ">
+			<a href="events.html"> Upcoming events </a>
 		</div>
 	</div>
 
@@ -56,11 +54,10 @@
 
 	<script src="libs/angularjs/1.2/angular.min.js"></script>
 	<script src="libs/angularjs/1.2/angular-ui-router.min.js"></script>
-    <script src="libs/byte-pushers/com.bytepushers.extensions.ObjectExtension.js"></script>
-	<script src="js/domains/attendee.js"></script>
-	<script src="js/domains/event.js"></script>
-	<script src="js/angular/scripts/attendeeValidation.js"></script>
+	<script src="libs/byte-pushers/com.bytepushers.extensions.ObjectExtension.js"></script>
 	<script src="eventApp.js"></script>
+	<script src="js/angular/domains/attendee.js"></script>
+	<script src="js/angular/domains/event.js"></script>
 	<script src="js/angular/controllers/newEventController.js"></script>
 </body>
 </html>

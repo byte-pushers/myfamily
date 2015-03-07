@@ -1,7 +1,7 @@
 function Attendee(attendeeJsonConfig) {
 	
-	var name = (Object.isDefined(attendeeJsonConfig) && Object.isDefined(attendeeJsonConfig.name))? eventJsonConfig.name: null;
-    var email = (Object.isDefined(attendeeJsonConfig) && Object.isDefined(attendeeJsonConfig.email))? eventJsonConfig.email: null;
+	var name = (Object.isDefined(attendeeJsonConfig) && Object.isDefined(attendeeJsonConfig.name))? attendeeJsonConfig.name: null;
+    var email = (Object.isDefined(attendeeJsonConfig) && Object.isDefined(attendeeJsonConfig.email))? attendeeJsonConfig.email: null;
 
 	this.setName = function(n) {
 		name = n;

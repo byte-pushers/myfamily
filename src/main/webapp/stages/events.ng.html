@@ -1,3 +1,4 @@
+<div >
 <form name="eventForm">
 	<div class="row">
 		<div class="col-md-12">
@@ -27,7 +28,7 @@
 		</div>
 		<div class="col-md-7 align-left">
 			<p ng-show="eventForm.name.$invalid && !eventForm.name.$pristine"
-				class="help-block">Your name is required</p>
+				class="help-block">Event name is required</p>
 		</div>
 	</div>
 	<br>
@@ -280,11 +281,11 @@
 			<label>Add Attendees: </label>
 		</div>
 		<div class="col-md-9">
-			<p id="attendeeError"></p>
+			<p ng-show="attendeeArray.length == 0 && submitted" style="color: #a94442">An Attendee is required</p>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2 col-md-offset-3">First Name:</div>
+		<div class="col-md-2 col-md-offset-3">Name:</div>
 		<div class="col-md-7"></div>
 	</div>
 	<div class="row"
@@ -318,25 +319,26 @@
 	<br>
 	<div class="row">
 		<div class="col-md-2 col-md-offset-3">
-			<input type="button" class="btn btn-danger" ng-click="addAttendee(attendeeForm.$valid)"
+			<input type="button" class="btn btn-primary" ng-click="addAttendee(attendeeForm.$valid)"
 				value="Add Attendee" />
 		</div>
 		<div class="col-md-7"></div>
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-md-2 col-md-offset-3 align-left">Event Attendee
-			List:</div>
-		<div class="col-md-7"></div>
-	</div>
-	<div class="row">
 		<div class="col-md-4 col-md-offset-3">
-			<table class="table table-condensed table-striped" id="attendeeTable">
+			<table class="table table-condensed table-striped" ng-show="attendeeSubmit == true">
 				<tr class="info">
 					<td><b>#</b></td>
 					<td><b>Name</b></td>
 					<td><b>Email</b></td>
 					<td><b>Action</b></td>
+				</tr>
+				<tr ng-repeat="x in attendeeArray">
+					<td>{{$index + 1}}</td>
+					<td>{{x.getName()}}</td>
+					<td>{{x.getEmail()}}</td>
+					<td><button ng-click="removeAttendee($index)" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove-circle changeColorToRed"></span></button></td>
 				</tr>
 			</table>
 		</div>
@@ -352,4 +354,5 @@
 			value="Submit" />
 	</div>
 	<div class="col-md-2"></div>
+</div>
 </div>

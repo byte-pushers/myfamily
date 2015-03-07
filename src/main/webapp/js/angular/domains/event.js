@@ -12,18 +12,20 @@ function Event(eventJsonConfig) {
     var zip = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.zip))? eventJsonConfig.zip: null;
     var country = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.country))? eventJsonConfig.country: null;
     var startDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.startDate))? eventJsonConfig.startDate : null;
+    if(startDate != null) startDate.setHours(startDate.getHours() - 6);
     var endDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.endDate))? eventJsonConfig.endDate : null;
+    if(endDate != null) endDate.setHours(endDate.getHours() - 6);
 	var attendeeArray = (Object.isDefined(eventJsonConfig) && Object.isArray(eventJsonConfig.attendeeArray))? eventJsonConfig.attendeeArray: [];
 	
 	this.getAttendeeArray  = function() {
 		return attendeeArray;
 	};
 	
-	this.addToAttendeeArray  = function(attendee) {
+	this.addAttendee  = function(attendee) {
 		attendeeArray.push(attendee);
 	};
 	
-	this.removeFromAttendeeArray  = function(index) {
+	this.removeAttendee  = function(index) {
 		attendeeArray.splice(index, 1);
 	};
 	
@@ -122,7 +124,6 @@ function Event(eventJsonConfig) {
 	this.setEndDate = function(date) {
 		endDate = date;
 	}
-	
 
     this.getAttendeesAsJSON = function (serializeUIProperties) {
     	var json = "[";
@@ -167,6 +168,7 @@ function Event(eventJsonConfig) {
                 "\"endDate\": "+ jsonEndDate  + "," +
                 jsonAttendeeArray +
                 "}";
+            //console.log(json);
         return json;
     };
 
