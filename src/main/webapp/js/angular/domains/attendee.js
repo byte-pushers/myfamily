@@ -38,9 +38,9 @@ function Attendee(attendeeJsonConfig) {
     
 this.toString = function () {
     	
-    	return "Event {" +
+    	return "Attendee(s) {" +
         "name: " + name + "," +
-        "email: " + email  + "," +
+        " email: " + email  + "," +
         "}";
     };
 }

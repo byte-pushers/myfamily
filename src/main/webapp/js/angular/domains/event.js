@@ -180,21 +180,21 @@ function Event(eventJsonConfig) {
     
     this.toString = function () {
     	
-    	return "Event {" +
+    	return "Event: {" +
         "name: " + name + "," +
-        "description: " + description  + "," +
-        "url: " +  url  + "," +
-        "checkbox1: " +  checkbox1  + "," +
-        "checkbox2: " +  checkbox2  + "," +
-        "address1: "+ address1  + "," +
-        "ddress2: "+ address2  + "," +
-        "city: "+ city  + "," +
-        "state: "+ state  + "," +
-        "zip: "+ zip  + "," +
-        "country: "+ country  + "," +
-        "startDate: "+ startDate  + "," +
-        "endDate: "+ endDate  + "," +
-        "attendees: " + attendeeArray +
+        " description: " + description  + "," +
+        " url: " +  url  + "," +
+        " checkbox1: " +  checkbox1  + "," +
+        " checkbox2: " +  checkbox2  + "," +
+        " address1: "+ address1  + "," +
+        " address2: "+ address2  + "," +
+        " city: "+ city  + "," +
+        " state: "+ state  + "," +
+        " zip: "+ zip  + "," +
+        " country: "+ country  + "," +
+        " startDate: "+ startDate  + "," +
+        " endDate: "+ endDate  + "," +
+        " attendees: " + attendeeArray +
         "}";
     };
 }

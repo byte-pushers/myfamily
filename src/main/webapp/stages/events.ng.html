@@ -1,5 +1,5 @@
 <div >
-<form name="eventForm">
+<form name="eventForm" novalidate>
 	<div class="row">
 		<div class="col-md-12">
 			<h1 style="text-decoration: underline">Plan Upcoming Events!</h1>
@@ -275,13 +275,13 @@
 
 </form>
 
-<form name="attendeeForm">
+<form name="attendeeForm" novalidate>
 	<div class="row">
 		<div class="col-md-3 align-right">
 			<label>Add Attendees: </label>
 		</div>
 		<div class="col-md-9">
-			<p ng-show="attendeeArray.length == 0 && submitted" style="color: #a94442">An Attendee is required</p>
+			<p ng-show="attendeeArray.length == 0 && submitted" style="color: #a94442">An attendee is required</p>
 		</div>
 	</div>
 	<div class="row">

@@ -1,5 +1,5 @@
 myFamilyApp.controller('newEventController', [ '$scope', '$state',
-		function($scope, $state) {
+		function($scope, $state, global) {
 			var event = new Event();
 			var attendee = new Attendee();
 
@@ -7,13 +7,9 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 			$scope.attendeeUIObject = attendee.toUIObject();
 			$scope.attendeeArray = [];
 
-			$scope.getEvent = function() {
-				return event.toString();
-			}
-
 			$scope.submit = function(isValid) {
 				$scope.submitted = true;
-				if (isValid) {
+				if (isValid && $scope.attendeeArray.length != 0) {
 					var eventConfig = {
 						name : $scope.eventUIObject.name,
 						description : $scope.eventUIObject.description,
@@ -30,11 +26,37 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state',
 						endDate : $scope.eventUIObject.endDate,
 						attendeeArray : $scope.attendeeArray
 					}
-					event = Event(eventConfig);
-					eventArray.push(event);
-					$state.go('eventResults', {});
+					e = new Event(eventConfig);
+					global.addEvent(e);
+					
+					$scope.resetForm();
+					$state.go('eventOverview', {});
 				}
 			};
+			
+			$scope.resetForm = function() {
+				$scope.eventUIObject.name = "";
+				$scope.eventUIObject.description = "";
+				$scope.eventUIObject.url = "";
+				$scope.eventUIObject.checkbox1 = false;
+				$scope.eventUIObject.checkbox2 = false;
+				$scope.eventUIObject.address1 = "";
+				$scope.eventUIObject.address2 = "";
+				$scope.eventUIObject.city = "";
+				$scope.eventUIObject.state = null;
+				$scope.eventUIObject.zip = "";
+				$scope.eventUIObject.country = null;
+				$scope.eventUIObject.startDate = null;
+				$scope.eventUIObject.endDate = null;
+				$scope.attendeeUIObject.name = "";
+				$scope.attendeeUIObject.email = "";
+				
+				$scope.attendeeArray = null;
+			}
+			
+			$scope.getEvent = function(){
+				return e;
+			}
 
 			$scope.addAttendee = function(isValid) {
 				if (isValid) {

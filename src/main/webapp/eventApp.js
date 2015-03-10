@@ -1,5 +1,17 @@
 var myFamilyApp = angular.module("myFamilyApp", [ "ui.router" ]);
-var eventArray = [];
+
+myFamilyApp.service("global", function() {
+	var eventArray = [];
+
+	var addEvent = function(newObj) {
+		eventArray.push(newObj);
+	}
+	
+	return {
+		addEvent : addEvent
+	}
+
+});
 
 myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -8,12 +20,15 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('createEvent', {
 		url : "/createEvent",
 		templateUrl : "stages/events.ng.html",
-		controller: 'newEventController'
-	})
-	.state('eventResults', {
-		url : "/eventResults",
-		templateUrl : "stages/eventResults.ng.html"
-	})
+	}).state('eventOverview', {
+		url : "/eventOverview",
+		templateUrl : "stages/eventOverview.ng.html",
+		controller : 'eventOverviewController'
+	});
 });
 
+/*myFamilyApp.service("event", function event() {
+	var event = this;
 
+	event.eventDisplay = "null";
+});*/
