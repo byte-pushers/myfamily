@@ -29,9 +29,14 @@ myFamilyApp.service('global', function() {
 
 myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
-	$urlRouterProvider.otherwise("createEvent");
+	$urlRouterProvider.otherwise("home");
 
-	$stateProvider.state('createEvent', {
+	$stateProvider
+	.state('home', {
+	    url : "/home",
+	    templateUrl : "stages/home.html"
+	})
+	.state('createEvent', {
 		url : "/createEvent",
 		templateUrl : "stages/events.ng.html",
 		controller : 'newEventController'
