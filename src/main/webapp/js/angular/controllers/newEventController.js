@@ -1,4 +1,4 @@
-myFamilyApp.controller('newEventController', [ '$scope', '$state',
+myFamilyApp.controller('newEventController', [ '$scope', '$state', 'global',
 		function($scope, $state, global) {
 			var event = new Event();
 			var attendee = new Attendee();

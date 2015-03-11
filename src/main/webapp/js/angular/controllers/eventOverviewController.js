@@ -1,8 +1,8 @@
-myFamilyApp.controller('eventOverviewController', [ '$scope', '$state',
+myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'global',
 		function($scope, $state, global) {
-	/*if(global.eventArray.length == 0 ){
-		$scope.event = "Not created"
+	if(global.getEventArraySize() == 0 ){
+		$scope.event = new Event();
 	}else{
-		 $scope.event = global.eventArray[global.eventArray.length-1].toString();
-	}*/
+		 $scope.event = global.getEvent(global.getEventArraySize() - 1);
+	}
 }]);
