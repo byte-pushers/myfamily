@@ -1,17 +1,42 @@
-<div>
+<div class="well">
     <div class="row">
-        <div class="col-md-6 col-md-offset-4 align-right"><h1>Overview of {{event.getEventName()}}</h1></div>
-        <div class="col-md-2"></div>
+        <div class="col-md-12 align-center"><h1>Overview of {{event.getEventName()}}</h1></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-4">
+            <p>Name: {{event.getEventName()}}</p>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+            <p>Description: {{event.getEventDescription()}}</p>
+        </div>
     </div>
     <br>
     <div class="row">
         <div class="col-md-3 col-md-offset-3">
-            <p>Name: {{event.getEventName()}}</p>
+            <p>Event Address: {{event.getFullAddress()}}</p>
         </div>
-        <div class="col-md-3 col-md-offset-1 align-right">
-            <p>Description: {{event.getEventDescription()}}</p>
+        <div class="col-md-5 col-md-offset-1">
+            <p>Guests can invite other guest: {{event.getCheckbox1()}}</p>
         </div>
-        <div class="col-md-2"></div>
     </div>
-
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <p>Event URL: {{event.getUrl()}}</p>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+            <p>Guests can see other guest: {{event.getCheckbox2()}}</p>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <p>Event Start Date: {{event.getStartDate().getMonth()}}/{{event.getStartDate().getDate()}}/{{event.getStartDate().getFullYear()}}
+                {{getRegTime(event.getStartDate().getHours(), event.getStartDate().getMinutes())}}</p>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+            <p>Event End Time: {{event.getEndDate()}}</p>
+        </div>
+    </div>
 </div>

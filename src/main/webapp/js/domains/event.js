@@ -41,7 +41,7 @@ function Event(eventJsonConfig) {
 		return name;
 	};
 	
-	this.setDescrption = function(desc){
+	this.setDescription = function(desc){
 		description = desc;
 	}
 
@@ -57,7 +57,7 @@ function Event(eventJsonConfig) {
 		return checkbox2;
 	};
 	
-	this.getHTML = function() {
+	this.getUrl = function() {
 		return url;
 	};
 	
@@ -76,7 +76,7 @@ function Event(eventJsonConfig) {
 	this.getAddress2 = function() {
 		return address2;
 	};
-	
+
 	this.setCity = function(input) {
 		city = input;
 	};
@@ -92,7 +92,7 @@ function Event(eventJsonConfig) {
 	this.getState = function() {
 		return state;
 	};
-	
+
 	this.setZip = function(input) {
 		zip = input;
 	};
@@ -100,13 +100,31 @@ function Event(eventJsonConfig) {
 	this.getZip = function() {
 		return zip.value;
 	};
-	
+
 	this.setCountry = function(input) {
 		country = input;
 	};
 
 	this.getCountry = function() {
 		return country;
+	};
+
+	this.setFullAddress = function(a1, a2, c, s, z, n){
+	    address1 = a1;
+	    address2 = a2;
+	    city = c;
+	    state = s;
+	    zip = z;
+	    country = n;
+	};
+
+	this.getFullAddress = function(){
+	    var string = address1;
+	    if(Object.isString(address2)){
+	    string = string + " " +address2;
+	    }
+	    string =  string + ", " + city + ", " + state + ", " + zip + ", " + country;
+	    return string;
 	};
 	
 	this.getStartDate = function(){
