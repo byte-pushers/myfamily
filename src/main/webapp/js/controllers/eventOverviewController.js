@@ -4,7 +4,8 @@ myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'global'
 		$scope.event = new Event();
 		$scope.attendeeArray = [];
 	}else{
-		 $scope.event = global.getEvent(global.getEventArraySize() - 1);
+	     console.log("counter" + global.getEventCounter())
+		 $scope.event = global.getEvent(global.getEventCounter());
 		 $scope.attendeeArray = $scope.event.getAttendeeArray();
 	}
 

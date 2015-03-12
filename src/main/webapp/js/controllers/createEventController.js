@@ -1,4 +1,4 @@
-myFamilyApp.controller('newEventController', [ '$scope', '$state', 'global',
+myFamilyApp.controller('createEventController', [ '$scope', '$state', 'global',
 		function($scope, $state, global) {
 			var event = new Event();
 			var attendee = new Attendee();
@@ -30,6 +30,7 @@ myFamilyApp.controller('newEventController', [ '$scope', '$state', 'global',
 					global.addEvent(e);
 					
 					$scope.resetForm();
+					global.setEventCounter(global.getEventArraySize() - 1)
 					$state.go('eventOverview', {});
 				}
 			};

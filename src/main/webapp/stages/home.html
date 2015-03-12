@@ -1,11 +1,19 @@
-<div class="row">
-    <div class="col-md-4 family">
-        <a ui-sref="familySearch">Family Search</a>
+<div>
+    <div class="row">
+        <div class="well col-md-2 col-md-offset-1">
+            <p class="align-center"><b>Upcoming Events</b></p>
+            <li ng-repeat="event in eventArray"><a ui-sref="eventOverview" ng-onclick="setEventCounter($index)">{{setEventCounter($index)}}{{event.getName()}}</a></li>
+        </div>
     </div>
-    <div class="col-md-4 join ">
-        <a ui-sref="createUser">Crete User</a>
-    </div>
-    <div class="col-md-4 upcoming ">
-        <a ui-sref="createEvent">Create Event</a>
+    <div class="row">
+        <div class="col-md-4 family">
+            <a ui-sref="familySearch">Family Search</a>
+        </div>
+        <div class="col-md-4 join ">
+            <a ui-sref="createUser">Crete User</a>
+        </div>
+        <div class="col-md-4 upcoming ">
+            <a ui-sref="createEvent">Create Event</a>
+        </div>
     </div>
 </div>
