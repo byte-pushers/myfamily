@@ -12,9 +12,7 @@ function Event(eventJsonConfig) {
     var zip = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.zip))? eventJsonConfig.zip: null;
     var country = (Object.isDefined(eventJsonConfig) && Object.isDefined(eventJsonConfig.country))? eventJsonConfig.country: null;
     var startDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.startDate))? eventJsonConfig.startDate : null;
-    if(startDate != null) startDate.setHours(startDate.getHours() - 6);
     var endDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.endDate))? eventJsonConfig.endDate : null;
-    if(endDate != null) endDate.setHours(endDate.getHours() - 6);
 	var attendeeArray = (Object.isDefined(eventJsonConfig) && Object.isArray(eventJsonConfig.attendeeArray))? eventJsonConfig.attendeeArray: [];
 	
 	this.getAttendeeArray  = function() {
@@ -33,11 +31,11 @@ function Event(eventJsonConfig) {
 		return attendeeArray[index];
 	};
 	
-	this.setEventName = function(name) {
+	this.setName = function(name) {
 		name = name;
 	};
 	
-	this.getEventName = function() {
+	this.getName = function() {
 		return name;
 	};
 	
