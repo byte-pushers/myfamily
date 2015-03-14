@@ -1,46 +1,56 @@
 <div class="well">
     <form name="eventForm" novalidate>
         <div class="row">
-            <div class="col-md-12 align-center">
-                <h1>Plan Upcoming Events!</h1>
-            </div>
-        </div>
-        <br> <br>
-        <div class="row">
+            <div class="col-md-8">
+                <div class="col-md-12 align-right">
+                    <h1>Plan Upcoming Events!</h1>
+                </div>
+                <br> <br>
 
-            <div class="col-md-12 align-center">
-                <b>General Event Information</b>
+                <div class="row">
+                    <div class="col-md-12 align-center">
+                        <b>General Event Information</b>
+                    </div>
+                </div>
+                <br><br>
+
+                <div class="row"
+                     ng-class="{ 'has-error' : eventForm.name.$invalid && !eventForm.name.$pristine}">
+                    <div class="col-md-2 col-md-offset-4 align-right">Event Name:</div>
+                    <div class="col-md-2 ">
+                        <input type="text" ng-model="eventUIObject.name" name="name"
+                               class="form-control" required>
+                    </div>
+                    <div class="col-md-4 align-left">
+                        <p ng-show="eventForm.name.$invalid && !eventForm.name.$pristine"
+                           class="help-block">Event name is required</p>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-md-2 col-md-offset-4 align-right">Description:</div>
+                    <div class="col-md-5">
+                        <textarea name="desc" ng-model="eventUIObject.description"
+                                  class="form-control" rows="5" cols="70" required></textarea>
+                    </div>
+                    <div class="col-md-3 align-left">
+                        <p style="color: #a94442"
+                           ng-show="eventForm.desc.$invalid && !eventForm.desc.$pristine"
+                           class="help-block">Must be filled out</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <br><br>
-        <div class="row"
-             ng-class="{ 'has-error' : eventForm.name.$invalid && !eventForm.name.$pristine}">
-            <div class="col-md-1 col-md-offset-3 align-right">Event Name:</div>
-            <div class="col-md-2 ">
-                <input type="text" ng-model="eventUIObject.name" name="name"
-                       class="form-control" required>
+
+            <div class="col-md-2 col-md-offset-1">
+                <p class="well align-center"><b>Upcoming Events</b></p>
+                <li ng-repeat="event in eventArray"><a ui-sref="eventOverview" ng-onclick="setEventCounter($index)">{{$index}}{{event.getName()}}</a>
+                </li>
             </div>
-            <div class="col-md-6 align-left">
-                <p ng-show="eventForm.name.$invalid && !eventForm.name.$pristine"
-                   class="help-block">Event name is required</p>
-            </div>
+            <div class="col-md-1"></div>
+            <br>
         </div>
         <br>
-
-        <div class="row">
-            <div class="col-md-1 col-md-offset-3 align-right">Description:</div>
-            <div class="col-md-5">
-			<textarea name="desc" ng-model="eventUIObject.description"
-                      class="form-control" rows="5" cols="70" required></textarea>
-            </div>
-            <div class="col-md-3 align-left">
-                <p style="color: #a94442"
-                   ng-show="eventForm.desc.$invalid && !eventForm.desc.$pristine"
-                   class="help-block">Must be filled out</p>
-            </div>
-        </div>
-        <br>
-
         <div class="row"
              ng-class="{ 'has-error' : eventForm.url.$invalid && !eventForm.url.$pristine}">
             <div class="col-md-1 col-md-offset-3 align-right">Enter URL:</div>
@@ -242,6 +252,7 @@
             </div>
         </div>
         <br><br>
+
         <div class="row">
             <div
                     ng-class="{ 'has-error' : eventForm.startDate.$invalid && !eventForm.startDate.$pristine }">
@@ -290,6 +301,7 @@
             </div>
         </div>
         <br> <br>
+
         <div class="row">
             <div class="col-md-6 col-md-offset-4">
                 <p ng-show="attendeeArray.length == 0 && submitted" style="color: #a94442">An attendee is required</p>
