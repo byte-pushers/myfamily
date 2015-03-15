@@ -14,11 +14,13 @@ function Event(eventJsonConfig) {
     var startDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.startDate))? eventJsonConfig.startDate : null;
     var endDate = (Object.isDefined(eventJsonConfig) && Object.isDate(eventJsonConfig.endDate))? eventJsonConfig.endDate : null;
 	var attendeeArray = (Object.isDefined(eventJsonConfig) && Object.isArray(eventJsonConfig.attendeeArray))? eventJsonConfig.attendeeArray: [];
-	
-	this.getAttendeeArray  = function() {
-		return attendeeArray;
-	};
-	
+
+    var alphaRegex = new RegExp("^[A-Z]+$", "i");
+	var numericRegex = new RegExp("^[0-9]+$");
+	var alphaNumericRegex = new RegExp("^[A-Z0-9.! ?]+$", "i");
+	var URLRegex = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+	var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
+
 	this.addAttendee  = function(attendee) {
 		attendeeArray.push(attendee);
 	};
@@ -30,9 +32,17 @@ function Event(eventJsonConfig) {
 	this.getAttendee = function(index){
 		return attendeeArray[index];
 	};
+
+	this.setAttendeeArray  = function(array) {
+                attendeeArray = array;
+    };
+
+    this.getAttendeeArray  = function() {
+        return attendeeArray;
+    };
 	
-	this.setName = function(name) {
-		name = name;
+	this.setName = function(n) {
+		name = n;
 	};
 	
 	this.getName = function() {
@@ -47,14 +57,26 @@ function Event(eventJsonConfig) {
 		return description;
 	};
 
+    this.setCheckbox1 = function(val){
+        checkbox1 = val;
+    };
+
 	this.getCheckbox1 = function() {
 		return checkbox1;
 	};
 
+	this.setCheckbox2 = function(val){
+        checkbox12 = val;
+    };
+
 	this.getCheckbox2 = function() {
 		return checkbox2;
 	};
-	
+
+	this.setUrl = function(val){
+    	    url = val;
+    };
+
 	this.getUrl = function() {
 		return url;
 	};
@@ -92,11 +114,11 @@ function Event(eventJsonConfig) {
 	};
 
 	this.setZip = function(input) {
-		zip = input;
+		zip;
 	};
 
 	this.getZip = function() {
-		return zip.value;
+		return zip;
 	};
 
 	this.setCountry = function(input) {
@@ -107,13 +129,13 @@ function Event(eventJsonConfig) {
 		return country;
 	};
 
-	this.setFullAddress = function(a1, a2, c, s, z, n){
+	this.setFullAddress = function(a1, a2, ci, s, z, co){
 	    address1 = a1;
 	    address2 = a2;
-	    city = c;
+	    city = ci;
 	    state = s;
 	    zip = z;
-	    country = n;
+	    country = co;
 	};
 
 	this.getFullAddress = function(){
@@ -145,7 +167,7 @@ function Event(eventJsonConfig) {
     	var json = "[";
     	attendeeArray.forEach(function (attendee, index, arr) {
             json = json + attendee.toJSON(serializeUIProperties);
-            (index = arr.length()) ? null : json = json + ",";
+            (index < arr.length()) ? json : json = json + ",";
             
         });
     	json = json + "]";

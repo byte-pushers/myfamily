@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myFamilyApp">
+<html ng-app="myFamilyApp" ng-controller="homeController">
 <head>
     <meta charset="ISO-8859-1">
     <title>Main Page: My Family</title>
@@ -27,7 +27,7 @@
                     </span> <span style="margin-right: 10px; text-align: left;"> <a
                 href="signup.html"> Sign Up! </a>
                     </span> <span style="margin-right: 10px; text-align: left;"> <a
-                ui-sref="createEvent">Create Event</a>
+                ui-sref="eventForm" ng-click="clearEventForm()">Create Event</a>
                     </span>
         </div>
     </div>
@@ -49,7 +49,7 @@
 <script src="js/domains/attendee.js"></script>
 <script src="js/domains/event.js"></script>
 <script src="js/controllers/homeController.js"></script>
-<script src="js/controllers/createEventController.js"></script>
+<script src="js/controllers/eventFormController.js"></script>
 <script src="js/controllers/eventOverviewController.js"></script>
 
 </body>

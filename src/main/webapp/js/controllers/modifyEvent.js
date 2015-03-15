@@ -1,5 +1,5 @@
-myFamilyApp.controller('modifyEventController', [ '$scope', '$state', 'global',
-	function($scope, $state, global) {
+myFamilyApp.controller('modifyEventController', [ '$scope', '$state', 'EventService',
+	function($scope, $state, EventService) {
         var event = new Event();
         var attendee = new Attendee();
 
