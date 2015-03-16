@@ -4,10 +4,10 @@
     </div>
     <div class="row">
         <div class="col-md-6 align-right">
-            <a ui-sref="createEvent">edit</a>
+            <a ui-sref="eventForm" ng-click="setEdit()">edit</a>
         </div>
         <div class="col-md-6 align-left">
-            <a ui-sref="createEvent">delete</a>
+            <a ui-sref="home" ng-click="deleteEvent()">delete</a>
         </div>
     </div>
     <br><br>
@@ -89,9 +89,9 @@
 
     <div class="row align-right">
         <div class="col-md-9">
-            <a class="btn btn-default" ui-sref="home" role="button">Edit</a>
+            <a class="btn btn-default" ui-sref="eventForm" ng-click="setEdit()" role="button">Edit</a>
 
-            <a class="btn btn-default" ui-sref="modifyEvent" role="button">Remove</a>
+            <a class="btn btn-default" ui-sref="home" ng-click="deleteEvent()" role="button">Remove</a>
         </div>
         <div class="col-md-3"></div>
     </div>

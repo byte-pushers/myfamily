@@ -10,10 +10,10 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 	    templateUrl : "stages/home.html",
 	    controller : 'homeController'
 	})
-	.state('createEvent', {
-		url : "/createEvent",
-		templateUrl : "stages/createEvent.ng.html",
-		controller : 'createEventController'
+	.state('eventForm', {
+		url : "/eventForm",
+		templateUrl : "stages/eventForm.ng.html",
+		controller : 'eventFormController'
 	})
 
     .state('eventOverview', {

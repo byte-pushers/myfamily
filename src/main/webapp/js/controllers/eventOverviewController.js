@@ -1,14 +1,15 @@
-myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'global',
-		function($scope, $state, global) {
-	if(global.getEventArraySize() == 0 ){
-		$scope.event = new Event();
-		$scope.attendeeArray = [];
-	}else{
-	     console.log("counter" + global.getEventCounter())
-		 $scope.event = global.getEvent(global.getEventCounter());
-		 $scope.attendeeArray = $scope.event.getAttendeeArray();
-	}
+myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'EventService',
+		function($scope, $state, EventService) {
+	initialize();
 
+    $scope.deleteEvent = function(){
+        EventService.deleteEvent(EventService.getCurrentEventIndex());
+        EventService.setCurrentEventIndex(null);
+    };
+
+    $scope.setEdit = function(){
+        EventService.setLoad(true);
+    };
 
     $scope.getDate = function(date){
         if(!isNull(date)){
@@ -45,7 +46,7 @@ myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'global'
         else{
             return false;
         }
-    }
+    };
 
     function singleDigitDateObject(obj, num){
         if(obj < num){
@@ -55,4 +56,14 @@ myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'global'
             return obj;
         }
     };
+
+    function initialize(){
+    	    if(EventService.getEventArraySize() == 0 ){
+        		$scope.event = new Event();
+        		$scope.attendeeArray = [];
+        	}else{
+        		 $scope.event = EventService.getEvent(EventService.getCurrentEventIndex());
+        		 $scope.attendeeArray = $scope.event.getAttendeeArray();
+        	}
+    	};
 }]);

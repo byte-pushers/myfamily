@@ -1,6 +1,7 @@
 myFamilyApp.service('EventService', function() {
 	var eventArray = [];
-	var eventCounter = 0;
+	var currentEventIndex = 0;
+	var load = false;
 
     function getEventArray(){
         return eventArray;
@@ -10,7 +11,7 @@ myFamilyApp.service('EventService', function() {
         eventArray.push(newObj);
     }
 
-    function removeEvent(index) {
+    function deleteEvent(index) {
         eventArray.splice(index, 1);
     }
 
@@ -22,21 +23,31 @@ myFamilyApp.service('EventService', function() {
         return eventArray.length;
     }
 
-    function getEventCounter() {
-        return eventCounter;
+    function getCurrentEventIndex() {
+        return currentEventIndex;
     }
 
-    function setEventCounter(num) {
-        eventCounter = num;
+    function setCurrentEventIndex(num) {
+        currentEventIndex = num;
+    }
+
+    function getLoad(){
+        return load;
+    }
+
+    function setLoad(val){
+        load = val;
     }
 
     return {
             getEventArray : getEventArray,
             addEvent: addEvent,
-            removeEvent: removeEvent,
+            deleteEvent: deleteEvent,
             getEventArraySize : getEventArraySize,
             getEvent : getEvent,
-            getEventCounter : getEventCounter,
-            setEventCounter : setEventCounter
+            getCurrentEventIndex : getCurrentEventIndex,
+            setCurrentEventIndex : setCurrentEventIndex,
+            getLoad : getLoad,
+            setLoad : setLoad
     };
 });

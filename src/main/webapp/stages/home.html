@@ -1,8 +1,8 @@
 <div>
     <div class="row">
         <div class="well col-md-2 col-md-offset-1">
-            <p class="align-center"><b>Upcoming Events</b></p>
-            <li ng-repeat="event in eventArray"><a ui-sref="eventOverview" ng-onclick="setEventCounter($index)">{{setEventCounter($index)}}{{event.getName()}}</a>
+            <p class=" align-center"><b>Upcoming Events</b></p>
+            <li ng-repeat="event in eventArray"><a ui-sref="eventOverview" ng-click="setEvent($index)">{{event.getName()}}</a>
             </li>
         </div>
     </div>
