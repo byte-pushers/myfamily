@@ -167,7 +167,7 @@ function Event(eventJsonConfig) {
     	var json = "[";
     	attendeeArray.forEach(function (attendee, index, arr) {
             json = json + attendee.toJSON(serializeUIProperties);
-            (index < arr.length()) ? json : json = json + ",";
+            (index <= arr.length()) ? json : json = json + ",";
             
         });
     	json = json + "]";

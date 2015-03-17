@@ -27,10 +27,7 @@ myFamilyApp.controller('eventFormController', [ '$scope', '$state', 'EventServic
                 }
             };
 
-
-
 			$scope.submit = function(isValid) {
-				$scope.submitted = true;
 				if (isValid && $scope.attendeeArray.length != 0) {
 				    if(save == false){
                         var eventConfig = {
@@ -51,21 +48,15 @@ myFamilyApp.controller('eventFormController', [ '$scope', '$state', 'EventServic
                         }
                         e = new Event(eventConfig);
                         EventService.addEvent(e);
-                        console.log(EventService.getEventArraySize());
                         EventService.setCurrentEventIndex(EventService.getEventArraySize() - 1);
                     }
                     else{
                         saveForm(EventService.getEvent(EventService.getCurrentEventIndex()));
-                        EventService.setLoad(false);
                     }
 
 					$state.go('eventOverview', {});
 				}
 			};
-
-			$scope.setEvent = function(num){
-			    EventService.setCurrentEventIndex(num);
-			}
 
 			$scope.addAttendee = function(isValid) {
 				if (isValid) {
