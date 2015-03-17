@@ -7,7 +7,7 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider
 	.state('home', {
 	    url : "/home",
-	    templateUrl : "stages/home.html",
+	    templateUrl : "stages/home.ng.html",
 	    controller : 'homeController'
 	})
 	.state('eventForm', {
@@ -15,25 +15,17 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "stages/eventForm.ng.html",
 		controller : 'eventFormController'
 	})
-
     .state('eventOverview', {
 		url : "/eventOverview",
 		templateUrl : "stages/eventOverview.ng.html",
 		controller : 'eventOverviewController'
 	})
-	.state('eventOverview.modifyName', {
-    		url : "/eventOverview",
-    		templateUrl : "stages/eventOverview.ng.modifyName.html",
-    		controller : 'eventOverviewController'
+	.state('familySearch', {
+    	url : "/familySearch",
+    	templateUrl : "stages/familySearch.ng.html"
     })
-    .state('eventOverview.modifyDescription', {
-        url : "/eventOverview",
-        templateUrl : "stages/eventOverview.ng.modifyDescription.html",
-        controller : 'eventOverviewController'
-     })
-    .state('modifyEvent', {
-            url : "/modifyEvent",
-            templateUrl : "stages/modifyEvent.ng.html",
-            controller : 'modifyEventController'
+    .state('signUp', {
+        url : "/signUp",
+        templateUrl : "stages/signUp.ng.html"
     });
 });
