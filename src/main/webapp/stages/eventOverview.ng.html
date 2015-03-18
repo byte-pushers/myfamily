@@ -1,4 +1,4 @@
-<div class="well">
+<div>
     <div class="row">
         <div class="col-md-12 align-center"><h1>Event Overview</h1></div>
     </div>
@@ -14,28 +14,39 @@
 
     <div class="row">
         <div ui-view class="col-md-3 col-md-offset-3">
-            <p>Name: {{event.getName()}}</p>
+            <p><b>Name:</b> {{event.getName()}}</p>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md-5 col-md-offset-1">
-            <p>Description: {{event.getDescription()}}</p>
+            <p><b>Description:</b> {{event.getDescription()}}</p>
         </div>
     </div>
     <br>
 
     <div class="row">
         <div class="col-md-3 col-md-offset-3">
-            <p>Event Address: {{event.getFullAddress()}}</p>
+            <p><b>Event Address:</b> {{event.getFullAddress()}}</p>
         </div>
         <div class="col-md-5 col-md-offset-1">
-            <p>Event URL: {{event.getUrl()}}</p>
+            <p><b>Event URL:</b> {{event.getUrl()}}</p>
         </div>
     </div>
     <br>
 
     <div class="row">
         <div class="col-md-3 col-md-offset-3">
-            <p>Event start date & time: {{getDate(event.getStartDate())}} {{getTime(event.getStartDate())}}</p>
+            <p><b>Event start date & time:</b> {{getDate(event.getStartDate())}} {{getTime(event.getStartDate())}}</p>
+        </div>
+        <div class="col-md-5 col-md-offset-1">
+            <p><b>Guests Permissions:</b></p>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+            <p><b>Event end date & time:</b> {{getDate(event.getEndDate())}} {{getTime(event.getEndDate())}}
+            </p>
         </div>
         <div class="col-md-5 col-md-offset-1">
             <p>Guests {{guestCan(event.getCheckbox1())}} invite other guest</p>
@@ -45,20 +56,11 @@
 
     <div class="row">
         <div class="col-md-3 col-md-offset-3">
-            <p>Event end date & time: {{getDate(event.getEndDate())}} {{getTime(event.getEndDate())}}
-            </p>
+            <b>Event Attendee List:</b>
         </div>
         <div class="col-md-5 col-md-offset-1">
             <p>Guests {{guestCan(event.getCheckbox2())}} see other guest</p>
         </div>
-    </div>
-    <br>
-
-    <div class="row">
-        <div class="col-md-2 col-md-offset-3">
-            Event Attendee List
-        </div>
-        <div class="col-md-7"></div>
     </div>
     <br>
 

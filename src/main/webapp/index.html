@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myFamilyApp" ng-controller="homeController">
+<html ng-app="myFamilyApp">
 <head>
     <meta charset="ISO-8859-1">
     <title>Main Page: My Family</title>
@@ -10,9 +10,10 @@
     <link href="css/event.css" type="text/css" rel="stylesheet"/>
     <link href="css/main-layout.css" type="text/css" rel="stylesheet"/>
 </head>
+
 <body>
-<div id="header-container" class="container-fluid">
-    <div class="row">
+<div id="header-container" class="">
+    <div class="row container-fluid">
         <div class="col-md-12">Header</div>
     </div>
 </div>
@@ -25,7 +26,7 @@
                     </span> <span style="margin-right: 10px; text-align: left;"> <a
                 ui-sref="familySearch">Family Search</a>
                     </span> <span style="margin-right: 10px; text-align: left;"> <a
-                ui-sref="signUp">Sign Up</a>
+                ui-sref="createUser">Sign Up</a>
                     </span> <span style="margin-right: 10px; text-align: left;"> <a
                 ui-sref="eventForm">Create Event</a>
                     </span>
@@ -49,6 +50,7 @@
 <script src="js/domains/attendee.js"></script>
 <script src="js/domains/event.js"></script>
 <script src="js/controllers/homeController.js"></script>
+<script src="js/controllers/createUserController.js"></script>
 <script src="js/controllers/eventFormController.js"></script>
 <script src="js/controllers/eventOverviewController.js"></script>
 

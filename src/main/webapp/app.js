@@ -20,12 +20,18 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "stages/eventOverview.ng.html",
 		controller : 'eventOverviewController'
 	})
-	.state('familySearch', {
-    	url : "/familySearch",
-    	templateUrl : "stages/familySearch.ng.html"
+    .state('createUser', {
+        url : "/createUser",
+        templateUrl : "stages/createUser.ng.html",
+        controller : 'createUserController'
     })
-    .state('signUp', {
-        url : "/signUp",
-        templateUrl : "stages/signUp.ng.html"
+    .state('userCreated', {
+        url : "/userCreated",
+        templateUrl : "stages/userCreated.ng.html",
+        controller : 'createUserController'
+    })
+    .state('familySearch', {
+        url : "/familySearch",
+        templateUrl : "stages/familySearch.ng.html"
     });
 });
