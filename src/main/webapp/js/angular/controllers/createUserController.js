@@ -1,14 +1,10 @@
 myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'EventService', 'UserProfileService',
 		function($scope, $http, $state, EventService, UserProfileService) {
-		    var person = new Person();
-		    var phoneNumber = new PhoneNumber();
-		    var address = new Address();
-
-		    $scope.personUIObject = person.toUIObject();
+		    $scope.personUIObject = new Person().toUIObject();
 		    $scope.personUIObject.phoneNumbers = [];
-		    $scope.personUIObject.phoneNumbers.push(phoneNumber);
+		    $scope.personUIObject.phoneNumbers.push(new PhoneNumber());
 		    $scope.personUIObject.addresses = [];
-		    $scope.personUIObject.addresses.push(address);
+		    $scope.personUIObject.addresses.push(new Address());
 		    $scope.areaCode = "";
 		    $scope.exchangeCode = "";
 
@@ -16,10 +12,6 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
 
             $scope.submit = function(isValid){
                 if(isValid){
-                    console.log($scope.personUIObject.phoneNumbers[0]);
-                    console.log($scope.personUIObject.phoneNumbers.length);
-                    console.log($scope.personUIObject.addresses[0]);
-
                     $http.post("http://localhost:8080/person-profile-ws/user-profile/newUser.json", new Person($scope.personUIObject).toJSON())
                         .success(function (data) {
                             reset();

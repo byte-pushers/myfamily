@@ -22,6 +22,7 @@ function PhoneNumber(phoneNumberConfig) {
     }
 
 	this.toJSON = function(serializeUIProperties) {
+	console.log(this);
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
             jsonAreaCode = (Object.isDefined(areaCode))? "\"" + areaCode + "\"" : null,
@@ -33,7 +34,8 @@ function PhoneNumber(phoneNumberConfig) {
                 "\"areaCode\": " + jsonAreaCode + "," +
                 "\"exchangeCode\": " + jsonExchangeCode + "," +
                 "\"localNumber\": " + jsonLocalNumber +
-                "}";
+            "}";
+            console.log(jsonCountry + " " + jsonAreaCode + " " + jsonExchangeCode + " " + jsonLocalNumber);
         return json;
     };
 

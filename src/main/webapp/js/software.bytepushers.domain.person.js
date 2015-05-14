@@ -10,7 +10,7 @@ function Person(personJsonConfig) {
     var email = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.email))? personJsonConfig.email: null;
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.phoneNumbers))? personJsonConfig.phoneNumbers: [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.addresses))? personJsonConfig.addresses: [];
-    var gender = (Object.isDefined(gender) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: [];
+    var gender = (Object.isDefined(gender) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
 
     var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
 
@@ -92,7 +92,7 @@ function Person(personJsonConfig) {
                 "\"phoneNumbers\": " + jsonPhoneNumbers + "," +
                 "\"addresses\": " +  jsonAddresses + "," +
                 "\"gender\": " +  "\"MALE\"" +
-                "}";
+            "}";
         return json;
     };
 

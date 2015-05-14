@@ -33,6 +33,7 @@ function Address(addressJsonConfig) {
 
 
 	this.toJSON = function(serializeUIProperties) {
+	console.log(this);
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonStreet1 = (Object.isDefined(street1))? "\"" + street1 + "\"" : null,
             jsonStreet2 = (Object.isDefined(street2))? "\"" + street2 + "\"" : null,
@@ -48,7 +49,9 @@ function Address(addressJsonConfig) {
                 "\"state\": " + jsonState + "," +
                 "\"zip\": " + jsonZip + "," +
                 "\"country\": " + jsonCountry +
-                "}";
+            "}";
+            console.log(jsonStreet1 + " " + jsonStreet2 + " " + jsonCity + " " + jsonState + " " + jsonZip + " " + jsonCountry);
+            console.log(json);
         return json;
     };
 
