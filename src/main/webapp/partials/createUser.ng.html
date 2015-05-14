@@ -17,16 +17,16 @@
              userForm.lastName.$invalid && userForm.lastName.$dirty}">
             <div class="col-md-2 col-md-offset-2 align-right">Name:</div>
             <div class="col-md-2">
-                <input type="text" ng-model="fistName" name="firstName"
+                <input type="text" ng-model="personUIObject.firstName" name="firstName"
                        class="form-control" required>
             </div>
 
             <div class="col-md-1">
-                <input type="text" ng-model="middleName" name="middleName"
+                <input type="text" ng-model="personUIObject.middleName" name="middleName"
                        class="form-control">
             </div>
             <div class="col-md-2">
-                <input type="text" ng-model="lastName" name="lastName"
+                <input type="text" ng-model="personUIObject.lastName" name="lastName"
                        class="form-control" required>
             </div>
 
@@ -51,7 +51,7 @@
             <div ng-class="{ 'has-error' : userForm.username.$invalid && userForm.username.$dirty }">
                 <div class="col-md-2">
                     <input type="text" class="form-control" name="username"
-                           ng-model="username" required/>
+                           ng-model="personUIObject.username" required/>
                 </div>
                 <div class="col-md-6">
                     <small
@@ -69,11 +69,11 @@
             <div ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty || password != passwordConfirm}">
                 <div class="col-md-2">
                     <input type="password" class="form-control" name="password"
-                           ng-model="password" ng-minlength="6" required/>
+                           ng-model="personUIObject.password" ng-minlength="6" required/>
                 </div>
                 <div class="col-md-2">
                     <input type="password" class="form-control" name="passwordConfirm"
-                           ng-model="passwordConfirm" ng-minlength="6" required/>
+                           ng-model="personUIObject.passwordConfirm" ng-minlength="6" required/>
                 </div>
 
                 <div class="col-md-4">
@@ -95,15 +95,15 @@
         <br>
 
         <div class="row">
-            <div ng-class="{ 'has-error' : userForm.birthday.$invalid && userForm.birthday.$dirty }">
+            <div ng-class="{ 'has-error' : userForm.birthDate.$invalid && userForm.birthDate.$dirty }">
                 <div class="col-md-2 col-md-offset-2 align-right">
                     Birthday:
                 </div>
                 <div class="col-md-2">
-                    <input type="date" class="form-control" ng-model="birthday" name="birthday" required/>
+                    <input type="date" class="form-control" ng-model="personUIObject.birthDate" name="birthDate" required/>
                 </div>
                 <div class="col-md-6">
-                    <small ng-show="userForm.birthday.$invalid && userForm.birthday.$dirty"
+                    <small ng-show="userForm.birthDate.$invalid && userForm.birthDate.$dirty"
                        class="help-block">Birthday Required</small>
                 </div>
             </div>
@@ -125,7 +125,7 @@
             </div>
             <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
                 <div class="col-md-2">
-                    <input type="email" name="email" ng-model="email" class="form-control" required>
+                    <input type="email" name="email" ng-model="personUIObject.email" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <small ng-show="userForm.email.$invalid && userForm.email.$dirty"
@@ -137,31 +137,32 @@
 
         <div class="row"
              ng-class="{ 'has-error' : userForm.areaCode.$invalid && userForm.areaCode.$dirty ||
-             userForm.prefix.$invalid && userForm.prefix.$dirty || userForm.lineNum.$invalid && userForm.lineNum.$dirty}">
+             userForm.exchangeCode.$invalid && userForm.exchangeCode.$dirty || userForm.localNumber.$invalid && userForm.localNumber.$dirty}">
             <div class="col-md-2 col-md-offset-2 align-right">Phone:</div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="col-sm-3">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="areaCode" name="areaCode" ng-change="autoFocus(areaCode, 3, 'prefix')"
+                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="personUIObject.phoneNumbers[0].areaCode" name="areaCode"
+                           ng-change="autoFocus(personUIObject.phoneNumbers[0].areaCode, 3, 'exchangeCode')"
                            class="form-control" maxlength="3" required/>
                 </div>
                 <div class="col-sm-1 align-center">-</div>
                 <div class="col-sm-3">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="prefix" name="prefix" class="form-control" id="prefix"
-                           ng-change="autoFocus(prefix, 3, 'lineNum')" maxlength="3" required/>
+                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="personUIObject.phoneNumbers[0].exchangeCode" name="exchangeCode" class="form-control" id="exchangeCode"
+                           ng-change="autoFocus(personUIObject.phoneNumbers[0].exchangeCode, 3, 'localNumber')" maxlength="3" required/>
                 </div>
                 <div class="col-sm-1">-</div>
                 <div class="col-sm-4">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="lineNum" name="lineNum" id="lineNum"
-                           ng-change="autoFocus(lineNum, 4, 'address')" class="form-control" maxlength="4" required/>
+                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="personUIObject.phoneNumbers[0].localNumber" name="localNumber" id="localNumber"
+                           ng-change="autoFocus(personUIObject.phoneNumbers[0].localNumber, 4, 'address')" class="form-control" maxlength="4" required/>
                 </div>
             </div>
-            <div class="col-md-5 align-left">
+            <div class="col-md-4 align-left">
                 <div class="help-block" ng-show="userForm.areaCode.$invalid && userForm.areaCode.$dirty ||
-                userForm.prefix.$invalid && userForm.prefix.$dirty || userForm.lineNum.$invalid && userForm.lineNum.$dirty">
-                    <small ng-if="userForm.areaCode.$error.required || userForm.prefix.$error.required || userForm.lineNum.$error.required">
+                userForm.exchangeCode.$invalid && userForm.exchangeCode.$dirty || userForm.localNumber.$invalid && userForm.localNumber.$dirty">
+                    <small ng-if="userForm.areaCode.$error.required || userForm.exchangeCode.$error.required || userForm.localNumber.$error.required">
                         Phone number is required!
                     </small>
-                    <small ng-if="userForm.areaCode.$error.pattern || userForm.prefix.$error.pattern || userForm.lineNum.$error.pattern">
+                    <small ng-if="userForm.areaCode.$error.pattern || userForm.exchangeCode.$error.pattern || userForm.localNumber.$error.pattern">
                         Not a number!
                     </small>
                 </div>
@@ -170,17 +171,17 @@
         <br>
 
         <div class="row"
-             ng-class="{ 'has-error' : userForm.address1.$invalid && userForm.address1.$dirty}">
+             ng-class="{ 'has-error' : userForm.street1.$invalid && userForm.street1.$dirty}">
             <div class="col-md-2 col-md-offset-2 align-right">Street Address
                 1:
             </div>
             <div class="col-md-5">
-                <input type="text" ng-model="address1" name="address1" id="address"
+                <input type="text" ng-model="personUIObject.addresses[0].street1" name="street1" id="address"
                        class="form-control" required>
             </div>
             <div class="col-md-3 align-left">
                 <small
-                        ng-show="userForm.address1.$invalid && userForm.address1.$dirty"
+                        ng-show="userForm.street1.$invalid && userForm.street1.$dirty"
                         class="help-block">The event address is required</small>
             </div>
         </div>
@@ -191,7 +192,7 @@
                 2:
             </div>
             <div class="col-md-5">
-                <input type="text" ng-model="address2" name="address2"
+                <input type="text" ng-model="personUIObject.addresses[0].street2" name="street2"
                        class="form-control">
             </div>
             <div class="col-md-3"></div>
@@ -203,7 +204,7 @@
             <div
                     ng-class="{ 'has-error' : userForm.city.$invalid && userForm.city.$dirty }">
                 <div class="col-md-1">
-                    <input type="text" ng-model="city" name="city"
+                    <input type="text" ng-model="personUIObject.addresses[0].city" name="city"
                            class="form-control" size="15" required>
                 </div>
                 <div class="col-md-1">
@@ -216,58 +217,58 @@
                     ng-class="{ 'has-error' : userForm.state.$invalid && userForm.state.$dirty }">
                 <div class="col-md-1 align-right">State:</div>
                 <div class="col-md-1 align-left">
-                    <select name="state" ng-model="state"
+                    <select name="state" ng-model="personUIObject.addresses[0].state"
                             class="form-control" required>
-                        <option value="AL">AL</option>
-                        <option value="AK">AK</option>
-                        <option value="AZ">AZ</option>
-                        <option value="AR">AR</option>
-                        <option value="CA">CA</option>
-                        <option value="CO">CO</option>
-                        <option value="CT">CT</option>
-                        <option value="DE">DE</option>
-                        <option value="FL">FL</option>
-                        <option value="GA">GA</option>
-                        <option value="HI">HI</option>
-                        <option value="ID">ID</option>
-                        <option value="IL">IL</option>
-                        <option value="IN">IN</option>
-                        <option value="IA">IA</option>
-                        <option value="KS">KS</option>
-                        <option value="KY">KY</option>
-                        <option value="LA">LA</option>
-                        <option value="ME">ME</option>
-                        <option value="MD">MD</option>
-                        <option value="MA">MA</option>
-                        <option value="MI">MI</option>
-                        <option value="MN">MN</option>
-                        <option value="MS">MS</option>
-                        <option value="MO">MO</option>
-                        <option value="MT">MT</option>
-                        <option value="NE">NE</option>
-                        <option value="NV">NV</option>
-                        <option value="NH">NH</option>
-                        <option value="NJ">NJ</option>
-                        <option value="NM">NM</option>
-                        <option value="NY">NY</option>
-                        <option value="NC">NC</option>
-                        <option value="ND">ND</option>
-                        <option value="OH">OH</option>
-                        <option value="OK">OK</option>
-                        <option value="OR">OR</option>
-                        <option value="PA">PA</option>
-                        <option value="RI">RI</option>
-                        <option value="SC">SC</option>
-                        <option value="SD">SD</option>
-                        <option value="TN">TN</option>
-                        <option value="TX">TX</option>
-                        <option value="UT">UT</option>
-                        <option value="VT">VT</option>
-                        <option value="VA">VA</option>
-                        <option value="WA">WA</option>
-                        <option value="WV">WV</option>
-                        <option value="WI">WI</option>
-                        <option value="WY">WY</option>
+                        <option value="ALABAMA">AL</option>
+                        <option value="ALASKA">AK</option>
+                        <option value="ARIZONA">AZ</option>
+                        <option value="ARKANSAS">AR</option>
+                        <option value="CALIFORNIA">CA</option>
+                        <option value="COLORAD">CO</option>
+                        <option value="CONNECTICUT">CT</option>
+                        <option value="DELAWARE">DE</option>
+                        <option value="FLORIDA">FL</option>
+                        <option value="GEORGIA">GA</option>
+                        <option value="HAWAII">HI</option>
+                        <option value="IDAHO">ID</option>
+                        <option value="ILLINOIS">IL</option>
+                        <option value="INDINANA">IN</option>
+                        <option value="IOWA">IA</option>
+                        <option value="KANSAS">KS</option>
+                        <option value="KENTUCKY">KY</option>
+                        <option value="LOUISIANA">LA</option>
+                        <option value="MAINE">ME</option>
+                        <option value="MARYLAND">MD</option>
+                        <option value="MASSACHUSETTS">MA</option>
+                        <option value="MICHIGAN">MI</option>
+                        <option value="MINNESOTA">MN</option>
+                        <option value="MISSISSIPPI">MS</option>
+                        <option value="MISSOURI">MO</option>
+                        <option value="MONTANA">MT</option>
+                        <option value="NEBRASKA">NE</option>
+                        <option value="NEVADA">NV</option>
+                        <option value="NEW_HAMPSHIRE">NH</option>
+                        <option value="NEW_JERSEY">NJ</option>
+                        <option value="NEW_MEXICO">NM</option>
+                        <option value="NEW_YORK">NY</option>
+                        <option value="NORTH_CAROLINA">NC</option>
+                        <option value="NORT_DAKOTA">ND</option>
+                        <option value="OHIO">OH</option>
+                        <option value="OKLAHOMA">OK</option>
+                        <option value="OREGON">OR</option>
+                        <option value="PENNSYLVANIA">PA</option>
+                        <option value="RHODE_ISLAND">RI</option>
+                        <option value="SOUTH_CAROLINA">SC</option>
+                        <option value="SOUTH_DAKOTA">SD</option>
+                        <option value="TENNESSEE">TN</option>
+                        <option value="TEXAS">TX</option>
+                        <option value="UTAH">UT</option>
+                        <option value="VERMONT">VT</option>
+                        <option value="VIRGINIA">VA</option>
+                        <option value="WASHINGTON">WA</option>
+                        <option value="WEST_VIRGINIA">WV</option>
+                        <option value="WISCONSIN">WI</option>
+                        <option value="WYOMING">WY</option>
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -282,7 +283,7 @@
             <div
                     ng-class="{ 'has-error' : userForm.zip.$invalid && userForm.zip.$dirty }">
                 <div class="col-md-1">
-                    <input type="text" ng-model="zip" name="zip" ng-pattern="/^[0-9]+$/"
+                    <input type="text" ng-model="personUIObject.addresses[0].zip" name="zip" ng-pattern="/^[0-9]+$/"
                            class="form-control" size="15" ng-minlength="5" ng-maxlength="5"  maxlength="5"
                            required>
                 </div>
@@ -301,10 +302,12 @@
                     ng-class="{ 'has-error' : userForm.country.$invalid && userForm.country.$dirty }">
                 <div class="col-md-1 align-right">Country:</div>
                 <div class="col-md-2 align-left">
-                    <select name="country" ng-model="country"
+                    <select name="country" ng-model="personUIObject.addresses[0].country"
                             class="form-control" required>
-                        <option value="United States">United States</option>
-                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="CANADA">Canada</option>
+                        <option value="MEXICO">Mexico</option>
+                        <option value="UNITED_STATES">United States</option>
+                        <option value="UNITED_KINGDOM">United Kingdom</option>
                     </select>
                 </div>
                 <div class="col-md-3">
