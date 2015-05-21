@@ -7,22 +7,25 @@ function PhoneNumber(phoneNumberConfig) {
 
 	this.getCountry = function() {
 		return country;
-	}
+	};
 
 	this.getAreaCode = function() {
         return areaCode;
-    }
+    };
 
-    this.getExchange = function() {
+    this.getExchangeCode = function() {
         return exchangeCode;
-    }
+    };
 
     this.getLocalNumber = function() {
         return localNumber;
+    };
+
+    this.getConfig = function() {
+        return phoneNumberConfig;
     }
 
 	this.toJSON = function(serializeUIProperties) {
-	console.log(this);
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
             jsonAreaCode = (Object.isDefined(areaCode))? "\"" + areaCode + "\"" : null,
@@ -35,7 +38,6 @@ function PhoneNumber(phoneNumberConfig) {
                 "\"exchangeCode\": " + jsonExchangeCode + "," +
                 "\"localNumber\": " + jsonLocalNumber +
             "}";
-            console.log(jsonCountry + " " + jsonAreaCode + " " + jsonExchangeCode + " " + jsonLocalNumber);
         return json;
     };
 

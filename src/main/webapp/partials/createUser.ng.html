@@ -4,7 +4,7 @@
     </div>
     <br>
 
-    <form name="userForm" novalidate>
+    <form id="createUserForm" name="userForm" novalidate>
         <div class="well row">
             <div class="col-md-2 col-md-offset-2 align-right">
                 <b>Account Info:</b>
@@ -42,7 +42,25 @@
                 </div>
             </div>
         </div>
-        <br>
+
+        <div class="row">
+            <div class="col-md-3 col-md-offset-4">
+                <div class="radio">
+                    <label><input type="radio" ng-model="personUIObject.gender" value="MALE" name="maleButton">Male</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" ng-model="personUIObject.gender" value="FEMALE" name="femaleButton">Female</label>
+                </div>
+            </div>
+            <div class="col-md-5 align-left">
+                <div class="help-block" ng-show="userForm.maleButton.$invalid && userForm.maleButton.$dirty ||
+                        userForm.femaleButton.$invalid && userForm.femaleButton.$dirty">
+                    <small>
+                        Gender is required!
+                    </small>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-2 col-md-offset-2 align-right">
