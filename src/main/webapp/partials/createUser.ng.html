@@ -46,10 +46,10 @@
         <div class="row">
             <div class="col-md-3 col-md-offset-4">
                 <div class="radio">
-                    <label><input type="radio" ng-model="personUIObject.gender" value="MALE" name="maleButton">Male</label>
+                    <label><input type="radio" ng-model="personUIObject.gender" value="MALE" name="maleButton" ng-required="!personUIObject.gender"/>Male</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" ng-model="personUIObject.gender" value="FEMALE" name="femaleButton">Female</label>
+                    <label><input type="radio" ng-model="personUIObject.gender" value="FEMALE" name="femaleButton" ng-required="!personUIObject.gender"/>Female</label>
                 </div>
             </div>
             <div class="col-md-5 align-left">
@@ -307,8 +307,11 @@
                 </div>
                 <div class="col-md-1">
                     <div class="help-block" ng-show="userForm.zip.$invalid && userForm.zip.$dirty">
-                        <small ng-if="userForm.zip.$error.required || userForm.zip.$error.minlength || userForm.zip.$error.maxlength">
+                        <small ng-if="userForm.zip.$error.required">
                             Required! <br>
+                        </small>
+                        <small ng-if="userForm.zip.$error.minlength || userForm.zip.$error.maxlength">
+                            Must be 5 digits
                         </small>
                         <small ng-if="userForm.zip.$error.pattern">
                             Not a number!
