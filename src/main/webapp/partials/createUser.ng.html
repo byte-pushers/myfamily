@@ -84,27 +84,27 @@
             <div class="col-md-2 col-md-offset-2 align-right">
                 Password:
             </div>
-            <div ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty || password != passwordConfirm}">
+            <div ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty}">
                 <div class="col-md-2">
                     <input type="password" class="form-control" name="password"
-                           ng-model="personUIObject.password" ng-minlength="6" required/>
+                           ng-model="personUIObject.password" equals="{{personUIObject.passwordConfirm}}" ng-minlength="6" required/>
                 </div>
                 <div class="col-md-2">
                     <input type="password" class="form-control" name="passwordConfirm"
-                           ng-model="personUIObject.passwordConfirm" ng-minlength="6" required/>
+                           ng-model="personUIObject.passwordConfirm" equals="{{personUIObject.password}}"ng-minlength="6" required/>
                 </div>
 
                 <div class="col-md-4">
                     <div class="help-block"
-                         ng-show="userForm.password.$invalid && userForm.password.$dirty || password != passwordConfirm">
-                        <small ng-if="userForm.password.$error.minlength">
+                         ng-show="userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty">
+                        <small style="color: #b94a48"  ng-if="userForm.password.$error.minlength || userForm.passwordConfirm.$error.minlength">
                             must be at least 6 characters
                         </small>
-                        <small ng-if="userForm.password.$error.required">
+                        <small style="color: #b94a48" ng-if="userForm.password.$error.required || userForm.passwordConfirm.$error.required">
                             Password required!
                         </small>
-                        <small style="color: #b94a48" ng-if="password != passwordConfirm">
-                            Passwords don't match
+                        <small style="color: #b94a48" ng-if="userForm.passwordConfirm.$error.equals || userForm.password.$error.equals">
+                            Passwords don't match!
                         </small>
                     </div>
                 </div>
@@ -242,7 +242,7 @@
                         <option value="ARIZONA">AZ</option>
                         <option value="ARKANSAS">AR</option>
                         <option value="CALIFORNIA">CA</option>
-                        <option value="COLORAD">CO</option>
+                        <option value="COLORADO">CO</option>
                         <option value="CONNECTICUT">CT</option>
                         <option value="DELAWARE">DE</option>
                         <option value="FLORIDA">FL</option>

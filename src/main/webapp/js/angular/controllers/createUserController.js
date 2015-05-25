@@ -5,13 +5,14 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
         $scope.personUIObject.phoneNumbers.push(new PhoneNumber().toUIObject());
         //$scope.personUIObject.addresses = [];
         $scope.personUIObject.addresses.push(new Address().toUIObject());
+        $scope.personUIObject.passwordConfirm = null;
         $scope.areaCode = "";
         $scope.exchangeCode = "";
 
         $scope.submit = function(isValid){
             if(isValid){
                 UserProfileService.createUser($scope.personUIObject, isValid);
-                reset();
+                //reset();
             }
         };
 

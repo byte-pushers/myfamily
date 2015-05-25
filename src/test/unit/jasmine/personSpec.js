@@ -37,9 +37,6 @@ describe('person test', function () {
 
         var person = new Person(personConfig);
         var personUIObject = person.toUIObject();
-        var phoneArray = person.getPhoneNumbers();
-        var addressArray = person.getAddresses();
-
 
         expect(person.getFirstName()).toEqual(personUIObject.firstName);
         expect(person.getMiddleName()).toEqual(personUIObject.middleName);
@@ -47,14 +44,20 @@ describe('person test', function () {
         expect(person.getUsername()).toEqual(personUIObject.username);
         expect(person.getPassword()).toEqual(personUIObject.password);
         expect(person.getBirthDate().getFullYear()+ "-" + person.getBirthDate().getMonth() + "-" +person.getBirthDate().getDate()).toEqual(personUIObject.birthDate);
-        expect(phoneArray[0].getConfig()).toEqual(personUIObject.phoneNumbers[0]);
-        expect(addressArray[0].getConfig()).toEqual(personUIObject.addresses[0]);
+        expect(person.getPhoneNumbers()[0].getAreaCode()).toEqual(personUIObject.phoneNumbers[0].areaCode);
+        expect(person.getPhoneNumbers()[0].getExchangeCode()).toEqual(personUIObject.phoneNumbers[0].exchangeCode);
+        expect(person.getPhoneNumbers()[0].getLocalNumber()).toEqual(personUIObject.phoneNumbers[0].localNumber);
+        expect(person.getAddresses()[0].getStreet1()).toEqual(personUIObject.addresses[0].street1);
+        expect(person.getAddresses()[0].getStreet2()).toEqual(personUIObject.addresses[0].street2);
+        expect(person.getAddresses()[0].getCity()).toEqual(personUIObject.addresses[0].city);
+        expect(person.getAddresses()[0].getState()).toEqual(personUIObject.addresses[0].state);
+        expect(person.getAddresses()[0].getZip()).toEqual(personUIObject.addresses[0].zip);
+        expect(person.getAddresses()[0].getCountry()).toEqual(personUIObject.addresses[0].country);
         expect(person.getGender()).toEqual(personUIObject.gender);
+
     });
 });
 
-
-/*
 describe('person test', function () {
     beforeEach(module('myFamilyApp'));
     beforeEach(function () {
@@ -125,4 +128,3 @@ describe('person test', function () {
         $httpBackend.flush();
     });
 });
-*/
