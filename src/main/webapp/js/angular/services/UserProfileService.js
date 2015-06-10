@@ -5,8 +5,9 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
         userJsonObject.phoneNumbers[0].country = userJsonObject.addresses[0].country;
 
         if(isValid){
-            $http.post("http://localhost:8080/person-profile-ws/user-profile/newUser.json", userJsonObject)
+            $http.post("http://localhost:8080/user-profile-ws/profiles/user.json", userJsonObject)
                 .success(function (data) {
+                    setCurrentUser(new Person(data));
                     $state.go('userCreated', {});
                 })
                 .error(function(data) {

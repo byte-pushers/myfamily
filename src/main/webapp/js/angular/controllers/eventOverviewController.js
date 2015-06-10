@@ -3,12 +3,12 @@ myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'EventSe
 	initialize();
 
     $scope.deleteEvent = function(){
-        EventService.deleteEvent(EventService.getCurrentEventIndex());
-        EventService.setCurrentEventIndex(null);
+        EventService.deleteEvent(EventService.getCurrentEvent());
+        EventService.setCurrentEvent(null);
     };
 
     $scope.setEdit = function(){
-        EventService.setLoad(true);
+        EventService.setNewEvent(true);
     };
 
     $scope.getDate = function(date){
@@ -62,7 +62,7 @@ myFamilyApp.controller('eventOverviewController', [ '$scope', '$state', 'EventSe
         		$scope.event = new Event();
         		$scope.attendeeArray = [];
         	}else{
-        		 $scope.event = EventService.getEvent(EventService.getCurrentEventIndex());
+        		 $scope.event = EventService.getCurrentEvent();
         		 $scope.attendeeArray = $scope.event.getAttendeeArray();
         	}
     	};

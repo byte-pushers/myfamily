@@ -28,7 +28,7 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
     .state('userCreated', {
         url : "/userCreated",
         templateUrl : "partials/userCreated.ng.html",
-        controller : 'createUserController'
+        controller : 'userCreatedController'
     })
     .state('familySearch', {
         url : "/familySearch",

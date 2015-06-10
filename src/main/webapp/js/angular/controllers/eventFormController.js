@@ -16,10 +16,10 @@ myFamilyApp.controller('eventFormController', [ '$scope', '$state', 'EventServic
 
             function initialize(){
                 resetForm();
-                if(EventService.getLoad()){
-                    fillForm(EventService.getEvent(EventService.getCurrentEventIndex()));
+                if(!EventService.isNewEvent()){
+                    fillForm(EventService.getCurrentEvent());
                     $scope.submitText = "save";
-                    EventService.setLoad(false);
+                    EventService.setNewEvent(false);
                     save = true;
                 }
                 else{
@@ -29,7 +29,7 @@ myFamilyApp.controller('eventFormController', [ '$scope', '$state', 'EventServic
 
 			$scope.submit = function(isValid) {
 				if (isValid && $scope.attendeeArray.length != 0) {
-				    if(save == false){
+				    if(save != true){
                         var eventConfig = {
                             name : $scope.eventUIObject.name,
                             description : $scope.eventUIObject.description,

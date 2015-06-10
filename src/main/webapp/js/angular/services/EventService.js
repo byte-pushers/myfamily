@@ -1,7 +1,8 @@
 myFamilyApp.service('EventService', function() {
 	var eventArray = [];
 	var currentEventIndex = 0;
-	var load = false;
+    var currentEvent = null;
+	var newEvent = false;
 
     function getEventArray(){
         return eventArray;
@@ -11,8 +12,8 @@ myFamilyApp.service('EventService', function() {
         eventArray.push(newObj);
     }
 
-    function deleteEvent(index) {
-        eventArray.splice(index, 1);
+    function deleteEvent(input) {
+        eventArray.splice(input);
     }
 
     function getEvent(index){
@@ -23,20 +24,28 @@ myFamilyApp.service('EventService', function() {
         return eventArray.length;
     }
 
-    function getCurrentEventIndex() {
-        return currentEventIndex;
+    function getCurrentEvent() {
+        return currentEvent;
     }
 
-    function setCurrentEventIndex(num) {
-        currentEventIndex = num;
+    function setCurrentEvent(input) {
+        currentEvent = input;
     }
 
-    function getLoad(){
-        return load;
+    function hasCurrentEventLoaded(){
+        if(currentEvent != null){
+            return true;
+        } else{
+            return false;
+        }
     }
 
-    function setLoad(val){
-        load = val;
+    function isNewEvent(){
+        return newEvent;
+    }
+
+    function setNewEvent(input){
+        newEvent = input;
     }
 
     return {
@@ -45,9 +54,10 @@ myFamilyApp.service('EventService', function() {
             deleteEvent: deleteEvent,
             getEventArraySize : getEventArraySize,
             getEvent : getEvent,
-            getCurrentEventIndex : getCurrentEventIndex,
-            setCurrentEventIndex : setCurrentEventIndex,
-            getLoad : getLoad,
-            setLoad : setLoad
+            getCurrentEvent : getCurrentEvent,
+            setCurrentEvent : setCurrentEvent,
+            hasCurrentEventLoaded : hasCurrentEventLoaded,
+            isNewEvent : isNewEvent,
+            setNewEvent : setNewEvent
     };
 });

@@ -11,8 +11,6 @@ function Person(personJsonConfig) {
     var email = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.email))? personJsonConfig.email: null;
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
-    //var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? personJsonConfig.phoneNumbers : [];
-    //var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? personJsonConfig.addresses: [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
 
     var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
@@ -113,7 +111,7 @@ function Person(personJsonConfig) {
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
             jsonUsername = (Object.isDefined(username))? "\"" + username + "\"" : null,
             jsonPassword = (Object.isDefined(password))? "\"" + password + "\"" : null,
-            jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate.getFullYear()  + "-" + birthDate.getMonth() + "-" + birthDate.getDate() + "\"" : null,
+            jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate + "\"" : null,
             jsonEmail = (Object.isDefined(email))? "\"" + email + "\"":  null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
