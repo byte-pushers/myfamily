@@ -10,7 +10,6 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
         $scope.submit = function(isValid){
             if(isValid){
                 UserProfileService.createUser($scope.personUIObject, isValid);
-                //reset();
             }
         };
 

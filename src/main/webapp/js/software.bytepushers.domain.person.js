@@ -13,8 +13,6 @@ function Person(personJsonConfig) {
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
 
-    var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9]+.[A-Z]{3}$", "i");
-
     this.getId = function() {
         return id;
     };
@@ -103,6 +101,11 @@ function Person(personJsonConfig) {
         return json;
     }
 
+    function getDateJSON(date) {
+        console.log(date);
+        return "[" + date.substring(0, 4) + "," + date.substring(5, 7); + "," + date.substring(8, 10) + "]";
+    }
+
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
@@ -111,7 +114,7 @@ function Person(personJsonConfig) {
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
             jsonUsername = (Object.isDefined(username))? "\"" + username + "\"" : null,
             jsonPassword = (Object.isDefined(password))? "\"" + password + "\"" : null,
-            jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate + "\"" : null,
+            jsonBirthDate = (Object.isDefined(birthDate))? birthDate: null,
             jsonEmail = (Object.isDefined(email))? "\"" + email + "\"":  null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
@@ -121,13 +124,13 @@ function Person(personJsonConfig) {
                 "\"firstName\": " + jsonFistName + "," +
                 "\"middleName\": " + jsonMiddleName + "," +
                 "\"lastName\": " + jsonLastName + "," +
-                "\"username\": " + jsonUsername + "," +
-                "\"password\": " + jsonPassword + "," +
                 "\"email\": " + jsonEmail + "," +
                 "\"birthDate\": " + jsonBirthDate + "," +
                 "\"phoneNumbers\": " + jsonPhoneNumbers + "," +
                 "\"addresses\": " +  jsonAddresses + "," +
-                "\"gender\": " +  jsonGender +
+                "\"gender\": " +  jsonGender + "," +
+                "\"username\": " + jsonUsername + "," +
+                "\"password\": " + jsonPassword +
             "}";
         return json;
     };
@@ -141,7 +144,7 @@ function Person(personJsonConfig) {
     this.toString = function () {
     	return  "{" +
             "id: " + id + "," +
-           "firstName: " + fistName + "," +
+           "firstName: " + firstName + "," +
            "middleName: " + middleName + "," +
            "lastName: " + lastName + "," +
            "username: " + username + "," +

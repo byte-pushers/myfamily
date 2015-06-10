@@ -44,7 +44,7 @@ function Address(addressJsonConfig) {
             jsonZip = (Object.isDefined(zip))? "\"" + zip + "\"" : null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
             json =  "{" +
-                "\"type\": " + "\"PRIMARY\"" + "," +
+                "\"contactType\": " + "\"PRIMARY\"" + "," +
                 "\"street1\": " + jsonStreet1 + "," +
                 "\"street2\": " + jsonStreet2 + "," +
                 "\"city\": " + jsonCity + "," +

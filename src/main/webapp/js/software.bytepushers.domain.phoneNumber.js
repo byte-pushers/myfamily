@@ -32,13 +32,12 @@ function PhoneNumber(phoneNumberConfig) {
             jsonExchangeCode = (Object.isDefined(exchangeCode))? "\"" + exchangeCode + "\"" : null,
             jsonLocalNumber = (Object.isDefined(localNumber))? "\"" + localNumber + "\"" : null,
             json =  "{" +
+                "\"contactType\": " + "\"PRIMARY\"" + "," +
                 "\"country\": " + null + "," +
                 "\"country\": " + jsonCountry + "," +
                 "\"areaCode\": " + jsonAreaCode + "," +
                 "\"exchangeCode\": " + jsonExchangeCode + "," +
-                "\"localNumber\": " + jsonLocalNumber + "," +
-                "\"type\": " + "\"PRIMARY\"" +
-
+                "\"localNumber\": " + jsonLocalNumber  +
             "}";
         return json;
     };
