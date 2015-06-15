@@ -4,6 +4,11 @@ function PhoneNumber(phoneNumberConfig) {
 	var areaCode = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.areaCode))? phoneNumberConfig.areaCode: null;
 	var exchangeCode = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.exchangeCode))? phoneNumberConfig.exchangeCode: null;
 	var localNumber = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.localNumber))? phoneNumberConfig.localNumber: null;
+    var id = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.id))? phoneNumberConfig.id: null;
+    var createdDate = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.createdDate))? new Date(phoneNumberConfig.createdDate): new Date();
+    var lastModifiedDate = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.lastModifiedDate))? new Date(phoneNumberConfig.lastModifiedDate): createdDate;
+    var createdBy = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.createdBy))? phoneNumberConfig.createdBy: null;
+    var lastModifiedBy = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.lastModifiedBy))? phoneNumberConfig.lastModifiedBy: null;
 
 	this.getCountry = function() {
 		return country;
@@ -21,9 +26,29 @@ function PhoneNumber(phoneNumberConfig) {
         return localNumber;
     };
 
+    this.getId = function() {
+        return id;
+    };
+
+    this.getCreatedDate = function() {
+        return createdDate;
+    };
+
+    this.getLastModifiedDate = function() {
+        return id;
+    };
+
+    this.getCreatedBy = function() {
+        return createdBy;
+    };
+
+    this.getLastModifiedBy = function() {
+        return lastModifiedBy;
+    };
+
     this.getConfig = function() {
         return phoneNumberConfig;
-    }
+    };
 
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
@@ -31,13 +56,22 @@ function PhoneNumber(phoneNumberConfig) {
             jsonAreaCode = (Object.isDefined(areaCode))? "\"" + areaCode + "\"" : null,
             jsonExchangeCode = (Object.isDefined(exchangeCode))? "\"" + exchangeCode + "\"" : null,
             jsonLocalNumber = (Object.isDefined(localNumber))? "\"" + localNumber + "\"" : null,
+            jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
+            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
                 "\"contactType\": " + "\"PRIMARY\"" + "," +
-                "\"country\": " + null + "," +
                 "\"country\": " + jsonCountry + "," +
                 "\"areaCode\": " + jsonAreaCode + "," +
                 "\"exchangeCode\": " + jsonExchangeCode + "," +
-                "\"localNumber\": " + jsonLocalNumber  +
+                "\"localNumber\": " + jsonLocalNumber  + "," +
+                "\"id\": " + jsonId + "," +
+                "\"createdDate\": " + jsonCreatedDate + "," +
+                "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
+                "\"createdBy\": " + jsonCreatedBy + "," +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };

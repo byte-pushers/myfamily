@@ -6,34 +6,59 @@ function Address(addressJsonConfig) {
 	var state = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.state))? addressJsonConfig.state: null;
 	var zip = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.zip))? addressJsonConfig.zip: null;
     var country = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.country))? addressJsonConfig.country: null;
+    var id = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.id))? addressJsonConfig.id: null;
+    var createdDate = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.createdDate))? new Date(addressJsonConfig.createdDate): new Date();
+    var lastModifiedDate = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.lastModifiedDate))? new Date(addressJsonConfig.lastModifiedDate): createdDate;
+    var createdBy = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.createdBy))? addressJsonConfig.createdBy: null;
+    var lastModifiedBy = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.lastModifiedBy))? addressJsonConfig.lastModifiedBy: null;
 
 	this.getStreet1 = function() {
 		return street1;
-	}
+	};
 
 	this.getStreet2 = function() {
         return street2;
-    }
+    };
 
     this.getCity = function() {
         return city;
-    }
+    };
 
     this.getState = function() {
         return state;
-    }
+    };
 
     this.getZip = function() {
         return zip;
-    }
+    };
 
     this.getCountry = function() {
         return country;
-    }
+    };
+
+    this.getId = function() {
+        return id;
+    };
+
+    this.getCreatedDate = function() {
+        return createdDate;
+    };
+
+    this.getLastModifiedDate = function() {
+        return id;
+    };
+
+    this.getCreatedBy = function() {
+        return createdBy;
+    };
+
+    this.getLastModifiedBy = function() {
+        return lastModifiedBy;
+    };
 
     this.getConfig = function() {
         return addressJsonConfig;
-    }
+    };
 
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
@@ -43,6 +68,11 @@ function Address(addressJsonConfig) {
             jsonState = (Object.isDefined(state))? "\"" + state + "\"" : null,
             jsonZip = (Object.isDefined(zip))? "\"" + zip + "\"" : null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
+            jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
+            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
                 "\"contactType\": " + "\"PRIMARY\"" + "," +
                 "\"street1\": " + jsonStreet1 + "," +
@@ -50,7 +80,12 @@ function Address(addressJsonConfig) {
                 "\"city\": " + jsonCity + "," +
                 "\"state\": " + jsonState + "," +
                 "\"zip\": " + jsonZip + "," +
-                "\"country\": " + jsonCountry +
+                "\"country\": " + jsonCountry + "," +
+                "\"id\": " + jsonId + "," +
+                "\"createdDate\": " + jsonCreatedDate + "," +
+                "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
+                "\"createdBy\": " + jsonCreatedBy + "," +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };

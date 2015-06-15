@@ -31,7 +31,7 @@ Object.isString = function (someString) {
 
     return result;
 };
-Object.isNumber = function (someNumber) {
+Object.isNumeric = function (someNumber) {
     "use strict";
     var result = false;
     if (Object.isDefined(someNumber)) {

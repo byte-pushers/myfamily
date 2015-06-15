@@ -1,6 +1,5 @@
 function Person(personJsonConfig) {
 
-    var id = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.id))? personJsonConfig.id: null;
 	var firstName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.firstName))? personJsonConfig.firstName: null;
 	var middleName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.middleName))? personJsonConfig.middleName: null;
 	var lastName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastName))? personJsonConfig.lastName: null;
@@ -12,10 +11,12 @@ function Person(personJsonConfig) {
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
-
-    this.getId = function() {
-        return id;
-    };
+    var attendee = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.attendee))? personJsonConfig.attendee: false;
+    var id = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.id))? personJsonConfig.id: null;
+    var createdDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdDate))? new Date(personJsonConfig.createdDate): new Date();
+    var lastModifiedDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedDate))? new Date(personJsonConfig.lastModifiedDate): createdDate;
+    var createdBy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdBy))? personJsonConfig.createdBy: null;
+    var lastModifiedBy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedBy))? personJsonConfig.lastModifiedBy: null;
 
 	this.getFirstName = function() {
 		return firstName;
@@ -61,6 +62,26 @@ function Person(personJsonConfig) {
         return gender;
     };
 
+    this.getId = function() {
+        return id;
+    };
+
+    this.getCreatedDate = function() {
+        return createdDate;
+    };
+
+    this.getLastModifiedDate = function() {
+        return id;
+    };
+
+    this.getCreatedBy = function() {
+        return createdBy;
+    };
+
+    this.getLastModifiedBy = function() {
+        return lastModifiedBy;
+    };
+
     function createPhoneNumbers(phoneNumbersJsonConfig) {
         var tempPhoneNumbers = [];
         if((Object.isDefined(phoneNumbersJsonConfig) && (Object.isArray(phoneNumbersJsonConfig)))) {
@@ -101,26 +122,25 @@ function Person(personJsonConfig) {
         return json;
     }
 
-    function getDateJSON(date) {
-        console.log(date);
-        return "[" + date.substring(0, 4) + "," + date.substring(5, 7); + "," + date.substring(8, 10) + "]";
-    }
-
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
-            jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
+        var jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
             jsonMiddleName = (Object.isDefined(middleName))? "\"" + middleName + "\"" : null,
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
             jsonUsername = (Object.isDefined(username))? "\"" + username + "\"" : null,
             jsonPassword = (Object.isDefined(password))? "\"" + password + "\"" : null,
-            jsonBirthDate = (Object.isDefined(birthDate))? birthDate: null,
+            jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate.toJSON() + "\"": null,
             jsonEmail = (Object.isDefined(email))? "\"" + email + "\"":  null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
             jsonGender = (Object.isDefined(gender))? "\"" + gender + "\"" : null,
+            jsonAttendee = (Object.isDefined(attendee))? "\"" + attendee + "\"" : false,
+            jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
+            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
-                "\"id\": " + null + "," +
                 "\"firstName\": " + jsonFistName + "," +
                 "\"middleName\": " + jsonMiddleName + "," +
                 "\"lastName\": " + jsonLastName + "," +
@@ -130,7 +150,13 @@ function Person(personJsonConfig) {
                 "\"addresses\": " +  jsonAddresses + "," +
                 "\"gender\": " +  jsonGender + "," +
                 "\"username\": " + jsonUsername + "," +
-                "\"password\": " + jsonPassword +
+                "\"password\": " + jsonPassword + "," +
+                "\"attendee\": " + jsonAttendee + "," +
+                "\"id\": " + jsonId + "," +
+                "\"createdDate\": " + jsonCreatedDate + "," +
+                "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
+                "\"createdBy\": " + jsonCreatedBy + "," +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };
@@ -143,16 +169,20 @@ function Person(personJsonConfig) {
 
     this.toString = function () {
     	return  "{" +
+            "firstName: " + firstName + "," +
+            "middleName: " + middleName + "," +
+            "lastName: " + lastName + "," +
+            "email: " + email + "," +
+            "phoneNumbers: " + phoneNumbers + "," +
+            "addresses: " +  addresses + "," +
+            "username: " + username + "," +
+            "password: " + password + "," +
+            "attendee: " + attendee + "," +
             "id: " + id + "," +
-           "firstName: " + firstName + "," +
-           "middleName: " + middleName + "," +
-           "lastName: " + lastName + "," +
-           "username: " + username + "," +
-           "password: " + password + "," +
-           "passwordConfirm: " + passwordConfirm + "," +
-           "email: " + email + "," +
-           "phoneNumbers: " + phoneNumbers + "," +
-           "addresses: " +  addresses +
+            "createdDate: " + createdDate + "," +
+            "lastModifiedDate: " + lastModifiedDate + "," +
+            "createdBy: " + createdBy + "," +
+            "lastModifiedBy: " + lastModifiedBy +
         "}";
     };
 }
