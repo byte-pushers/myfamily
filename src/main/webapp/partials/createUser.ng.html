@@ -4,6 +4,18 @@
     </div>
     <br>
 
+    <div class="row">
+        <div class="col-md-12 align-center">
+            <ul>
+                <small style="color: #b94a48" data-ng-repeat="x in errors">
+                    {{ x }} <br>
+                </small>
+                <small style="color: #b94a48" ng-bind="error"></small>
+            </ul>
+        </div>
+    </div>
+    <br>
+
     <form id="createUserForm" name="userForm" novalidate>
         <div class="well row">
             <div class="col-md-2 col-md-offset-2 align-right">

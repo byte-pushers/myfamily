@@ -1,5 +1,22 @@
 myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $state) {
 	var currentUser = null;
+    var errorList = [];
+
+    function getCurrentUser(){
+        return currentUser;
+    }
+
+    function setCurrentUser(input) {
+        currentUser = input;
+    }
+
+    function getErrorList(){
+        return errorList;
+    }
+
+    function resetErrorList(){
+        errorList = [];
+    }
 
     function createUser(userJsonObject, isValid){
         var jsonObject = createNewJsonObject(userJsonObject)
@@ -9,11 +26,13 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
             $http.post("http://localhost:8080/user-profile-ws/profiles/user.json", jsonObject)
                 .success(function (data) {
                     var response = new WebServiceResponse(data);
+                    errorList = [];
                     setCurrentUser(response.getPayload().getPerson());
                     $state.go('userCreated', {});
                 })
                 .error(function(data) {
-                    alert("The request failed: " + data);
+                    var response = new WebServiceResponse(data);
+                    errorList.push(response.getStatus().getMessages());
                 })
         }
 
@@ -66,17 +85,11 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
         }
     }
 
-    function getCurrentUser(){
-        return currentUser;
-    }
-
-    function setCurrentUser(input) {
-        currentUser = input;
-    }
-
     return {
         getCurrentUser : getCurrentUser,
         setCurrentUser: setCurrentUser,
+        getErrorList: getErrorList,
+        resetErrorList: resetErrorList,
         createUser: createUser
     };
 }]);
