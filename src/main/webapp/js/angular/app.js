@@ -25,6 +25,10 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
         templateUrl : "partials/createUser.ng.html",
         controller : 'createUserController'
     })
+    .state('signIn', {
+        url : "/signIn",
+        templateUrl : "partials/signIn.ng.html"
+    })
     .state('userCreated', {
         url : "/userCreated",
         templateUrl : "partials/userCreated.ng.html",
@@ -33,5 +37,13 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
     .state('familySearch', {
         url : "/familySearch",
         templateUrl : "partials/familySearch.ng.html"
-    });
+    })
+	.state('familySearch.byName', {
+		url : "/byName",
+		templateUrl : "partials/familySearch.byName.ng.html"
+	})
+	.state('familySearch.byLocation', {
+		url : "/byLocation",
+		templateUrl : "partials/familySearch.byLocation.ng.html"
+	});
 });

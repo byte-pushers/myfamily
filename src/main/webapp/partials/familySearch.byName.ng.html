@@ -1,0 +1,56 @@
+<form name="byNameForm">
+    <div class="row " ng-class="{ 'has-error' : byNameForm.firstName.$invalid && byNameForm.firstName.$dirty ||
+             byNameForm.lastName.$invalid && byNameForm.lastName.$dirty || byNameForm.birthDate.$invalid && byNameForm.birthDate.$dirty}">
+        <div class="col-md-2 col-lg-offset-3 align-right">
+            <p>Enter name or username:</p>
+        </div>
+
+        <div class="col-md-3">
+            <input type="text" ng-model="searchRequest" name="search" class="form-control" required/>
+        </div>
+
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary btn-sm" ng-disabled="userForm.$invalid" ng-click="submit(byNameForm.$valid)">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        <div class="col-md-7 col-lg-offset-5 align-left">
+            <div class="help-block" ng-show="byNameForm.search.$invalid && byNameForm.search.$dirty">
+                <small style="color: #b94a48" ng-if="byNameForm.search.$error.required">
+                    Must enter a name or username to search
+                </small>
+            </div>
+        </div>
+    </div>
+    <br> <br>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 align-center">
+            <table class="table table-condensed table-striped" ng-show="resultsArray.length > 0">
+                <tr class="info">
+                    <td><b>#</b></td>
+                    <td><b>First Name</b></td>
+                    <td><b>Middle Name</b></td>
+                    <td><b>Last Name</b></td>
+                    <td><b>Age</b></td>
+                    <td><b>City</b></td>
+                    <td><b>State</b></td>
+                    <td><b>Zip</b></td>
+                    <td><b>Country</b></td>
+                </tr>
+                <tr ng-repeat="x in resultsArray">
+                    <td>{{$index + 1}}</td>
+                    <td>{{x.getFirstName()}}</td>
+                    <td>{{x.getMiddleName()}}</td>
+                    <td>{{x.getLastName()}}</td>
+                    <td>{{x.getBirthDate()}}</td>
+                    <td>{{x.getAddress().getCity()}}</td>
+                    <td>{{x.getAddress().getState()}}</td>
+                    <td>{{x.getAddress().getZip()}}</td>
+                    <td>{{x.getAddress().getCountry()}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</form>
