@@ -1,6 +1,7 @@
 myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'EventService', 'UserProfileService',
     function($scope, $http, $state, EventService, UserProfileService) {
         $scope.personUIObject = new Person().toUIObject();
+        $scope.personUIObject.emails.push(new Email().toUIObject());
         $scope.personUIObject.phoneNumbers.push(new PhoneNumber().toUIObject());
         $scope.personUIObject.addresses.push(new Address().toUIObject());
         $scope.personUIObject.gender = null;
@@ -9,6 +10,7 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
         $scope.errors = [];
 
         $scope.submit = function(isValid){
+            console.log($scope.personUIObject.privacy);
             if(isValid){
                 resetErrors();
                 UserProfileService.createUser($scope.personUIObject, isValid);

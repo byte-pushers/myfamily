@@ -40,7 +40,8 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
     })
 	.state('familySearch.byName', {
 		url : "/byName",
-		templateUrl : "partials/familySearch.byName.ng.html"
+		templateUrl : "partials/familySearch.byUser.ng.html",
+		controller : 'familySearch.byUserController'
 	})
 	.state('familySearch.byLocation', {
 		url : "/byLocation",

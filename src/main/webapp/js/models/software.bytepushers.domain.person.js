@@ -7,7 +7,8 @@ function Person(personJsonConfig) {
 	var password = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.password))? personJsonConfig.password: null;
 	var passwordConfirm = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.passwordConfirm))? personJsonConfig.passwordConfirm: null;
 	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? personJsonConfig.birthDate: null;
-    var email = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.email))? personJsonConfig.email: null;
+    var privacy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.privacy))? personJsonConfig.privacy: null;
+    var emails = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.email))? createEmails(personJsonConfig.emails): [];
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
@@ -42,8 +43,8 @@ function Person(personJsonConfig) {
         return passwordConfirm;
     };
 
-	this.getEmail = function() {
-		return email;
+	this.getEmails = function() {
+		return emails;
 	};
 
 	this.getBirthDate = function() {
@@ -82,6 +83,16 @@ function Person(personJsonConfig) {
         return lastModifiedBy;
     };
 
+    function createEmails(emailsJsonConfig) {
+        var tempEmails = [];
+        if((Object.isDefined(emailsJsonConfig) && (Object.isArray(emailsJsonConfig)))) {
+            emailsJsonConfig.forEach(function(emailJsonConfig){
+                tempEmails.push(emailJsonConfig);
+            });
+        }
+        return tempEmails;
+    };
+
     function createPhoneNumbers(phoneNumbersJsonConfig) {
         var tempPhoneNumbers = [];
         if((Object.isDefined(phoneNumbersJsonConfig) && (Object.isArray(phoneNumbersJsonConfig)))) {
@@ -101,6 +112,16 @@ function Person(personJsonConfig) {
         }
         return tempAddresses;
     };
+
+    function getEmailsJSON(serializeUIProperties){
+        var json = "[";
+        emails.forEach(function (email, index, arr) {
+            json = json + email.toJSON(serializeUIProperties);
+            (index <= arr.length) ? json : json = json + ",";
+        });
+        json = json + "]";
+        return json;
+    }
 
     function getPhoneNumbersJSON(serializeUIProperties){
         var json = "[";
@@ -129,8 +150,9 @@ function Person(personJsonConfig) {
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
             jsonUsername = (Object.isDefined(username))? "\"" + username + "\"" : null,
             jsonPassword = (Object.isDefined(password))? "\"" + password + "\"" : null,
+            jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  null,
             jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate.toJSON() + "\"": null,
-            jsonEmail = (Object.isDefined(email))? "\"" + email + "\"":  null,
+            jsonPrivacy = (Object.isDefined(privacy))? "\"" + privacy + "\"": null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
             jsonGender = (Object.isDefined(gender))? "\"" + gender + "\"" : null,
@@ -144,8 +166,9 @@ function Person(personJsonConfig) {
                 "\"firstName\": " + jsonFistName + "," +
                 "\"middleName\": " + jsonMiddleName + "," +
                 "\"lastName\": " + jsonLastName + "," +
-                "\"email\": " + jsonEmail + "," +
+                "\"emails\": " + jsonEmails + "," +
                 "\"birthDate\": " + jsonBirthDate + "," +
+                "\"privacy\": " + jsonPrivacy + "," +
                 "\"phoneNumbers\": " + jsonPhoneNumbers + "," +
                 "\"addresses\": " +  jsonAddresses + "," +
                 "\"gender\": " +  jsonGender + "," +
@@ -172,7 +195,9 @@ function Person(personJsonConfig) {
             "firstName: " + firstName + "," +
             "middleName: " + middleName + "," +
             "lastName: " + lastName + "," +
-            "email: " + email + "," +
+            "emails: " + emails + "," +
+            "birthDate: " + birthDate + "," +
+            "privacy: " + privacy + "," +
             "phoneNumbers: " + phoneNumbers + "," +
             "addresses: " +  addresses + "," +
             "username: " + username + "," +

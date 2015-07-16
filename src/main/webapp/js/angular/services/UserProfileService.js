@@ -19,7 +19,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
     }
 
     function createUser(userJsonObject, isValid){
-        var jsonObject = createNewJsonObject(userJsonObject)
+        var jsonObject = createNewJsonObject(userJsonObject);
         configureVariables(jsonObject);
 
         if(isValid){
@@ -69,8 +69,9 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
             obj.firstName = UIObj.firstName;
             obj.middleName = UIObj.middleName;
             obj.lastName = UIObj.lastName;
-            obj.email = UIObj.email;
+            obj.emails = UIObj.emails;
             obj.birthDate = UIObj.birthDate;
+            obj.privacy = UIObj.privacy;
             obj.phoneNumbers = UIObj.phoneNumbers;
             obj.addresses = UIObj.addresses;
             obj.gender = UIObj.gender;

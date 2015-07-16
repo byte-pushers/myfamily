@@ -139,7 +139,23 @@
             </div>
         </div>
         <br>
-        <br>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-2 align-right">
+                <br>
+                Account:
+            </div>
+            <div class="col-md-3">
+                <div class="radio">
+                    <label><input type="radio" ng-model="personUIObject.privacy" value="PRIVATE" name="privateButton" ng-required="!personUIObject.privacy"/>Private</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" ng-model="personUIObject.privacy" value="PUBLIC" name="publicButton" ng-required="!personUIObject.privacy"/>Public</label>
+                </div>
+            </div>
+            <div class="col-md-5"/>
+        </div>
+        <br><br>
+        <br><br>
 
         <div class="well row">
             <div class="col-md-2 col-md-offset-2 align-right">
@@ -155,7 +171,7 @@
             </div>
             <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
                 <div class="col-md-2">
-                    <input type="email" name="email" ng-model="personUIObject.email" class="form-control" required>
+                    <input type="email" name="email" ng-model="personUIObject.emails[0].email" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <small ng-show="userForm.email.$invalid && userForm.email.$dirty"

@@ -1,0 +1,95 @@
+<form name="byNameForm" novalidate>
+    <div class="row ">
+        <div class="col-md-2 col-md-offset-1 align-right">Name:</div>
+
+        <div class="col-md-2">
+            <input type="text" ng-model="searchRequest.firstName" name="firstName"
+                   class="form-control" required-any="nameSearch">
+        </div>
+
+        <div class="col-md-2">
+            <input type="text" ng-model="searchRequest.middleName" name="middleName"
+                   class="form-control" required-any="nameSearch">
+        </div>
+        <div class="col-md-2">
+            <input type="text" ng-model="searchRequest.lastName" name="lastName"
+                   class="form-control" required-any="nameSearch">
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary btn-sm" ng-click="submit((byNameForm.firstName.$valid || byNameForm.middleName.$valid || byNameForm.lastName.$valid), true)">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 align-center">
+            <div class="help-block" ng-show="!validNameForm">
+                <small style="color: #b94a48">
+                    At least one is required to search.
+                </small>
+            </div>
+        </div>
+    </div>
+    <br> <br>
+</form>
+
+<form name="byUsernameForm" novalidate>
+
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2 align-right">
+            <p>Enter username:</p>
+        </div>
+
+        <div class="col-md-4">
+            <input type="text" ng-model="searchRequest.username" name="username" class="form-control" required/>
+        </div>
+
+        <div class="col-md-4">
+            <button class="btn btn-primary btn-sm" ng-click="submit(byUsernameForm.username.$valid, false)">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 align-center">
+            <div class="help-block">
+                <small style="color: #b94a48" ng-if="!validUsernameForm">
+                    Must enter a name or username to search
+                </small>
+            </div>
+        </div>
+    </div>
+    <br> <br>
+</form>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 align-center">
+        <table class="table table-condensed table-striped" ng-show="resultsArray.length > 0">
+            <tr class="info">
+                <td><b>#</b></td>
+                <td><b>First Name</b></td>
+                <td><b>Middle Name</b></td>
+                <td><b>Last Name</b></td>
+                <td><b>Age</b></td>
+                <td><b>City</b></td>
+                <td><b>State</b></td>
+                <td><b>Zip</b></td>
+                <td><b>Country</b></td>
+            </tr>
+            <tr ng-repeat="x in resultsArray">
+                <td>{{$index + 1}}</td>
+                <td>{{x.getFirstName()}}</td>
+                <td>{{x.getMiddleName()}}</td>
+                <td>{{x.getLastName()}}</td>
+                <td>{{x.getBirthDate()}}</td>
+                <td>{{x.getAddress().getCity()}}</td>
+                <td>{{x.getAddress().getState()}}</td>
+                <td>{{x.getAddress().getCountry()}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>

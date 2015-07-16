@@ -96,7 +96,7 @@ function Address(addressJsonConfig) {
         return UIObject;
     };
 
-this.toString = function () {
+    this.toString = function () {
     	return  "{" +
            "street1: " + street1 + "," +
            "street2: " + street2 + "," +
