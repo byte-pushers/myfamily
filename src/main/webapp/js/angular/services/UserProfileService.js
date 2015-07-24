@@ -23,7 +23,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
         configureVariables(jsonObject);
 
         if(isValid){
-            $http.post("http://localhost:8080/user-profile-ws/profiles/user.json", jsonObject)
+            $http.post(myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/user.json", "user-profile-ws"), jsonObject)
                 .success(function (data) {
                     var response = new WebServiceResponse(data);
                     errorList = [];

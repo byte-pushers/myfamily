@@ -48,3 +48,38 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 		templateUrl : "partials/familySearch.byLocation.ng.html"
 	});
 });
+
+myFamilyApp.RestfulClientUrlPrefixes = {
+	DEV: "data",
+	TEST: "",
+	PROD: ""
+};
+
+myFamilyApp.restfulClientUrlPrefix = myFamilyApp.RestfulClientUrlPrefixes.DEV;
+
+myFamilyApp.filterRestfulClientUrl = function (url, contextname) {
+    var indexOfContextName, contextNameLength, start, path;
+    contextname = (Object.isString(contextname) && contextname.length > 0)? contextname: "myfamily";
+	if(myFamilyApp.restfulClientUrlPrefix == myFamilyApp.RestfulClientUrlPrefixes.DEV){
+		var parser = document.createElement('a');
+		parser.href = url;
+
+
+		console.info("parser.protocol = "  + parser.protocol);
+		console.info("parser.hostname = "  + parser.hostname);
+		console.info("parser.port = "  + parser.port);
+		console.info("parser.pathname = "  + parser.pathname);
+		console.info("parser.search = "  + parser.search);
+		console.info("parser.hash = "  + parser.hash);
+		console.info("parser.host = "  + parser.host);
+        console.info("parser.origin = "  + parser.origin);
+
+        indexOfContextName = parser.pathname.indexOf(contextname);
+        contextNameLength = contextname.length;
+        start = indexOfContextName + contextNameLength + 1;
+        path = myFamilyApp.restfulClientUrlPrefix  + "/" + parser.pathname.substring(start);
+
+	}
+
+    return path;
+};
