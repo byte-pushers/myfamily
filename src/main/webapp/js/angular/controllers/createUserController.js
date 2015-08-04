@@ -18,6 +18,11 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
             }
         };
 
+        $scope.createUserTest = function(isValid){
+            UserProfileService.createUser($scope.personUIObject, true);
+            setErrors();
+        };
+
         function setErrors(){
             $scope.errors = UserProfileService.getErrorList();
         }
