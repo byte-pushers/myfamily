@@ -5,7 +5,7 @@ function WebServiceResponseStatus(responseStatusConfig) {
         Failure: "Failure"
     };
 
-    var messages = (Object.isDefined(responseStatusConfig) && Object.isDefined(responseStatusConfig.messages))? responseStatusConfig.messages: [];
+    var messages = (Object.isDefined(responseStatusConfig) && Object.isArray(responseStatusConfig.messages))? responseStatusConfig.messages: [];
     var requestStatus = (Object.isDefined(responseStatusConfig) && Object.isDefined(responseStatusConfig.requestStatus))? responseStatusConfig.requestStatus: request.Failure;
 
     this.getMessages = function() {
@@ -22,7 +22,7 @@ function WebServiceResponseStatus(responseStatusConfig) {
 
     function getMessagesAsJSON(serializeUIProperties){
         var json = "[";
-        addresses.forEach(function (string, index, arr) {
+        messages.forEach(function (string, index, arr) {
             json = json + string;
             (index <= arr.length) ? json : json = json + ",";
         });
