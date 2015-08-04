@@ -81,8 +81,12 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
             return obj;
         }
 
-        function formatDateAsLocalDateJSON(date){
-            return [date.getFullYear(), (date.getMonth() + 1), date.getDate() ];
+        function formatDateAsLocalDateJSON(someDate){
+            var localDateJSON = [];
+            if(Object.isDate(someDate)){
+                localDateJSON = [date.getFullYear(), (date.getMonth() + 1), date.getDate() ];
+            }
+            return localDateJSON;
         }
     }
 
