@@ -3,7 +3,7 @@ function WebServiceResponse(responseConfig) {
     var status = (Object.isDefined(responseConfig) && Object.isDefined(responseConfig.status))? createStatus(responseConfig.status): null;
     var payload = (Object.isDefined(responseConfig) && Object.isDefined(responseConfig.payload))? createPayload(responseConfig.payload): null;
 
-    this.getStatus = function() {
+    this.getRequestStatus = function() {
         return status;
     };
 

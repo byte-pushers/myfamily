@@ -65,14 +65,14 @@ myFamilyApp.filterRestfulClientUrl = function (url, contextname) {
 		parser.href = url;
 
 
-		console.info("parser.protocol = "  + parser.protocol);
-		console.info("parser.hostname = "  + parser.hostname);
-		console.info("parser.port = "  + parser.port);
-		console.info("parser.pathname = "  + parser.pathname);
-		console.info("parser.search = "  + parser.search);
-		console.info("parser.hash = "  + parser.hash);
-		console.info("parser.host = "  + parser.host);
-        console.info("parser.origin = "  + parser.origin);
+		console.debug("parser.protocol = "  + parser.protocol);
+		console.debug("parser.hostname = "  + parser.hostname);
+		console.debug("parser.port = "  + parser.port);
+		console.debug("parser.pathname = "  + parser.pathname);
+		console.debug("parser.search = "  + parser.search);
+		console.debug("parser.hash = "  + parser.hash);
+		console.debug("parser.host = "  + parser.host);
+        console.debug("parser.origin = "  + parser.origin);
 
         indexOfContextName = parser.pathname.indexOf(contextname);
         contextNameLength = contextname.length;

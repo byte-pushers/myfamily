@@ -24,15 +24,15 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
 
         if(isValid){
             $http.post(myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/user.json", "user-profile-ws"), jsonObject)
-                .success(function (data) {
-                    var response = new WebServiceResponse(data);
+                .success(function (jsonResponse) {
+                    var response = BytePushers.models.ResponseTransformer.transformJSONResponse(jsonResponse, BytePushers.models.PersonTransformer);
                     errorList = [];
                     setCurrentUser(response.getPayload().getPerson());
                     $state.go('userCreated', {});
                 })
                 .error(function(data) {
                     var response = new WebServiceResponse(data);
-                    errorList.push(response.getStatus().getMessages());
+                    errorList.push(response.getRequestStatus().getMessages());
                 })
         }
 

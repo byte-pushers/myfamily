@@ -12,7 +12,7 @@ myFamilyApp.service('SearchService', ['$http', '$state', function($http, $state)
             })
             .error(function(data) {
                 var response = new WebServiceResponse(data);
-                errorList.push(response.getStatus().getMessages());
+                errorList.push(response.getRequestStatus().getMessages());
             })
     }
 
@@ -25,7 +25,7 @@ myFamilyApp.service('SearchService', ['$http', '$state', function($http, $state)
             })
             .error(function(data) {
                 var response = new WebServiceResponse(data);
-                errorList.push(response.getStatus().getMessages());
+                errorList.push(response.getRequestStatus().getMessages());
             })
     }
 
