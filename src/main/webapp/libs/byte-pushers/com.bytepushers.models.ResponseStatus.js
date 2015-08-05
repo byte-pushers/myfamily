@@ -29,10 +29,10 @@ BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
 
         jsonMessages.forEach(function (message, index, array) {
             // Create new message object with errory Type and messages from jsonMsgs Array.
-            msg = new BytePushers.models.Message({type: errorType, value: message})
+            msg = new BytePushers.models.Message({type: errorType, value: message});
 
-            convertingArray[0]= msgArray;
             //TODO: Put msg object into the msgArray.
+            convertingArray[0]= msgArray;
         });
     };
 
