@@ -57,9 +57,9 @@ myFamilyApp.RestfulClientUrlPrefixes = {
 
 myFamilyApp.restfulClientUrlPrefix = myFamilyApp.RestfulClientUrlPrefixes.DEV;
 
-myFamilyApp.filterRestfulClientUrl = function (url, contextname) {
+myFamilyApp.filterRestfulClientUrl = function (url, applicationContext) {
     var indexOfContextName, contextNameLength, start, path;
-    contextname = (Object.isString(contextname) && contextname.length > 0)? contextname: "myfamily";
+    applicationContext = (Object.isString(applicationContext) && applicationContext.length > 0)? applicationContext: "myfamily";
 	if(myFamilyApp.restfulClientUrlPrefix == myFamilyApp.RestfulClientUrlPrefixes.DEV){
 		var parser = document.createElement('a');
 		parser.href = url;
@@ -74,8 +74,8 @@ myFamilyApp.filterRestfulClientUrl = function (url, contextname) {
 		console.debug("parser.host = "  + parser.host);
         console.debug("parser.origin = "  + parser.origin);
 
-        indexOfContextName = parser.pathname.indexOf(contextname);
-        contextNameLength = contextname.length;
+        indexOfContextName = parser.pathname.indexOf(applicationContext);
+        contextNameLength = applicationContext.length;
         start = indexOfContextName + contextNameLength + 1;
         path = myFamilyApp.restfulClientUrlPrefix  + "/" + parser.pathname.substring(start);
 
