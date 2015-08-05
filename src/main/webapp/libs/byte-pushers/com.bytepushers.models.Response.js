@@ -38,8 +38,8 @@ BytePushers.models.Response =  function (responseStatus, payload) {
      * @method
      * @returns {String} The response message of the service call.
      */
-    this.getMessage = function () {
-        return responseStatus.getMessage();
+    this.getMessages = function () {
+        return responseStatus.getMessages();
     };
 
     /**

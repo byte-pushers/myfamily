@@ -24,16 +24,18 @@ BytePushers.models = BytePushers.models || BytePushers.namespace("software.bytep
  * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
  */
 BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
-    var convertingArray = function(jsonMessages, errorType){
+    var convertResponseMessages = function(jsonMessages, messageType){
         var msgArray = [], msg;
 
         jsonMessages.forEach(function (message, index, array) {
-            // Create new message object with errory Type and messages from jsonMsgs Array.
-            msg = new BytePushers.models.Message({type: errorType, value: message});
+            // Create a new message object with error type and message from jsonMessages Array.
+            msg = new BytePushers.models.Message({type: messageType, value: message});
 
-            //TODO: Put msg object into the msgArray.
-            convertingArray[0]= msgArray;
+            //Put msg object into the msgArray.
+            msgArray.push(msg);
         });
+
+        return msgArray;
     };
 
     var convertingArray2 = function(jsonMessages, errorType){
@@ -66,7 +68,7 @@ BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
          * @field
          * @type {EScreeningDashboardApp.models.Message}
          */
-        messages = (Object.isDefined(jsonResponseStatus) && Object.isArray(jsonResponseStatus.messages)) ? convertingArray(jsonResponseStatus.messages, determineMessageType(requestStatus)) : [];//(requestStatus.toLowerCase() === "failed")? new BytePushers.models.Message({type: "error", value: jsonResponseStatus.message}): new BytePushers.models.Message({type: "success", value: jsonResponseStatus.message}) : null,
+        messages = (Object.isDefined(jsonResponseStatus) && Object.isArray(jsonResponseStatus.messages)) ? convertResponseMessages(jsonResponseStatus.messages, determineMessageType(requestStatus)) : [];
         /**
          * Represent the response requestStatus exception from a Restful service call.
          *
@@ -86,8 +88,8 @@ BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
      * @method
      * @returns {EScreeningDashboardApp.models.Message} The response message of the service call.
      */
-    this.getMessage = function () {
-        return message;
+    this.getMessages = function () {
+        return messages;
     };
 
     /**

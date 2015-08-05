@@ -2,7 +2,7 @@ Object.isArray = function (someArray) {
     "use strict";
     var result = false;
     if (Object.isDefined(someArray)) {
-        if (typeof someArray === "object" && someArray instanceof Array) {
+        if (someArray.constructor.toString().indexOf("Array") > -1) {
             result = true;
         }
     }

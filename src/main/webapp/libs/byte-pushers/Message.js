@@ -37,6 +37,10 @@ BytePushers.models.Message = function (jsonMessageObject) {
     this.setValue = function(someValue){
         value = someValue;
     };
+
+    this.toString = function (){
+        return "Message  {type: " + type + ", value: " + value + "}";
+    }
 };
 BytePushers.models.Message.SUCCESSFUL_SAVE = "successful-save";
 BytePushers.models.Message.SUCCESSFUL_DELETE = "successful-delete";
