@@ -35,7 +35,7 @@ BytePushers.models.PersonTransformer =  BytePushers.namespace("software.bytepush
  *
  * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
  */
-BytePushers.models.PersonTransformer.transformJSONResponse = function (personJsonConfig, user) {
+BytePushers.models.PersonTransformer.transformJSONPayload = function (personJsonConfig, user) {
     'use strict';
 
     /**
