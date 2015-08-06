@@ -23,7 +23,7 @@ BytePushers.models = BytePushers.models || BytePushers.namespace("software.bytep
  * @constructor
  * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
  */
-BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
+BytePushers.models.ResponseStatus = function (jsonResponseStatus) {
     var convertResponseMessages = function(jsonMessages, messageType){
         var msgArray = [], msg;
 
@@ -38,15 +38,20 @@ BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
         return msgArray;
     };
 
-    var convertingArray2 = function(jsonMessages, errorType){
-        var msgArray = [], msg;
-
+    var convertingArray2 = function(jsonMessages, messageType){
+        var msgArray = [], msg, index;
+        var tempMsg = 0;
         //TODO: use for loop to loop through the jsonMessages Array.
-        //START Loop
-        //TODO: Assigned index value out of array to a message variable upon each loop.
-        //todo: Create new message object with error Type and messages variable from jsonMsgs Array.
-        //TODO: Put msg object into the msgArray.
-        //END Loop
+        for(index = 0; index < jsonMessages.length; index++){    //START Loop
+            //TODO: Assign index value out of array to a message variable upon each loop.
+            tempMsg = jsonMessages[index];
+            //todo: Create new message object with error Type and messages variable from jsonMsgs Array.
+            msg = new BytePushers.models.Message({type: messageType, value: tempMsg});
+            //TODO: Put msg object into the msgArray.
+            msgArray[msgArray.length] = msg;
+        }; //END Loop
+        return msgArray;
+
     };
 
     var determineMessageType = function(requestStatus){
@@ -68,7 +73,7 @@ BytePushers.models.ResponseStatus =  function (jsonResponseStatus) {
          * @field
          * @type {EScreeningDashboardApp.models.Message}
          */
-        messages = (Object.isDefined(jsonResponseStatus) && Object.isArray(jsonResponseStatus.messages)) ? convertResponseMessages(jsonResponseStatus.messages, determineMessageType(requestStatus)) : [];
+        messages = (Object.isDefined(jsonResponseStatus) && Object.isArray(jsonResponseStatus.messages)) ? convertingArray2(jsonResponseStatus.messages, determineMessageType(requestStatus)) : [];
         /**
          * Represent the response requestStatus exception from a Restful service call.
          *
