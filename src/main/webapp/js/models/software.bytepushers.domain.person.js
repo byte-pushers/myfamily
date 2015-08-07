@@ -3,16 +3,12 @@ function Person(personJsonConfig) {
 	var firstName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.firstName))? personJsonConfig.firstName: null;
 	var middleName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.middleName))? personJsonConfig.middleName: null;
 	var lastName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastName))? personJsonConfig.lastName: null;
-	var username = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.username))? personJsonConfig.username: null;
-	var password = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.password))? personJsonConfig.password: null;
-	var passwordConfirm = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.passwordConfirm))? personJsonConfig.passwordConfirm: null;
 	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? personJsonConfig.birthDate: null;
     var privacy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.privacy))? personJsonConfig.privacy: null;
     var emails = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.email))? createEmails(personJsonConfig.emails): [];
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
-    var attendee = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.attendee))? personJsonConfig.attendee: false;
     var id = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.id))? personJsonConfig.id: null;
     var createdDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdDate))? new Date(personJsonConfig.createdDate): new Date();
     var lastModifiedDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedDate))? new Date(personJsonConfig.lastModifiedDate): createdDate;
@@ -29,19 +25,7 @@ function Person(personJsonConfig) {
 
     this.getLastName = function() {
         return lastName;
-    };
-
-    this.getUsername = function() {
-        return username;
-    };
-
-    this.getPassword = function() {
-        return password;
-    };
-
-    this.getPassword2 = function() {
-        return passwordConfirm;
-    };
+    };;
 
 	this.getEmails = function() {
 		return emails;
@@ -148,15 +132,12 @@ function Person(personJsonConfig) {
         var jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
             jsonMiddleName = (Object.isDefined(middleName))? "\"" + middleName + "\"" : null,
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
-            jsonUsername = (Object.isDefined(username))? "\"" + username + "\"" : null,
-            jsonPassword = (Object.isDefined(password))? "\"" + password + "\"" : null,
             jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  null,
             jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate.toJSON() + "\"": null,
             jsonPrivacy = (Object.isDefined(privacy))? "\"" + privacy + "\"": null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
             jsonGender = (Object.isDefined(gender))? "\"" + gender + "\"" : null,
-            jsonAttendee = (Object.isDefined(attendee))? "\"" + attendee + "\"" : false,
             jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
             jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
@@ -172,9 +153,6 @@ function Person(personJsonConfig) {
                 "\"phoneNumbers\": " + jsonPhoneNumbers + "," +
                 "\"addresses\": " +  jsonAddresses + "," +
                 "\"gender\": " +  jsonGender + "," +
-                "\"username\": " + jsonUsername + "," +
-                "\"password\": " + jsonPassword + "," +
-                "\"attendee\": " + jsonAttendee + "," +
                 "\"id\": " + jsonId + "," +
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
@@ -200,9 +178,6 @@ function Person(personJsonConfig) {
             "privacy: " + privacy + "," +
             "phoneNumbers: " + phoneNumbers + "," +
             "addresses: " +  addresses + "," +
-            "username: " + username + "," +
-            "password: " + password + "," +
-            "attendee: " + attendee + "," +
             "id: " + id + "," +
             "createdDate: " + createdDate + "," +
             "lastModifiedDate: " + lastModifiedDate + "," +
