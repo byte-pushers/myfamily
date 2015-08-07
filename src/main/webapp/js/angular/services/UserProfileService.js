@@ -24,7 +24,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
             .success(function (jsonResponse) {
                 var response = BytePushers.models.ResponseTransformer.transformJSONResponse(jsonResponse, BytePushers.models.UserProfileTransformer);
                 errorList = [];
-                setCurrentUser(response.getPayload());
+                setCurrentUser(response.getPayload().getPerson().toUIObject());
                 $state.go('userCreated', {});
             })
             .error(function(data) {
