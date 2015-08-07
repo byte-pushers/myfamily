@@ -1,4 +1,4 @@
-myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'EventService', 'UserProfileService',
+myFamilyApp.controller('UserProfileController', [ '$scope', '$http', '$state', 'EventService', 'UserProfileService',
     function($scope, $http, $state, EventService, UserProfileService) {
         $scope.personUIObject = new Person().toUIObject();
         $scope.personUIObject.emails.push(new Email().toUIObject());

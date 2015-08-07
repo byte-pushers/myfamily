@@ -23,7 +23,7 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
     .state('createUser', {
         url : "/createUser",
         templateUrl : "partials/createUser.ng.html",
-        controller : 'createUserController'
+        controller : 'UserProfileController'
     })
     .state('signIn', {
         url : "/signIn",
