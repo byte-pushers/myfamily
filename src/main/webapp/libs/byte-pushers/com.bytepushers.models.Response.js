@@ -72,6 +72,6 @@ BytePushers.models.Response =  function (responseStatus, payload) {
      * @returns {Boolean} True if the service request call was successful; otherwise return false.
      */
     this.isSuccessful = function () {
-        return (responseStatus.getStatus().toUpperCase() === "SUCCEEDED");
+        return (responseStatus.getRequestStatus().toUpperCase() === "SUCCESSFUL");
     };
 };
