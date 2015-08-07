@@ -8,6 +8,8 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
         $scope.areaCode = "";
         $scope.exchangeCode = "";
         $scope.errors = [];
+        $scope.userProfileUIObject = new UserProfile().toUIObject();
+
 
         $scope.submit = function(isValid){
             console.log($scope.personUIObject.privacy);
@@ -19,7 +21,7 @@ myFamilyApp.controller('createUserController', [ '$scope', '$http', '$state', 'E
         };
 
         $scope.createUserTest = function(isValid){
-            UserProfileService.createUser($scope.personUIObject, true);
+            UserProfileService.createUserProfile(new UserProfile($scope.userProfileUIObject));
             setErrors();
         };
 
