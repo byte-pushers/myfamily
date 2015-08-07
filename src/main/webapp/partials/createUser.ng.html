@@ -29,16 +29,16 @@
              userForm.lastName.$invalid && userForm.lastName.$dirty}">
             <div class="col-md-2 col-md-offset-2 align-right">Name:</div>
             <div class="col-md-2">
-                <input type="text" ng-model="personUIObject.firstName" name="firstName"
+                <input type="text" ng-model="userProfileUIObject.person.firstName" name="firstName"
                        class="form-control" required>
             </div>
 
             <div class="col-md-1">
-                <input type="text" ng-model="personUIObject.middleName" name="middleName"
+                <input type="text" ng-model="userProfileUIObject.person.middleName" name="middleName"
                        class="form-control">
             </div>
             <div class="col-md-2">
-                <input type="text" ng-model="personUIObject.lastName" name="lastName"
+                <input type="text" ng-model="userProfileUIObject.person.lastName" name="lastName"
                        class="form-control" required>
             </div>
 
@@ -58,10 +58,10 @@
         <div class="row">
             <div class="col-md-3 col-md-offset-4">
                 <div class="radio">
-                    <label><input type="radio" ng-model="personUIObject.gender" value="MALE" name="maleButton" ng-required="!personUIObject.gender"/>Male</label>
+                    <label><input type="radio" ng-model="userProfileUIObject.person.gender" value="MALE" name="maleButton" ng-required="!userProfileUIObject.person.gender"/>Male</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" ng-model="personUIObject.gender" value="FEMALE" name="femaleButton" ng-required="!personUIObject.gender"/>Female</label>
+                    <label><input type="radio" ng-model="userProfileUIObject.person.gender" value="FEMALE" name="femaleButton" ng-required="!userProfileUIObject.person.gender"/>Female</label>
                 </div>
             </div>
             <div class="col-md-5 align-left">
@@ -81,7 +81,7 @@
             <div ng-class="{ 'has-error' : userForm.username.$invalid && userForm.username.$dirty }">
                 <div class="col-md-2">
                     <input type="text" class="form-control" name="username"
-                           ng-model="personUIObject.username" required/>
+                           ng-model="userProfileUIObject.username" required/>
                 </div>
                 <div class="col-md-6">
                     <small
@@ -99,11 +99,11 @@
             <div ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty}">
                 <div class="col-md-2">
                     <input type="password" class="form-control" name="password"
-                           ng-model="personUIObject.password" equals="{{personUIObject.passwordConfirm}}" ng-minlength="6" required/>
+                           ng-model="userProfileUIObject.password" equals="{{userProfileUIObject.passwordConfirm}}" ng-minlength="6" required/>
                 </div>
                 <div class="col-md-2">
                     <input type="password" class="form-control" name="passwordConfirm"
-                           ng-model="personUIObject.passwordConfirm" equals="{{personUIObject.password}}"ng-minlength="6" required/>
+                           ng-model="userProfileUIObject.passwordConfirm" equals="{{userProfileUIObject.password}}"ng-minlength="6" required/>
                 </div>
 
                 <div class="col-md-4">
@@ -130,7 +130,7 @@
                     Birthday:
                 </div>
                 <div class="col-md-2">
-                    <input type="date" class="form-control" ng-model="personUIObject.birthDate" name="birthDate" required/>
+                    <input type="date" class="form-control" ng-model="userProfileUIObject.person.birthDate" name="birthDate" required/>
                 </div>
                 <div class="col-md-6">
                     <small ng-show="userForm.birthDate.$invalid && userForm.birthDate.$dirty"
@@ -146,10 +146,10 @@
             </div>
             <div class="col-md-3">
                 <div class="radio">
-                    <label><input type="radio" ng-model="personUIObject.privacy" value="PRIVATE" name="privateButton" ng-required="!personUIObject.privacy"/>Private</label>
+                    <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PRIVATE" name="privateButton" ng-required="!userProfileUIObject.person.privacy"/>Private</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" ng-model="personUIObject.privacy" value="PUBLIC" name="publicButton" ng-required="!personUIObject.privacy"/>Public</label>
+                    <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PUBLIC" name="publicButton" ng-required="!userProfileUIObject.person.privacy"/>Public</label>
                 </div>
             </div>
             <div class="col-md-5"/>
@@ -171,7 +171,7 @@
             </div>
             <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
                 <div class="col-md-2">
-                    <input type="email" name="email" ng-model="personUIObject.emails[0].email" class="form-control" required>
+                    <input type="email" name="email" ng-model="userProfileUIObject.person.emails[0].email" class="form-control" required>
                 </div>
                 <div class="col-md-6">
                     <small ng-show="userForm.email.$invalid && userForm.email.$dirty"
@@ -187,19 +187,19 @@
             <div class="col-md-2 col-md-offset-2 align-right">Phone:</div>
             <div class="col-md-4">
                 <div class="col-sm-3">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="personUIObject.phoneNumbers[0].areaCode" name="areaCode"
-                           ng-change="autoFocus(personUIObject.phoneNumbers[0].areaCode, 3, 'exchangeCode')"
+                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].areaCode" name="areaCode"
+                           ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].areaCode, 3, 'exchangeCode')"
                            class="form-control" maxlength="3" required/>
                 </div>
                 <div class="col-sm-1 align-center">-</div>
                 <div class="col-sm-3">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="personUIObject.phoneNumbers[0].exchangeCode" name="exchangeCode" class="form-control" id="exchangeCode"
-                           ng-change="autoFocus(personUIObject.phoneNumbers[0].exchangeCode, 3, 'localNumber')" maxlength="3" required/>
+                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].exchangeCode" name="exchangeCode" class="form-control" id="exchangeCode"
+                           ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].exchangeCode, 3, 'localNumber')" maxlength="3" required/>
                 </div>
                 <div class="col-sm-1">-</div>
                 <div class="col-sm-4">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="personUIObject.phoneNumbers[0].localNumber" name="localNumber" id="localNumber"
-                           ng-change="autoFocus(personUIObject.phoneNumbers[0].localNumber, 4, 'address')" class="form-control" maxlength="4" required/>
+                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].localNumber" name="localNumber" id="localNumber"
+                           ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].localNumber, 4, 'address')" class="form-control" maxlength="4" required/>
                 </div>
             </div>
             <div class="col-md-4 align-left">
@@ -222,7 +222,7 @@
                 1:
             </div>
             <div class="col-md-5">
-                <input type="text" ng-model="personUIObject.addresses[0].street1" name="street1" id="address"
+                <input type="text" ng-model="userProfileUIObject.person.addresses[0].street1" name="street1" id="address"
                        class="form-control" required>
             </div>
             <div class="col-md-3 align-left">
@@ -238,7 +238,7 @@
                 2:
             </div>
             <div class="col-md-5">
-                <input type="text" ng-model="personUIObject.addresses[0].street2" name="street2"
+                <input type="text" ng-model="userProfileUIObject.person.addresses[0].street2" name="street2"
                        class="form-control">
             </div>
             <div class="col-md-3"></div>
@@ -250,7 +250,7 @@
             <div
                     ng-class="{ 'has-error' : userForm.city.$invalid && userForm.city.$dirty }">
                 <div class="col-md-1">
-                    <input type="text" ng-model="personUIObject.addresses[0].city" name="city"
+                    <input type="text" ng-model="userProfileUIObject.person.addresses[0].city" name="city"
                            class="form-control" size="15" required>
                 </div>
                 <div class="col-md-1">
@@ -263,7 +263,7 @@
                     ng-class="{ 'has-error' : userForm.state.$invalid && userForm.state.$dirty }">
                 <div class="col-md-1 align-right">State:</div>
                 <div class="col-md-1 align-left">
-                    <select name="state" ng-model="personUIObject.addresses[0].state"
+                    <select name="state" ng-model="userProfileUIObject.person.addresses[0].state"
                             class="form-control" required>
                         <option value="ALABAMA">AL</option>
                         <option value="ALASKA">AK</option>
@@ -329,7 +329,7 @@
             <div
                     ng-class="{ 'has-error' : userForm.zip.$invalid && userForm.zip.$dirty }">
                 <div class="col-md-1">
-                    <input type="text" ng-model="personUIObject.addresses[0].zip" name="zip" ng-pattern="/^[0-9]+$/"
+                    <input type="text" ng-model="userProfileUIObject.person.addresses[0].zip" name="zip" ng-pattern="/^[0-9]+$/"
                            class="form-control" size="15" ng-minlength="5" ng-maxlength="5"  maxlength="5"
                            required>
                 </div>
@@ -351,7 +351,7 @@
                     ng-class="{ 'has-error' : userForm.country.$invalid && userForm.country.$dirty }">
                 <div class="col-md-1 align-right">Country:</div>
                 <div class="col-md-2 align-left">
-                    <select name="country" ng-model="personUIObject.addresses[0].country"
+                    <select name="country" ng-model="userProfileUIObject.person.addresses[0].country"
                             class="form-control" required>
                         <option value="CANADA">Canada</option>
                         <option value="MEXICO">Mexico</option>
