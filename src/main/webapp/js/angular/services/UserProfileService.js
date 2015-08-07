@@ -18,6 +18,21 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
         errorList = [];
     }
 
+
+    function createUserProfile(userProfile){
+        $http.post(myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/user.json", "user-profile-ws"), userProfile.toJSON())
+            .success(function (jsonResponse) {
+                var response = BytePushers.models.ResponseTransformer.transformJSONResponse(jsonResponse, BytePushers.models.UserProfileTransformer);
+                errorList = [];
+                setCurrentUser(response.getPayload());
+                $state.go('userCreated', {});
+            })
+            .error(function(data) {
+                var response = new WebServiceResponse(data);
+                errorList.push(response.getRequestStatus().getMessages());
+            });
+    }
+
     function createUser(userJsonObject, isValid){
         var jsonObject = createNewJsonObject(userJsonObject);
         configureVariables(jsonObject);
@@ -33,7 +48,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
                 .error(function(data) {
                     var response = new WebServiceResponse(data);
                     errorList.push(response.getRequestStatus().getMessages());
-                })
+            })
         }
 
         function configureVariables(UIObj){
@@ -95,6 +110,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
         setCurrentUser: setCurrentUser,
         getErrorList: getErrorList,
         resetErrorList: resetErrorList,
-        createUser: createUser
+        createUser: createUser,
+        createUserProfile: createUserProfile
     };
 }]);
