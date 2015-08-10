@@ -21,7 +21,12 @@ myFamilyApp.controller('UserProfileController', [ '$scope', '$http', '$state', '
         };
 
         $scope.createUserTest = function(isValid){
-            UserProfileService.createUserProfile(new UserProfile($scope.userProfileUIObject));
+            var requestParams = {
+                    payload: new UserProfile($scope.userProfileUIObject)
+                },
+                userProfile = UserProfileService.create(requestParams);
+
+
             setErrors();
         };
 

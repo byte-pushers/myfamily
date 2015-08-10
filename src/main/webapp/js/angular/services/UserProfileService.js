@@ -1,6 +1,37 @@
-myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $state) {
+myFamilyApp.service('UserProfileService', ['$http', '$state', '$q', '$resource', function($http, $state, $q, $resource) {
 	var currentUser = null;
     var errorList = [];
+
+
+    var create = function(createUserProfileRequestParameter) {
+        var deferred = $q.defer(),
+            url = myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/user.json", "user-profile-ws"),
+            defaultParams = {},
+            actions = {
+                save: {
+                    method: "POST",
+                    isArray: false,
+                    transformResponse: myFamilyApp.appendTransform($http.defaults.transformResponse, function (jsonResponse) {
+                        var response = BytePushers.models.ResponseTransformer.transformJSONResponse(jsonResponse, BytePushers.models.UserProfileTransformer);
+
+                        if(!response.isSuccessful()){
+                           throw new BytePushers.exceptions.WebServiceException(response.getMessages());
+                        }
+                        return response;
+                    })
+                }
+            },
+            options = {stripTrailingSlashes: true},
+            service = $resource(url, defaultParams, actions, options);
+
+        service.save(createUserProfileRequestParameter.payload.toJSON(), function(response) {
+            deferred.resolve(response.getPayload());
+        }, function(webServiceException){
+            deferred.reject(webServiceException);
+        });
+
+        return deferred.promise;
+    };
 
     function getCurrentUser(){
         return currentUser;
@@ -110,6 +141,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', function($http, $s
         setCurrentUser: setCurrentUser,
         getErrorList: getErrorList,
         resetErrorList: resetErrorList,
+        create: create,
         createUser: createUser,
         createUserProfile: createUserProfile
     };
