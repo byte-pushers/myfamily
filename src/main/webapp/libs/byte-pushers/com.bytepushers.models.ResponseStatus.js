@@ -55,7 +55,7 @@ BytePushers.models.ResponseStatus = function (jsonResponseStatus) {
     };
 
     var determineMessageType = function(requestStatus){
-        var messageType = (requestStatus.toLowerCase() === "Failure".toLowerCase()) ? "error" : "";
+        var messageType = (requestStatus.toLowerCase() === "Failure".toLowerCase()) ? BytePushers.models.Message.ERROR : "";
         return messageType;
     };
     /**

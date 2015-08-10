@@ -1,4 +1,9 @@
-var myFamilyApp = angular.module("myFamilyApp", [ "ui.router", "ngResource"]);
+var myFamilyApp = angular.module("myFamilyApp",
+    [
+        "ui.router",
+        "ngResource",
+        "BytePushersApp.filters.messages"
+    ]);
 
 myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 
@@ -92,3 +97,4 @@ myFamilyApp.appendTransform = function (defaults, transform) {
     // Append the new transformation to the defaults
     return defaults.concat(transform);
 };
+myFamilyApp.value('MessageHandler', new BytePushers.handlers.MessageHandler());

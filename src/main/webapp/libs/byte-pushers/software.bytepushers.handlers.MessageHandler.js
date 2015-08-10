@@ -10,9 +10,9 @@ var BytePushers = BytePushers || {};
  * otherwise create a new one.
  *
  * @static
- * @type {*|BytePushers.models|*|BytePushers.models|Object|*|Object|*}
+ * @type {*|BytePushers.handlers|*|BytePushers.handlers|Object|*|Object|*}
  */
-BytePushers.models = BytePushers.models || BytePushers.namespace("com.byte-pushers.models");
+BytePushers.handlers = BytePushers.handlers || BytePushers.namespace("software.bytepushers.handlers");
 /**
  * Constructor method for the MessageHandler class.  The properties of this class can be initialized with
  * the jsonUserObject.
@@ -22,14 +22,14 @@ BytePushers.models = BytePushers.models || BytePushers.namespace("com.byte-pushe
  * @constructor
  * @author <a href="mailto:pouncilt.developer@gmail.com">Tont&eacute; Pouncil</a>
  */
-BytePushers.models.MessageHandler = function (jsonMessagesArrayObject) {
+BytePushers.handlers.MessageHandler = function (jsonMessagesArrayObject) {
     var messages = (Object.isArray(jsonMessagesArrayObject) && jsonMessagesArrayObject.length > 0)? jsonMessagesArrayObject : [];
 
     this.filterByErrorMessage = function(message, index) {
         if(Object.isDefined(message)) {
             if(message.getType().toLowerCase() === "error") {
                 if(!Object.isDefined(message.getValue())) {
-                    message.setValue(BytePushers.models.Message.ERROR_MSG);
+                    message.setValue(BytePushers.handlers.Message.ERROR_MSG);
                 }
                 return message;
             }
@@ -50,9 +50,9 @@ BytePushers.models.MessageHandler = function (jsonMessagesArrayObject) {
 
     this.filterBySuccessSaveMessage = function(message, index) {
         if(Object.isDefined(message)) {
-            if(message.getType().toLowerCase() === BytePushers.models.Message.SUCCESSFUL_SAVE) {
+            if(message.getType().toLowerCase() === BytePushers.handlers.Message.SUCCESSFUL_SAVE) {
                 if(!Object.isDefined(message.getValue())) {
-                    message.setValue(BytePushers.models.Message.SUCCESS_SAVE_MSG);
+                    message.setValue(BytePushers.handlers.Message.SUCCESS_SAVE_MSG);
                 }
                 return message;
             }
@@ -61,9 +61,9 @@ BytePushers.models.MessageHandler = function (jsonMessagesArrayObject) {
 
     this.filterBySuccessDeleteMessage = function(message, index) {
         if(Object.isDefined(message)) {
-            if(message.getType().toLowerCase() === BytePushers.models.Message.SUCCESSFUL_DELETE) {
+            if(message.getType().toLowerCase() === BytePushers.handlers.Message.SUCCESSFUL_DELETE) {
                 if(!Object.isDefined(message.getValue())) {
-                    message.setValue(BytePushers.models.Message.SUCCESS_DELETE_MSG);
+                    message.setValue(BytePushers.handlers.Message.SUCCESS_DELETE_MSG);
                 }
                 return message;
             }
@@ -133,6 +133,14 @@ BytePushers.models.MessageHandler = function (jsonMessagesArrayObject) {
             if(!foundDuplicatedMessage) {
                 messages.push(someMessage);
             }
+        }
+    };
+
+    this.addMessages = function (someMessages, addDuplicateMessages, lives){
+        if(Object.isArray(someMessages)) {
+            someMessages.forEach(function(message, index, array){
+                this.addMessage(message, addDuplicateMessages, lives);
+            }, this);
         }
     };
 

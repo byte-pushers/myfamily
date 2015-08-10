@@ -3,7 +3,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', '$q', '$resource',
     var errorList = [];
 
 
-    var create = function(createUserProfileRequestParameter) {
+    var create = function(createUserProfileRequestParameters) {
         var deferred = $q.defer(),
             url = myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/user.json", "user-profile-ws"),
             defaultParams = {},
@@ -15,7 +15,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', '$q', '$resource',
                         var response = BytePushers.models.ResponseTransformer.transformJSONResponse(jsonResponse, BytePushers.models.UserProfileTransformer);
 
                         if(!response.isSuccessful()){
-                           throw new BytePushers.exceptions.WebServiceException(response.getMessages());
+                           throw new BytePushers.exceptions.WebServiceException({exceptionMessages: response.getMessages()});
                         }
                         return response;
                     })
@@ -24,7 +24,7 @@ myFamilyApp.service('UserProfileService', ['$http', '$state', '$q', '$resource',
             options = {stripTrailingSlashes: true},
             service = $resource(url, defaultParams, actions, options);
 
-        service.save(createUserProfileRequestParameter.payload.toJSON(), function(response) {
+        service.save(createUserProfileRequestParameters.payload.toJSON(), function(response) {
             deferred.resolve(response.getPayload());
         }, function(webServiceException){
             deferred.reject(webServiceException);

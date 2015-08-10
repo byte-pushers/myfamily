@@ -12,7 +12,7 @@ var BytePushers = BytePushers || {};
  * @static
  * @type {*|BytePushers.models|*|BytePushers.models|Object|*|Object|*}
  */
-BytePushers.models = BytePushers.models || BytePushers.namespace("com.byte-pushers.models");
+BytePushers.models = BytePushers.models || BytePushers.namespace("software.bytepushers.models");
 /**
  * Constructor method for the Message class.  The properties of this class can be initialized with
  * the jsonUserObject.

@@ -6,13 +6,22 @@
 
     <div class="row">
         <div class="col-md-5 col-md-offset-4 align-right">
-            <div class="alert alert-info">
-                <strong>Alert</strong>
+            <div class="alert alert-danger" ng-show="messageHandler.hasErrorMessages()">
+                <div>Alert Error Message(s):</div>
                 <ul>
-                    <li data-ng-repeat="x in errors">
-
-                    </li>
+                    <div ng-repeat="error in messageHandler.getMessages()| uniqueMessage">
+                        {{error.getValue()}}
+                    </div>
                 </ul>
+
+            </div>
+            <div class="alert alert-success" ng-show="messageHandler.hasSuccessMessages()">
+                <ul>
+                    <div ng-repeat="message in messageHandler.getMessages()| uniqueMessage">
+                        {{message.getValue()}}
+                    </div>
+                </ul>
+
             </div>
         </div>
     </div>
