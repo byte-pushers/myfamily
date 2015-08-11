@@ -9,18 +9,18 @@
 angular.module('BytePushersApp.filters.messages', []).filter('uniqueMessage', function(){
     'use strict';
     return function (messages) {
-        if(Object.isDefined(messages)){
-            var filtered = messages.filter(function(message, index, messageArray){
-                var existingMessages = [], filterResults = false;
+        if(Object.isArray(messages)){
+            var filteredArray = messages.filter(function(message, index, messageArray){
+                var existingMessages = [], filterArrayResults = false;
     
                 if(index > 0){
                     existingMessages = messageArray.splice(0, index);
                 } else {
-                    filterResults = true;
+                    filterArrayResults = true;
                 }
     
-                if(!filterResults){
-                    filterResults = existingMessages.some(function(existingMessage) {
+                if(!filterArrayResults){
+                    filterArrayResults = existingMessages.some(function(existingMessage) {
                         if(Object.isDefined(existingMessage) && Object.isDefined(message)) {
                             if(existingMessage.getValue() === message.getValue()) {
                               return true;
@@ -29,12 +29,58 @@ angular.module('BytePushersApp.filters.messages', []).filter('uniqueMessage', fu
                     });
                 }
     
-                return filterResults;
+                return filterArrayResults;
             });
             
-            return filtered;
+            return filteredArray;
         }
         return messages;
         
     };
+}).filter('errorMessage', function (){
+    'use strict';
+    return function (messages) {
+        var filteredArray = [], filterResult = false;
+        if(Object.isArray(messages)){
+            filteredArray = messages.filter(function(message, messageIndex, messageArray) {
+                if(message.getType().toLowerCase() === BytePushers.models.Message.ERROR) {
+                    if(!Object.isDefined(message.getValue())) {
+                        message.setValue(BytePushers.models.Message.ERROR_MSG);
+                    }
+                    filterResult = true;
+                } else {
+                    filterResult = false;
+                }
+
+                return filterResult;
+            });
+
+            messages = filteredArray;
+        }
+
+        return messages
+    }
+}).filter('successfulMessage', function (){
+    'use strict';
+    return function (messages) {
+        var filteredArray = [], filterResult = false;
+        if(Object.isArray(messages)){
+            filteredArray = messages.filter(function(message, messageIndex, messageArray) {
+                if(message.getType().toLowerCase().contains(BytePushers.models.Message.SUCCESSFUL)) {
+                    if(!Object.isDefined(message.getValue())) {
+                        message.setValue("Warning:  Successful action did not produce a message.");
+                    }
+                    filterResult = true;
+                } else {
+                    filterResult = false;
+                }
+
+                return filterResult;
+            });
+
+            messages = filteredArray;
+        }
+
+        return messages
+    }
 });

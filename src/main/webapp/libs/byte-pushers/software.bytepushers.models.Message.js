@@ -42,6 +42,7 @@ BytePushers.models.Message = function (jsonMessageObject) {
         return "Message  {type: " + type + ", value: " + value + "}";
     }
 };
+BytePushers.models.Message.SUCCESSFUL = "successful";
 BytePushers.models.Message.SUCCESSFUL_SAVE = "successful-save";
 BytePushers.models.Message.SUCCESSFUL_DELETE = "successful-delete";
 BytePushers.models.Message.SUCCESS_SAVE_MSG = "Your data has been saved successfully.";

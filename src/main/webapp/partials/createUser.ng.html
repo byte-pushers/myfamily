@@ -9,15 +9,15 @@
             <div class="alert alert-danger" ng-show="messageHandler.hasErrorMessages()">
                 <div>Alert Error Message(s):</div>
                 <ul>
-                    <div ng-repeat="error in messageHandler.getMessages()| uniqueMessage">
+                    <div ng-repeat="error in messageHandler.getMessages()| uniqueMessage | errorMessage">
                         {{error.getValue()}}
                     </div>
                 </ul>
 
             </div>
-            <div class="alert alert-success" ng-show="messageHandler.hasSuccessMessages()">
+            <div class="alert alert-success" ng-show="messageHandler.hasSuccessfulMessages()">
                 <ul>
-                    <div ng-repeat="message in messageHandler.getMessages()| uniqueMessage">
+                    <div ng-repeat="message in messageHandler.getMessages()| uniqueMessage | successfulMessage">
                         {{message.getValue()}}
                     </div>
                 </ul>

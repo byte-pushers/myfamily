@@ -25,50 +25,14 @@ BytePushers.handlers = BytePushers.handlers || BytePushers.namespace("software.b
 BytePushers.handlers.MessageHandler = function (jsonMessagesArrayObject) {
     var messages = (Object.isArray(jsonMessagesArrayObject) && jsonMessagesArrayObject.length > 0)? jsonMessagesArrayObject : [];
 
-    this.filterByErrorMessage = function(message, index) {
-        if(Object.isDefined(message)) {
-            if(message.getType().toLowerCase() === "error") {
-                if(!Object.isDefined(message.getValue())) {
-                    message.setValue(BytePushers.handlers.Message.ERROR_MSG);
-                }
-                return message;
-            }
+    function removeMessage(index){
+        if(messages[index].numLives == 0){
+            messages.splice(index, 1);
         }
-    };
-
-    this.filterBySuccessMessage = function(message, index) {
-        var filteredMessage = this.filterBySuccessSaveMessage(message, index);
-
-        if(!Object.isDefined(filteredMessage)) {
-            filteredMessage = this.filterBySuccessDeleteMessage(message, index);
+        else{
+            messages[index].numLives--;
         }
-
-        if(Object.isDefined(filteredMessage)) {
-            return filteredMessage;
-        }
-    };
-
-    this.filterBySuccessSaveMessage = function(message, index) {
-        if(Object.isDefined(message)) {
-            if(message.getType().toLowerCase() === BytePushers.handlers.Message.SUCCESSFUL_SAVE) {
-                if(!Object.isDefined(message.getValue())) {
-                    message.setValue(BytePushers.handlers.Message.SUCCESS_SAVE_MSG);
-                }
-                return message;
-            }
-        }
-    };
-
-    this.filterBySuccessDeleteMessage = function(message, index) {
-        if(Object.isDefined(message)) {
-            if(message.getType().toLowerCase() === BytePushers.handlers.Message.SUCCESSFUL_DELETE) {
-                if(!Object.isDefined(message.getValue())) {
-                    message.setValue(BytePushers.handlers.Message.SUCCESS_DELETE_MSG);
-                }
-                return message;
-            }
-        }
-    };
+    }
 
     this.hasErrorMessages = function() {
         return messages.some( function(message, index) {
@@ -80,7 +44,7 @@ BytePushers.handlers.MessageHandler = function (jsonMessagesArrayObject) {
         });
     };
 
-    this.hasSuccessMessages = function() {
+    this.hasSuccessfulMessages = function() {
         return messages.some( function(message, index) {
             if(message.getType().toLowerCase() === BytePushers.models.Message.SUCCESSFUL_SAVE ||
                 message.getType().toLowerCase() === BytePushers.models.Message.SUCCESSFUL_DELETE){
@@ -93,33 +57,24 @@ BytePushers.handlers.MessageHandler = function (jsonMessagesArrayObject) {
         type = (Object.isDefined(type))? type : "all";
 
         messages.forEach( function(message, index) {
-            if(type === "all" 
+            if(type === "all"
                 || message.getType().toLowerCase() === type){
                 removeMessage(index);
             }
         });
     };
 
-    function removeMessage(index){
-        if(messages[index].numLives == 0){
-            messages.splice(index, 1);
-        }
-        else{
-            messages[index].numLives--;
-        }
-    }
-    
     /**
      * @param someMessage is the message object we are adding
      * @param addDuplicateMessages flag to allow duplicates
-     * @param lives is an integer indicating how many times clearMessages() can be called 
-     * on the message without it being removed.  This is used for times when state transitions 
+     * @param lives is an integer indicating how many times clearMessages() can be called
+     * on the message without it being removed.  This is used for times when state transitions
      * happen and you want the message to stay around for the next state.
      */
     this.addMessage = function (someMessage, addDuplicateMessages, lives){
         addDuplicateMessages = (Object.isDefined(addDuplicateMessages))? addDuplicateMessages : false;
         someMessage.numLives = Object.isDefined(lives) && parseInt(lives) == lives ? lives : 0;
-        
+
         if(addDuplicateMessages){//we don't care if there are dups
             messages.push(someMessage);
         }
