@@ -25,7 +25,7 @@ function Person(personJsonConfig) {
 
     this.getLastName = function() {
         return lastName;
-    };;
+    };
 
 	this.getEmails = function() {
 		return emails;
@@ -71,7 +71,7 @@ function Person(personJsonConfig) {
         var tempEmails = [];
         if((Object.isDefined(emailsJsonConfig) && (Object.isArray(emailsJsonConfig)))) {
             emailsJsonConfig.forEach(function(emailJsonConfig){
-                tempEmails.push(emailJsonConfig);
+                tempEmails.push(new Email(emailJsonConfig));
             });
         }
         return tempEmails;
@@ -81,7 +81,7 @@ function Person(personJsonConfig) {
         var tempPhoneNumbers = [];
         if((Object.isDefined(phoneNumbersJsonConfig) && (Object.isArray(phoneNumbersJsonConfig)))) {
             phoneNumbersJsonConfig.forEach(function(phoneNumberJsonConfig){
-                tempPhoneNumbers.push(phoneNumberJsonConfig);
+                tempPhoneNumbers.push(new PhoneNumber(phoneNumberJsonConfig));
             });
         }
         return tempPhoneNumbers;
@@ -91,7 +91,7 @@ function Person(personJsonConfig) {
         var tempAddresses = [];
         if((Object.isDefined(addressesJsonConfig) && (Object.isArray(addressesJsonConfig)))) {
             addressesJsonConfig.forEach(function(addressJsonConfig){
-                tempAddresses.push(addressJsonConfig);
+                tempAddresses.push(new Address(addressJsonConfig));
             });
         }
         return tempAddresses;
@@ -99,31 +99,32 @@ function Person(personJsonConfig) {
 
     function getEmailsJSON(serializeUIProperties){
         var json = "[";
+
         emails.forEach(function (email, index, arr) {
-            json = json + email.toJSON(serializeUIProperties);
-            (index <= arr.length) ? json : json = json + ",";
+            json += (index < (arr.length -1)) ? email.toJSON(serializeUIProperties) + "," : email.toJSON(serializeUIProperties);
         });
-        json = json + "]";
+
+        json += "]";
+
         return json;
     }
 
     function getPhoneNumbersJSON(serializeUIProperties){
         var json = "[";
         phoneNumbers.forEach(function (phoneNumber, index, arr) {
-            json = json + phoneNumber.toJSON(serializeUIProperties);
-            (index <= arr.length) ? json : json = json + ",";
+            json +=  (index < (arr.length -1)) ? phoneNumber.toJSON(serializeUIProperties) + "," : phoneNumber.toJSON(serializeUIProperties);
         });
-        json = json + "]";
+
+        json += "]";
         return json;
     }
 
     function getAddressesJSON(serializeUIProperties){
         var json = "[";
         addresses.forEach(function (address, index, arr) {
-            json = json + address.toJSON(serializeUIProperties);
-            (index <= arr.length) ? json : json = json + ",";
+            json += (index < (arr.length -1)) ? address.toJSON(serializeUIProperties) + "," : address.toJSON(serializeUIProperties);
         });
-        json = json + "]";
+        json += "]";
         return json;
     }
 
@@ -132,15 +133,15 @@ function Person(personJsonConfig) {
         var jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
             jsonMiddleName = (Object.isDefined(middleName))? "\"" + middleName + "\"" : null,
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
-            jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  null,
-            jsonBirthDate = (Object.isDefined(birthDate))? "\"" + birthDate.toJSON() + "\"": null,
+            jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  "[]",
+            jsonBirthDate = (Object.isDate(birthDate))? "\"" + birthDate.toJSON() + "\"": null,
             jsonPrivacy = (Object.isDefined(privacy))? "\"" + privacy + "\"": null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
             jsonGender = (Object.isDefined(gender))? "\"" + gender + "\"" : null,
             jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
-            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
-            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
+            jsonCreatedDate = (Object.isDate(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
+            jsonLastModifiedDate = (Object.isDate(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
             jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
             jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +

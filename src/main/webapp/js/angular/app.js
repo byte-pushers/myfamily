@@ -27,6 +27,9 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
 	})
     .state('createUser', {
         url : "/createUser",
+		data : {
+			currentUser :  new UserProfile()
+		},
         templateUrl : "partials/createUser.ng.html",
         controller : 'UserProfileController'
     })
@@ -36,8 +39,11 @@ myFamilyApp.config(function($stateProvider, $urlRouterProvider) {
     })
     .state('userCreated', {
         url : "/userCreated",
+		data : {
+			currentUser :  new UserProfile()
+		},
         templateUrl : "partials/userCreated.ng.html",
-        controller : 'userCreatedController'
+        controller : 'UserProfileController'
     })
     .state('familySearch', {
         url : "/familySearch",

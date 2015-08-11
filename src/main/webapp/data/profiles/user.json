@@ -1,8 +1,8 @@
 {
   "status": {
-    "requestStatus": "Failure",
+    "requestStatus": "Successful",
     "messages": [
-        "Invalid birth date."
+        "Valid birth date."
     ]
   },
   "payload": {

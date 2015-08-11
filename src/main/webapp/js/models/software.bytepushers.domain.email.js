@@ -22,7 +22,7 @@ function Email(emailJsonConfig){
 
     this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonPersonId = (Object.isDefined(personId))? "\"" + personId + "\"" : null,
+        var jsonPersonId = (Object.isDefined(personId))? personId : null,
             jsonEmail = (Object.isDefined(email))? "\"" + email + "\"" : null,
             json =  "{" +
                 "\"personId\": " + jsonPersonId + "," +

@@ -68,7 +68,7 @@ function Address(addressJsonConfig) {
             jsonState = (Object.isDefined(state))? "\"" + state + "\"" : null,
             jsonZip = (Object.isDefined(zip))? "\"" + zip + "\"" : null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
-            jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
+            jsonId = (Object.isDefined(id))? id : null,
             jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
             jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,

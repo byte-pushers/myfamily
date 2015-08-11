@@ -56,7 +56,7 @@ function PhoneNumber(phoneNumberConfig) {
             jsonAreaCode = (Object.isDefined(areaCode))? "\"" + areaCode + "\"" : null,
             jsonExchangeCode = (Object.isDefined(exchangeCode))? "\"" + exchangeCode + "\"" : null,
             jsonLocalNumber = (Object.isDefined(localNumber))? "\"" + localNumber + "\"" : null,
-            jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
+            jsonId = (Object.isDefined(id))? id : null,
             jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
             jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,

@@ -11,81 +11,82 @@
     <link href="css/main-layout.css" type="text/css" rel="stylesheet"/>
 </head>
 
-<body>
-<div id="header-container" class="">
-    <div class="row container-fluid">
-        <div class="col-md-6 align-left">Header</div>
-        <div class="col-md-6 align-right"><a ui-sref="signIn">Sign in</a></div>
-    </div>
-</div>
-
-<div id="primary-navigation-container" class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-                    <span style="margin-right: 10px; text-align: left;"> <a
-                            ui-sref="home">Home</a>
-                    </span> <span style="margin-right: 10px; text-align: left;"> <a
-                ui-sref="familySearch">Family Search</a>
-                    </span> <span style="margin-right: 10px; text-align: left;"> <a
-                ui-sref="createUser">Sign Up</a>
-                    </span> <span style="margin-right: 10px; text-align: left;"> <a
-                ui-sref="eventForm">Create Event</a>
-                    </span>
+<body ng-controller="MyFamilyController">
+    <div id="header-container" class="">
+        <div class="row container-fluid">
+            <div class="col-md-6 align-left">Header</div>
+            <div class="col-md-6 align-right"><a ui-sref="signIn">Sign in</a></div>
         </div>
     </div>
-</div>
 
-<div ui-view></div>
-
-<div id="footer-container" class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">Footer</div>
+    <div id="primary-navigation-container" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                        <span style="margin-right: 10px; text-align: left;"> <a
+                                ui-sref="home">Home</a>
+                        </span> <span style="margin-right: 10px; text-align: left;"> <a
+                    ui-sref="familySearch">Family Search</a>
+                        </span> <span style="margin-right: 10px; text-align: left;"> <a
+                    ui-sref="createUser">Sign Up</a>
+                        </span> <span style="margin-right: 10px; text-align: left;"> <a
+                    ui-sref="eventForm">Create Event</a>
+                        </span>
+            </div>
+        </div>
     </div>
-</div>
 
-<script src="libs/angularjs/1.2/angular.min.js"></script>
-<script src="libs/angularjs/1.2/angular-ui-router.min.js"></script>
-<script src="libs/angularjs/1.2/angular-resource.min.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.extensions.ObjectExtension.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.Application.js"></script>
-<script src="libs/byte-pushers/software.bytepushers.models.Message.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.models.Response.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.models.ResponseException.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.models.ResponseExceptionStackTrace.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.models.ResponseStatus.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.models.ResponseStatusTransformer.js"></script>
-<script src="libs/byte-pushers/com.bytepushers.models.ResponseTransformer.js"></script>
-<script src="libs/byte-pushers/software.bytepushers.exceptions.WebServiceException.js"></script>
-<script src="libs/byte-pushers/software.bytepushers.filters.MessageFilters.js"></script>
-<script src="libs/byte-pushers/software.bytepushers.handlers.MessageHandler.js"></script>
-<script src="libs/byte-pushers/software.bytepushers.models.Message.js"></script>
-<script src="js/angular/app.js"></script>
-<script src="js/angular/services/EventService.js"></script>
-<script src="js/angular/services/UserProfileService.js"></script>
-<script src="js/angular/services/SearchService.js"></script>
-<script src="js/angular/directives/equals.js"></script>
-<script src="js/angular/directives/requiredAny.js"></script>
-<script src="js/models/software.bytepushers.domain.WebServiceResponse.js"></script>
-<script src="js/models/software.bytepushers.domain.WebServiceResponseStatus.js"></script>
-<script src="js/models/software.bytepushers.domain.WebServicePayload.js"></script>
-<script src="js/models/software.bytepushers.domain.searchRequest.js"></script>
-<script src="js/models/software.bytepushers.domain.UserProfile.js"></script>
-<script src="js/models/software.bytepushers.domain.UserProfileTransformer.js"></script>
-<script src="js/models/software.bytepushers.domain.person.js"></script>
-<script src="js/models/software.bytepushers.domain.PersonTransformer.js"></script>
-<script src="js/models/software.bytepushers.domain.email.js"></script>
-<script src="js/models/software.bytepushers.domain.phoneNumber.js"></script>
-<script src="js/models/software.bytepushers.domain.address.js"></script>
-<script src="js/models/software.bytepushers.domain.attendee.js"></script>
-<script src="js/models/software.bytepushers.domain.event.js"></script>
-<script src="js/angular/controllers/homeController.js"></script>
-<script src="js/angular/controllers/software.bytepushers.controller.UsersProfileController.js"></script>
-<script src="js/angular/controllers/userCreatedController.js"></script>
-<script src="js/angular/controllers/eventFormController.js"></script>
-<script src="js/angular/controllers/eventOverviewController.js"></script>
-<script src="js/angular/controllers/familySearch.byUserController.js"></script>
-<script src="js/angular/controllers/familySearch.byLocationController.js"></script>
+    <div ui-view>
 
+    </div>
 
+    <div id="footer-container" class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">Footer</div>
+        </div>
+    </div>
+
+    <script src="libs/angularjs/1.2/angular.min.js"></script>
+    <script src="libs/angularjs/1.2/angular-ui-router.min.js"></script>
+    <script src="libs/angularjs/1.2/angular-resource.min.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.extensions.ObjectExtension.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.Application.js"></script>
+    <script src="libs/byte-pushers/software.bytepushers.models.Message.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.models.Response.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.models.ResponseException.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.models.ResponseExceptionStackTrace.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.models.ResponseStatus.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.models.ResponseStatusTransformer.js"></script>
+    <script src="libs/byte-pushers/com.bytepushers.models.ResponseTransformer.js"></script>
+    <script src="libs/byte-pushers/software.bytepushers.exceptions.WebServiceException.js"></script>
+    <script src="libs/byte-pushers/software.bytepushers.filters.MessageFilters.js"></script>
+    <script src="libs/byte-pushers/software.bytepushers.handlers.MessageHandler.js"></script>
+    <script src="libs/byte-pushers/software.bytepushers.models.Message.js"></script>
+    <script src="js/angular/app.js"></script>
+    <script src="js/angular/services/EventService.js"></script>
+    <script src="js/angular/services/UserProfileService.js"></script>
+    <script src="js/angular/services/SearchService.js"></script>
+    <script src="js/angular/directives/equals.js"></script>
+    <script src="js/angular/directives/requiredAny.js"></script>
+    <script src="js/models/software.bytepushers.domain.WebServiceResponse.js"></script>
+    <script src="js/models/software.bytepushers.domain.WebServiceResponseStatus.js"></script>
+    <script src="js/models/software.bytepushers.domain.WebServicePayload.js"></script>
+    <script src="js/models/software.bytepushers.domain.searchRequest.js"></script>
+    <script src="js/models/software.bytepushers.domain.UserProfile.js"></script>
+    <script src="js/models/software.bytepushers.domain.UserProfileTransformer.js"></script>
+    <script src="js/models/software.bytepushers.domain.person.js"></script>
+    <script src="js/models/software.bytepushers.domain.PersonTransformer.js"></script>
+    <script src="js/models/software.bytepushers.domain.email.js"></script>
+    <script src="js/models/software.bytepushers.domain.phoneNumber.js"></script>
+    <script src="js/models/software.bytepushers.domain.address.js"></script>
+    <script src="js/models/software.bytepushers.domain.attendee.js"></script>
+    <script src="js/models/software.bytepushers.domain.event.js"></script>
+    <script src="js/angular/controllers/homeController.js"></script>
+    <script src="js/angular/controllers/software.bytepushers.controller.UsersProfileController.js"></script>
+    <script src="js/angular/controllers/software.bytepushers.controller.MyFamilyController.js"></script>
+    <script src="js/angular/controllers/userCreatedController.js"></script>
+    <script src="js/angular/controllers/eventFormController.js"></script>
+    <script src="js/angular/controllers/eventOverviewController.js"></script>
+    <script src="js/angular/controllers/familySearch.byUserController.js"></script>
+    <script src="js/angular/controllers/familySearch.byLocationController.js"></script>
 </body>
 </html>

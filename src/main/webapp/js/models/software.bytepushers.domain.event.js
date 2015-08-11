@@ -51,7 +51,7 @@ function Event(eventJsonConfig) {
 	
 	this.setDescription = function(desc){
 		description = desc;
-	}
+	};
 
 	this.getDescription = function() {
 		return description;
@@ -114,7 +114,7 @@ function Event(eventJsonConfig) {
 	};
 
 	this.setZip = function(input) {
-		zip;
+		zip = imput;
 	};
 
 	this.getZip = function() {

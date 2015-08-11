@@ -5,7 +5,7 @@ function UserProfile(userProfileJsonConfig) {
     var username = (Object.isDefined(userProfileJsonConfig) && Object.isString(userProfileJsonConfig.username)) ? userProfileJsonConfig.username : null;
     var password = (Object.isDefined(userProfileJsonConfig) && Object.isString(userProfileJsonConfig.password)) ? userProfileJsonConfig.password : null;
     var isAttendee = (Object.isDefined(userProfileJsonConfig) && Object.isBoolean(userProfileJsonConfig.isAttendee)) ? userProfileJsonConfig.isAttendee : false;
-    var person = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.person)) ? new Person(userProfileJsonConfig) : null;
+    var person = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.person)) ? new Person(userProfileJsonConfig.person) : null;
     var id = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.id))? personJsonConfig.id: null;
     var createdDate = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.createdDate))? new Date(userProfileJsonConfig.createdDate): new Date();
     var lastModifiedDate = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.lastModifiedDate))? new Date(userProfileJsonConfig.lastModifiedDate): createdDate;
@@ -67,8 +67,8 @@ function UserProfile(userProfileJsonConfig) {
         var jsonUsername = (Object.isDefined(username)) ? "\"" + username + "\"" : null,
             jsonPassword = (Object.isDefined(password)) ? "\"" + password + "\"" : null,
             jsonIsAttendee = (Object.isDefined(isAttendee)) ? isAttendee : false,
-            jsonPerson = (Object.isDefined(person)) ? "\"" + person.toJSON() + "\"" : null,
-            jsonId = (Object.isDefined(id)) ? "\"" + id + "\"" : null,
+            jsonPerson = (Object.isDefined(person)) ? person.toJSON() : null,
+            jsonId = (Object.isDefined(id)) ? id : null,
             jsonCreatedDate = (Object.isDefined(createdDate)) ? "\"" + createdDate.toJSON() + "\"" : null,
             jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? "\"" + lastModifiedDate.toJSON() + "\"" : null,
