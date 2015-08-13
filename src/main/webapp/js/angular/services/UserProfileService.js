@@ -1,4 +1,4 @@
-myFamilyApp.service('UserProfileService', ['$http', '$state', '$q', '$resource', function($http, $state, $q, $resource) {
+myFamilyApp.service('UserProfileService', ['$http', '$q', '$resource', function($http, $q, $resource) {
     var create = function(createUserProfileRequestParameters) {
         var deferred = $q.defer(),
             url = myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/user.json", "user-profile-ws"),
