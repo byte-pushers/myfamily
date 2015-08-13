@@ -5,14 +5,14 @@
     <br>
 
     <div class="row">
-        <div class="col-md-5 col-md-offset-4 align-right">
-            <div class="alert alert-danger" ng-show="messageHandler.hasErrorMessages()">
+        <div class="col-md-6 col-md-offset-3 align-right">
+            <div class="align-left alert alert-danger" ng-show="messageHandler.hasErrorMessages()">
                 <div>Alert Error Message(s):</div>
-                <ul>
-                    <div ng-repeat="error in messageHandler.getMessages()| uniqueMessage | errorMessage">
+                <li>
+                    <div ng-repeat="error in messageHandler.getMessages()| uniqueMessage | errorMessage " >
                         {{error.getValue()}}
                     </div>
-                </ul>
+                </li>
 
             </div>
             <div class="alert alert-success" ng-show="messageHandler.hasSuccessfulMessages()">
