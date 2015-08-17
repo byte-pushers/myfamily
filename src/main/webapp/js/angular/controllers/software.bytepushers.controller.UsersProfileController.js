@@ -1,6 +1,6 @@
 myFamilyApp.controller('UserProfileController',
     [ '$scope', '$state', 'UserProfileService',
-    function($scope, $rootScope, $state, UserProfileService, MessageHandler) {
+    function($scope,  $state, UserProfileService) {
 
         $scope.submit = function(isValid){
             var requestParameters = {payload: new UserProfile($scope.userProfileUIObject)};
@@ -21,7 +21,7 @@ myFamilyApp.controller('UserProfileController',
                 $scope.setUserProfileUIObject(userProfile.toUIObject());
                 $state.go('userCreated');
             }, function(webServiceException) {
-                $rootScope.messageHandler.addMessages(webServiceException.getExceptionMessages());
+                $scope.getMessageHandler().addMessages(webServiceException.getExceptionMessages());
             });
         };
 

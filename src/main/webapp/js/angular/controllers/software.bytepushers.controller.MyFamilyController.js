@@ -1,8 +1,9 @@
 /**
  * Created by pouncilm on 8/11/15.
  */
-myFamilyApp.controller('MyFamilyController', 'messageHandler', [ '$scope', function($scope) {
-    $scope.userProfileUIObject = new UserOrofile().toUIObject();
+myFamilyApp.controller('MyFamilyController', [ '$scope', 'MessageHandler', function($scope, MessageHandler) {
+    $scope.userProfileUIObject = new UserProfile().toUIObject();
+    $scope.messageHandler = MessageHandler;
 
     $scope.getUserProfileUIObject = function() {
         return $scope.userProfileUIObject;
@@ -13,11 +14,11 @@ myFamilyApp.controller('MyFamilyController', 'messageHandler', [ '$scope', funct
     };
 
     $scope.getMessageHandler = function(){
-        return $scope.MessageHandler;
+        return $scope.messageHandler;
     };
 
-    $scope.setMessageHandler = function(){
-        return $scope.setMessageHandler();
+    $scope.setMessageHandler = function(messageHandler){
+        $scope.messageHandler = messageHandler;
     }
 
 
