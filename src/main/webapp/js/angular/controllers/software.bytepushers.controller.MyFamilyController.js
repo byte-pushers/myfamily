@@ -1,8 +1,8 @@
 /**
  * Created by pouncilm on 8/11/15.
  */
-myFamilyApp.controller('MyFamilyController', [ '$scope', function($scope) {
-    $scope.messageHandler = messageHandler;
+myFamilyApp.controller('MyFamilyController', 'messageHandler', [ '$scope', function($scope) {
+    $scope.userProfileUIObject = new UserOrofile().toUIObject();
 
     $scope.getUserProfileUIObject = function() {
         return $scope.userProfileUIObject;
