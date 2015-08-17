@@ -2,7 +2,8 @@
   "status": {
     "requestStatus": "Failure",
     "messages": [
-        "Invalid birth date."
+        "Invalid birth date.",
+        "Password does not match."
     ]
   },
   "payload": {
