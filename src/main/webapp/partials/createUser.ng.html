@@ -8,21 +8,18 @@
         <div class="col-md-6 col-md-offset-3 align-right">
             <div class="align-left alert alert-danger" ng-show="messageHandler.hasErrorMessages()">
                 <div>Alert Error Message(s):</div>
-                <li>
-                    <div ng-repeat="error in messageHandler.getMessages()| uniqueMessage | errorMessage " >
-                        {{error.getValue()}}
-                    </div>
+                <li ng-repeat="error in messageHandler.getMessages() | errorMessage ">
+                    {{error.getValue()}}
                 </li>
-
             </div>
-            <div class="alert alert-success" ng-show="messageHandler.hasSuccessfulMessages()">
+            <!--div class="alert alert-success" ng-show="messageHandler.hasSuccessfulMessages()">
                 <ul>
                     <div ng-repeat="message in messageHandler.getMessages()| uniqueMessage | successfulMessage">
                         {{message.getValue()}}
                     </div>
                 </ul>
 
-            </div>
+            </div-->
         </div>
     </div>
     <div class="row">
@@ -37,369 +34,371 @@
     </div>
     <br>
 
-    <form id="createUserForm" name="userForm" novalidate>
-        <div class="well row">
-            <div class="col-md-2 col-md-offset-2 align-right">
-                <b>Account Info:</b>
-            </div>
-            <div class="col-md-8"></div>
-        </div>
-
-        <div class="row"
-             ng-class="{ 'has-error' : userForm.firstName.$invalid && userForm.firstName.$dirty ||
-             userForm.lastName.$invalid && userForm.lastName.$dirty}">
-            <div class="col-md-2 col-md-offset-2 align-right">Name:</div>
-            <div class="col-md-2">
-                <input type="text" ng-model="userProfileUIObject.person.firstName" name="firstName"
-                       class="form-control" required>
-            </div>
-
-            <div class="col-md-1">
-                <input type="text" ng-model="userProfileUIObject.person.middleName" name="middleName"
-                       class="form-control">
-            </div>
-            <div class="col-md-2">
-                <input type="text" ng-model="userProfileUIObject.person.lastName" name="lastName"
-                       class="form-control" required>
-            </div>
-
-            <div class="col-md-3 align-left">
-                <div class="help-block" ng-show="userForm.firstName.$invalid && userForm.firstName.$dirty ||
-                        userForm.lastName.$invalid && userForm.lastName.$dirty">
-                    <small ng-if="userForm.firstName.$error.required">
-                        First Name Required!
-                    </small>
-                    <small ng-if="userForm.lastName.$error.required">
-                        Last Name required!
-                    </small>
+    <div class="row border-radius-main-form">
+        <form id="createUserForm" name="userForm" novalidate class="">
+            <div class="well row">
+                <div class="col-md-2 col-md-offset-2 align-right">
+                    <b>Account Info:</b>
                 </div>
+                <div class="col-md-8"></div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3 col-md-offset-4">
-                <div class="radio">
-                    <label><input type="radio" ng-model="userProfileUIObject.person.gender" value="MALE" name="maleButton" ng-required="!userProfileUIObject.person.gender"/>Male</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" ng-model="userProfileUIObject.person.gender" value="FEMALE" name="femaleButton" ng-required="!userProfileUIObject.person.gender"/>Female</label>
-                </div>
-            </div>
-            <div class="col-md-5 align-left">
-                <div class="help-block" ng-show="userForm.maleButton.$invalid && userForm.maleButton.$dirty ||
-                        userForm.femaleButton.$invalid && userForm.femaleButton.$dirty">
-                    <small>
-                        Gender is required!
-                    </small>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2 align-right">
-                Username:
-            </div>
-            <div ng-class="{ 'has-error' : userForm.username.$invalid && userForm.username.$dirty }">
+            <div class="row border-radius-main-form"
+                 ng-class="{ 'has-error' : userForm.firstName.$invalid && userForm.firstName.$dirty ||
+                 userForm.lastName.$invalid && userForm.lastName.$dirty}">
+                <div class="col-md-2 col-md-offset-2 align-right">Name:</div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" name="username"
-                           ng-model="userProfileUIObject.username" required/>
+                    <input type="text" ng-model="userProfileUIObject.person.firstName" name="firstName"
+                           class="form-control" required>
                 </div>
-                <div class="col-md-6">
-                    <small
-                            ng-show="userForm.username.$invalid && userForm.username.$dirty"
-                            class="help-block">Your username is required</small>
-                </div>
-            </div>
-        </div>
-        <br>
 
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2 align-right">
-                Password:
-            </div>
-            <div ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty}">
-                <div class="col-md-2">
-                    <input type="password" class="form-control" name="password"
-                           ng-model="userProfileUIObject.password" equals="{{userProfileUIObject.passwordConfirm}}" ng-minlength="6" required/>
+                <div class="col-md-1">
+                    <input type="text" ng-model="userProfileUIObject.person.middleName" name="middleName"
+                           class="form-control">
                 </div>
                 <div class="col-md-2">
-                    <input type="password" class="form-control" name="passwordConfirm"
-                           ng-model="userProfileUIObject.passwordConfirm" equals="{{userProfileUIObject.password}}"ng-minlength="6" required/>
+                    <input type="text" ng-model="userProfileUIObject.person.lastName" name="lastName"
+                           class="form-control" required>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="help-block"
-                         ng-show="userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty">
-                        <small style="color: #b94a48"  ng-if="userForm.password.$error.minlength || userForm.passwordConfirm.$error.minlength">
-                            must be at least 6 characters
+                <div class="col-md-3 align-left">
+                    <div class="help-block" ng-show="userForm.firstName.$invalid && userForm.firstName.$dirty ||
+                            userForm.lastName.$invalid && userForm.lastName.$dirty">
+                        <small ng-if="userForm.firstName.$error.required">
+                            First Name Required!
                         </small>
-                        <small style="color: #b94a48" ng-if="userForm.password.$error.required || userForm.passwordConfirm.$error.required">
-                            Password required!
-                        </small>
-                        <small style="color: #b94a48" ng-if="userForm.passwordConfirm.$error.equals || userForm.password.$error.equals">
-                            Passwords don't match!
+                        <small ng-if="userForm.lastName.$error.required">
+                            Last Name required!
                         </small>
                     </div>
                 </div>
             </div>
-        </div>
-        <br>
 
-        <div class="row">
-            <div ng-class="{ 'has-error' : userForm.birthDate.$invalid && userForm.birthDate.$dirty }">
+            <div class="row">
+                <div class="col-md-3 col-md-offset-4">
+                    <div class="radio">
+                        <label><input type="radio" ng-model="userProfileUIObject.person.gender" value="MALE" name="maleButton" ng-required="!userProfileUIObject.person.gender"/>Male</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" ng-model="userProfileUIObject.person.gender" value="FEMALE" name="femaleButton" ng-required="!userProfileUIObject.person.gender"/>Female</label>
+                    </div>
+                </div>
+                <div class="col-md-5 align-left">
+                    <div class="help-block" ng-show="userForm.maleButton.$invalid && userForm.maleButton.$dirty ||
+                            userForm.femaleButton.$invalid && userForm.femaleButton.$dirty">
+                        <small>
+                            Gender is required!
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-2 col-md-offset-2 align-right">
-                    Birthday:
+                    Username:
                 </div>
-                <div class="col-md-2">
-                    <input type="date" class="form-control" ng-model="userProfileUIObject.person.birthDate" name="birthDate" required/>
-                </div>
-                <div class="col-md-6">
-                    <small ng-show="userForm.birthDate.$invalid && userForm.birthDate.$dirty"
-                       class="help-block">Birthday Required</small>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2 align-right">
-                <br>
-                Account:
-            </div>
-            <div class="col-md-3">
-                <div class="radio">
-                    <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PRIVATE" name="privateButton" ng-required="!userProfileUIObject.person.privacy"/>Private</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PUBLIC" name="publicButton" ng-required="!userProfileUIObject.person.privacy"/>Public</label>
+                <div ng-class="{ 'has-error' : userForm.username.$invalid && userForm.username.$dirty }">
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" name="username"
+                               ng-model="userProfileUIObject.username" required/>
+                    </div>
+                    <div class="col-md-6">
+                        <small
+                                ng-show="userForm.username.$invalid && userForm.username.$dirty"
+                                class="help-block">Your username is required</small>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-5"/>
-        </div>
-        <br><br>
-        <br><br>
+            <br>
 
-        <div class="well row">
-            <div class="col-md-2 col-md-offset-2 align-right">
-                <b>Contact Info:</b>
-            </div>
-            <div class="col-md-8"></div>
-        </div>
-        <br>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-2 align-right">
+                    Password:
+                </div>
+                <div ng-class="{ 'has-error' : userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty}">
+                    <div class="col-md-2">
+                        <input type="password" class="form-control" name="password"
+                               ng-model="userProfileUIObject.password" equals="{{userProfileUIObject.passwordConfirm}}" ng-minlength="6" required/>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="password" class="form-control" name="passwordConfirm"
+                               ng-model="userProfileUIObject.passwordConfirm" equals="{{userProfileUIObject.password}}"ng-minlength="6" required/>
+                    </div>
 
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2 align-right">
-                Email:
-            </div>
-            <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
-                <div class="col-md-2">
-                    <input type="email" name="email" ng-model="userProfileUIObject.person.emails[0].email" class="form-control" required>
+                    <div class="col-md-4">
+                        <div class="help-block"
+                             ng-show="userForm.password.$invalid && userForm.password.$dirty || userForm.passwordConfirm.$invalid && userForm.passwordConfirm.$dirty">
+                            <small style="color: #b94a48"  ng-if="userForm.password.$error.minlength || userForm.passwordConfirm.$error.minlength">
+                                must be at least 6 characters
+                            </small>
+                            <small style="color: #b94a48" ng-if="userForm.password.$error.required || userForm.passwordConfirm.$error.required">
+                                Password required!
+                            </small>
+                            <small style="color: #b94a48" ng-if="userForm.passwordConfirm.$error.equals || userForm.password.$error.equals">
+                                Passwords don't match!
+                            </small>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <small ng-show="userForm.email.$invalid && userForm.email.$dirty"
-                       class="help-block">Email is required</small>
-                </div>
             </div>
-        </div>
-        <br>
+            <br>
 
-        <div class="row"
-             ng-class="{ 'has-error' : userForm.areaCode.$invalid && userForm.areaCode.$dirty ||
-             userForm.exchangeCode.$invalid && userForm.exchangeCode.$dirty || userForm.localNumber.$invalid && userForm.localNumber.$dirty}">
-            <div class="col-md-2 col-md-offset-2 align-right">Phone:</div>
-            <div class="col-md-4">
-                <div class="col-sm-3">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].areaCode" name="areaCode"
-                           ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].areaCode, 3, 'exchangeCode')"
-                           class="form-control" maxlength="3" required/>
-                </div>
-                <div class="col-sm-1 align-center">-</div>
-                <div class="col-sm-3">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].exchangeCode" name="exchangeCode" class="form-control" id="exchangeCode"
-                           ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].exchangeCode, 3, 'localNumber')" maxlength="3" required/>
-                </div>
-                <div class="col-sm-1">-</div>
-                <div class="col-sm-4">
-                    <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].localNumber" name="localNumber" id="localNumber"
-                           ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].localNumber, 4, 'address')" class="form-control" maxlength="4" required/>
+            <div class="row">
+                <div ng-class="{ 'has-error' : userForm.birthDate.$invalid && userForm.birthDate.$dirty }">
+                    <div class="col-md-2 col-md-offset-2 align-right">
+                        Birthday:
+                    </div>
+                    <div class="col-md-2">
+                        <input type="date" class="form-control" ng-model="userProfileUIObject.person.birthDate" name="birthDate" required/>
+                    </div>
+                    <div class="col-md-6">
+                        <small ng-show="userForm.birthDate.$invalid && userForm.birthDate.$dirty"
+                           class="help-block">Birthday Required</small>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4 align-left">
-                <div class="help-block" ng-show="userForm.areaCode.$invalid && userForm.areaCode.$dirty ||
-                userForm.exchangeCode.$invalid && userForm.exchangeCode.$dirty || userForm.localNumber.$invalid && userForm.localNumber.$dirty">
-                    <small ng-if="userForm.areaCode.$error.required || userForm.exchangeCode.$error.required || userForm.localNumber.$error.required">
-                        Phone number is required!
-                    </small>
-                    <small ng-if="userForm.areaCode.$error.pattern || userForm.exchangeCode.$error.pattern || userForm.localNumber.$error.pattern">
-                        Not a number!
-                    </small>
+            <br>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-2 align-right">
+                    <br>
+                    Account:
                 </div>
+                <div class="col-md-3">
+                    <div class="radio">
+                        <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PRIVATE" name="privateButton" ng-required="!userProfileUIObject.person.privacy"/>Private</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PUBLIC" name="publicButton" ng-required="!userProfileUIObject.person.privacy"/>Public</label>
+                    </div>
+                </div>
+                <div class="col-md-5"/>
             </div>
-        </div>
-        <br>
+            <br><br>
+            <br><br>
 
-        <div class="row"
-             ng-class="{ 'has-error' : userForm.street1.$invalid && userForm.street1.$dirty}">
-            <div class="col-md-2 col-md-offset-2 align-right">Street Address
-                1:
-            </div>
-            <div class="col-md-5">
-                <input type="text" ng-model="userProfileUIObject.person.addresses[0].street1" name="street1" id="address"
-                       class="form-control" required>
-            </div>
-            <div class="col-md-3 align-left">
-                <small
-                        ng-show="userForm.street1.$invalid && userForm.street1.$dirty"
-                        class="help-block">The event address is required</small>
-            </div>
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-2 col-md-offset-2 align-right">Street Address
-                2:
-            </div>
-            <div class="col-md-5">
-                <input type="text" ng-model="userProfileUIObject.person.addresses[0].street2" name="street2"
-                       class="form-control">
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-        <br>
-
-        <div class="row">
-            <div class="col-md-1 col-md-offset-3 align-right">City:</div>
-            <div
-                    ng-class="{ 'has-error' : userForm.city.$invalid && userForm.city.$dirty }">
-                <div class="col-md-1">
-                    <input type="text" ng-model="userProfileUIObject.person.addresses[0].city" name="city"
-                           class="form-control" size="15" required>
+            <div class="well row">
+                <div class="col-md-2 col-md-offset-2 align-right">
+                    <b>Contact Info:</b>
                 </div>
-                <div class="col-md-1">
-                    <small ng-show="userForm.city.$invalid && userForm.city.$dirty"
-                       class="help-block">The event city is required</small>
-                </div>
-
+                <div class="col-md-8"></div>
             </div>
-            <div
-                    ng-class="{ 'has-error' : userForm.state.$invalid && userForm.state.$dirty }">
-                <div class="col-md-1 align-right">State:</div>
-                <div class="col-md-1 align-left">
-                    <select name="state" ng-model="userProfileUIObject.person.addresses[0].state"
-                            class="form-control" required>
-                        <option value="ALABAMA">AL</option>
-                        <option value="ALASKA">AK</option>
-                        <option value="ARIZONA">AZ</option>
-                        <option value="ARKANSAS">AR</option>
-                        <option value="CALIFORNIA">CA</option>
-                        <option value="COLORADO">CO</option>
-                        <option value="CONNECTICUT">CT</option>
-                        <option value="DELAWARE">DE</option>
-                        <option value="FLORIDA">FL</option>
-                        <option value="GEORGIA">GA</option>
-                        <option value="HAWAII">HI</option>
-                        <option value="IDAHO">ID</option>
-                        <option value="ILLINOIS">IL</option>
-                        <option value="INDINANA">IN</option>
-                        <option value="IOWA">IA</option>
-                        <option value="KANSAS">KS</option>
-                        <option value="KENTUCKY">KY</option>
-                        <option value="LOUISIANA">LA</option>
-                        <option value="MAINE">ME</option>
-                        <option value="MARYLAND">MD</option>
-                        <option value="MASSACHUSETTS">MA</option>
-                        <option value="MICHIGAN">MI</option>
-                        <option value="MINNESOTA">MN</option>
-                        <option value="MISSISSIPPI">MS</option>
-                        <option value="MISSOURI">MO</option>
-                        <option value="MONTANA">MT</option>
-                        <option value="NEBRASKA">NE</option>
-                        <option value="NEVADA">NV</option>
-                        <option value="NEW_HAMPSHIRE">NH</option>
-                        <option value="NEW_JERSEY">NJ</option>
-                        <option value="NEW_MEXICO">NM</option>
-                        <option value="NEW_YORK">NY</option>
-                        <option value="NORTH_CAROLINA">NC</option>
-                        <option value="NORT_DAKOTA">ND</option>
-                        <option value="OHIO">OH</option>
-                        <option value="OKLAHOMA">OK</option>
-                        <option value="OREGON">OR</option>
-                        <option value="PENNSYLVANIA">PA</option>
-                        <option value="RHODE_ISLAND">RI</option>
-                        <option value="SOUTH_CAROLINA">SC</option>
-                        <option value="SOUTH_DAKOTA">SD</option>
-                        <option value="TENNESSEE">TN</option>
-                        <option value="TEXAS">TX</option>
-                        <option value="UTAH">UT</option>
-                        <option value="VERMONT">VT</option>
-                        <option value="VIRGINIA">VA</option>
-                        <option value="WASHINGTON">WA</option>
-                        <option value="WEST_VIRGINIA">WV</option>
-                        <option value="WISCONSIN">WI</option>
-                        <option value="WYOMING">WY</option>
-                    </select>
+            <br>
+
+            <div class="row">
+                <div class="col-md-2 col-md-offset-2 align-right">
+                    Email:
                 </div>
+                <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
+                    <div class="col-md-2">
+                        <input type="email" name="email" ng-model="userProfileUIObject.person.emails[0].email" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <small ng-show="userForm.email.$invalid && userForm.email.$dirty"
+                           class="help-block">Email is required</small>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row"
+                 ng-class="{ 'has-error' : userForm.areaCode.$invalid && userForm.areaCode.$dirty ||
+                 userForm.exchangeCode.$invalid && userForm.exchangeCode.$dirty || userForm.localNumber.$invalid && userForm.localNumber.$dirty}">
+                <div class="col-md-2 col-md-offset-2 align-right">Phone:</div>
                 <div class="col-md-4">
-                    <small ng-show="userForm.state.$invalid && userForm.state.$dirty"
-                       class="help-block">The event state is required</small>
+                    <div class="col-sm-3">
+                        <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].areaCode" name="areaCode"
+                               ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].areaCode, 3, 'exchangeCode')"
+                               class="form-control" maxlength="3" required/>
+                    </div>
+                    <div class="col-sm-1 align-center">-</div>
+                    <div class="col-sm-3">
+                        <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].exchangeCode" name="exchangeCode" class="form-control" id="exchangeCode"
+                               ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].exchangeCode, 3, 'localNumber')" maxlength="3" required/>
+                    </div>
+                    <div class="col-sm-1">-</div>
+                    <div class="col-sm-4">
+                        <input type="text" ng-pattern="/^[0-9]+$/" ng-model="userProfileUIObject.person.phoneNumbers[0].localNumber" name="localNumber" id="localNumber"
+                               ng-change="autoFocus(userProfileUIObject.person.phoneNumbers[0].localNumber, 4, 'address')" class="form-control" maxlength="4" required/>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-1 col-md-offset-3 align-right">Zipcode:</div>
-            <div
-                    ng-class="{ 'has-error' : userForm.zip.$invalid && userForm.zip.$dirty }">
-                <div class="col-md-1">
-                    <input type="text" ng-model="userProfileUIObject.person.addresses[0].zip" name="zip" ng-pattern="/^[0-9]+$/"
-                           class="form-control" size="15" ng-minlength="5" ng-maxlength="5"  maxlength="5"
-                           required>
-                </div>
-                <div class="col-md-1">
-                    <div class="help-block" ng-show="userForm.zip.$invalid && userForm.zip.$dirty">
-                        <small ng-if="userForm.zip.$error.required">
-                            Required! <br>
+                <div class="col-md-4 align-left">
+                    <div class="help-block" ng-show="userForm.areaCode.$invalid && userForm.areaCode.$dirty ||
+                    userForm.exchangeCode.$invalid && userForm.exchangeCode.$dirty || userForm.localNumber.$invalid && userForm.localNumber.$dirty">
+                        <small ng-if="userForm.areaCode.$error.required || userForm.exchangeCode.$error.required || userForm.localNumber.$error.required">
+                            Phone number is required!
                         </small>
-                        <small ng-if="userForm.zip.$error.minlength || userForm.zip.$error.maxlength">
-                            Must be 5 digits
-                        </small>
-                        <small ng-if="userForm.zip.$error.pattern">
+                        <small ng-if="userForm.areaCode.$error.pattern || userForm.exchangeCode.$error.pattern || userForm.localNumber.$error.pattern">
                             Not a number!
                         </small>
                     </div>
                 </div>
             </div>
-            <div
-                    ng-class="{ 'has-error' : userForm.country.$invalid && userForm.country.$dirty }">
-                <div class="col-md-1 align-right">Country:</div>
-                <div class="col-md-2 align-left">
-                    <select name="country" ng-model="userProfileUIObject.person.addresses[0].country"
-                            class="form-control" required>
-                        <option value="CANADA">Canada</option>
-                        <option value="MEXICO">Mexico</option>
-                        <option value="UNITED_STATES">United States</option>
-                        <option value="UNITED_KINGDOM">United Kingdom</option>
-                    </select>
+            <br>
+
+            <div class="row"
+                 ng-class="{ 'has-error' : userForm.street1.$invalid && userForm.street1.$dirty}">
+                <div class="col-md-2 col-md-offset-2 align-right">Street Address
+                    1:
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
+                    <input type="text" ng-model="userProfileUIObject.person.addresses[0].street1" name="street1" id="address"
+                           class="form-control" required>
+                </div>
+                <div class="col-md-3 align-left">
                     <small
-                            ng-show="userForm.country.$invalid && userForm.country.$dirty"
-                            class="help-block">required!</small>
+                            ng-show="userForm.street1.$invalid && userForm.street1.$dirty"
+                            class="help-block">The event address is required</small>
                 </div>
-
             </div>
-        </div>
-        <br>
-        <br>
+            <br>
 
-        <div class="row">
-            <div class="col-md-1 col-md-offset-9">
-                <input type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid"
-                       ng-click="submit(userForm.$valid)" value="Submit">
-
-                <input type="testing" class="btn btn-primary" ng-click="createUserTest()"
-                       value="testing">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-2 align-right">Street Address
+                    2:
+                </div>
+                <div class="col-md-5">
+                    <input type="text" ng-model="userProfileUIObject.person.addresses[0].street2" name="street2"
+                           class="form-control">
+                </div>
+                <div class="col-md-3"></div>
             </div>
-        </div>
-        <br><br>
-    </form>
+            <br>
+
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3 align-right">City:</div>
+                <div
+                        ng-class="{ 'has-error' : userForm.city.$invalid && userForm.city.$dirty }">
+                    <div class="col-md-1">
+                        <input type="text" ng-model="userProfileUIObject.person.addresses[0].city" name="city"
+                               class="form-control" size="15" required>
+                    </div>
+                    <div class="col-md-1">
+                        <small ng-show="userForm.city.$invalid && userForm.city.$dirty"
+                           class="help-block">The event city is required</small>
+                    </div>
+
+                </div>
+                <div
+                        ng-class="{ 'has-error' : userForm.state.$invalid && userForm.state.$dirty }">
+                    <div class="col-md-1 align-right">State:</div>
+                    <div class="col-md-1 align-left">
+                        <select name="state" ng-model="userProfileUIObject.person.addresses[0].state"
+                                class="form-control" required>
+                            <option value="ALABAMA">AL</option>
+                            <option value="ALASKA">AK</option>
+                            <option value="ARIZONA">AZ</option>
+                            <option value="ARKANSAS">AR</option>
+                            <option value="CALIFORNIA">CA</option>
+                            <option value="COLORADO">CO</option>
+                            <option value="CONNECTICUT">CT</option>
+                            <option value="DELAWARE">DE</option>
+                            <option value="FLORIDA">FL</option>
+                            <option value="GEORGIA">GA</option>
+                            <option value="HAWAII">HI</option>
+                            <option value="IDAHO">ID</option>
+                            <option value="ILLINOIS">IL</option>
+                            <option value="INDINANA">IN</option>
+                            <option value="IOWA">IA</option>
+                            <option value="KANSAS">KS</option>
+                            <option value="KENTUCKY">KY</option>
+                            <option value="LOUISIANA">LA</option>
+                            <option value="MAINE">ME</option>
+                            <option value="MARYLAND">MD</option>
+                            <option value="MASSACHUSETTS">MA</option>
+                            <option value="MICHIGAN">MI</option>
+                            <option value="MINNESOTA">MN</option>
+                            <option value="MISSISSIPPI">MS</option>
+                            <option value="MISSOURI">MO</option>
+                            <option value="MONTANA">MT</option>
+                            <option value="NEBRASKA">NE</option>
+                            <option value="NEVADA">NV</option>
+                            <option value="NEW_HAMPSHIRE">NH</option>
+                            <option value="NEW_JERSEY">NJ</option>
+                            <option value="NEW_MEXICO">NM</option>
+                            <option value="NEW_YORK">NY</option>
+                            <option value="NORTH_CAROLINA">NC</option>
+                            <option value="NORT_DAKOTA">ND</option>
+                            <option value="OHIO">OH</option>
+                            <option value="OKLAHOMA">OK</option>
+                            <option value="OREGON">OR</option>
+                            <option value="PENNSYLVANIA">PA</option>
+                            <option value="RHODE_ISLAND">RI</option>
+                            <option value="SOUTH_CAROLINA">SC</option>
+                            <option value="SOUTH_DAKOTA">SD</option>
+                            <option value="TENNESSEE">TN</option>
+                            <option value="TEXAS">TX</option>
+                            <option value="UTAH">UT</option>
+                            <option value="VERMONT">VT</option>
+                            <option value="VIRGINIA">VA</option>
+                            <option value="WASHINGTON">WA</option>
+                            <option value="WEST_VIRGINIA">WV</option>
+                            <option value="WISCONSIN">WI</option>
+                            <option value="WYOMING">WY</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <small ng-show="userForm.state.$invalid && userForm.state.$dirty"
+                           class="help-block">The event state is required</small>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3 align-right">Zipcode:</div>
+                <div
+                        ng-class="{ 'has-error' : userForm.zip.$invalid && userForm.zip.$dirty }">
+                    <div class="col-md-1">
+                        <input type="text" ng-model="userProfileUIObject.person.addresses[0].zip" name="zip" ng-pattern="/^[0-9]+$/"
+                               class="form-control" size="15" ng-minlength="5" ng-maxlength="5"  maxlength="5"
+                               required>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="help-block" ng-show="userForm.zip.$invalid && userForm.zip.$dirty">
+                            <small ng-if="userForm.zip.$error.required">
+                                Required! <br>
+                            </small>
+                            <small ng-if="userForm.zip.$error.minlength || userForm.zip.$error.maxlength">
+                                Must be 5 digits
+                            </small>
+                            <small ng-if="userForm.zip.$error.pattern">
+                                Not a number!
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div
+                        ng-class="{ 'has-error' : userForm.country.$invalid && userForm.country.$dirty }">
+                    <div class="col-md-1 align-right">Country:</div>
+                    <div class="col-md-2 align-left">
+                        <select name="country" ng-model="userProfileUIObject.person.addresses[0].country"
+                                class="form-control" required>
+                            <option value="CANADA">Canada</option>
+                            <option value="MEXICO">Mexico</option>
+                            <option value="UNITED_STATES">United States</option>
+                            <option value="UNITED_KINGDOM">United Kingdom</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <small
+                                ng-show="userForm.country.$invalid && userForm.country.$dirty"
+                                class="help-block">required!</small>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-1 col-md-offset-9">
+                    <input type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid"
+                           ng-click="submit(userForm.$valid)" value="Submit">
+
+                    <input type="testing" class="btn btn-primary" ng-click="createUserTest()"
+                           value="testing">
+                </div>
+            </div>
+            <br><br>
+        </form>
+    </div>
 </div>

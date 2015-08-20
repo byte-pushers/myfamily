@@ -9,6 +9,11 @@ function PhoneNumber(phoneNumberConfig) {
     var lastModifiedDate = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.lastModifiedDate))? new Date(phoneNumberConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.createdBy))? phoneNumberConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.lastModifiedBy))? phoneNumberConfig.lastModifiedBy: null;
+    var protectedMetaData = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.getProtectedMetaData))? phoneNumberConfig.protectedMetaData : null;
+
+    this.getProtectedMetaData = function(){
+        return protectedMetaData;
+    };
 
 	this.getCountry = function() {
 		return country;
@@ -61,6 +66,7 @@ function PhoneNumber(phoneNumberConfig) {
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
             jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
             jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
+            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
             json =  "{" +
                 "\"contactType\": " + "\"PRIMARY\"" + "," +
                 "\"country\": " + jsonCountry + "," +
@@ -71,7 +77,8 @@ function PhoneNumber(phoneNumberConfig) {
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
+                "\"protectedMetaData\": " + jsonProtectedMetaData +
             "}";
         return json;
     };

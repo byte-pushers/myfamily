@@ -3,7 +3,9 @@
     "requestStatus": "Failure",
     "messages": [
         "Invalid birth date.",
-        "Password does not match."
+        "Invalid birth date.",
+        "Password does not match.",
+        "Year is not valid"
     ]
   },
   "payload": {
@@ -32,6 +34,16 @@
         8,
         17
       ],
+      "protectedMetaData":[
+        {
+          "attributeName": "PERSON_GENDER",
+          "accessLevel": "PRIVATE"
+        },
+        {
+          "attributeName": "PERSON_FIRSTNAME",
+          "access": "PRIVATE"
+        }
+      ],
       "phoneNumbers": [
         {
           "id": 3,
@@ -55,7 +67,13 @@
           "country": "UNITED_STATES",
           "areaCode": "000",
           "exchangeCode": "000",
-          "localNumber": "8464"
+          "localNumber": "8464",
+          "protectedMetaData":[
+            {
+              "attributeName": "PHONENUMBER_AREACODE",
+              "accessLevel": "PRIVATE"
+            }
+          ]
         }
       ],
       "addresses": [
@@ -71,7 +89,13 @@
           "city": "Fayetteville",
           "state": "ARKANSAS",
           "zip": "99999",
-          "country": "UNITED_STATES"
+          "country": "UNITED_STATES",
+          "protectedMetaData":[
+            {
+              "attributeName": "ADDRESS_CITY",
+              "accessLevel": "PRIVATE"
+            }
+          ]
         }
       ],
       "gender": "MALE"

@@ -14,7 +14,11 @@ function Person(personJsonConfig) {
     var lastModifiedDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedDate))? new Date(personJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdBy))? personJsonConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedBy))? personJsonConfig.lastModifiedBy: null;
+    var protectedMetaData = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.protectedMetaData))? createProtectedMetaData(personJsonConfig.protectedMetaData) : [];
 
+    this.getProtectedMetaData = function(){
+        return protectedMetaData;
+    };
 	this.getFirstName = function() {
 		return firstName;
 	};
@@ -75,7 +79,17 @@ function Person(personJsonConfig) {
             });
         }
         return tempEmails;
-    };
+    }
+
+    function createProtectedMetaData(protectedMetaDataJsonConfig) {
+        var tempProtectedMetaData = [];
+        if ((Object.isDefined(protectedMetaDatasJsonConfig) && (Object.isArray(protectedMetaDatasJsonConfig)))) {
+            protectedMetaDatasJsonConfig.forEach(function (protectedMetaDatasJsonConfig) {
+                tempProtectedMetaData.push(new ProtectedMetaData(protectedMetaDatasJsonConfig));
+            });
+        }
+        return tempProtectedMetaData;
+    }
 
     function createPhoneNumbers(phoneNumbersJsonConfig) {
         var tempPhoneNumbers = [];
@@ -85,7 +99,7 @@ function Person(personJsonConfig) {
             });
         }
         return tempPhoneNumbers;
-    };
+    }
 
     function createAddresses(addressesJsonConfig) {
         var tempAddresses = [];
@@ -95,7 +109,7 @@ function Person(personJsonConfig) {
             });
         }
         return tempAddresses;
-    };
+    }
 
     function getEmailsJSON(serializeUIProperties){
         var json = "[";
@@ -144,6 +158,7 @@ function Person(personJsonConfig) {
             jsonLastModifiedDate = (Object.isDate(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
             jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
             jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
+            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
             json =  "{" +
                 "\"firstName\": " + jsonFistName + "," +
                 "\"middleName\": " + jsonMiddleName + "," +
@@ -158,7 +173,8 @@ function Person(personJsonConfig) {
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
+                "\"protectedMetaData\": " + jsonProtectedMetaData +
             "}";
         return json;
     };
@@ -183,7 +199,8 @@ function Person(personJsonConfig) {
             "createdDate: " + createdDate + "," +
             "lastModifiedDate: " + lastModifiedDate + "," +
             "createdBy: " + createdBy + "," +
-            "lastModifiedBy: " + lastModifiedBy +
+            "lastModifiedBy: " + lastModifiedBy + "," +
+            "protectedMetaData:" + protectedMetaData +
         "}";
     };
 }

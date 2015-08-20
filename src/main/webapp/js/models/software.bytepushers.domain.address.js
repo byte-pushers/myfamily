@@ -11,6 +11,11 @@ function Address(addressJsonConfig) {
     var lastModifiedDate = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.lastModifiedDate))? new Date(addressJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.createdBy))? addressJsonConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.lastModifiedBy))? addressJsonConfig.lastModifiedBy: null;
+    var protectedMetaData = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.protectedMetaData))? addressJsonConfig.protectedMetaData: null;
+
+    this.getProtectedMetaData = function(){
+        return protectedMetaData;
+    };
 
 	this.getStreet1 = function() {
 		return street1;
@@ -73,6 +78,7 @@ function Address(addressJsonConfig) {
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
             jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
             jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
+            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
             json =  "{" +
                 "\"contactType\": " + "\"PRIMARY\"" + "," +
                 "\"street1\": " + jsonStreet1 + "," +
@@ -85,7 +91,8 @@ function Address(addressJsonConfig) {
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
+                "\"protectedMetaData\": " + jsonProtectedMetaData +
             "}";
         return json;
     };

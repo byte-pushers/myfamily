@@ -34,14 +34,14 @@ angular.module('BytePushersApp.filters.messages', []).filter('uniqueMessage', fu
             
             return filteredArray;
         }
-        return messages;
+        return filteredArray;
         
     };
 }).filter('errorMessage', function (){
     'use strict';
     return function (messages) {
         var filteredArray = [], filterResult = false;
-        if(Object.isArray(messages)){
+        if(Object.isArray(messages) && messages.length > 0){
             filteredArray = messages.filter(function(message, messageIndex, messageArray) {
                 if(message.getType().toLowerCase() === BytePushers.models.Message.ERROR) {
                     if(!Object.isDefined(message.getValue())) {
@@ -55,10 +55,12 @@ angular.module('BytePushersApp.filters.messages', []).filter('uniqueMessage', fu
                 return filterResult;
             });
 
-            messages = filteredArray;
+           filteredArray;
+        } else{
+            filteredArray = messages;
         }
 
-        return messages
+        return filteredArray
     }
 }).filter('successfulMessage', function (){
     'use strict';
@@ -78,9 +80,9 @@ angular.module('BytePushersApp.filters.messages', []).filter('uniqueMessage', fu
                 return filterResult;
             });
 
-            messages = filteredArray;
+            filteredArray = filteredArray;
         }
 
-        return messages
+        return filteredArray
     }
 });
