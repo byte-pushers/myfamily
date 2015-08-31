@@ -184,23 +184,23 @@ function Person(personJsonConfig) {
 
         return UIObject;
     };
-
-    this.toString = function () {
-    	return  "{" +
-            "firstName: " + firstName + "," +
-            "middleName: " + middleName + "," +
-            "lastName: " + lastName + "," +
-            "emails: " + emails + "," +
-            "birthDate: " + birthDate + "," +
-            "privacy: " + privacy + "," +
-            "phoneNumbers: " + phoneNumbers + "," +
-            "addresses: " +  addresses + "," +
-            "id: " + id + "," +
-            "createdDate: " + createdDate + "," +
-            "lastModifiedDate: " + lastModifiedDate + "," +
-            "createdBy: " + createdBy + "," +
-            "lastModifiedBy: " + lastModifiedBy + "," +
-            "protectedMetaData:" + protectedMetaData +
-        "}";
-    };
 }
+
+Person.prototype.toString = function () {
+    return  "{" +
+        "firstName: " + firstName + "," +
+        "middleName: " + middleName + "," +
+        "lastName: " + lastName + "," +
+        "emails: " + emails + "," +
+        "birthDate: " + birthDate + "," +
+        "privacy: " + privacy + "," +
+        "phoneNumbers: " + phoneNumbers + "," +
+        "addresses: " +  addresses + "," +
+        "id: " + id + "," +
+        "createdDate: " + createdDate + "," +
+        "lastModifiedDate: " + lastModifiedDate + "," +
+        "createdBy: " + createdBy + "," +
+        "lastModifiedBy: " + lastModifiedBy + "," +
+        "protectedMetaData:" + protectedMetaData +
+    "}";
+};

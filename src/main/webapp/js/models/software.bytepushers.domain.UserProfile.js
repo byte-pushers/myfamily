@@ -48,20 +48,6 @@ function UserProfile(userProfileJsonConfig) {
         return createdBy;
     };
 
-    this.toString = function () {
-        return "{" +
-            "username: " + username + "," +
-            "password: " + password + "," +
-            "isAttendee:" + isAttendee + "," +
-            "person:" + person.toString() + "," +
-            "id:" + id + "," +
-            "createdDate:" + createdDate + "," +
-            "lastModifiedBy:" + lastModifiedBy + "," +
-            "lastModifiedDate:" + lastModifiedDate + "," +
-            "createdBy:" + createdBy +
-        "}";
-    };
-
     this.toJSON = function(serializeUIProperties){
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties)) ? serializeUIProperties : false;
         var jsonUsername = (Object.isDefined(username)) ? "\"" + username + "\"" : null,
@@ -92,4 +78,18 @@ function UserProfile(userProfileJsonConfig) {
 
         return UIObject;
     };
+};
+
+UserProfile.prototype.toString = function () {
+    return "{" +
+        "username: " + username + "," +
+        "password: " + password + "," +
+        "isAttendee:" + isAttendee + "," +
+        "person:" + person.toString() + "," +
+        "id:" + id + "," +
+        "createdDate:" + createdDate + "," +
+        "lastModifiedBy:" + lastModifiedBy + "," +
+        "lastModifiedDate:" + lastModifiedDate + "," +
+        "createdBy:" + createdBy +
+    "}";
 };

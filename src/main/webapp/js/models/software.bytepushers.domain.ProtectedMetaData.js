@@ -45,14 +45,11 @@ function ProtectedMetaData(protectedMetaDataJsonConfig){
 
         return UIObject;
     };
-
-    this.toString = function () {
-        return "{" +
-            "attributeName: " + attributeName + "," +
-            "access: " + accessLevel +
-        "}";
-    };
 }
 
-
-
+ProtectedMetaData.prototype.toString = function () {
+    return "{" +
+        "attributeName: " + attributeName + "," +
+        "access: " + accessLevel +
+    "}";
+};

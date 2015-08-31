@@ -52,14 +52,14 @@ function SearchRequest(searchRequestJsonConfig) {
 
         return UIObject;
     };
-
-    this.toString = function () {
-        return  "{" +
-            "firstName: " + firstName + "," +
-            "middleName: " + middleName + "," +
-            "lastName: " + lastName + "," +
-            "username: " + username + "," +
-            "address: " + address.toString() +
-            "}";
-    };
 }
+
+SearchRequest.prototype.toString = function () {
+    return  "{" +
+        "firstName: " + firstName + "," +
+        "middleName: " + middleName + "," +
+        "lastName: " + lastName + "," +
+        "username: " + username + "," +
+        "address: " + address.toString() +
+    "}";
+};

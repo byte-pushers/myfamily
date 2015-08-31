@@ -102,15 +102,15 @@ function Address(addressJsonConfig) {
 
         return UIObject;
     };
-
-    this.toString = function () {
-    	return  "{" +
-           "street1: " + street1 + "," +
-           "street2: " + street2 + "," +
-           "city: " + city + "," +
-           "state: " + state + "," +
-           "zip: " + zip + "," +
-           "country: " + country +
-           "}";
-    };
 }
+
+Address.prototype.toString = function () {
+    return  "{" +
+        "street1: " + street1 + "," +
+        "street2: " + street2 + "," +
+        "city: " + city + "," +
+        "state: " + state + "," +
+        "zip: " + zip + "," +
+        "country: " + country +
+        "}";
+};

@@ -39,11 +39,11 @@ function WebServiceResponse(responseConfig) {
 
         return UIObject;
     };
-
-    this.toString = function () {
-        return  "{" +
-            "status: " + status + "," +
-            "payload: " + payload +
-            "}";
-    };
 }
+
+WebServiceResponse.prototype.toString = function () {
+    return  "{" +
+        "status: " + status + "," +
+        "payload: " + payload +
+    "}";
+};

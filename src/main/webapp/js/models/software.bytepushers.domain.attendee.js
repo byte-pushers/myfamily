@@ -44,12 +44,11 @@ function Attendee(attendeeJsonConfig) {
 
         return UIObject;
     };
-    
-this.toString = function () {
-    	
-    	return "Attendee(s) {" +
+}
+
+Attendee.prototype.toString = function () {
+    return "Attendee(s) {" +
         "name: " + name + "," +
         " email: " + email  + "," +
-        "}";
-    };
-}
+    "}";
+};

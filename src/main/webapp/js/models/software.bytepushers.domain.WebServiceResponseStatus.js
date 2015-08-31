@@ -46,11 +46,11 @@ function WebServiceResponseStatus(responseStatusConfig) {
 
         return UIObject;
     };
-
-    this.toString = function () {
-        return  "{" +
-            "messages: " + messages + "," +
-            "requestStatus: " + requestStatus +
-            "}";
-    };
 }
+
+WebServiceResponseStatus.prototype.toString = function () {
+    return  "{" +
+        "messages: " + messages + "," +
+        "requestStatus: " + requestStatus +
+    "}";
+};

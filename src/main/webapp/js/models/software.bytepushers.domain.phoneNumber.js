@@ -88,14 +88,14 @@ function PhoneNumber(phoneNumberConfig) {
 
         return UIObject;
     };
-
-this.toString = function () {
-    	return  "{" +
-           "type: " + "PRIMARY" + "," +
-           "country: " + country + "," +
-           "areaCode: " + areaCode + "," +
-           "exchangeCode: " + exchangeCode + "," +
-           "localNumber: " + localNumber +
-           "}";
-    };
 }
+
+PhoneNumber.prototype.toString = function () {
+    return  "{" +
+        "type: " + "PRIMARY" + "," +
+        "country: " + country + "," +
+        "areaCode: " + areaCode + "," +
+        "exchangeCode: " + exchangeCode + "," +
+        "localNumber: " + localNumber +
+    "}";
+};

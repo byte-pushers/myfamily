@@ -215,24 +215,24 @@ function Event(eventJsonConfig) {
 
         return UIObject;
     };
-    
-    this.toString = function () {
-    	
-    	return "Event: {" +
-        "name: " + name + "," +
-        " description: " + description  + "," +
-        " url: " +  url  + "," +
-        " checkbox1: " +  checkbox1  + "," +
-        " checkbox2: " +  checkbox2  + "," +
-        " address1: "+ address1  + "," +
-        " address2: "+ address2  + "," +
-        " city: "+ city  + "," +
-        " state: "+ state  + "," +
-        " zip: "+ zip  + "," +
-        " country: "+ country  + "," +
-        " startDate: "+ startDate  + "," +
-        " endDate: "+ endDate  + "," +
-        " attendees: " + attendeeArray +
-        "}";
-    };
 }
+
+Event.prototype.toString = function () {
+
+	return "Event: {" +
+		"name: " + name + "," +
+		" description: " + description  + "," +
+		" url: " +  url  + "," +
+		" checkbox1: " +  checkbox1  + "," +
+		" checkbox2: " +  checkbox2  + "," +
+		" address1: "+ address1  + "," +
+		" address2: "+ address2  + "," +
+		" city: "+ city  + "," +
+		" state: "+ state  + "," +
+		" zip: "+ zip  + "," +
+		" country: "+ country  + "," +
+		" startDate: "+ startDate  + "," +
+		" endDate: "+ endDate  + "," +
+		" attendees: " + attendeeArray +
+		"}";
+};

@@ -57,13 +57,13 @@ function Email(emailJsonConfig){
 
         return UIObject;
     };
-
-    this.toString = function () {
-        return  "{" +
-            "personId: " + personId + "," +
-            "contactType: " + contactType + "," +
-            "email: " + email + "," +
-            "accessLevel:" + accessLevel +
-            "}";
-    };
 }
+
+Email.prototype.toString = function () {
+    return  "{" +
+        "personId: " + personId + "," +
+        "contactType: " + contactType + "," +
+        "email: " + email + "," +
+        "accessLevel:" + accessLevel +
+    "}";
+};

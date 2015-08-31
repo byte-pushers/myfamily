@@ -29,10 +29,10 @@ function WebServicePayload(payloadConfig) {
 
         return UIObject;
     };
-
-    this.toString = function () {
-        return  "{" +
-            "person: " + person +
-            "}";
-    };
 }
+
+WebServicePayload.prototype.toString = function () {
+    return  "{" +
+        "person: " + person +
+    "}";
+};
