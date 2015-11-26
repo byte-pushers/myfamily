@@ -1,15 +1,15 @@
-function PhoneNumber(phoneNumberConfig) {
+function PhoneNumber(phoneNumberJsonConfig) {
 
-	var country = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.country))? phoneNumberConfig.country: null;
-	var areaCode = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.areaCode))? phoneNumberConfig.areaCode: null;
-	var exchangeCode = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.exchangeCode))? phoneNumberConfig.exchangeCode: null;
-	var localNumber = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.localNumber))? phoneNumberConfig.localNumber: null;
-    var id = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.id))? phoneNumberConfig.id: null;
-    var createdDate = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.createdDate))? new Date(phoneNumberConfig.createdDate): new Date();
-    var lastModifiedDate = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.lastModifiedDate))? new Date(phoneNumberConfig.lastModifiedDate): createdDate;
-    var createdBy = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.createdBy))? phoneNumberConfig.createdBy: null;
-    var lastModifiedBy = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.lastModifiedBy))? phoneNumberConfig.lastModifiedBy: null;
-    var protectedMetaData = (Object.isDefined(phoneNumberConfig) && Object.isDefined(phoneNumberConfig.getProtectedMetaData))? phoneNumberConfig.protectedMetaData : null;
+	var country = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.country))? phoneNumberJsonConfig.country: null;
+	var areaCode = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.areaCode))? phoneNumberJsonConfig.areaCode: null;
+	var exchangeCode = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.exchangeCode))? phoneNumberJsonConfig.exchangeCode: null;
+	var localNumber = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.localNumber))? phoneNumberJsonConfig.localNumber: null;
+    var id = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.id))? phoneNumberJsonConfig.id: null;
+    var createdDate = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.createdDate))? new Date(phoneNumberJsonConfig.createdDate): new Date();
+    var lastModifiedDate = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.lastModifiedDate))? new Date(phoneNumberJsonConfig.lastModifiedDate): createdDate;
+    var createdBy = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.createdBy))? phoneNumberJsonConfig.createdBy: null;
+    var lastModifiedBy = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.lastModifiedBy))? phoneNumberJsonConfig.lastModifiedBy: null;
+    var protectedMetaData = (Object.isDefined(phoneNumberJsonConfig) && Object.isArray(phoneNumberJsonConfig.protectedMetaData))? createProtectedMetaData(phoneNumberJsonConfig.protectedMetaData) : [];
 
     this.getProtectedMetaData = function(){
         return protectedMetaData;
@@ -52,9 +52,18 @@ function PhoneNumber(phoneNumberConfig) {
     };
 
     this.getConfig = function() {
-        return phoneNumberConfig;
+        return phoneNumberJsonConfig;
     };
 
+    function createProtectedMetaData(protectedMetaDataJsonConfigArray){
+        var tempProtectedMetaData = [];
+        if ((Object.isDefined(protectedMetaDataJsonConfigArray) && (Object.isArray(protectedMetaDataJsonConfigArray)))){
+            protectedMetaDataJsonConfigArray.forEach(function (protectedMetaDataJsonConfig){
+                tempProtectedMetaData.push(new ProtectedMetaData(protectedMetaDataJsonConfig));
+            });
+        }
+        return tempProtectedMetaData;
+    }
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
