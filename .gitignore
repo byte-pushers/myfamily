@@ -1,13 +1,9 @@
+/.idea
 /.settings/
 /.project
 /build/
 /.classpath
-/angularJS/nbproject/private/
-/SampleAngularProject/nbproject/private/
 /target
-main.iml
-.idea
 node_modules
-bower_components
-angularJS
+/src/main/webapp/bower_components
 myfamily.iml
