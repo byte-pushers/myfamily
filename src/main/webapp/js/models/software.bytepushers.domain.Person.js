@@ -5,7 +5,7 @@ function Person(personJsonConfig) {
 	var lastName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastName))? personJsonConfig.lastName: null;
 	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? personJsonConfig.birthDate: null;
     var privacy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.privacy))? personJsonConfig.privacy: null;
-    var emails = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.email))? createEmails(personJsonConfig.emails): [];
+    var emails = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.email))? createEmails(personJsonConfig.emails): [];
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
