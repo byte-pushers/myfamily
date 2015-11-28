@@ -1,21 +1,26 @@
-function ProtectedMetaData(protectedMetaDataJsonConfig) {
-    var attributeName = (Object.isDefined(protectedMetaDataJsonConfig) && Object.isDefined(protectedMetaDataJsonConfig.attributeName)) ? protectedMedaDataJsonConfig.attributeName : null;
-    var accessLevel = (Object.isDefined(protectedMetaDataJsonConfig.accessLevel) && Object.iValidAccessLevel(protectedMetaDataJsonConfig.accessLevel)) ? emailJsonConfig.accessLevel : public;
+/**
+ * Created by pouncilm on 11/28/15.
+ */
+function ProtectedMetaData (protectedMetaDataJsonConfig) {
     var isValidAccessLevel = function (accessLevel) {
         var validAccessLevel = false;
         if (Object.isString(accessLevel)) {
-            if (accessLevel == "public") {
-                accessLevel = true;
+            if (accessLevel === "public") {
+                validAccessLevel = true;
             }
             if (accessLevel == "protected") {
-                accessLevel = true;
+                validAccessLevel = true;
             }
             if (accessLevel == "private") {
-                accessLevel = true;
+                validAccessLevel = true;
             }
         }
         return validAccessLevel;
     };
+
+    var attributeName = (Object.isDefined(protectedMetaDataJsonConfig) && Object.isDefined(protectedMetaDataJsonConfig.attributeName)) ? protectedMetaDataJsonConfig.attributeName : null;
+    var accessLevel = (Object.isDefined(protectedMetaDataJsonConfig.accessLevel) && isValidAccessLevel(protectedMetaDataJsonConfig.accessLevel)) ? protectedMetaDataJsonConfig.accessLevel : "public";
+
     this.getAttributeName = function () {
         return attributeName;
     };
@@ -32,6 +37,6 @@ function ProtectedMetaData(protectedMetaDataJsonConfig) {
         return UIObject;
     };
     this.toString = function () {
-        return "{" + "attributeName: " + attributeName + "," + "access: " + accessLevel + "}";
+        return "{attributeName: " + attributeName + "," + " access: " + accessLevel + "}";
     };
-}    
+}

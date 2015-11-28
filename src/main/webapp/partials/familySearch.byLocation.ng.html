@@ -1,1 +1,124 @@
-Testing
+
+<form name="byLocationForm" novalidate>
+    <div class="row">
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.address.street1" name="street1" placeholder = "Street Address" >
+        </div>
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.address.city" name="city" placeholder = "City" >
+
+        </div>
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.address.state" name="state" placeholder="State" >
+        </div>
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.address.zip" name="zipCode" placeholder="ZipCode" >
+        </div>
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+        <div class="col-md-4">
+            <select name="country" ng-model="personSearchCriteria.address.country"
+                     required>
+                <option value="CANADA">Canada</option>
+                <option value="MEXICO">Mexico</option>
+                <option value="UNITED_STATES">United States</option>
+                <option value="UNITED_KINGDOM">United Kingdom</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 align-center">
+            <div class="help-block" ng-show="!validNameForm">
+                <small style="color: #b94a48">
+                    At least one is required to search.
+                </small>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+    <div class="row">
+        <div class="col-md-offset-5">
+            <button class="btn btn-primary btn-sm" ng-click="submit(byUsernameForm.username.$valid, false)">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+
+            </button>
+            <button class="btn btn-primary btn-sm" ng-click="doTestSearch(personSearchCriteria)">
+                testing
+
+            </button>
+        </div>
+
+    </div>
+
+
+    <br> <br>
+
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 align-center">
+        <table class="table table-condensed table-striped" ng-show="resultsArray.length > 0">
+            <tr class="info">
+                <td><b>#</b></td>
+                <td><b>First Name</b></td>
+                <td><b>Middle Name</b></td>
+                <td><b>Last Name</b></td>
+                <td><b>Age</b></td>
+                <td><b>City</b></td>
+                <td><b>State</b></td>
+                <td><b>Zip</b></td>
+                <td><b>Country</b></td>
+            </tr>
+            <tr ng-repeat="x in resultsArray">
+                <td>{{$index + 1}}</td>
+                <td>{{x.getFirstName()}}</td>
+                <td>{{x.getMiddleName()}}</td>
+                <td>{{x.getLastName()}}</td>
+                <td>{{x.getBirthDate()}}</td>
+                <td>{{x.getAddress().getCity()}}</td>
+                <td>{{x.getAddress().getState()}}</td>
+                <td>{{x.getAddress().getCountry()}}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>

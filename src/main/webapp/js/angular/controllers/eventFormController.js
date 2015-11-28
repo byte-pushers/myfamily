@@ -63,7 +63,7 @@ myFamilyApp.controller('eventFormController', [ '$scope', '$state', 'EventServic
 					var attendeeConfig = {
 						name : $scope.attendeeUIObject.name,
 						email : $scope.attendeeUIObject.email
-					}
+					};
 					var a = new Attendee(attendeeConfig);
 					$scope.attendeeArray.push(a);
 				}

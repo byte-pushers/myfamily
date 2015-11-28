@@ -1,0 +1,1 @@
+function ProtectedMetaData(protectedMetaDataJsonConfig) {}  

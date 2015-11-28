@@ -1,0 +1,272 @@
+{
+  "status": {
+    "requestStatus": "Successful",
+    "messages": []
+  },
+  "payload": [
+    {
+      "id": 1,
+      "createdDate": "2015-07-09",
+      "lastModifiedDate": "2015-07-09",
+      "createdBy": "Adam Moen",
+      "lastModifiedBy": "Jared Ramirez",
+      "firstName": "Jared",
+      "middleName": null,
+      "lastName": "Ramirez",
+      "emails": [
+        {
+          "personId": 1,
+          "contactType": "SECONDARY",
+          "emailAddress": "jram@gmail.com"
+        }
+      ],
+      "privacy": "PRIVATE",
+      "birthDate": [
+        1996,
+        8,
+        17
+      ],
+      "protectedMetaData": [
+        {
+          "attributeName": "PERSON_GENDER",
+          "accessLevel": "PRIVATE"
+        },
+        {
+          "attributeName": "PERSON_FIRSTNAME",
+          "access": "PRIVATE"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "id": 3,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "PRIMARY",
+          "country": "MEXICO",
+          "areaCode": "000",
+          "exchangeCode": "333",
+          "localNumber": "2222"
+        },
+        {
+          "id": 4,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "WORK",
+          "country": "UNITED_STATES",
+          "areaCode": "000",
+          "exchangeCode": "000",
+          "localNumber": "8464",
+          "protectedMetaData": [
+            {
+              "attributeName": "PHONENUMBER_AREACODE",
+              "accessLevel": "PRIVATE"
+            }
+          ]
+        }
+      ],
+      "addresses": [
+        {
+          "id": 2,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "PRIMARY",
+          "street1": "North parkway",
+          "street2": null,
+          "city": "Fayetteville",
+          "state": "ARKANSAS",
+          "zip": "99999",
+          "country": "UNITED_STATES",
+          "protectedMetaData": [
+            {
+              "attributeName": "ADDRESS_CITY",
+              "accessLevel": "PRIVATE"
+            }
+          ]
+        }
+      ],
+      "gender": "MALE"
+    },
+    {
+      "id": 1,
+      "createdDate": "2015-07-09",
+      "lastModifiedDate": "2015-07-09",
+      "createdBy": "Adam Moen",
+      "lastModifiedBy": "Jared Ramirez",
+      "firstName": "Jared",
+      "middleName": null,
+      "lastName": "Ramirez",
+      "emails": [
+        {
+          "personId": 1,
+          "contactType": "SECONDARY",
+          "emailAddress": "jram@gmail.com"
+        }
+      ],
+      "privacy": "PRIVATE",
+      "birthDate": [
+        1996,
+        8,
+        17
+      ],
+      "protectedMetaData": [
+        {
+          "attributeName": "PERSON_GENDER",
+          "accessLevel": "PRIVATE"
+        },
+        {
+          "attributeName": "PERSON_FIRSTNAME",
+          "access": "PRIVATE"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "id": 3,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "PRIMARY",
+          "country": "MEXICO",
+          "areaCode": "000",
+          "exchangeCode": "333",
+          "localNumber": "2222"
+        },
+        {
+          "id": 4,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "WORK",
+          "country": "UNITED_STATES",
+          "areaCode": "000",
+          "exchangeCode": "000",
+          "localNumber": "8464",
+          "protectedMetaData": [
+            {
+              "attributeName": "PHONENUMBER_AREACODE",
+              "accessLevel": "PRIVATE"
+            }
+          ]
+        }
+      ],
+      "addresses": [
+        {
+          "id": 2,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "PRIMARY",
+          "street1": "North parkway",
+          "street2": null,
+          "city": "Fayetteville",
+          "state": "ARKANSAS",
+          "zip": "99999",
+          "country": "UNITED_STATES",
+          "protectedMetaData": [
+            {
+              "attributeName": "ADDRESS_CITY",
+              "accessLevel": "PRIVATE"
+            }
+          ]
+        }
+      ],
+      "gender": "MALE"
+    },
+    {
+      "id": 1,
+      "createdDate": "2015-07-09",
+      "lastModifiedDate": "2015-07-09",
+      "createdBy": "Adam Moen",
+      "lastModifiedBy": "Jared Ramirez",
+      "firstName": "Jared",
+      "middleName": null,
+      "lastName": "Ramirez",
+      "emails": [
+        {
+          "personId": 1,
+          "contactType": "SECONDARY",
+          "emailAddress": "jram@gmail.com"
+        }
+      ],
+      "privacy": "PRIVATE",
+      "birthDate": [
+        1996,
+        8,
+        17
+      ],
+      "protectedMetaData": [
+        {
+          "attributeName": "PERSON_GENDER",
+          "accessLevel": "PRIVATE"
+        },
+        {
+          "attributeName": "PERSON_FIRSTNAME",
+          "access": "PRIVATE"
+        }
+      ],
+      "phoneNumbers": [
+        {
+          "id": 3,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "PRIMARY",
+          "country": "MEXICO",
+          "areaCode": "000",
+          "exchangeCode": "333",
+          "localNumber": "2222"
+        },
+        {
+          "id": 4,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "WORK",
+          "country": "UNITED_STATES",
+          "areaCode": "000",
+          "exchangeCode": "000",
+          "localNumber": "8464",
+          "protectedMetaData": [
+            {
+              "attributeName": "PHONENUMBER_AREACODE",
+              "accessLevel": "PRIVATE"
+            }
+          ]
+        }
+      ],
+      "addresses": [
+        {
+          "id": 2,
+          "createdDate": "2015-07-09",
+          "lastModifiedDate": "2015-07-09",
+          "createdBy": "UserProfile",
+          "lastModifiedBy": "UserProfile",
+          "contactType": "PRIMARY",
+          "street1": "North parkway",
+          "street2": null,
+          "city": "Fayetteville",
+          "state": "ARKANSAS",
+          "zip": "99999",
+          "country": "UNITED_STATES",
+          "protectedMetaData": [
+            {
+              "attributeName": "ADDRESS_CITY",
+              "accessLevel": "PRIVATE"
+            }
+          ]
+        }
+      ],
+      "gender": "MALE"
+    }
+  ]
+}
