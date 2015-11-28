@@ -11,7 +11,7 @@ function Address(addressJsonConfig) {
     var lastModifiedDate = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.lastModifiedDate))? new Date(addressJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.createdBy))? addressJsonConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.lastModifiedBy))? addressJsonConfig.lastModifiedBy: null;
-    var protectedMetaData = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.protectedMetaData))? addressJsonConfig.protectedMetaData: null;
+    var protectedMetaData = (Object.isDefined(addressJsonConfig) && Object.isArray(addressJsonConfig.protectedMetaData))? createProtectedMetaData(addressJsonConfig.protectedMetaData) : [];
 
     this.getProtectedMetaData = function(){
         return protectedMetaData;
@@ -64,6 +64,16 @@ function Address(addressJsonConfig) {
     this.getConfig = function() {
         return addressJsonConfig;
     };
+
+    function createProtectedMetaData(protectedMetaDataJsonConfigArray){
+        var tempProtectedMetaData = [];
+        if((Object.isDefined(protectedMetaDataJsonConfigArray) && (Object.isArray(protectedMetaDataJsonConfigArray)))){
+            protectedMetaDataJsonConfigArray.forEach(function (protectedMetaDataJsonConfig){
+                tempProtectedMetaData.push(new ProtectedMetaData(protectedMetaDataJsonConfig));
+            })
+        }
+        return tempProtectedMetaData;
+    }
 
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;

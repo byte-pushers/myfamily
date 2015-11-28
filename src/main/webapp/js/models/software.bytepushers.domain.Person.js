@@ -81,11 +81,11 @@ function Person(personJsonConfig) {
         return tempEmails;
     }
 
-    function createProtectedMetaData(protectedMetaDataJsonConfig) {
+    function createProtectedMetaData(protectedMetaDataJsonConfigArray) {
         var tempProtectedMetaData = [];
-        if ((Object.isDefined(protectedMetaDatasJsonConfig) && (Object.isArray(protectedMetaDatasJsonConfig)))) {
-            protectedMetaDatasJsonConfig.forEach(function (protectedMetaDatasJsonConfig) {
-                tempProtectedMetaData.push(new ProtectedMetaData(protectedMetaDatasJsonConfig));
+        if ((Object.isDefined(protectedMetaDataJsonConfigArray) && (Object.isArray(protectedMetaDataJsonConfigArray)))) {
+            protectedMetaDataJsonConfigArray.forEach(function (protectedMetaDataJsonConfig) {
+                tempProtectedMetaData.push(new ProtectedMetaData(protectedMetaDataJsonConfig));
             });
         }
         return tempProtectedMetaData;
