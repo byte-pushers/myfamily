@@ -1,36 +1,55 @@
 <form name="byNameForm" novalidate>
     <div class="row ">
-        <div class="col-md-2 col-md-offset-1 align-right">Name:</div>
-
-        <div class="col-md-2">
-            <input type="text" ng-model="personSearchCriteria.firstName" name="firstName"
-                   class="form-control" required-any="nameSearch">
+        <div class="col-md-5">
+            <div>&nbsp;</div>
         </div>
 
-        <div class="col-md-2">
-            <input type="text" ng-model="personSearchCriteria.middleName" name="middleName"
-                   class="form-control" required-any="nameSearch">
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.name" name="name" placeholder = "Name" >
         </div>
-        <div class="col-md-2">
-            <input type="text" ng-model="personSearchCriteria.lastName" name="lastName"
-                   class="form-control" required-any="nameSearch">
+        <div class="col-md-4">
+            <div>&nbsp;</div>
         </div>
-        <div class="col-md-3">
-            <input type="text" ng-model="personSearchCriteria.userName" name="userName"
-                   class="form-control" required-any="nameSearch">
+    </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div>&nbsp;</div>
+            </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.middleName" name="middleName" placeholder = "middleName" >
+        </div>
+            <div class="col-md-4">
+                <div>&nbsp;</div>
+            </div>
         </div>
 
-        <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-5">
+                <div>&nbsp;</div>
+            </div>
+        <div class="col-md-4">
+            <input type="text" ng-model="personSearchCriteria.lastName" name="lastName" placeholder = "lastName" >
+        </div>
+        </div>
+        <div class="col-md-4">
+            <div>&nbsp;</div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="col-md-offset-10">
             <button class="btn btn-primary btn-sm" ng-click="submit((byNameForm.firstName.$valid || byNameForm.middleName.$valid || byNameForm.lastName.$valid), true)">
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             </button>
+            </div>
         </div>
-    </div>
+
+
 
     <div class="row">
         <div class="col-md-12 align-center">
             <div class="help-block" ng-show="!validNameForm">
-                <small style="color: #b94a48">
+                <small style="color: #b94a48" ng-if="!validUsernameForm">
                     At least one is required to search.
                 </small>
             </div>
@@ -42,20 +61,25 @@
 <form name="byUsernameForm" novalidate>
 
     <div class="row">
-        <div class="col-md-2 col-md-offset-2 align-right">
-            <p>Enter username:</p>
+        <div class="col-md-5">
+            <div>&nbsp;</div>
         </div>
-
         <div class="col-md-4">
-            <input type="text" ng-model="searchRequest.username" name="username" class="form-control" required/>
+            <input type="text" ng-model="personSearchCriteria.userName" name="userName" placeholder = "userName">
         </div>
+    </div>
+    <div class="col-md-4">
+        <div>&nbsp;</div>
+    </div>>
 
-        <div class="col-md-4">
-            <button class="btn btn-primary btn-sm" ng-click="submit(byUsernameForm.username.$valid, false)">
+    <div class="col-md-4">
+        <div class="col-md-offset-10">
+            <button class="btn btn-primary btn-sm" ng-click="submit((byNameForm.firstName.$valid || byNameForm.middleName.$valid || byNameForm.lastName.$valid), true)">
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
             </button>
         </div>
     </div>
+
 
     <div class="row">
         <div class="col-md-12 align-center">
