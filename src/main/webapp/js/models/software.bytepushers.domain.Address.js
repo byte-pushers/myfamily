@@ -77,19 +77,19 @@ function Address(addressJsonConfig) {
 
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonStreet1 = (Object.isDefined(street1))? "\"" + street1 + "\"" : null,
+        var jsonId = (Object.isDefined(id))? id  : null,
+            jsonStreet1 = (Object.isDefined(street1))? "\"" + street1 + "\"" : null,
             jsonStreet2 = (Object.isDefined(street2))? "\"" + street2 + "\"" : null,
             jsonCity = (Object.isDefined(city))? "\"" + city + "\"" : null,
             jsonState = (Object.isDefined(state))? "\"" + state + "\"" : null,
             jsonZip = (Object.isDefined(zip))? "\"" + zip + "\"" : null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
-            jsonId = (Object.isDefined(id))? id : null,
-            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
-            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
-            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
-            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
-            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate)) ? Date.parse(createdDate) : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? Date.parse(lastModifiedDate) : null,
+            jsonCreatedBy = (Object.isDefined(createdBy)) ? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
+                "\"id\": " + jsonId + "," +
                 "\"contactType\": " + "\"PRIMARY\"" + "," +
                 "\"street1\": " + jsonStreet1 + "," +
                 "\"street2\": " + jsonStreet2 + "," +
@@ -97,12 +97,10 @@ function Address(addressJsonConfig) {
                 "\"state\": " + jsonState + "," +
                 "\"zip\": " + jsonZip + "," +
                 "\"country\": " + jsonCountry + "," +
-                "\"id\": " + jsonId + "," +
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
-                "\"protectedMetaData\": " + jsonProtectedMetaData +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };

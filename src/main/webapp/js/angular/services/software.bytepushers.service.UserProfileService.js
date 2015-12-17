@@ -1,14 +1,14 @@
-
-
 myFamilyApp.service('UserProfileService', ['$http', '$q', '$resource', function($http, $q, $resource) {
     var create = function(createUserProfileRequestParameters) {
         var deferred = $q.defer(),
-            url = myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/users.json", "user-profile-ws"),
+            /*url = myFamilyApp.filterRestfulClientUrl("http://localhost:8080/user-profile-ws/profiles/users.json", "user-profile-ws"),*/
+            url = "http://localhost:8080/user-profile-ws/users.json",
             defaultParams = {},
             actions = {
                 save: {
                     method: "POST",
                     isArray: false,
+                    headers:{'Content-Type':'application/json'},
                     transformResponse: myFamilyApp.appendTransform($http.defaults.transformResponse, function (jsonResponse) {
                         var response = BytePushers.models.ResponseTransformer.transformJSONResponse(jsonResponse, BytePushers.models.UserProfileTransformer);
 
@@ -19,6 +19,11 @@ myFamilyApp.service('UserProfileService', ['$http', '$q', '$resource', function(
                     })
                 }
             },
+
+            /*
+             * issues with date format being sent to service
+             */
+
             options = {stripTrailingSlashes: true},
             service = $resource(url, defaultParams, actions, options);
 

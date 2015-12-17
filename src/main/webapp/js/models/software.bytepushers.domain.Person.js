@@ -3,9 +3,8 @@ function Person(personJsonConfig) {
 	var firstName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.firstName))? personJsonConfig.firstName: null;
 	var middleName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.middleName))? personJsonConfig.middleName: null;
 	var lastName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastName))? personJsonConfig.lastName: null;
-	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? personJsonConfig.birthDate: null;
-    var privacy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.privacy))? personJsonConfig.privacy: null;
-    var emails = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.email))? createEmails(personJsonConfig.emails): [];
+	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? configureBirthDate(personJsonConfig.birthDate): null;
+    var emails = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.emails))? createEmails(personJsonConfig.emails): [];
     var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
     var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
@@ -70,6 +69,10 @@ function Person(personJsonConfig) {
     this.getLastModifiedBy = function() {
         return lastModifiedBy;
     };
+
+    function configureBirthDate(birthDateArray){
+        return new Date(birthDateArray[0], (birthDateArray[1] - 1), birthDateArray[2]);
+    }
 
     function createEmails(emailsJsonConfig) {
         var tempEmails = [];
@@ -142,39 +145,39 @@ function Person(personJsonConfig) {
         return json;
     }
 
+    function getBirthDateJSON(){
+        return "[" + birthDate.getFullYear() + ", " + (birthDate.getMonth() + 1) + ", " + birthDate.getDate() + "]";
+    }
+
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
+        var jsonId = (Object.isDefined(id))? id  : null,
+            jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
             jsonMiddleName = (Object.isDefined(middleName))? "\"" + middleName + "\"" : null,
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
             jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  "[]",
-            jsonBirthDate = (Object.isDate(birthDate))? "\"" + birthDate.toJSON() + "\"": null,
-            jsonPrivacy = (Object.isDefined(privacy))? "\"" + privacy + "\"": null,
+            jsonBirthDate = (Object.isDate(birthDate))? getBirthDateJSON() : null,
             jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
             jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
             jsonGender = (Object.isDefined(gender))? "\"" + gender + "\"" : null,
-            jsonId = (Object.isDefined(id))? "\"" + id + "\"" : null,
-            jsonCreatedDate = (Object.isDate(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
-            jsonLastModifiedDate = (Object.isDate(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
-            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
-            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
-            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate)) ? Date.parse(createdDate) : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? Date.parse(lastModifiedDate) : null,
+            jsonCreatedBy = (Object.isDefined(createdBy)) ? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
+                "\"id\": " + jsonId + "," +
                 "\"firstName\": " + jsonFistName + "," +
                 "\"middleName\": " + jsonMiddleName + "," +
                 "\"lastName\": " + jsonLastName + "," +
                 "\"emails\": " + jsonEmails + "," +
                 "\"birthDate\": " + jsonBirthDate + "," +
-                "\"privacy\": " + jsonPrivacy + "," +
                 "\"phoneNumbers\": " + jsonPhoneNumbers + "," +
                 "\"addresses\": " +  jsonAddresses + "," +
                 "\"gender\": " +  jsonGender + "," +
-                "\"id\": " + jsonId + "," +
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
-                "\"protectedMetaData\": " + jsonProtectedMetaData +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };
@@ -193,7 +196,6 @@ Person.prototype.toString = function () {
         "lastName: " + lastName + "," +
         "emails: " + emails + "," +
         "birthDate: " + birthDate + "," +
-        "privacy: " + privacy + "," +
         "phoneNumbers: " + phoneNumbers + "," +
         "addresses: " +  addresses + "," +
         "id: " + id + "," +
@@ -201,6 +203,5 @@ Person.prototype.toString = function () {
         "lastModifiedDate: " + lastModifiedDate + "," +
         "createdBy: " + createdBy + "," +
         "lastModifiedBy: " + lastModifiedBy + "," +
-        "protectedMetaData:" + protectedMetaData +
     "}";
 };

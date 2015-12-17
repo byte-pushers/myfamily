@@ -6,12 +6,11 @@ function UserProfile(userProfileJsonConfig) {
     var password = (Object.isDefined(userProfileJsonConfig) && Object.isString(userProfileJsonConfig.password)) ? userProfileJsonConfig.password : null;
     var isAttendee = (Object.isDefined(userProfileJsonConfig) && Object.isBoolean(userProfileJsonConfig.isAttendee)) ? userProfileJsonConfig.isAttendee : false;
     var person = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.person)) ? new Person(userProfileJsonConfig.person) : null;
-    var id = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.id))? personJsonConfig.id: null;
+    var id = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.id))? userProfileJsonConfig.id: null;
     var createdDate = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.createdDate))? new Date(userProfileJsonConfig.createdDate): new Date();
     var lastModifiedDate = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.lastModifiedDate))? new Date(userProfileJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.createdBy))? userProfileJsonConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.lastModifiedBy))? userProfileJsonConfig.lastModifiedBy: null;
-
 
     this.getUsername = function () {
         return username;
@@ -55,20 +54,20 @@ function UserProfile(userProfileJsonConfig) {
             jsonIsAttendee = (Object.isDefined(isAttendee)) ? isAttendee : false,
             jsonPerson = (Object.isDefined(person)) ? person.toJSON() : null,
             jsonId = (Object.isDefined(id)) ? id : null,
-            jsonCreatedDate = (Object.isDefined(createdDate)) ? "\"" + createdDate.toJSON() + "\"" : null,
-            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
-            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? "\"" + lastModifiedDate.toJSON() + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate)) ? Date.parse(createdDate) : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? Date.parse(lastModifiedDate) : null,
             jsonCreatedBy = (Object.isDefined(createdBy)) ? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             json = "{" +
+                "\"id\" : " + jsonId + "," +
                "\"username\" : " + jsonUsername + "," +
                "\"password\" : " + jsonPassword + "," +
                "\"isAttendee\" : " + jsonIsAttendee + "," +
                "\"person\" : " + jsonPerson + "," +
-               "\"id\" : " + jsonId + "," +
                "\"createdDate\" : " + jsonCreatedDate + "," +
-               "\"lastModifiedBy\" : " + jsonLastModifiedBy + "," +
-               "\"lastModifiedDate\" : " + jsonLastModifiedDate + "," +
-               "\"createdBy\" : " + jsonCreatedBy +
+                "\"lastModifiedDate\" : " + jsonLastModifiedDate + "," +
+               "\"createdBy\" : " + jsonCreatedBy +"," +
+                "\"lastModifiedBy\" : " + jsonLastModifiedBy +
             "}";
         return json;
     };
