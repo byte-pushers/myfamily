@@ -1,23 +1,18 @@
 function Person(personJsonConfig) {
-
 	var firstName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.firstName))? personJsonConfig.firstName: null;
 	var middleName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.middleName))? personJsonConfig.middleName: null;
 	var lastName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastName))? personJsonConfig.lastName: null;
 	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? configureBirthDate(personJsonConfig.birthDate): null;
-    var emails = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.emails))? createEmails(personJsonConfig.emails): [];
-    var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
-    var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
+    var emails = (Object.isDefined(personJsonConfig) /*&& Object.isArray(personJsonConfig.emails)*/)? createEmails(personJsonConfig.emails): [];
+    var phoneNumbers = (Object.isDefined(personJsonConfig) /*&& Object.isArray(personJsonConfig.phoneNumbers)*/)? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
+    var addresses = (Object.isDefined(personJsonConfig) /*&& Object.isArray(personJsonConfig.addresses)*/)? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
     var id = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.id))? personJsonConfig.id: null;
     var createdDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdDate))? new Date(personJsonConfig.createdDate): new Date();
     var lastModifiedDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedDate))? new Date(personJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdBy))? personJsonConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastModifiedBy))? personJsonConfig.lastModifiedBy: null;
-    var protectedMetaData = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.protectedMetaData))? createProtectedMetaData(personJsonConfig.protectedMetaData) : [];
 
-    this.getProtectedMetaData = function(){
-        return protectedMetaData;
-    };
 	this.getFirstName = function() {
 		return firstName;
 	};
@@ -76,7 +71,7 @@ function Person(personJsonConfig) {
 
     function createEmails(emailsJsonConfig) {
         var tempEmails = [];
-        if((Object.isDefined(emailsJsonConfig) && (Object.isArray(emailsJsonConfig)))) {
+        if((Object.isDefined(emailsJsonConfig) /*&& (Object.isArray(emailsJsonConfig))*/)) {
             emailsJsonConfig.forEach(function(emailJsonConfig){
                 tempEmails.push(new Email(emailJsonConfig));
             });
@@ -84,19 +79,9 @@ function Person(personJsonConfig) {
         return tempEmails;
     }
 
-    function createProtectedMetaData(protectedMetaDataJsonConfigArray) {
-        var tempProtectedMetaData = [];
-        if ((Object.isDefined(protectedMetaDataJsonConfigArray) && (Object.isArray(protectedMetaDataJsonConfigArray)))) {
-            protectedMetaDataJsonConfigArray.forEach(function (protectedMetaDataJsonConfig) {
-                tempProtectedMetaData.push(new ProtectedMetaData(protectedMetaDataJsonConfig));
-            });
-        }
-        return tempProtectedMetaData;
-    }
-
     function createPhoneNumbers(phoneNumbersJsonConfig) {
         var tempPhoneNumbers = [];
-        if((Object.isDefined(phoneNumbersJsonConfig) && (Object.isArray(phoneNumbersJsonConfig)))) {
+        if((Object.isDefined(phoneNumbersJsonConfig) /*&& (Object.isArray(phoneNumbersJsonConfig))*/)) {
             phoneNumbersJsonConfig.forEach(function(phoneNumberJsonConfig){
                 tempPhoneNumbers.push(new PhoneNumber(phoneNumberJsonConfig));
             });
@@ -106,7 +91,7 @@ function Person(personJsonConfig) {
 
     function createAddresses(addressesJsonConfig) {
         var tempAddresses = [];
-        if((Object.isDefined(addressesJsonConfig) && (Object.isArray(addressesJsonConfig)))) {
+        if((Object.isDefined(addressesJsonConfig) /*&& (Object.isArray(addressesJsonConfig))*/)) {
             addressesJsonConfig.forEach(function(addressJsonConfig){
                 tempAddresses.push(new Address(addressJsonConfig));
             });
@@ -155,10 +140,10 @@ function Person(personJsonConfig) {
             jsonFistName = (Object.isDefined(firstName))? "\"" + firstName + "\"" : null,
             jsonMiddleName = (Object.isDefined(middleName))? "\"" + middleName + "\"" : null,
             jsonLastName = (Object.isDefined(lastName))? "\"" + lastName + "\"" : null,
-            jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  "[]",
+            jsonEmails = (Object.isDefined(emails))? getEmailsJSON(serializeUIProperties):  [],
             jsonBirthDate = (Object.isDate(birthDate))? getBirthDateJSON() : null,
-            jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : "[]",
-            jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : "[]",
+            jsonPhoneNumbers = (Object.isDefined(phoneNumbers))? getPhoneNumbersJSON(serializeUIProperties) : [],
+            jsonAddresses = (Object.isDefined(addresses))? getAddressesJSON(serializeUIProperties) : [],
             jsonGender = (Object.isDefined(gender))? "\"" + gender + "\"" : null,
             jsonCreatedDate = (Object.isDefined(createdDate)) ? Date.parse(createdDate) : null,
             jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? Date.parse(lastModifiedDate) : null,

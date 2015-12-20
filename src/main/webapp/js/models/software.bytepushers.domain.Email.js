@@ -3,7 +3,7 @@ function Email(emailJsonConfig){
     var id = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.id))? emailJsonConfig.id: null;
     var contactType = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.contactType))? emailJsonConfig.contactType: null;
     var emailAddress = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.emailAddress))? emailJsonConfig.emailAddress: null;
-    var accessLevel = (Object.isDefined(emailJsonConfig.accessLevel) && isValidAccessLevel(emailJsonConfig.accessLevel)) ? emailJsonConfig.accessLevel : "PUBLIC";
+    var accessLevel = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.accessLevel) && isValidAccessLevel(emailJsonConfig.accessLevel)) ? emailJsonConfig.accessLevel : "PUBLIC";
     var createdDate = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.createdDate))? new Date(emailJsonConfig.createdDate): new Date();
     var lastModifiedDate = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.lastModifiedDate))? new Date(emailJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(emailJsonConfig) && Object.isDefined(emailJsonConfig.createdBy))? emailJsonConfig.createdBy: null;
@@ -73,7 +73,7 @@ Email.prototype.toString = function () {
     return  "{" +
         "id: " + id + "," +
         "contactType: " + contactType + "," +
-        "email: " + emailAddress + "," +
+        "email: " +  emailAddress + "," +
         "accessLevel:" + accessLevel +
     "}";
 };

@@ -149,7 +149,7 @@
                         Birthday:
                     </div>
                     <div class="col-md-2">
-                        <input type="date" class="form-control" ng-model="userProfileUIObject.person.birthDate" name="birthDate" required/>
+                        <input type="date" class="form-control" ng-model="rawBirthDate" name="birthDate" required/>
                     </div>
                     <div class="col-md-6">
                         <small ng-show="userForm.birthDate.$invalid && userForm.birthDate.$dirty"
@@ -190,7 +190,7 @@
                 </div>
                 <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
                     <div class="col-md-2">
-                        <input type="email" name="email" ng-model="userProfileUIObject.person.emails[0].email" class="form-control" required>
+                        <input type="email" name="email" ng-model="emailAddress" class="form-control" required>
                     </div>
                     <div class="col-md-6">
                         <small ng-show="userForm.email.$invalid && userForm.email.$dirty"

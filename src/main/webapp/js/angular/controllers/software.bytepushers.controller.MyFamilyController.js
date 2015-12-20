@@ -20,7 +20,4 @@ myFamilyApp.controller('MyFamilyController', [ '$scope', 'MessageHandler', funct
     $scope.setMessageHandler = function(messageHandler){
         $scope.messageHandler = messageHandler;
     }
-
-
-
 }]);
