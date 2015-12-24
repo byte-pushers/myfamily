@@ -85,7 +85,7 @@ Now browse to the app at `http://localhost:8000/app/index.html`.
 ## Directory Layout
 
 ```
-app/                    --> all of the source files for the application
+src/main/webapp/                    --> all of the source files for the application
   app.css               --> default stylesheet
   components/           --> all app specific modules
     version/              --> version related components
