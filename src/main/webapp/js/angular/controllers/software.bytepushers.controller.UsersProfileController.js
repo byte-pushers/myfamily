@@ -4,7 +4,7 @@ myFamilyApp.controller('UserProfileController',
         $scope.submit = function(isValid){
             configureBirthDate();
 
-            var user = new UserProfile($scope.userProfileUIObject);
+            var user = new UserProfile($scope.getUserProfileUIObject());
             console.log("user: " + user.toJSON());
             var requestParameters = {payload: user};
 
