@@ -3,9 +3,9 @@ function Person(personJsonConfig) {
 	var middleName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.middleName))? personJsonConfig.middleName: null;
 	var lastName = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.lastName))? personJsonConfig.lastName: null;
 	var birthDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.birthDate))? configureBirthDate(personJsonConfig.birthDate): null;
-    var emails = (Object.isDefined(personJsonConfig) /*&& Object.isArray(personJsonConfig.emails)*/)? createEmails(personJsonConfig.emails): [];
-    var phoneNumbers = (Object.isDefined(personJsonConfig) /*&& Object.isArray(personJsonConfig.phoneNumbers)*/)? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
-    var addresses = (Object.isDefined(personJsonConfig) /*&& Object.isArray(personJsonConfig.addresses)*/)? createAddresses(personJsonConfig.addresses): [];
+    var emails = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.emails))? createEmails(personJsonConfig.emails): [];
+    var phoneNumbers = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.phoneNumbers))? createPhoneNumbers(personJsonConfig.phoneNumbers) : [];
+    var addresses = (Object.isDefined(personJsonConfig) && Object.isArray(personJsonConfig.addresses))? createAddresses(personJsonConfig.addresses): [];
     var gender = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.gender))? personJsonConfig.gender: null;
     var id = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.id))? personJsonConfig.id: null;
     var createdDate = (Object.isDefined(personJsonConfig) && Object.isDefined(personJsonConfig.createdDate))? new Date(personJsonConfig.createdDate): new Date();
@@ -71,7 +71,7 @@ function Person(personJsonConfig) {
 
     function createEmails(emailsJsonConfig) {
         var tempEmails = [];
-        if((Object.isDefined(emailsJsonConfig) /*&& (Object.isArray(emailsJsonConfig))*/)) {
+        if((Object.isDefined(emailsJsonConfig) && (Object.isArray(emailsJsonConfig)))) {
             emailsJsonConfig.forEach(function(emailJsonConfig){
                 tempEmails.push(new Email(emailJsonConfig));
             });
@@ -81,7 +81,7 @@ function Person(personJsonConfig) {
 
     function createPhoneNumbers(phoneNumbersJsonConfig) {
         var tempPhoneNumbers = [];
-        if((Object.isDefined(phoneNumbersJsonConfig) /*&& (Object.isArray(phoneNumbersJsonConfig))*/)) {
+        if((Object.isDefined(phoneNumbersJsonConfig) && (Object.isArray(phoneNumbersJsonConfig)))) {
             phoneNumbersJsonConfig.forEach(function(phoneNumberJsonConfig){
                 tempPhoneNumbers.push(new PhoneNumber(phoneNumberJsonConfig));
             });
@@ -91,7 +91,7 @@ function Person(personJsonConfig) {
 
     function createAddresses(addressesJsonConfig) {
         var tempAddresses = [];
-        if((Object.isDefined(addressesJsonConfig) /*&& (Object.isArray(addressesJsonConfig))*/)) {
+        if((Object.isDefined(addressesJsonConfig) && (Object.isArray(addressesJsonConfig)))) {
             addressesJsonConfig.forEach(function(addressJsonConfig){
                 tempAddresses.push(new Address(addressJsonConfig));
             });
