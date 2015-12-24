@@ -1,5 +1,6 @@
 function PhoneNumber(phoneNumberJsonConfig) {
 
+    var contactType = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.contactType))? phoneNumberJsonConfig.contactType: null;
 	var country = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.country))? phoneNumberJsonConfig.country: null;
 	var areaCode = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.areaCode))? phoneNumberJsonConfig.areaCode: null;
 	var exchangeCode = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.exchangeCode))? phoneNumberJsonConfig.exchangeCode: null;
@@ -9,7 +10,6 @@ function PhoneNumber(phoneNumberJsonConfig) {
     var lastModifiedDate = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.lastModifiedDate))? new Date(phoneNumberJsonConfig.lastModifiedDate): createdDate;
     var createdBy = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.createdBy))? phoneNumberJsonConfig.createdBy: null;
     var lastModifiedBy = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.lastModifiedBy))? phoneNumberJsonConfig.lastModifiedBy: null;
-    var protectedMetaData = (Object.isDefined(phoneNumberJsonConfig) && Object.isArray(phoneNumberJsonConfig.protectedMetaData))? createProtectedMetaData(phoneNumberJsonConfig.protectedMetaData) : [];
 
     this.getProtectedMetaData = function(){
         return protectedMetaData;
@@ -66,28 +66,27 @@ function PhoneNumber(phoneNumberJsonConfig) {
     }
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
+        var jsonId = (Object.isDefined(id))? id  : null,
+            jsonContactType = (Object.isDefined(contactType))? "\"" + contactType + "\"" : null,
+            jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
             jsonAreaCode = (Object.isDefined(areaCode))? "\"" + areaCode + "\"" : null,
             jsonExchangeCode = (Object.isDefined(exchangeCode))? "\"" + exchangeCode + "\"" : null,
             jsonLocalNumber = (Object.isDefined(localNumber))? "\"" + localNumber + "\"" : null,
-            jsonId = (Object.isDefined(id))? id : null,
-            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
-            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
-            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
-            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
-            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate)) ? Date.parse(createdDate) : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? Date.parse(lastModifiedDate) : null,
+            jsonCreatedBy = (Object.isDefined(createdBy)) ? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
-                "\"contactType\": " + "\"PRIMARY\"" + "," +
+                "\"id\": " + jsonId + "," +
+                "\"contactType\": " + jsonContactType + "," +
                 "\"country\": " + jsonCountry + "," +
                 "\"areaCode\": " + jsonAreaCode + "," +
                 "\"exchangeCode\": " + jsonExchangeCode + "," +
                 "\"localNumber\": " + jsonLocalNumber  + "," +
-                "\"id\": " + jsonId + "," +
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
-                "\"protectedMetaData\": " + jsonProtectedMetaData +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };

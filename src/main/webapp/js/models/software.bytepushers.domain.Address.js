@@ -1,5 +1,6 @@
 function Address(addressJsonConfig) {
 
+    var contactType = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.contactType))? addressJsonConfig.contactType: null;
 	var street1 = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.street1))? addressJsonConfig.street1: null;
 	var street2 = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.street2))? addressJsonConfig.street2: null;
 	var city = (Object.isDefined(addressJsonConfig) && Object.isDefined(addressJsonConfig.city))? addressJsonConfig.city: null;
@@ -77,32 +78,31 @@ function Address(addressJsonConfig) {
 
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
-        var jsonStreet1 = (Object.isDefined(street1))? "\"" + street1 + "\"" : null,
+        var jsonId = (Object.isDefined(id))? id  : null,
+            jsonContactType = (Object.isDefined(contactType))? "\"" + contactType + "\"" : null,
+            jsonStreet1 = (Object.isDefined(street1))? "\"" + street1 + "\"" : null,
             jsonStreet2 = (Object.isDefined(street2))? "\"" + street2 + "\"" : null,
             jsonCity = (Object.isDefined(city))? "\"" + city + "\"" : null,
             jsonState = (Object.isDefined(state))? "\"" + state + "\"" : null,
             jsonZip = (Object.isDefined(zip))? "\"" + zip + "\"" : null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
-            jsonId = (Object.isDefined(id))? id : null,
-            jsonCreatedDate = (Object.isDefined(createdDate))? "\"" + createdDate.toJSON() + "\"" : null,
-            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate))? "\"" + lastModifiedDate.toJSON() + "\"" : null,
-            jsonCreatedBy = (Object.isDefined(createdBy))? "\"" + createdBy + "\"" : null,
-            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy))? "\"" + lastModifiedBy + "\"" : null,
-            jsonProtectedMetaData = (Object.isDefined(protectedMetaData))? "\"" + protectedMetaData + "\"" : null,
+            jsonCreatedDate = (Object.isDefined(createdDate)) ? Date.parse(createdDate) : null,
+            jsonLastModifiedDate = (Object.isDefined(lastModifiedDate)) ? Date.parse(lastModifiedDate) : null,
+            jsonCreatedBy = (Object.isDefined(createdBy)) ? "\"" + createdBy + "\"" : null,
+            jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
-                "\"contactType\": " + "\"PRIMARY\"" + "," +
+                "\"id\": " + jsonId + "," +
+                "\"contactType\": " + jsonContactType + "," +
                 "\"street1\": " + jsonStreet1 + "," +
                 "\"street2\": " + jsonStreet2 + "," +
                 "\"city\": " + jsonCity + "," +
                 "\"state\": " + jsonState + "," +
                 "\"zip\": " + jsonZip + "," +
                 "\"country\": " + jsonCountry + "," +
-                "\"id\": " + jsonId + "," +
                 "\"createdDate\": " + jsonCreatedDate + "," +
                 "\"lastModifiedDate\": " + jsonLastModifiedDate + "," +
                 "\"createdBy\": " + jsonCreatedBy + "," +
-                "\"lastModifiedBy\": " + jsonLastModifiedBy + "," +
-                "\"protectedMetaData\": " + jsonProtectedMetaData +
+                "\"lastModifiedBy\": " + jsonLastModifiedBy +
             "}";
         return json;
     };

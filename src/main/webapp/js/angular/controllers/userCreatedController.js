@@ -5,6 +5,7 @@ myFamilyApp.controller('userCreatedController', [ '$scope', '$http', '$state', '
 
         function initialize(){
             if(UserProfileService.getCurrentUser() != null){
+                $scope.getUserProfileUIObject();
                 $scope.user = UserProfileService.getCurrentUser();
             }
             else{
