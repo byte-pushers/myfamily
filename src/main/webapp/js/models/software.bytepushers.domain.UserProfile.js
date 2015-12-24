@@ -5,7 +5,7 @@ function UserProfile(userProfileJsonConfig) {
     var username = (Object.isDefined(userProfileJsonConfig) && Object.isString(userProfileJsonConfig.username)) ? userProfileJsonConfig.username : null;
     var password = (Object.isDefined(userProfileJsonConfig) && Object.isString(userProfileJsonConfig.password)) ? userProfileJsonConfig.password : null;
     var isAttendee = (Object.isDefined(userProfileJsonConfig) && Object.isBoolean(userProfileJsonConfig.isAttendee)) ? userProfileJsonConfig.isAttendee : false;
-    var person = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.person)) ? new Person(userProfileJsonConfig.person) : null;
+    var person = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.person)) ? new Person(userProfileJsonConfig.person) : new Person();
     var id = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.id))? userProfileJsonConfig.id: null;
     var createdDate = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.createdDate))? new Date(userProfileJsonConfig.createdDate): new Date();
     var lastModifiedDate = (Object.isDefined(userProfileJsonConfig) && Object.isDefined(userProfileJsonConfig.lastModifiedDate))? new Date(userProfileJsonConfig.lastModifiedDate): createdDate;
