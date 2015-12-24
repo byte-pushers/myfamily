@@ -1,14 +1,12 @@
-myFamilyApp.controller('UserProfileController',
+myFamilyApp.controller('UserProfileController', [ '$scope', '$state', 'UserProfileService',
     function($scope,  $state, UserProfileService) {
 
         $scope.submit = function(isValid){
-            configureBirthDate();
+            configureUser();
 
             var user = new UserProfile($scope.getUserProfileUIObject());
             console.log("user: " + user.toJSON());
             var requestParameters = {payload: user};
-
-            //mock data working & sending full request, real data not working
 
             if(isValid) {
                 UserProfileService.create(requestParameters).then(function (userProfile) {
@@ -30,7 +28,38 @@ myFamilyApp.controller('UserProfileController',
             }
         };
 
-        function configureBirthDate(){
+        function configureUser(){
+            $scope.userProfileUIObject.id = 0;
+            $scope.userProfileUIObject.createdBy = "userprofile";
+            $scope.userProfileUIObject.lastModifiedBy = "userprofile";
+            $scope.userProfileUIObject.createdDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.lastModifiedDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.id = 0;
+            $scope.userProfileUIObject.person.createdBy = "userprofile";
+            $scope.userProfileUIObject.person.lastModifiedBy = "userprofile";
+            $scope.userProfileUIObject.person.createdDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.lastModifiedDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.emails[0].id = 0;
+            $scope.userProfileUIObject.person.emails[0].contactType = "PRIMARY";
+            $scope.userProfileUIObject.person.emails[0].accessLevel = "PUBLIC";
+            $scope.userProfileUIObject.person.emails[0].createdBy = "userprofile";
+            $scope.userProfileUIObject.person.emails[0].lastModifiedBy = "userprofile";
+            $scope.userProfileUIObject.person.emails[0].createdDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.emails[0].lastModifiedDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.phoneNumbers[0].id = 0;
+            $scope.userProfileUIObject.person.phoneNumbers[0].contactType = "PRIMARY";
+            $scope.userProfileUIObject.person.phoneNumbers[0].country = $scope.userProfileUIObject.person.addresses[0].country;
+            $scope.userProfileUIObject.person.phoneNumbers[0].createdBy = "userprofile";
+            $scope.userProfileUIObject.person.phoneNumbers[0].lastModifiedBy = "userprofile";
+            $scope.userProfileUIObject.person.phoneNumbers[0].createdDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.phoneNumbers[0].lastModifiedDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.addresses[0].id = 0;
+            $scope.userProfileUIObject.person.addresses[0].contactType = "PRIMARY";
+            $scope.userProfileUIObject.person.addresses[0].createdBy = "userprofile";
+            $scope.userProfileUIObject.person.addresses[0].lastModifiedBy = "userprofile";
+            $scope.userProfileUIObject.person.addresses[0].createdDate = new Date().getTime() / 1000;
+            $scope.userProfileUIObject.person.addresses[0].lastModifiedDate = new Date().getTime() / 1000;
+
             $scope.userProfileUIObject.person.birthDate = [$scope.rawBirthDate.getFullYear(), ($scope.rawBirthDate.getMonth() + 1) , $scope.rawBirthDate.getDate()];
         }
 
@@ -49,6 +78,5 @@ myFamilyApp.controller('UserProfileController',
         function getMockUser() {
             return {"id":0,"username":"jaredramirez","password":"135132413","isAttendee":false,"person":{"id":0,"firstName":"Jared","middleName":null,"lastName":"Ramirez","emails":[{"id":0,"contactType":"PRIMARY","emailAddress":"jaredramirez@me.com","createdDate":1450045104519,"lastModifiedDate":null,"createdBy":"jared","lastModifiedBy":"jared"}],"birthDate":[1997,3,30],"phoneNumbers":[{"id":null,"contactType":"PRIMARY","country":"CANADA","areaCode":"940","exchangeCode":"368","localNumber":"7410","createdDate":"2015-10-1 3:00 PM GMT+1:00","lastModifiedDate":"2015-10-1 3:00 PM GMT+1:00","createdBy":"jared","lastModifiedBy":"jared"}],"addresses":[{"id":null,"contactType":"PRIMARY","street1":"1004WestOak","street2":null,"city":"Denton","state":"TEXAS","zip":"76201","country":"CANADA","createdDate":"2015-10-1 3:00 PM GMT+1:00","lastModifiedDate":"2015-10-1 3:00 PM GMT+1:00","createdBy":"jared","lastModifiedBy":"jared"}],"gender":"MALE","createdDate":"2015-10-1 3:00 PM GMT+1:00","lastModifiedDate":"2015-10-1 3:00 PM GMT+1:00","createdBy":"jared","lastModifiedBy":"jared"},"createdDate":"2015-10-1 3:00 PM GMT+1:00","lastModifiedDate":"2015-10-1 3:00 PM GMT+1:00","createdBy":"jared","lastModifiedBy":"jared"};
         }
-    },
-    [ '$scope', '$state', 'UserProfileService'
+    }
 ]);

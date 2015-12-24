@@ -1,5 +1,6 @@
 function PhoneNumber(phoneNumberJsonConfig) {
 
+    var contactType = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.contactType))? phoneNumberJsonConfig.contactType: null;
 	var country = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.country))? phoneNumberJsonConfig.country: null;
 	var areaCode = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.areaCode))? phoneNumberJsonConfig.areaCode: null;
 	var exchangeCode = (Object.isDefined(phoneNumberJsonConfig) && Object.isDefined(phoneNumberJsonConfig.exchangeCode))? phoneNumberJsonConfig.exchangeCode: null;
@@ -66,6 +67,7 @@ function PhoneNumber(phoneNumberJsonConfig) {
 	this.toJSON = function(serializeUIProperties) {
         serializeUIProperties = (Object.isDefined(serializeUIProperties) && Object.isBoolean(serializeUIProperties))? serializeUIProperties : false;
         var jsonId = (Object.isDefined(id))? id  : null,
+            jsonContactType = (Object.isDefined(contactType))? "\"" + contactType + "\"" : null,
             jsonCountry = (Object.isDefined(country))? "\"" + country + "\"" : null,
             jsonAreaCode = (Object.isDefined(areaCode))? "\"" + areaCode + "\"" : null,
             jsonExchangeCode = (Object.isDefined(exchangeCode))? "\"" + exchangeCode + "\"" : null,
@@ -76,7 +78,7 @@ function PhoneNumber(phoneNumberJsonConfig) {
             jsonLastModifiedBy = (Object.isDefined(lastModifiedBy)) ? "\"" + lastModifiedBy + "\"" : null,
             json =  "{" +
                 "\"id\": " + jsonId + "," +
-                "\"contactType\": " + "\"PRIMARY\"" + "," +
+                "\"contactType\": " + jsonContactType + "," +
                 "\"country\": " + jsonCountry + "," +
                 "\"areaCode\": " + jsonAreaCode + "," +
                 "\"exchangeCode\": " + jsonExchangeCode + "," +

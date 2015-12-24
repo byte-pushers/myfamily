@@ -19,11 +19,6 @@ myFamilyApp.service('UserProfileService', ['$http', '$q', '$resource', function(
                     })
                 }
             },
-
-            /*
-             * issues with date format being sent to service
-             */
-
             options = {stripTrailingSlashes: true},
             service = $resource(url, defaultParams, actions, options);
 

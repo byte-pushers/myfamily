@@ -165,10 +165,10 @@
                 </div>
                 <div class="col-md-3">
                     <div class="radio">
-                        <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PRIVATE" name="privateButton" ng-required="!userProfileUIObject.person.privacy"/>Private</label>
+                        <label><input type="radio" ng-model="privacy" value="PRIVATE" name="privateButton" ng-required="!userProfileUIObject.person.privacy"/>Private</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" ng-model="userProfileUIObject.person.privacy" value="PUBLIC" name="publicButton" ng-required="!userProfileUIObject.person.privacy"/>Public</label>
+                        <label><input type="radio" ng-model="privacy" value="PUBLIC" name="publicButton" ng-required="!userProfileUIObject.person.privacy"/>Public</label>
                     </div>
                 </div>
                 <div class="col-md-5"/>
@@ -190,7 +190,7 @@
                 </div>
                 <div ng-class="{ 'has-error' : userForm.email.$invalid && userForm.email.$dirty }">
                     <div class="col-md-2">
-                        <input type="email" name="email" ng-model="emailAddress" class="form-control" required>
+                        <input type="email" name="email" ng-model="userProfileUIObject.person.emails[0].emailAddress" class="form-control" required>
                     </div>
                     <div class="col-md-6">
                         <small ng-show="userForm.email.$invalid && userForm.email.$dirty"
